@@ -13,6 +13,7 @@
 * [Mongoose - sick mongoDB driver](https://mongoosejs.com/)
 * [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#lists)
 
+## Team Members
 * Nichita Hariton 	
 * Tarek Ait 			
 * Viveka Anban	

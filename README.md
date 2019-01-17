@@ -13,14 +13,14 @@
 * [Mongoose - sick mongoDB driver](https://mongoosejs.com/)
 * [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#lists)
 
-Nichita Hariton 	
-Tarek Ait 			
-Viveka Anban	
-Narra Pangan 		
-Joanna Lin		
-Sandy Paggabao
-Paul Musat		
-Dean Chong San 	
-Étienne Bérubé 	
-Abhijit Gupta 
+* Nichita Hariton 	
+* Tarek Ait 			
+* Viveka Anban	
+* Narra Pangan 		
+* Joanna Lin		
+* Sandy Paggabao
+* Paul Musat		
+* Dean Chong San 	
+* Étienne Bérubé 	
+* Abhijit Gupta 
 

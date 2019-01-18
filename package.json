@@ -1,0 +1,32 @@
+{
+  "name": "twatter",
+  "version": "1.0.0",
+  "description": "341 group project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start dev": "NODE_ENV=dev nodemon",
+    "start prod": "NODE_ENV=prod nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twatter-soen341/Twatter.git"
+  },
+  "author": "See github",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/twatter-soen341/Twatter/issues"
+  },
+  "homepage": "https://github.com/twatter-soen341/Twatter#readme",
+  "dependencies": {
+    "@angular/material": "^7.2.1",
+    "angular": "^1.7.6",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongodb": "^3.1.12",
+    "mongoose": "^5.4.0",
+    "validator": "^10.9.0"
+  }
+}

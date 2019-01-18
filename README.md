@@ -30,8 +30,8 @@
 1. Have MongoDB, Node and npm installed
 2. Clone the project
 3. In the main directory prompt **npm install** to install all the dependencies
-4. * To run the app in development prompt **npm start dev** 
-   * Alternatively you can run the app in production (only 500mb) **npm start prod**
+4. * To run the app in development prompt **npm start** 
+   * Alternatively you can run the app in production (only 500mb) **npm production**
 5. Add a .env file that is pinned in the main directory of the Discord Channel
 
 

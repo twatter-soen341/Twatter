@@ -8,7 +8,7 @@ const mongoose = require('mongoose')
 const indexRoutes = require('./routes/index');
 
 var uri
-
+console.log("nichita" + process.env.NODE_ENV)
 if (process.env.NODE_ENV === "dev") {
     uri = process.env.DEV_DATABASE
     console.log("connected to development database")
@@ -21,10 +21,6 @@ mongoose.connect(uri, { useNewUrlParser: true });
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-    console.log("connected to database")
-});
-
 
 // add functionalities
 app.set('view-engine', 'ejs');

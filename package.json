@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start dev": "NODE_ENV=dev nodemon",
-    "start prod": "NODE_ENV=prod nodemon"
+    "start": "NODE_ENV=dev nodemon",
+    "production": "NODE_ENV=prod nodemon"
   },
   "repository": {
     "type": "git",

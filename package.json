@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=dev nodemon",
-    "production": "NODE_ENV=prod nodemon"
+    "start": "cross-env NODE_ENV=dev node server.js",
+    "dev": "cross-env NODE_ENV=dev node server.js",
+    "prod": "cross-env NODE_ENV=prod node server.js"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,8 @@
     "mongodb": "^3.1.12",
     "mongoose": "^5.4.0",
     "validator": "^10.9.0"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0"
   }
 }

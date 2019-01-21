@@ -3,3 +3,6 @@
 3. push to branch
 4. open a pull request
 5. Wait for approvals and you can merge the branch
+
+-------Names-------
+Etienne Berube (40052212) email: tiennebrb@gmail.com 

@@ -38,7 +38,7 @@
 * **npm run prod** to run production
 
 
-testing soething
+testing something
 
    
 

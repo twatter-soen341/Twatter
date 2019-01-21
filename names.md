@@ -6,3 +6,4 @@
 
 -------Names-------
 Etienne Berube (40052212) email: tiennebrb@gmail.com 
+Nichita Hariton (40052663) email: nichitahariton@hotmail.com

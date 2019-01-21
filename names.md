@@ -8,4 +8,4 @@
 Etienne Berube (40052212) email: tiennebrb@gmail.com <br />
 tarek ait hamouda (40044119) email:  tarekaithamouda@gmail.com <br />
 Nichita Hariton (40052663) email: nichitahariton@hotmail.com <br />
-
+Viveka Anban (40063308) email: viveka98@hotmail.ca <br />

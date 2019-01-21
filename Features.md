@@ -19,3 +19,7 @@ Do a Pull request with 2 ideas on what the twatter system could be / do (don't f
 8) Have groups, limit access of a post. ie. "group1" can only see your posts. 
 
 9) mini games?
+
+### Paul
+10) If we implement temporary twats, we can also implement temporary direct messages.
+11) Twat of the day. We can have "likes" and "dislikes" then sort by controversial. 

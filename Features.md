@@ -11,3 +11,5 @@ Do a Pull request with 2 ideas on what the twatter system could be / do (don't f
 -----Dean-----
 5) Add a small window in the UI where we show some random ads;
 6) Add a small window where the local weather is shown;
+-----Joanna-----
+5) schedule tweets (post in 2 hours, post at 9pm)

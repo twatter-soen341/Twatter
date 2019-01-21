@@ -5,7 +5,6 @@
 5. Wait for approvals and you can merge the branch
 
 ## Team members
-
 | Name                | ID       | E-Mail                     |
 | ------------------- | -------- | -------------------------- |
 | Etienne Berube      | 40052212 | tiennebrb@gmail.com        |
@@ -15,3 +14,4 @@
 | Paul Musat          | 40052092 | pmusat7@gmail.com          |
 | Dean Chong San      | 40061194 | deancs1997@gmail.com       |
 | Alexandria Paggabao | 40052084 | a.paggabao@hotmail.com     |
+

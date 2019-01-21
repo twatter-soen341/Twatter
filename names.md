@@ -9,11 +9,4 @@
 Etienne Berube (40052212) email: tiennebrb@gmail.com <br />
 tarek ait hamouda (40044119) email:  tarekaithamouda@gmail.com <br />
 Nichita Hariton (40052663) email: nichitahariton@hotmail.com <br />
-
-=======
--------Names-------
-Etienne Berube (40052212) email: tiennebrb@gmail.com 
-tarek ait hamouda (40044119) email:  tarekaithamouda@gmail.com
-Nichita Hariton (40052663) email: nichitahariton@hotmail.com
-Dean Chong San (40061194) email : deancs1997@gmail.com
->>>>>>> Stashed changes
+Dean Chong San (40061194) email: deancs1997@gmail.com

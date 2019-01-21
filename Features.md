@@ -8,3 +8,5 @@ Do a Pull request with 2 ideas on what the twatter system could be / do (don't f
 
 4) matching feature ( based on interest, tweets content, etc we can match people or recommend them )
 
+-----Joanna-----
+5) schedule tweets (post in 2 hours, post at 9pm)

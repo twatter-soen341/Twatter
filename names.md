@@ -12,3 +12,4 @@
 | Nichita Hariton   | 40052663 | nichitahariton@hotmail.com |
 | Joanna Lin        | 40055253 | l.joanna19@hotmail.com     | 
 | Paul Musat        | 40052092 | pmusat7@gmail.com          |
+| Dean Chong San    | 40061194 | deancs1997@gmail.com       |

@@ -4,9 +4,12 @@
 4. open a pull request
 5. Wait for approvals and you can merge the branch
 
--------Names------- <br />
-Etienne Berube (40052212) email: tiennebrb@gmail.com <br />
-tarek ait hamouda (40044119) email:  tarekaithamouda@gmail.com <br />
-Nichita Hariton (40052663) email: nichitahariton@hotmail.com <br />
-Joanna Lin (40055253) email: l.joanna19@hotmail.com <br />
-
+## Team members
+| Name              | ID       | E-Mail                     |
+| ----------------- | -------- | -------------------------- |
+| Etienne Berube    | 40052212 | tiennebrb@gmail.com        |
+| tarek ait hamouda | 40044119 | tarekaithamouda@gmail.com  |
+| Nichita Hariton   | 40052663 | nichitahariton@hotmail.com |
+| Joanna Lin        | 40055253 | l.joanna19@hotmail.com     | 
+| Paul Musat        | 40052092 | pmusat7@gmail.com          |
+| Dean Chong San    | 40061194 | deancs1997@gmail.com       |

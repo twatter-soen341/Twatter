@@ -4,4 +4,6 @@
 4. open a pull request
 5. Wait for approvals and you can merge the branch
 
-tarek ait hamouda, 40044119, tarekaithamouda@gmail.com
+-------Names-------
+Etienne Berube (40052212) email: tiennebrb@gmail.com 
+tarek ait hamouda (40044119) email:  tarekaithamouda@gmail.com

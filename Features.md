@@ -23,3 +23,7 @@ Do a Pull request with 2 ideas on what the twatter system could be / do (don't f
 ### Paul
 10) If we implement temporary twats, we can also implement temporary direct messages.
 11) Twat of the day. We can have "likes" and "dislikes" then sort by controversial. 
+
+### Narra
+12) Night Mode (dark theme after 9pm, but can revert to regular theme)
+13) Edit tweet after it has been posted

@@ -14,4 +14,4 @@
 | Paul Musat          | 40052092 | pmusat7@gmail.com          |
 | Dean Chong San      | 40061194 | deancs1997@gmail.com       |
 | Alexandria Paggabao | 40052084 | a.paggabao@hotmail.com     |
-
+| Ethel Narra Pangan  | 40061530 | narra_pangan@hotmail.com   |

@@ -14,4 +14,5 @@
 | Paul Musat          | 40052092 | pmusat7@gmail.com          |
 | Dean Chong San      | 40061194 | deancs1997@gmail.com       |
 | Alexandria Paggabao | 40052084 | a.paggabao@hotmail.com     |
+| Viveka Anban        | 40063308 | viveka98@hotmail.ca        |
 

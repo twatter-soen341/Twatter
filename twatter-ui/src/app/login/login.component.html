@@ -1,7 +1,7 @@
 <div class="flex-container">
 
   <div class="action-container">
-    <div class="logo"></div>
+  <img class="logo" src="assets/images/chicken.svg">
 
     <h2 class="twatter-name">Twatter</h2>
 
@@ -13,7 +13,7 @@
     <mat-form-field appearance="outline" [FormControl]="passwordController">
       <mat-label>Password</mat-label>
       <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-      <mat-icon class="cursor-pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-icon class="cursor-pointer" matSuffix (mousedown)="showPassword()" (mouseup)="hidePassword()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
 
     <button mat-flat-button color="primary">Login</button>

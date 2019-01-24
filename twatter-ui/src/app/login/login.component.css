@@ -24,9 +24,6 @@
 
 .logo {
   width:20vh;
-  background-color: rgb(192,24,91);
-  -webkit-mask: url('../../assets/images/chicken.svg') no-repeat center;
-  mask: url('../../assets/images/chicken.svg') no-repeat center;
 }
 
 .twatter-name {

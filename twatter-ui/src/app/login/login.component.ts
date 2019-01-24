@@ -23,4 +23,12 @@ export class LoginComponent implements OnInit {
     this.snack.open('Success log in',  'Ok', {duration: 1000});
   }
 
+  showPassword(){
+    this.hide = false;
+  }
+
+  hidePassword(){
+    this.hide = true;
+  }
+
 }

@@ -5,7 +5,7 @@ Do a Pull request with 2 ideas on what the twatter system could be / do (don't f
 2) Meme platform (Would need to be careful not to bust the 512MB of cloud storage)
 
 ### Tarek
-3) Temporary tweets (like snapchat or instagram with stories)
+3) Temporary tweets (like Snapchat or Instagram with stories)
 4) matching feature ( based on interest, tweets content, etc we can match people or recommend them )
 
 ### Dean

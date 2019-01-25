@@ -16,7 +16,7 @@
 
 ## Team Members (name, email, github)
 * Nichita Hariton | nichitahariton@hotmail.com | Nichita-Hariton
-* Tarek Ait 			
+* Tarek Ait Hamouda | tarekaithamouda@gmail.com | tarekait1996			
 * Viveka Anban	
 * Narra Pangan 		
 * Joanna Lin		

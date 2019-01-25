@@ -26,3 +26,10 @@ Do a Pull request with 2 ideas on what the twatter system could be / do (don't f
 ### Viveka
 12) A feature to also accept voice 'rants'. (We would need to be careful with the size)
 13) Implement a discussion 'subject' (like reddit) or like twitter threads. Entire 'discussions' can be retwated or liked.
+
+### Abhijit
+14) A feature to share music that would link to all platforms.
+15) Old school text editor for writing tweets. Similar to MS Word tools (Bold, underline, font, etc).
+16) Front page with all the 'hottest' (most up-voted) twats. 
+
+

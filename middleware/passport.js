@@ -3,6 +3,9 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 
 const User = require('../models/user');
 
+/**
+ * Passport middleware to validate the token found inside a request's header.
+ */
 module.exports = passport => {
   /* extracting the token from the headers */
   const options = {

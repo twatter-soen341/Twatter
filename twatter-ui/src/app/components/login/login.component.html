@@ -1,0 +1,24 @@
+<div class="container">
+  <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+      <input
+        name="email"
+        ngModel
+        type="email"
+        placeholder="please enter your email"
+        #emailInput="ngModel"
+        required
+        email
+      />
+
+      <input
+        name="password"
+        ngModel
+        type="password"
+        placeholder="please enter your password"
+        #passwordInput="ngModel"
+        required
+      />
+
+    <button type="submit">Login</button>
+  </form>
+</div>

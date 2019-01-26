@@ -1,0 +1,8 @@
+<div *ngIf="user">
+  <h3>
+    Hello {{user.firstName}} {{user.lastName}}!
+  </h3>
+  <p>email: {{user.email}}</p>
+</div>
+
+<button (click)="onLogout()">Logout</button>

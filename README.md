@@ -7,25 +7,34 @@
 * [Angular - for the UI ](https://material.angular.io/)
 * [Node.js 👹](https://nodejs.org/api/)
 
-## Objective: 
+##Core features:
+1- Like a tweet
+2- Posting a tweet
+3- Follow a user
 
+##Description
+A social platform for ranting about society
+
+## Objective: 
+Learn how to work within a team in an agile environment
+Learn how to use Mean stack
 
 ## Things we might need to further sweet things up
 * [Mongoose - sick mongoDB driver](https://mongoosejs.com/)
 * [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#lists)
 
 ## Team Members (name, email, github)
-* Nichita Hariton | nichitahariton@hotmail.com | Nichita-Hariton
-* Tarek Ait 			
-* Viveka Anban	
-* Narra Pangan 		
-* Joanna Lin		
-* Sandy Paggabao
-* Paul Musat		
-* Dean Chong San 	
-* Étienne Bérubé 	
-* Abhijit Gupta 
-
+| Name                | ID       | E-Mail                     | GitHub Username    |
+| ------------------- | -------- | -------------------------- | ------------------ |
+| Etienne Berube      | 40052212 | tiennebrb@gmail.com        | EtienneBerube      |
+| tarek ait hamouda   | 40044119 | tarekaithamouda@gmail.com  | tarekait1996       |
+| Nichita Hariton     | 40052663 | nichitahariton@hotmail.com | Nichita-Hariton    |
+| Joanna Lin          | 40055253 | l.joanna19@hotmail.com     | jayohanna          |
+| Paul Musat          | 40052092 | pmusat7@gmail.com          | paulMoose          |
+| Dean Chong San      | 40061194 | deancs1997@gmail.com       | superDeano         |
+| Alexandria Paggabao | 40052084 | a.paggabao@hotmail.com     | a-paggabao         |
+| Viveka Anban        | 40063308 | viveka98@hotmail.ca        | viveanban          |
+| Abhijit Gupta       | 40066502 | abhijit.gupta1122@gmail.com| imabhijit          |
 ## How to start the app
 
 1. Have MongoDB, Node and npm installed
@@ -37,8 +46,3 @@
 * **npm start** to run development
 * **npm run dev** to run development
 * **npm run prod** to run production
-
-
-
-
-

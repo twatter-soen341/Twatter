@@ -35,6 +35,7 @@ Learn how to use Mean stack
 | Alexandria Paggabao | 40052084 | a.paggabao@hotmail.com     | a-paggabao         |
 | Viveka Anban        | 40063308 | viveka98@hotmail.ca        | viveanban          |
 | Abhijit Gupta       | 40066502 | abhijit.gupta1122@gmail.com| imabhijit          |
+| Ethel Narra Pangan  |40061530  | narra_pangan@hotmail.com  | narrapangan        | 
 ## How to start the app
 
 1. Have MongoDB, Node and npm installed

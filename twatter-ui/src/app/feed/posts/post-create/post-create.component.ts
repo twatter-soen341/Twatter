@@ -25,8 +25,6 @@ let submitted = false;
   styleUrls: ['./post-create.component.scss']
 })
 export class PostCreateComponent implements OnInit {
-  // @Output() postCreated = new EventEmitter<Post>();
-
   user = post.user;
   // title: "title";
   // content: string;
@@ -44,9 +42,6 @@ export class PostCreateComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // if(submitted){
-      //   this.postCreated.emit(post);
-      // }
       submitted = false;
     });
   }
@@ -69,7 +64,7 @@ export class PostCreateDialogComponent implements OnInit {
 
   onCreatePost(form: NgForm) {
       post = {
-      user: 'Sandy Paggabao',
+      user: 'USER\'S NAME',
       timeStamp: new Date(),
       content: form.value.content.replace(/\n/g, '<br>'),
     };

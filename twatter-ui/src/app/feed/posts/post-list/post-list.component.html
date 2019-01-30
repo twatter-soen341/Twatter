@@ -1,0 +1,24 @@
+<div *ngIf="posts.length > 0">
+  <mat-card *ngFor="let post of posts">
+    <mat-card-header>
+      <div mat-card-avatar class="card-header-image"></div>
+      <mat-card-title>{{ post.user }}</mat-card-title>
+      <mat-card-subtitle>{{ post.timeStamp }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div [innerHTML]="post.content"></div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+    <app-like-icon-btn>l</app-like-icon-btn>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div *ngIf="posts.length == 0">
+  <p class="info-text mat-display-1">
+    No posts added yet...
+  </p>
+</div>

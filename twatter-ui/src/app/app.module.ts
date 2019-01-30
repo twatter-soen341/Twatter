@@ -13,6 +13,7 @@ import { TwatIconBtnComponent } from './icons/twat-icon-btn/twat-icon-btn.compon
 // ------     Login     -------
 import { LoginComponent } from './login/login.component';
 // ------Angular Material------
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,6 +24,11 @@ import {
   MatIconModule,
   MatDialogModule,
 } from '@angular/material';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {RegisterComponent} from './register/register.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -33,7 +39,8 @@ import {
     PostCreateDialogComponent,
     PostListComponent,
     TwatIconBtnComponent,
-  ],
+    RegisterComponent
+ ],
   imports: [
     HttpClientModule,
     AppRoutingModule,

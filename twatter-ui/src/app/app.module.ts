@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
 // ------Feed Components-------
 import { PostCreateComponent, PostCreateDialogComponent } from './feed/posts/post-create/post-create.component';
 import { PostListComponent } from './feed/posts/post-list/post-list.component';
@@ -26,6 +27,7 @@ import {
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
     LoginComponent,
     PostCreateComponent,
     PostCreateDialogComponent,

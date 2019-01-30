@@ -12,23 +12,23 @@ export class LoginComponent implements OnInit {
 
   emailController = new FormControl('');
   passwordController = new FormControl('');
-  hide = true;
+  hide_Password = true;
+
 
   constructor(private loginService: LoginService, private snack: MatSnackBar) {}
 
   ngOnInit() {
   }
 
-  sendLoginCredentials(){
+  sendLoginCredentials() {
     this.snack.open('Success log in',  'Ok', {duration: 1000});
   }
 
-  showPassword(){
-    this.hide = false;
+  showPassword() {
+    this.hide_Password = false;
   }
 
-  hidePassword(){
-    this.hide = true;
+  hidePassword() {
+    this.hide_Password = true;
   }
-
 }

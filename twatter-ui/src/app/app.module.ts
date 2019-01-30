@@ -10,6 +10,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material';
+import {RegisterComponent} from './register/register.component';
 
 
 
@@ -17,6 +18,7 @@ import {MatIconModule} from '@angular/material';
   declarations: [
     AppComponent,
     LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -31,3 +31,12 @@
   text-align: center;
   letter-spacing: 8px;
 }
+
+.register-link-container {
+  text-align: center;
+  color: #FFFFFF;
+}
+
+a:visited{
+  color: #FFFFFF;
+}

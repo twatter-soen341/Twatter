@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostCreateComponent, PostCreateDialogComponent } from './feed/posts/post-create/post-create.component';
 import { PostListComponent } from './feed/posts/post-list/post-list.component';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
+import { TwatIconBtnComponent } from './icons/twat-icon-btn/twat-icon-btn.component';
 // ------     Login     -------
 import { LoginComponent } from './login/login.component';
 // ------Angular Material------
@@ -28,7 +29,8 @@ import {
     LoginComponent,
     PostCreateComponent,
     PostCreateDialogComponent,
-    PostListComponent
+    PostListComponent,
+    TwatIconBtnComponent,
   ],
   imports: [
     HttpClientModule,

@@ -20,14 +20,15 @@
   },
   "homepage": "https://github.com/twatter-soen341/Twatter#readme",
   "dependencies": {
-    "@angular/material": "^7.2.1",
+    "@angular/material": "^7.3.0",
     "angular": "^1.7.6",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "mongodb": "^3.1.12",
-    "mongoose": "^5.4.0",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.4.7",
+    "ngx-textarea-autosize": "^2.0.0",
     "validator": "^10.9.0"
   },
   "devDependencies": {

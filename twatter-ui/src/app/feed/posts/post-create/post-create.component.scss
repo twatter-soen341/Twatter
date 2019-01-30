@@ -1,0 +1,62 @@
+:host{
+  display: block;
+  margin-top: 1rem;
+}
+
+mat-form-field,{
+  width: 100%;
+}
+
+mat-card-content {
+  margin-top: 1rem;
+  position: relative;
+}
+
+.card-avatar-image {
+  background-image: url('https://scontent.fymy1-1.fna.fbcdn.net/v/t31.0-8/13350325_10208043688761775_6741492382056918785_o.jpg?_nc_cat=104&_nc_ht=scontent.fymy1-1.fna&oh=d9dbe524c5e7be3f71a56be03fd9f875&oe=5CD0C7F0'); //hardcoded for now
+  background-size: cover;
+  position: absolute;
+  z-index: 1;
+}
+
+.text-after-image {
+  width: 90%;
+  margin-left: 3rem;
+  margin-right: -3rem;
+}
+
+.header {
+  margin-top: -3rem;
+  margin-bottom: 1rem;
+}
+
+.hover-cursor-text {
+  cursor: text;
+}
+
+.text-button {
+  height: 4rem;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgb(153, 151, 151);
+  text-align: start;
+  color: grey;
+  font-size: medium;
+  padding-top: 1rem;
+  padding-left: 3rem;
+  padding-bottom: 3rem;
+}
+
+.text-button:hover {
+  border-bottom: 2px solid black;
+}
+
+.imitate-form {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+.medium-icon {
+  vertical-align: middle;
+}

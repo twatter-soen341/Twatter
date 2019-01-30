@@ -1,0 +1,15 @@
+<form (submit)="onCreatePost(postForm)" #postForm="ngForm">
+  <p class="mat-display-1">Create Post</p>
+
+   <mat-divider class="header"></mat-divider>
+
+   <div mat-card-avatar class="card-avatar-image"></div>
+
+   <mat-form-field appearance="standard">
+     <textarea matInput autosize class="text-after-image" name="content" placeholder="Hi {{ user }}, create a post?" ngModel></textarea>
+   </mat-form-field>
+
+   <mat-card-actions align="end">
+     <button mat-button type="submit">POST</button>
+   </mat-card-actions>
+ </form>

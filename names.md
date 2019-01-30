@@ -14,6 +14,7 @@
 | Paul Musat          | 40052092 | pmusat7@gmail.com          | paulMoose          |
 | Dean Chong San      | 40061194 | deancs1997@gmail.com       | superDeano         |
 | Alexandria Paggabao | 40052084 | a.paggabao@hotmail.com     | a-paggabao         |
+| Ethel Narra Pangan  | 40061530 | narra_pangan@hotmail.com   |
 | Viveka Anban        | 40063308 | viveka98@hotmail.ca        | viveanban          |
 | Abhijit Gupta       | 40066502 | abhijit.gupta1122@gmail.com| imabhijit          |
 

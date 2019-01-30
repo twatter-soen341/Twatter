@@ -1,3 +1,33 @@
-<p>
-  register works!
-</p>
+<div class="flex-container">
+
+  <div class="action-container">
+
+    <h2 class="twatter-name">Register</h2>
+
+    <mat-form-field appearance="outline" FormControlName="nameController">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Donny Trumpet">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" FormControlName="emailController">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="twat@twat.com">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" FormControlName="passwordController">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="NOT abc123" [type]="hide_Password ? 'password' : 'text'">
+      <mat-icon class="cursor-pointer" matSuffix (mousedown)="showPassword()" (mouseup)="hidePassword()">{{hide_Password ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="passwordController.invalid">I said NOT abc123</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" FormControlName="passwordConfirmController">
+      <mat-label>Confirm password</mat-label>
+      <input matInput placeholder="Please don't use abc123" [type]="hide_Confirmation ? 'password' : 'text'">
+      <mat-icon class="cursor-pointer" matSuffix (mousedown)="showConfirmation()" (mouseup)="hideConfirmation()">{{hide_Confirmation ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" [disabled]="formGroup.invalid || formGroup.pristine">Register</button>
+  </div>
+
+</div>

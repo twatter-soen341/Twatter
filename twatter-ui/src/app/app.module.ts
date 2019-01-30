@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// ------Feed Components-------
+import { PostCreateComponent, PostCreateDialogComponent } from './feed/posts/post-create/post-create.component';
 // ------Angular Material------
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
@@ -17,6 +19,8 @@ import {MatIconModule} from '@angular/material';
   declarations: [
     AppComponent,
     LoginComponent,
+    PostCreateComponent,
+    PostCreateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,9 @@ import {MatIconModule} from '@angular/material';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  entryComponents: [
+    PostCreateDialogComponent,
+  ]
 })
 export class AppModule { }

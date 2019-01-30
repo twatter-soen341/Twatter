@@ -19,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {
   MatInputModule,
+  MatToolbarModule,
   MatCardModule,
   MatIconModule,
   MatDialogModule,
@@ -48,6 +49,7 @@ import {
     MatSnackBarModule,
     MatButtonModule,
     MatIconModule,
+    MatToolbarModule,
     TextareaAutosizeModule,
   ],
   providers: [],

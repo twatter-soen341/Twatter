@@ -133,5 +133,10 @@
       }
     }
   },
-  "defaultProject": "twatter-ui"
+  "defaultProject": "twatter-ui",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

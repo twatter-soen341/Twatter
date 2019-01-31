@@ -9,24 +9,24 @@ import { MatIconRegistry } from '@angular/material';
 })
 export class TwatIconBtnComponent implements OnInit {
   private clicked = false;
-  private icon = 'flame';
+  public icon = 'flame';
 
   constructor(public iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
         'flame',
-        sanitizer.bypassSecurityTrustResourceUrl('assets/img/flame-2.svg'));
+        sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2.svg'));
 
     iconRegistry.addSvgIcon(
       'red-flame',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/img/flame-2-red.svg'));
+      sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2-red.svg'));
 
     iconRegistry.addSvgIcon(
       'flame-flipped',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/img/flame-2-flipped.svg'));
+      sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2-flipped.svg'));
 
     iconRegistry.addSvgIcon(
       'red-flame-flipped',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/img/flame-2-red-flipped.svg'));
+      sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2-red-flipped.svg'));
   }
 
   ngOnInit() {

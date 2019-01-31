@@ -1,6 +1,8 @@
 :host{
   display: block;
   margin-top: 1rem;
+  margin-left: 10%;
+  width: 80%;
 }
 
 mat-form-field,{
@@ -42,6 +44,7 @@ mat-card-content {
   border-bottom: 1px solid rgb(153, 151, 151);
   text-align: start;
   color: grey;
+  background-color: rgb(34, 33, 33);
   font-size: medium;
   padding-top: 1rem;
   padding-left: 3rem;

@@ -4,30 +4,41 @@
 
     <h2 class="twatter-name">Register</h2>
 
-    <mat-form-field appearance="outline" FormControlName="nameController">
-      <mat-label>Name</mat-label>
-      <input matInput placeholder="Donny Trumpet">
-    </mat-form-field>
+    <form [formGroup]="registerForm" class="action-container">
 
-    <mat-form-field appearance="outline" FormControlName="emailController">
-      <mat-label>Email</mat-label>
-      <input matInput placeholder="twat@twat.com">
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Donny Trumpet" formControlName="nameController" required>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" FormControlName="passwordController">
-      <mat-label>Password</mat-label>
-      <input matInput placeholder="NOT abc123" [type]="hide_Password ? 'password' : 'text'">
-      <mat-icon class="cursor-pointer" matSuffix (mousedown)="showPassword()" (mouseup)="hidePassword()">{{hide_Password ? 'visibility_off' : 'visibility'}}</mat-icon>
-      <mat-error *ngIf="passwordController.invalid">I said NOT abc123</mat-error>
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="twat@twat.com" formControlName="emailController" required>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" FormControlName="passwordConfirmController">
-      <mat-label>Confirm password</mat-label>
-      <input matInput placeholder="Please don't use abc123" [type]="hide_Confirmation ? 'password' : 'text'">
-      <mat-icon class="cursor-pointer" matSuffix (mousedown)="showConfirmation()" (mouseup)="hideConfirmation()">{{hide_Confirmation ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="NOT abc123" [type]="hide_Password ? 'password' : 'text'"
+               formControlName="passwordController" required>
+        <mat-icon class="cursor-pointer" matSuffix (mousedown)="showPassword()" (mouseup)="hidePassword()">
+          {{hide_Password ? 'visibility_off' : 'visibility'}}
+        </mat-icon>
+        <mat-error *ngIf="registerForm.get('passwordController').hasError('DumbUser')">I said NOT abc123</mat-error>
+      </mat-form-field>
 
-    <button mat-flat-button color="primary" [disabled]="formGroup.invalid || formGroup.pristine">Register</button>
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm password</mat-label>
+        <input matInput placeholder="Please don't use abc123" [type]="hide_Confirmation ? 'password' : 'text'"
+               formControlName="passwordConfirmController" required>
+        <mat-icon class="cursor-pointer" matSuffix (mousedown)="showConfirmation()" (mouseup)="hideConfirmation()">
+          {{hide_Confirmation ? 'visibility_off' : 'visibility'}}
+        </mat-icon>
+      </mat-form-field>
+
+    </form>
+
+    <button mat-flat-button color="primary" [disabled]="registerForm.invalid || registerForm.pristine">Register
+    </button>
   </div>
 
 </div>

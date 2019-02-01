@@ -23,6 +23,7 @@ import {
   MatCardModule,
   MatIconModule,
   MatDialogModule,
+  MatDividerModule,
 } from '@angular/material';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {RegisterComponent} from './register/register.component';
@@ -57,6 +58,7 @@ import {RegisterComponent} from './register/register.component';
     MatIconModule,
     MatToolbarModule,
     TextareaAutosizeModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -3,10 +3,9 @@
 
    <mat-divider class="header"></mat-divider>
 
-   <div mat-card-avatar class="card-avatar-image"></div>
-
    <mat-form-field appearance="standard">
-     <textarea matInput autosize class="text-after-image" name="content" placeholder="Hi {{ user }}, create a post?" ngModel></textarea>
+      <div mat-card-avatar class="card-avatar-image"></div>
+      <textarea matInput autosize class="text-dialog text-after-image" name="content" placeholder="Hi {{ user }}, create a post?" ngModel></textarea>
    </mat-form-field>
 
    <mat-card-actions align="end">

@@ -10,13 +10,15 @@ mat-form-field,{
 }
 
 mat-card-content {
-  margin-top: 1rem;
+  margin-top: -1rem;
   position: relative;
 }
 
 .card-avatar-image {
   background-image: url('https://scontent.fymy1-1.fna.fbcdn.net/v/t31.0-8/13350325_10208043688761775_6741492382056918785_o.jpg?_nc_cat=104&_nc_ht=scontent.fymy1-1.fna&oh=d9dbe524c5e7be3f71a56be03fd9f875&oe=5CD0C7F0'); //hardcoded for now
   background-size: cover;
+  top: 0.5rem;
+  left: 0.5rem;
   position: absolute;
   z-index: 1;
 }
@@ -46,13 +48,37 @@ mat-card-content {
   color: grey;
   background-color: rgb(34, 33, 33);
   font-size: medium;
-  padding-top: 1rem;
-  padding-left: 3rem;
+  padding-top: 1.5rem;
+  padding-left: 3.5rem;
   padding-bottom: 3rem;
+  border-radius: 0.5rem;
 }
 
 .text-button:hover {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid rgb(255, 0, 0);
+}
+
+.text-dialog {
+  min-height: 5rem;
+  width: 100%;
+  border: none;
+  outline: none;
+  margin-left: 0;
+  border-radius: 0.5rem;
+  background-color: rgb(34, 33, 33);
+}
+
+.text-dialog::-webkit-input-placeholder { /* WebKit browsers */
+  padding-left: 4rem;
+}
+.text-dialog:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  padding-left: 4rem;
+}
+.text-dialog::-moz-placeholder { /* Mozilla Firefox 19+ */
+  padding-left: 4rem;
+}
+.text-dialog:-ms-input-placeholder { /* Internet Explorer 10+ */
+  padding-left: 4rem;
 }
 
 .imitate-form {

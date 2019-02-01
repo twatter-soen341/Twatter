@@ -6,7 +6,7 @@ import {
 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import { Post } from '../post.model';
+import { Post } from '../../../models/post.model';
 import { NgForm } from '@angular/forms';
 import { PostsService } from '../post.service';
 

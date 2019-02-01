@@ -5,8 +5,8 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Post } from '../post.model';
 import { PostsService } from '../post.service';
+import { Post } from '../../../models/post.model';
 
 @Component({
   selector: 'app-post-list',

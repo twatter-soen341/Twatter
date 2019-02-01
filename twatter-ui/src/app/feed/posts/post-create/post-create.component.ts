@@ -8,7 +8,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { Post } from '../../../models/post.model';
 import { NgForm } from '@angular/forms';
-import { PostsService } from '../post.service';
+import { PostsService } from '../../../services/post.service';
 
 let post: Post = {
   user: 'USER\'S NAME',

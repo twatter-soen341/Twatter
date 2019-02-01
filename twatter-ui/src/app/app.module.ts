@@ -3,7 +3,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 // ------Feed Components-------
 import { PostCreateComponent, PostCreateDialogComponent } from './feed/posts/post-create/post-create.component';
@@ -15,7 +15,7 @@ import { LoginComponent } from './login/login.component';
 // ------Angular Material------
 
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MatInputModule,
@@ -24,9 +24,10 @@ import {
   MatIconModule,
   MatDialogModule,
   MatDividerModule,
+  MatSnackBarModule
 } from '@angular/material';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {RegisterComponent} from './register/register.component';
+import { AuthInterceptor } from './auth-interceptor';
 
 
 
@@ -60,7 +61,9 @@ import {RegisterComponent} from './register/register.component';
     TextareaAutosizeModule,
     MatDividerModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [

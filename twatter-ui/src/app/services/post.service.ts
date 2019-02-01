@@ -1,4 +1,4 @@
-import { Post } from './post.model';
+import { Post } from '../models/post.model';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 

@@ -7,21 +7,22 @@
 * [Angular - for the UI ](https://material.angular.io/)
 * [Node.js 👹](https://nodejs.org/api/)
 
-##Core features:
-1- Like a tweet
-2- Posting a tweet
-3- Follow a user
+## Core features:
+1. Like a tweet
+   User will be able to like a tweet that he/she sees on her twatline or elsewhere on the app
+2. Posting a tweet
+   User will be able to post a tweet that can be read and liked by other profiles 
+   Max 139 characters 
+3. Follow a user
+   User will be able to follow a user
+  
 
-##Description
+## Description
 A social platform for ranting about society
 
 ## Objective: 
 Learn how to work within a team in an agile environment
 Learn how to use Mean stack
-
-## Things we might need to further sweet things up
-* [Mongoose - sick mongoDB driver](https://mongoosejs.com/)
-* [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#lists)
 
 ## Team Members (name, email, github)
 | Name                | ID       | E-Mail                     | GitHub Username    |

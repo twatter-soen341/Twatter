@@ -28,6 +28,7 @@ import {
 } from '@angular/material';
 import {RegisterComponent} from './register/register.component';
 import { AuthInterceptor } from './auth-interceptor';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -41,7 +42,8 @@ import { AuthInterceptor } from './auth-interceptor';
     PostCreateDialogComponent,
     PostListComponent,
     TwatIconBtnComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
  ],
   imports: [
     HttpClientModule,

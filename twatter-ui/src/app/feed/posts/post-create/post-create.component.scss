@@ -16,12 +16,6 @@ mat-card-content {
   position: relative;
 }
 
-.scrollbar {
-  --scrollbar-color: red;
-  --scrollbar-size: 10px;
-  --scrollbar-radius: 4px;
-}
-
 .card-avatar-image {
   background-image: url('https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg'); //hardcoded for now
   background-size: cover;
@@ -66,10 +60,13 @@ mat-card-content {
   border-bottom: 2px solid rgb(255, 0, 0);
 }
 
-.text-dialog {
+.text-dialog-outer {
   display: block;
   margin: auto;
   width: 85%;
+}
+
+.text-dialog-inner {
   min-height: 3rem;
   max-height: 50vh;
   border: none;

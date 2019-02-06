@@ -44,7 +44,7 @@ import { ProfileComponent } from './profile/profile.component';
     PostListComponent,
     TwatIconBtnComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
  ],
   imports: [
     HttpClientModule,

@@ -1,14 +1,16 @@
 <form (submit)="onCreatePost(postForm)" #postForm="ngForm">
   <p class="mat-display-1">Create Post</p>
 
-   <mat-divider class="header"></mat-divider>
+  <mat-divider class="header"></mat-divider>
 
-   <mat-form-field appearance="standard">
-      <div mat-card-avatar class="card-avatar-image"></div>
-      <textarea matInput autosize class="text-dialog text-after-image" name="content" placeholder="Hi {{ user }}, create a post?" ngModel></textarea>
-   </mat-form-field>
+  <mat-form-field appearance="standard">
+    <div mat-card-avatar class="card-avatar-image"></div>
+    <ng-scrollbar tracky=true trackx=false autohide=false shown="always">
+      <textarea matInput autosize class="text-dialog" name="content" placeholder="Hi {{ user }}, create a post?" ngModel></textarea>
+    </ng-scrollbar>
+  </mat-form-field>
 
-   <mat-card-actions align="end">
-     <button mat-button type="submit">POST</button>
-   </mat-card-actions>
+  <mat-card-actions align="end">
+    <button mat-button type="submit">POST</button>
+  </mat-card-actions>
  </form>

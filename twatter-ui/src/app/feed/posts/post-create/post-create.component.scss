@@ -16,8 +16,10 @@ mat-card-content {
   position: relative;
 }
 
-ng-scrollbar {
-  z-index: 1;
+.scrollbar {
+  --scrollbar-color: red;
+  --scrollbar-size: 10px;
+  --scrollbar-radius: 4px;
 }
 
 .card-avatar-image {
@@ -74,6 +76,20 @@ ng-scrollbar {
   outline: none;
   border-radius: 0.5rem;
   background-color: rgb(34, 33, 33);
+}
+
+// iphoneX
+@media screen and (width: 375px) {
+  .text-dialog {
+    width: 60%;
+  }
+}
+
+// ipad
+@media screen and (max-width: 768px) {
+  .text-dialog {
+    width: 80%;
+  }
 }
 
 .imitate-form {

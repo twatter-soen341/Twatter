@@ -9,7 +9,9 @@
     </mat-card-header>
 
     <mat-card-content>
-      <div [innerHTML]="post.content"></div>
+      <ng-scrollbar class="scrollbar">
+        <div [innerHTML]="post.content" class="post-list"></div>
+      </ng-scrollbar>
     </mat-card-content>
 
     <mat-card-actions align="end">

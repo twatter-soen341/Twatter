@@ -12,6 +12,8 @@ import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import { TwatIconBtnComponent } from './icons/twat-icon-btn/twat-icon-btn.component';
 // ------     Login     -------
 import { LoginComponent } from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import { AuthInterceptor } from './auth-interceptor';
 // ------Angular Material------
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,8 +28,6 @@ import {
   MatDividerModule,
   MatSnackBarModule
 } from '@angular/material';
-import {RegisterComponent} from './register/register.component';
-import { AuthInterceptor } from './auth-interceptor';
 import { ProfileComponent } from './profile/profile.component';
 
 

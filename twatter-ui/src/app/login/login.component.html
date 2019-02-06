@@ -16,7 +16,7 @@
       <mat-icon class="cursor-pointer" matSuffix (mousedown)="showPassword()" (mouseup)="hidePassword()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
 
-    <button mat-flat-button color="primary">Login</button>
+    <button mat-flat-button color="primary" (click)="sendLoginCredentials()" [disabled]="emailController.invalid || passwordController.invalid">Login</button>
     <p class="register-link-container">or <a routerLink="/register">Register</a></p>
   </div>
 

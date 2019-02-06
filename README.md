@@ -18,13 +18,14 @@
 A social platform for ranting about society. Users will see the most triggering posts around in order to get angry and have a bad rest of the day
 
 ## Core features:
-### 1. Like / Dislike a tweet
-   A user can like or dislike a tweet that he/she sees on her main twatter main page. The tweets are sorted with the most disliked posts on the top. In doing so, users dislike a post because they are angry or triggered. If they like the post, it means that it is soft and pale and not triggering enough.
+### 1. Like a tweet
+   The system should allow an existing user to like a post from another user. The user will click a button and it will change the color to indicate that the user liked the post. The user should be able to like the posts from all Twatter community.
+   
 ### 2. Posting a tweet
-   User will be able to post a 140 charachter tweet that can be read and liked by other profiles. All the users share on the same main twatter page.
+   User will be able to post content in the Website. More precisely they will be able to post a 140 character tweet that can be read and liked by other profiles. All the users share on the same main twatter page.
 
-### 3. A personal twatline
-A user can have a personal page called twatline where he will see all of the tweets that he posted to the app.
+### 3. Follow a User
+   The system should allow an existing user to follow another user. User A will click a button "follow" in the profile page of user B. User A will then be able to see all posts from user B in his timeline.
 
 ## Objectives: 
 * Learn how to work within a team in an agile environment.

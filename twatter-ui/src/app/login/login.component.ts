@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {MatSnackBar} from '@angular/material';
-import {FormControl} from '@angular/forms';
-import {AuthService} from '../services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,19 +9,21 @@ import {AuthService} from '../services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  emailController = new FormControl('');
-  passwordController = new FormControl('');
+  loginForm: FormGroup = new FormGroup({
+    emailController: new FormControl('', [Validators.required]),
+    passwordController: new FormControl('', [Validators.required])
+  });
   hide_Password = true;
-
 
   constructor(private authService: AuthService, private snack: MatSnackBar) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   sendLoginCredentials() {
-    this.snack.open('Success log in',  'Ok', {duration: 1000});
+    this.authService.login(
+      this.loginForm.get('emailController').value,
+      this.loginForm.get('passwordController').value
+    );
   }
 
   showPassword() {

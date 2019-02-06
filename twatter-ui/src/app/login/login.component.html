@@ -4,20 +4,21 @@
   <img class="logo" src="assets/images/chicken.svg">
 
     <h2 class="twatter-name">Twatter</h2>
+    <form [formGroup]="loginForm" class="action-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="twat@twat.com" formControlName="emailController">
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" [FormControl]="emailController">
-      <mat-label>Email</mat-label>
-      <input matInput placeholder="twat@twat.com">
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Enter your password" [type]="hide_Password ? 'password' : 'text'" formControlName="passwordController">
+        <mat-icon class="cursor-pointer" matSuffix (mousedown)="showPassword()" (mouseup)="hidePassword()">{{hide_Password ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" [FormControl]="passwordController">
-      <mat-label>Password</mat-label>
-      <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-      <mat-icon class="cursor-pointer" matSuffix (mousedown)="showPassword()" (mouseup)="hidePassword()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </mat-form-field>
-
-    <button mat-flat-button color="primary">Login</button>
-    <p class="register-link-container">or <a routerLink="/register">Register</a></p>
+      <button mat-flat-button color="primary" (click)="sendLoginCredentials()" [disabled]="loginForm.invalid || loginForm.pristine">Login</button>
+      <p class="register-link-container">or <a routerLink="/register">Register</a></p>
+    </form>
   </div>
 
 </div>

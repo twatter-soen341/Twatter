@@ -13,6 +13,8 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { TwatIconBtnComponent } from './icons/twat-icon-btn/twat-icon-btn.component';
 // ------     Login     -------
 import { LoginComponent } from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import { AuthInterceptor } from './auth-interceptor';
 // ------Angular Material------
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -27,8 +29,7 @@ import {
   MatDividerModule,
   MatSnackBarModule
 } from '@angular/material';
-import {RegisterComponent} from './register/register.component';
-import { AuthInterceptor } from './auth-interceptor';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -42,7 +43,8 @@ import { AuthInterceptor } from './auth-interceptor';
     PostCreateDialogComponent,
     PostListComponent,
     TwatIconBtnComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
  ],
   imports: [
     HttpClientModule,

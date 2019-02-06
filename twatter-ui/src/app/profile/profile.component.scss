@@ -1,0 +1,74 @@
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+
+  display: flex;
+  padding: 0;
+  margin: 0;
+  flex-direction: row;
+  justify-content: space-between;
+  //list-style-type: none;
+}
+
+.flex-item {
+
+
+  line-height: 10px;
+  color: white;
+  font-weight: lighter;
+  text-align: center;
+}
+//@import "compass/css3";
+
+.navigation {
+  list-style: none;
+  margin: 0;
+
+  background: rgb(192,24,91);
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.navigation a {
+  text-decoration: none;
+  padding: 1em;
+  color: white;
+}
+
+.navigation a:hover {
+  background: darken(rgb(192,24,91), 5%);
+  font-weight: bold;
+}
+
+@media all and (max-width: 1500px) {
+  .navigation {
+    justify-content: space-around;
+  }
+}
+
+@media all and (max-width: 1300px) {
+  .navigation {
+    -webkit-flex-flow: column wrap;
+    flex-flow: column wrap;
+    padding: 0;
+  }
+
+  .navigation a {
+    text-align: center;
+    padding: 8px;
+    border-top: 1px solid rgb(192,24,91);
+    border-bottom: 1px solid rgb(192,24,91);
+  }
+
+
+  .navigation li:last-of-type a {
+    border-bottom: none;
+  }
+}

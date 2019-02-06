@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 
 import { Post } from '../../../models/post.model';
 import { PostsService } from '../../../services/post.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-post-list',
@@ -18,9 +19,10 @@ export class PostListComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
   private postsSub: Subscription;
 
-  constructor(public aPostsService: PostsService) {}
+  constructor(public aPostsService: PostsService, private authService: AuthService) {}
 
   ngOnInit() {
+    // temporary until post services is done
     this.posts = this.aPostsService.getPosts();
     this.postsSub = this.aPostsService.getPostUpdateListener().subscribe(
       (posts: Post[]) => {

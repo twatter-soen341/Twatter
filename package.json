@@ -37,6 +37,7 @@
     "validator": "^10.9.0"
   },
   "devDependencies": {
-    "cross-env": "^5.2.0"
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.18.9"
   }
 }

@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { PostCreateComponent, PostCreateDialogComponent } from './feed/posts/post-create/post-create.component';
 import { PostListComponent } from './feed/posts/post-list/post-list.component';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 import { TwatIconBtnComponent } from './icons/twat-icon-btn/twat-icon-btn.component';
 // ------     Login     -------
 import { LoginComponent } from './login/login.component';
@@ -59,6 +60,7 @@ import { AuthInterceptor } from './auth-interceptor';
     MatIconModule,
     MatToolbarModule,
     TextareaAutosizeModule,
+    NgScrollbarModule,
     MatDividerModule,
   ],
   providers: [

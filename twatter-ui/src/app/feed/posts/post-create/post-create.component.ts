@@ -9,9 +9,13 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Post } from '../../../models/post.model';
 import { NgForm } from '@angular/forms';
 import { PostsService } from '../../../services/post.service';
+import { AuthData } from '../../../models/auth.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 let post: Post = {
-  user: 'USER\'S NAME',
+  userID: 'ID',
+  firstName: 'NAME',
+  lastName: 'NAME',
   timeStamp: new Date,
   content: '',
 };
@@ -25,19 +29,32 @@ let submitted = false;
   styleUrls: ['./post-create.component.scss']
 })
 export class PostCreateComponent implements OnInit {
-  user = post.user;
-  // title: "title";
-  // content: string;
+  userID = post.userID;
+  firstName = post.firstName;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private authService: AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.getUser().subscribe(data => {
+      // console.log(data.user);
+      this.userID = post.userID = data.user.id;
+      this.firstName = post.firstName = data.user.firstName;
+      post.lastName = data.user.lastName;
+
+    });
+  }
 
   openDialog() {
     const dialogRef = this.dialog.open(PostCreateDialogComponent, {
       width: '80%',
       position: {top: '5rem'},
-      data: {user: post.user, title: post.timeStamp, content: post.content}
+      data: {
+        userID: post.userID,
+        firstName: post.firstName,
+        lastName: post.lastName,
+        timeStamp: post.timeStamp,
+        content: post.content
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -53,7 +70,8 @@ export class PostCreateComponent implements OnInit {
   styleUrls: ['./post-create.component.scss']
 })
 export class PostCreateDialogComponent implements OnInit {
-  user = post.user;
+  user = post.userID;
+  firstName = post.firstName;
 
   constructor(
     public dialogRef: MatDialogRef<PostCreateDialogComponent>,
@@ -64,7 +82,9 @@ export class PostCreateDialogComponent implements OnInit {
 
   onCreatePost(form: NgForm) {
       post = {
-      user: 'USER\'S NAME',
+      userID: post.userID,
+      firstName: post.firstName,
+      lastName: post.lastName,
       timeStamp: new Date(),
       content: form.value.content.replace(/\n/g, '<br>'),
     };

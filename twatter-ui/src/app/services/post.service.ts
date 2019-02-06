@@ -15,9 +15,15 @@ export class PostsService {
         return this.postsUpdated.asObservable();
     }
 
+    setUser(userID) {
+
+    }
+
     addPost(aPost: Post) {
         const post: Post = {
-            user: aPost.user,
+            userID: aPost.userID,
+            firstName: aPost.firstName,
+            lastName: aPost.lastName,
             timeStamp: aPost.timeStamp,
             content: aPost.content
         };

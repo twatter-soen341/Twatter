@@ -7,10 +7,18 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  firstName = '';
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.getUser().subscribe(data => {
+      this.firstName = data.user.firstName;
+    });
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
   onLogout() {

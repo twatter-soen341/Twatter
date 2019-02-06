@@ -7,8 +7,13 @@
     <form [formGroup]="registerForm" class="action-container">
 
       <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Donny Trumpet" formControlName="nameController" required>
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="Donny" formControlName="firstNameController" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Trumpet" formControlName="lastNameController" required>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -23,7 +28,7 @@
         <mat-icon class="cursor-pointer" matSuffix (mousedown)="showPassword()" (mouseup)="hidePassword()">
           {{hide_Password ? 'visibility_off' : 'visibility'}}
         </mat-icon>
-        <mat-error *ngIf="registerForm.get('passwordController').hasError('DumbUser')">I said NOT abc123</mat-error>
+        <mat-error *ngIf="registerForm.get('passwordController').hasError('dumbUser')">I said NOT abc123</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -33,11 +38,12 @@
         <mat-icon class="cursor-pointer" matSuffix (mousedown)="showConfirmation()" (mouseup)="hideConfirmation()">
           {{hide_Confirmation ? 'visibility_off' : 'visibility'}}
         </mat-icon>
+        <mat-error *ngIf="registerForm.hasError('passwordDontMatch')">Passwords do not match</mat-error>
       </mat-form-field>
 
     </form>
 
-    <button mat-flat-button color="primary" [disabled]="registerForm.invalid || registerForm.pristine">Register
+    <button mat-flat-button color="primary" (click)="sendRegisterCredentials()" [disabled]="registerForm.invalid || registerForm.pristine">Register
     </button>
   </div>
 

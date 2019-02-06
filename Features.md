@@ -21,7 +21,12 @@ Do a Pull request with 2 ideas on what the twatter system could be / do (don't f
 
 ### Paul
 10) If we implement temporary twats, we can also implement temporary direct messages.
+11) Twat of the day. We can have "likes" and "dislikes" then sort by controversial. 
+
+### Narra
 11) Twat of the day. We can have "likes" and "dislikes" then sort by controversial.
+12) Night Mode (dark theme after 9pm, but can revert to regular theme)
+13) Edit tweet after it has been posted
 
 ### Viveka
 12) A feature to also accept voice 'rants'. (We would need to be careful with the size)
@@ -31,5 +36,6 @@ Do a Pull request with 2 ideas on what the twatter system could be / do (don't f
 14) A feature to share music that would link to all platforms.
 15) Old school text editor for writing tweets. Similar to MS Word tools (Bold, underline, font, etc).
 16) Front page with all the 'hottest' (most up-voted) twats. 
+
 
 

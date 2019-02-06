@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
-import {FormControl} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
 
 @Component({
@@ -10,8 +10,8 @@ import {AuthService} from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  emailController = new FormControl('');
-  passwordController = new FormControl('');
+  emailController = new FormControl('', [Validators.required]);
+  passwordController = new FormControl('',[Validators.required]);
   hide_Password = true;
 
 
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   sendLoginCredentials() {
-    this.snack.open('Success log in',  'Ok', {duration: 1000});
+    this.authService.login(this.emailController.value, this.passwordController.value);
   }
 
   showPassword() {

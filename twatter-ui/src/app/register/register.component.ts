@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
 import {AuthService} from '../services/auth.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,8 @@ import {AuthService} from '../services/auth.service';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup({
-    nameController: new FormControl('', [Validators.required]),
+    firstNameController: new FormControl('', [Validators.required]),
+    lastNameController: new FormControl('', [Validators.required]),
     emailController: new FormControl('', [Validators.required, Validators.email]),
     passwordController: new FormControl('', [Validators.required, this.notForbiddenPassword]),
     passwordConfirmController: new FormControl('', [Validators.required])
@@ -27,7 +29,10 @@ export class RegisterComponent implements OnInit {
   }
 
   sendRegisterCredentials() {
-    this.snack.open('Success log in', 'Ok', {duration: 1000});
+    this.authService.signup(this.registerForm.get('firstNameController').value,
+      this.registerForm.get('lastNameController').value,
+      this.registerForm.get('emailController').value,
+      this.registerForm.get('passwordController').value);
   }
 
   showPassword() {
@@ -56,6 +61,4 @@ export class RegisterComponent implements OnInit {
   notForbiddenPassword(confirmation: AbstractControl) {
     return (confirmation.value.toLocaleString().toLocaleLowerCase() !== 'abc123') ? null : {'dumbUser': true};
   }
-
-
 }

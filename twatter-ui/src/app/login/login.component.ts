@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
-import {LoginService} from '../services/login.service';
 import {FormControl} from '@angular/forms';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   hide_Password = true;
 
 
-  constructor(private loginService: LoginService, private snack: MatSnackBar) {}
+  constructor(private authService: AuthService, private snack: MatSnackBar) {}
 
   ngOnInit() {
   }

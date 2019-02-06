@@ -15,17 +15,20 @@ import { LoginComponent } from './login/login.component';
 // ------Angular Material------
 
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {
   MatInputModule,
+  MatToolbarModule,
   MatCardModule,
   MatIconModule,
   MatDialogModule,
+  MatDividerModule,
+  MatSnackBarModule
 } from '@angular/material';
 import {RegisterComponent} from './register/register.component';
 import { AuthInterceptor } from './auth-interceptor';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -39,7 +42,8 @@ import { AuthInterceptor } from './auth-interceptor';
     PostCreateDialogComponent,
     PostListComponent,
     TwatIconBtnComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
  ],
   imports: [
     HttpClientModule,
@@ -55,7 +59,9 @@ import { AuthInterceptor } from './auth-interceptor';
     MatSnackBarModule,
     MatButtonModule,
     MatIconModule,
+    MatToolbarModule,
     TextareaAutosizeModule,
+    MatDividerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

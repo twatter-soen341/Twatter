@@ -1,3 +1,5 @@
+<app-post-create></app-post-create>
+
 <div *ngIf="posts.length > 0">
   <mat-card *ngFor="let post of posts">
     <mat-card-header>
@@ -11,7 +13,7 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
-    <app-like-icon-btn>l</app-like-icon-btn>
+    <app-twat-icon-btn>l</app-twat-icon-btn>
       <button mat-button>SHARE</button>
     </mat-card-actions>
   </mat-card>

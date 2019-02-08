@@ -7,7 +7,7 @@ router.post('/', twatController.createTwat);
 
 router.get('/:id', twatController.getTwat);
 
-router.put('/:postId', twatController.updateTwat);
+router.put('/:id', twatController.updateTwat);
 
 router.delete('/:id', twatController.deleteTwat);
 

@@ -18,7 +18,7 @@ exports.createTwat = function (req, res) {
         if (err) {
             return next(err);
         }
-        res.send('Twat Created successfully').json(JSON.parse(twat));
+        res.send('Twat Created successfully'+ twat.toString());
     })
 };
 
@@ -34,7 +34,7 @@ exports.updateTwat = function (req, res) {
 
     Twat.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, twat) {
         if (err) return next(err);
-        res.send('Twat udpated.');
+        res.send('Twat updated.'+ twat.toString());
     });
 };
 

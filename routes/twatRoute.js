@@ -4,7 +4,12 @@ const router = express.Router();
 const twatController = require('../controllers/twatController');
 
 router.post('/', twatController.createTwat);
-router.get('/', twatController.getTwat);
+
+router.get('/:id', twatController.getTwat);
+
+router.put('/:postId', twatController.updateTwat);
+
+router.delete('/:id', twatController.deleteTwat);
 
 module.exports = router;
 

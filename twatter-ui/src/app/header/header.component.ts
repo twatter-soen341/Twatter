@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -9,11 +10,11 @@ import { AuthService } from '../services/auth.service';
 export class HeaderComponent implements OnInit {
   firstName = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private userService: UserService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.getUser().subscribe(data => {
-      this.firstName = data.user.firstName;
+    this.userService.getCurrentUser().subscribe(user => {
+      this.firstName = user.firstName;
     });
   }
 

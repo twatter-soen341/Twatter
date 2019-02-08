@@ -55,13 +55,6 @@ export class AuthService {
   }
 
   /**
-   * returns the currently logged in user's name, and email
-   */
-  getUser() {
-    return this.httpClient.get<any>(`${BASE_URL}/user`);
-  }
-
-  /**
    * This function will call the service to create a new user
    * and persist them to the database.
    * @param firstName user's first name

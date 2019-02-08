@@ -11,6 +11,7 @@ import { NgForm } from '@angular/forms';
 import { PostsService } from '../../../services/post.service';
 import { AuthData } from '../../../models/auth.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 let post: Post = {
   userID: 'ID',
@@ -32,14 +33,13 @@ export class PostCreateComponent implements OnInit {
   userID = post.userID;
   firstName = post.firstName;
 
-  constructor(public dialog: MatDialog, private authService: AuthService) {}
+  constructor(public dialog: MatDialog, private userService: UserService) {}
 
   ngOnInit() {
-    this.authService.getUser().subscribe(data => {
-      // console.log(data.user);
-      this.userID = post.userID = data.user.id;
-      this.firstName = post.firstName = data.user.firstName;
-      post.lastName = data.user.lastName;
+    this.userService.getCurrentUser().subscribe(user => {
+      this.userID = post.userID = user.id;
+      this.firstName = post.firstName = user.firstName;
+      post.lastName = user.lastName;
 
     });
   }

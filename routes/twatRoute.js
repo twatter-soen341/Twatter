@@ -3,7 +3,8 @@ const express = require('express');
 const router = express.Router();
 const twatController = require('../controllers/twatController');
 
+router.post('/', twatController.createTwat);
+router.get('/', twatController.getTwat);
 
-// router.get('/', twatController.getAll);
-//
-// router.get('/user', twatController.getAllByUser);
+module.exports = router;
+

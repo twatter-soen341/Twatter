@@ -4,6 +4,6 @@ const router = express.Router();
 const twatController = require('../controllers/twatController');
 
 
-// router.getAll('/', twatController.getAll);
+// router.get('/', twatController.getAll);
 //
-// router.getAllByUser('/user', twatController.getAllByUser);
+// router.get('/user', twatController.getAllByUser);

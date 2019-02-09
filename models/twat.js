@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const twatSchema = new mongoose.Schema({
-    userName: { type: String, required: true },
+    userId: {type: String, required: false},
+    userName: { type: String, required: false },
     content: { type: String, required: true },
     timeStamp: Date,
     likes: [String],

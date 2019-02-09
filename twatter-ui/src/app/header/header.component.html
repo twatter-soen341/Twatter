@@ -1,6 +1,20 @@
-<mat-toolbar>
-  <div mat-card-avatar class="card-avatar-image"></div>
-  <div class="text-after-image">{{ firstName }}</div>
-  <span class="spacer"></span>
-  <button mat-flat-button (click)="onLogout()">Logout</button>
+<mat-toolbar class="header" color="primary">
+  <span class="left-justify">
+    <div mat-card-avatar class="card-avatar-image"></div>
+    <div class="text-after-image">{{ firstName }}</div>
+  </span>
+
+  <button mat-flat-button color="primary">Home</button>
+
+  <span class="right-justify">
+
+    <ul class="navigation">
+      <button mat-flat-button color="primary">Settings</button>
+      <button mat-flat-button  color="primary" (click)="onLogout()">Logout</button>
+    </ul>
+
+</span>
+
+
+
 </mat-toolbar>

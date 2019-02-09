@@ -1,6 +1,5 @@
 main {
-  margin-top: 1rem;
-  width: 80%;
+  //width: 80%;
   margin: auto;
 }
 
@@ -12,10 +11,51 @@ main {
 }
 
 .text-after-image {
-  margin-top: 1rem;
+  margin-top: .2rem;
+  margin-right: 1rem;
   margin-left: 3rem;
+  font-size: medium;
 }
 
 .spacer {
   flex: 1 1 auto;
 }
+
+
+.navigation {
+  list-style: none;
+  margin: 0;
+
+  background: rgb(192,24,91);
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+
+
+.left-justify {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+
+}
+
+

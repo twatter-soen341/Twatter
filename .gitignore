@@ -4,3 +4,4 @@ node_modules/
 
 #intelli-j
 .idea/
+\.DS_Store

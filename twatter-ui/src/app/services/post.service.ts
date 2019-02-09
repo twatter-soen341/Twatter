@@ -1,22 +1,44 @@
 import { Post } from '../models/post.model';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
+const BASE_URL = `${environment.baseUrl}/twat`;
 
 @Injectable({providedIn: 'root'})
 export class PostsService {
     private posts: Post[] = [];
     private postsUpdated = new Subject<Post[]>();
 
+    constructor(private http: HttpClient) {}
+
     getPosts() {
-        return [...this.posts]; /// creates a new array and returns that copied array.
+      this.http
+      .get<{message: string, posts: any}>( `${BASE_URL}`)
+      .pipe(map((postData) => {
+        return postData.posts.map(post => {
+          return {
+            id: post._id,
+            userId: post.userId,
+            userName: post.userName,
+            firstName: post.firstName,
+            lastName: post.lastName,
+            timeStamp: post.timeStamp,
+            content: post.content
+          };
+        });
+      }))
+      .subscribe((transformedPosts) => {
+        this.posts = transformedPosts;
+        this.postsUpdated.next([...this.posts]);
+        }
+      );
     }
 
     getPostUpdateListener() {
         return this.postsUpdated.asObservable();
-    }
-
-    setUser(userID) {
-
     }
 
     addPost(aPost: Post) {

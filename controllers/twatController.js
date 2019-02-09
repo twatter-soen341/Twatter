@@ -28,6 +28,19 @@ exports.getTwat = function (req, res, next) {
     })
 };
 
+exports.getTwats = (req, res, next) => {
+    Twat.find()
+    .then(documents => {
+      res.status(200).json({
+        message: 'Posts fetched succesfully!',
+        posts: documents
+      });
+    })
+    .catch(() => {
+      console.log("Failed at getting Posts");
+    });
+};
+
 exports.updateTwat = function (req, res, next) {
 
     Twat.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, twat) {

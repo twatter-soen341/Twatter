@@ -16,7 +16,7 @@ export class PostsService {
 
     getPosts() {
       this.http
-      .get<{message: string, posts: any}>( `${BASE_URL}`)
+      .get<{message: string, posts: any}>( `${BASE_URL}/`)
       .pipe(map((postData) => {
         return postData.posts.map(post => {
           return {
@@ -53,12 +53,21 @@ export class PostsService {
             content: aPost.content
         };
         this.http
-        .post<{message: string, postId: string}>(`${BASE_URL}`, post)
+        .post<{message: string, postId: string}>(`${BASE_URL}/`, post)
         .subscribe((responseData) => {
           const id = responseData.postId;
           post.id = id;
           this.posts.push(post);
           this.postsUpdated.next([...this.posts]);
         });
+    }
+
+    deletePost(postId: string) {
+      this.http.delete(`${BASE_URL}/` + postId)
+      .subscribe(() => {
+        const updatedPosts = this.posts.filter(post => post.id !== postId);
+        this.posts = updatedPosts;
+        this.postsUpdated.next([...this.posts]);
+      });
     }
 }

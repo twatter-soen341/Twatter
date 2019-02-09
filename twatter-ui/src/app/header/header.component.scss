@@ -1,0 +1,21 @@
+main {
+  margin-top: 1rem;
+  width: 80%;
+  margin: auto;
+}
+
+.card-avatar-image {
+  background-image: url('https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg');
+  background-size: cover;
+  position: absolute;
+  z-index: 1;
+}
+
+.text-after-image {
+  margin-top: 1rem;
+  margin-left: 3rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

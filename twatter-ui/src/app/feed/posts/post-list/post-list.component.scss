@@ -1,0 +1,23 @@
+:host,
+mat-card {
+    display: block;
+    margin-top: 1rem;
+}
+
+:host{
+  margin-left: 10%;
+  width: 80%;
+}
+
+.card-header-image {
+    background-image: url('https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg');
+    background-size: cover;
+}
+
+.info-text {
+    text-align: center;
+}
+
+.post-list {
+  max-height: 20vh;
+}

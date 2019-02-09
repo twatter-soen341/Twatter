@@ -1,7 +1,9 @@
 export interface Post {
-  userID: string;
+  id: string;
+  userId: string;
+  userName: string;
   firstName: string;
   lastName: string;
-  timeStamp: Date;
+  timeStamp: number;
   content: string;
 }

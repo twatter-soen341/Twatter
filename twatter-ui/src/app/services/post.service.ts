@@ -20,14 +20,23 @@ export class PostsService {
     }
 
     addPost(aPost: Post) {
+        console.log(aPost);
         const post: Post = {
-            userID: aPost.userID,
+            id: null,
+            userId: aPost.userId,
+            userName: aPost.userName,
             firstName: aPost.firstName,
             lastName: aPost.lastName,
             timeStamp: aPost.timeStamp,
             content: aPost.content
         };
-        this.posts.push(post);
-        this.postsUpdated.next([...this.posts]);
+        this.http
+        .post<{message: string, postId: string}>(`${BASE_URL}`, post)
+        .subscribe((responseData) => {
+          const id = responseData.postId;
+          post.id = id;
+          this.posts.push(post);
+          this.postsUpdated.next([...this.posts]);
+        });
     }
 }

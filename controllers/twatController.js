@@ -4,23 +4,24 @@ exports.getTwat = function (req, res) {
     console.log("got twat");
 };
 
-exports.createTwat = function (req, res) {
+exports.createTwat = function (req, res, next) {
 
     let twat = new Twat(
-        {
+        {   
+            userId: req.body.userId,
             userName: req.body.userName,
             timeStamp: new Date().getTime(),
             content: req.body.content,
             likes: req.body.likes,
         }
     );
-    twat.save(function (err) {
-        if (err) {
-            return next(err);
-        }
-        res.send('Twat Created successfully'+ twat.toString());
-    })
-};
+    twat.save().then(createdPost => {
+        res.status(201).json({
+          message: 'Twat added successfully',
+          postId: createdPost._id
+        });
+      }).catch((result) => {console.log(result)});
+}
 
 exports.getTwat = function (req, res) {
 

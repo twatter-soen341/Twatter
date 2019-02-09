@@ -14,12 +14,19 @@ exports.createTwat = function (req, res, next) {
             likes: req.body.likes,
         }
     );
-    twat.save().then(createdPost => {
-        ress.status(201).json({
-          message: 'Twat added successfully',
-          postId: createdPost._id
+    twat.save()
+        .then(createdPost => {
+            res.status(201).json({
+            message: 'Twat added successfully',
+            postId: createdPost._id
+            });
+        })
+        .catch((err) => {
+            res.status(400).json({
+                message: 'Twat failed to be added',
+                error: err
+            });
         });
-      });
 };
 
 /* To get a Twat (Tweet) */
@@ -39,13 +46,12 @@ exports.getTwats = (req, res) => {
         message: 'Twats fetched succesfully!',
         posts: documents
       });
-    })
-    twat.save(function (err) {
-        if (err) {
-            return next(err);
-        }
-        res.send('Twat Created successfully'+ twat.toString());
-    })
+    }).catch((err) => {
+        res.status(500).json({
+            message: 'Failed at getting Posts',
+            error: err
+        })
+      });
 };
 
 exports.updateTwat = function (req, res) {

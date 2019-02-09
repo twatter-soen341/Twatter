@@ -4,17 +4,16 @@
     <div class="text-after-image">{{ firstName }}</div>
   </span>
 
-  <button mat-flat-button color="primary">Home</button>
+  <button mat-flat-button color="primary" (click)="bringsBackToTop()">Home</button>
 
   <span class="right-justify">
 
     <ul class="navigation">
       <button mat-flat-button color="primary">Settings</button>
-      <button mat-flat-button  color="primary" (click)="onLogout()">Logout</button>
+      <button mat-flat-button color="primary" (click)="onLogout()">Logout</button>
     </ul>
 
 </span>
-
 
 
 </mat-toolbar>

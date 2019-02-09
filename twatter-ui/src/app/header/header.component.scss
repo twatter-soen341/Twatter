@@ -1,20 +1,19 @@
 main {
-  //width: 80%;
+  width: 80%;
   margin: auto;
 }
 
 .card-avatar-image {
   background-image: url('https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg');
   background-size: cover;
-  position: absolute;
-  z-index: 1;
+  position: relative;
 }
 
 .text-after-image {
   margin-top: .2rem;
   margin-right: 1rem;
   margin-left: 3rem;
-  font-size: medium;
+  font-size: small;
 }
 
 .spacer {

@@ -9,6 +9,8 @@ const passport = require('passport');
 
 const indexRoutes = require('./routes/index');
 const authRoute = require('./routes/auth');
+const userRoute = require('./routes/user');
+const twatRoute = require('./routes/twatRoute');
 
 var uri = process.env.DEV_DATABASE
 
@@ -39,7 +41,9 @@ require('./middleware/passport')(passport);
 
 //use routes
 app.use(indexRoutes)
-app.use('/api/auth', authRoute)
+app.use('/api/auth', authRoute);
+app.use('/api/user', userRoute);
+app.use('/api/twat', twatRoute);
 
 app.listen(8080, () => {
     console.log("connected on port 8080")

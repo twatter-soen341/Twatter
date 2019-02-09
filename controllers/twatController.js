@@ -1,9 +1,5 @@
 const Twat = require('../models/twat');
 
-exports.getTwat = function (req, res) {
-    console.log("got twat");
-};
-
 exports.createTwat = function (req, res, next) {
 
     let twat = new Twat(
@@ -23,7 +19,8 @@ exports.createTwat = function (req, res, next) {
       }).catch((result) => {console.log(result)});
 }
 
-exports.getTwat = function (req, res) {
+
+exports.getTwat = function (req, res, next) {
 
     Twat.findById(req.params.id, function (err, twat) {
         if (err) return next(err);
@@ -31,7 +28,7 @@ exports.getTwat = function (req, res) {
     })
 };
 
-exports.updateTwat = function (req, res) {
+exports.updateTwat = function (req, res, next) {
 
     Twat.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, twat) {
         if (err) return next(err);
@@ -39,7 +36,7 @@ exports.updateTwat = function (req, res) {
     });
 };
 
-exports.deleteTwat = function (req, res) {
+exports.deleteTwat = function (req, res, next) {
 
     Twat.findByIdAndRemove(req.params.id, function (err) {
         if (err) return next(err);

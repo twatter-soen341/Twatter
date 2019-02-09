@@ -9,7 +9,7 @@ exports.createTwat = function (req, res) {
     let twat = new Twat(
         {
             userName: req.body.userName,
-            timeStamp: req.body.timeStamp,
+            timeStamp: new Date().getTime(),
             content: req.body.content,
             likes: req.body.likes,
         }

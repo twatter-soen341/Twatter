@@ -9,17 +9,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Post } from '../../../models/post.model';
 import { NgForm } from '@angular/forms';
 import { PostsService } from '../../../services/post.service';
-import { AuthData } from '../../../models/auth.model';
-import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
-
-let post: Post = {
-  userID: 'ID',
-  firstName: 'NAME',
-  lastName: 'NAME',
-  timeStamp: new Date,
-  content: '',
-};
 
 let submitted = false;
 
@@ -30,17 +20,19 @@ let submitted = false;
   styleUrls: ['./post-create.component.scss']
 })
 export class PostCreateComponent implements OnInit {
-  userID = post.userID;
-  firstName = post.firstName;
+  userId: string;
+  firstName: string;
+  lastName: string;
+  userName: string;
 
   constructor(public dialog: MatDialog, private userService: UserService) {}
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
-      this.userID = post.userID = user.id;
-      this.firstName = post.firstName = user.firstName;
-      post.lastName = user.lastName;
-
+      this.userId = user._id;
+      this.firstName = user.firstName;
+      this.lastName = user.lastName;
+      this.userName = user.userName;
     });
   }
 
@@ -49,11 +41,12 @@ export class PostCreateComponent implements OnInit {
       width: '80%',
       position: {top: '5rem'},
       data: {
-        userID: post.userID,
-        firstName: post.firstName,
-        lastName: post.lastName,
-        timeStamp: post.timeStamp,
-        content: post.content
+        userId: this.userId,
+        userName: this.userName,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        timeStamp: new Date(),
+        content: 'x'
       }
     });
 
@@ -70,23 +63,30 @@ export class PostCreateComponent implements OnInit {
   styleUrls: ['./post-create.component.scss']
 })
 export class PostCreateDialogComponent implements OnInit {
-  user = post.userID;
-  firstName = post.firstName;
+  userId: string;
+  firstName: string;
 
   constructor(
     public dialogRef: MatDialogRef<PostCreateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Post,
-    public postsService: PostsService) {}
+    public postsService: PostsService,
+    private userService: UserService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userService.getCurrentUser().subscribe(user => {
+      this.userId = user.id;
+      this.firstName = user.firstName;
+    });
+  }
 
   onCreatePost(form: NgForm) {
-      post = {
-      userID: post.userID,
-      firstName: post.firstName,
-      lastName: post.lastName,
-      timeStamp: new Date(),
-      content: form.value.content.replace(/\n/g, '<br>'),
+      const post = {
+        id: this.data.id,
+        userId: this.data.userId,
+        firstName: this.data.firstName,
+        lastName: this.data.lastName,
+        timeStamp: new Date().getTime(),
+        content: form.value.content.replace(/\n/g, '<br>'),
     };
 
     this.postsService.addPost(post);

@@ -1,0 +1,18 @@
+<form (submit)="onSave(postForm)" #postForm="ngForm">
+  <p class="mat-display-1">Edit Post</p>
+
+  <mat-divider class="header"></mat-divider>
+
+  <mat-form-field appearance="standard">
+    <div mat-card-avatar class="card-avatar-image"></div>
+    <div class="text-dialog-outer">
+      <ng-scrollbar autoUpdate=true>
+        <textarea matInput autosize class="text-dialog-inner" name="content" [ngModel]="content"></textarea>
+      </ng-scrollbar>
+    </div>
+  </mat-form-field>
+
+  <mat-card-actions align="end">
+    <button mat-button type="submit">SAVE</button>
+  </mat-card-actions>
+ </form>

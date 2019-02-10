@@ -5,6 +5,8 @@ const twatController = require('../controllers/twatController');
 
 router.post('/', twatController.createTwat);
 
+router.get('/', twatController.getTwats);
+
 router.get('/:id', twatController.getTwat);
 
 router.put('/:id', twatController.updateTwat);

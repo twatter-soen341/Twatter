@@ -7,7 +7,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 // ------Feed Components-------
 import { PostCreateComponent, PostCreateDialogComponent } from './feed/posts/post-create/post-create.component';
-import { PostListComponent } from './feed/posts/post-list/post-list.component';
+import { PostListComponent, PostEditDialogComponent } from './feed/posts/post-list/post-list.component';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { TwatIconBtnComponent } from './icons/twat-icon-btn/twat-icon-btn.component';
@@ -44,7 +44,8 @@ import { ProfileComponent } from './profile/profile.component';
     PostListComponent,
     TwatIconBtnComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    PostEditDialogComponent
  ],
   imports: [
     HttpClientModule,
@@ -72,6 +73,7 @@ import { ProfileComponent } from './profile/profile.component';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [
     PostCreateDialogComponent,
+    PostEditDialogComponent
   ]
 })
 export class AppModule { }

@@ -27,7 +27,7 @@ import {
   MatIconModule,
   MatDialogModule,
   MatDividerModule,
-  MatSnackBarModule
+  MatSnackBarModule, MatMenuModule
 } from '@angular/material';
 import { ProfileComponent } from './profile/profile.component';
 
@@ -65,6 +65,7 @@ import { ProfileComponent } from './profile/profile.component';
     TextareaAutosizeModule,
     NgScrollbarModule,
     MatDividerModule,
+    MatMenuModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

@@ -27,4 +27,12 @@ export class HeaderComponent implements OnInit {
   bringsBackToTop() {
     window.scroll(0, 0);
   }
+
+  changeThemeToDarkMode() {
+
+  }
+
+  changeThemeToLightMode() {
+
+  }
 }

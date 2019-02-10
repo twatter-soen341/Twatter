@@ -4,13 +4,20 @@
     <div class="text-after-image">{{ firstName }}</div>
   </span>
 
-  <button mat-flat-button color="primary" (click)="bringsBackToTop()">Home</button>
+  <button mat-flat-button color="primary" (click)="bringsBackToTop()">HOME</button>
 
   <span class="right-justify">
 
     <ul class="navigation">
-      <button mat-flat-button color="primary">Settings</button>
-      <button mat-flat-button color="primary" (click)="onLogout()">Logout</button>
+
+      <!--Settings menu button-->
+      <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">Settings</button>
+      <mat-menu #menu="matMenu" class="myMenu">
+        <button mat-menu-item (click)="changeThemeToDarkMode()">Dark Mode</button>
+        <button mat-menu-item (click)="changeThemeToLightMode()">Light Mode</button>
+      </mat-menu>
+
+    <button mat-flat-button color="primary" (click)="onLogout()">Logout</button>
     </ul>
 
 </span>

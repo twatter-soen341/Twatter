@@ -57,10 +57,10 @@ exports.getTwats = (req, res, next) => {
 };
 
 exports.updateTwat = function (req, res, next) {
-
+    
     Twat.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, twat) {
-        if (err) return next(err);
-        res.send('Twat updated.'+ twat.toString());
+        if (err) res.status(500).json({message: 'Update Failed.', error: err});
+        res.status(200).json({message: 'Post Updated'});
     });
 };
 

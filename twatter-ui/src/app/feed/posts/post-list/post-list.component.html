@@ -17,6 +17,8 @@
     <mat-card-actions align="end">
       <app-twat-icon-btn>l</app-twat-icon-btn>
       <button mat-button>SHARE</button>
+      <button mat-button (click)="onEdit(post.id)">EDIT</button>
+      <button mat-button (click)="onDelete(post.id)">DELETE</button>
     </mat-card-actions>
   </mat-card>
 </div>

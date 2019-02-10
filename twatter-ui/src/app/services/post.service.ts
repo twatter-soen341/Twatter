@@ -22,7 +22,6 @@ export class PostsService {
       .pipe(map((postData) => {
         return postData.posts.map(post => {
 
-        console.log(post);
         return {
           id: post._id,
           userId: post.user._id,
@@ -34,7 +33,6 @@ export class PostsService {
         });
       }))
       .subscribe((transformedPosts) => {
-        console.log(transformedPosts);
         this.posts = transformedPosts;
         this.postsUpdated.next([...this.posts]);
         }

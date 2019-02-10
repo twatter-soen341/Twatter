@@ -65,27 +65,9 @@ exports.updateTwat = function (req, res, next) {
 };
 
 exports.deleteTwat = function (req, res, next) {
-    /* The following gives when there's an error:
-    DeprecationWarning: collection.findAndModify is deprecated. 
-    Use findOneAndUpdate, findOneAndReplace or findOneAndDelete instead.
-    Otherwise, code doesn't complain.*/
-    // Twat.findByIdAndRemove(req.params.id, function (err) {
-    //     if (err) return next(err);
-    //     res.send('Deleted successfully!');
-    // });
-    /* debugging purposes only */
-    Twat.deleteOne({_id: req.params.id})
-        .then(result => {
-            console.Console.log(result);
-            res.status(200).json({
-                message: 'Twat Deleted'
-            })
-        })
-        .catch((err) => {
-            res.status(400).json({
-                message: 'Twat failed to be deleted',
-                id: req.params.id,
-                error: err
-            })
-        });
+    Twat.findByIdAndRemove(req.params.id, function (err) {
+        
+        if (err) res.status(500).json({message: 'Delete Failed.', error: err});
+        res.status(200).json({message: 'Deleted successfully!'});
+    });
 };

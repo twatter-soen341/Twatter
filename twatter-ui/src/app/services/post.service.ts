@@ -1,11 +1,13 @@
 import { Post } from '../models/post.model';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { User } from '../models/auth.model';
+import { mergeMap } from 'rxjs/operators';
 
-const BASE_URL = `${environment.baseUrl}/twat`;
+const BASE_URL = `${environment.baseUrl}`;
 
 @Injectable({providedIn: 'root'})
 export class PostsService {
@@ -16,21 +18,23 @@ export class PostsService {
 
     getPosts() {
       this.http
-      .get<{message: string, posts: any}>( `${BASE_URL}/`)
+      .get<{message: string, posts: any}>( `${BASE_URL}/twat`)
       .pipe(map((postData) => {
         return postData.posts.map(post => {
-          return {
-            id: post._id,
-            userId: post.userId,
-            userName: post.userName,
-            firstName: post.firstName,
-            lastName: post.lastName,
-            timeStamp: post.timeStamp,
-            content: post.content
-          };
+
+        console.log(post);
+        return {
+          id: post._id,
+          userId: post.user._id,
+          firstName: post.user.firstName,
+          lastName: post.user.lastName,
+          timeStamp: post.timeStamp,
+          content: post.content
+        };
         });
       }))
       .subscribe((transformedPosts) => {
+        console.log(transformedPosts);
         this.posts = transformedPosts;
         this.postsUpdated.next([...this.posts]);
         }
@@ -42,18 +46,16 @@ export class PostsService {
     }
 
     addPost(aPost: Post) {
-        console.log(aPost);
         const post: Post = {
             id: null,
             userId: aPost.userId,
-            userName: aPost.userName,
             firstName: aPost.firstName,
             lastName: aPost.lastName,
             timeStamp: aPost.timeStamp,
             content: aPost.content
         };
         this.http
-        .post<{message: string, postId: string}>(`${BASE_URL}/`, post)
+        .post<{message: string, postId: string}>(`${BASE_URL}/twat`, post)
         .subscribe((responseData) => {
           const id = responseData.postId;
           post.id = id;
@@ -63,7 +65,8 @@ export class PostsService {
     }
 
     deletePost(postId: string) {
-      this.http.delete(`${BASE_URL}/` + postId)
+      console.log(postId);
+      this.http.delete(`${BASE_URL}/twat/` + postId)
       .subscribe(() => {
         const updatedPosts = this.posts.filter(post => post.id !== postId);
         this.posts = updatedPosts;

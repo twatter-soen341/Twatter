@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
 const twatSchema = new mongoose.Schema({
-    userId: {type: String, required: false},
-    userName: { type: String, required: false },
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     content: { type: String, required: true },
     timeStamp: Date,
     likes: [String],

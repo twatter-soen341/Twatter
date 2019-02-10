@@ -29,7 +29,6 @@ export class PostCreateComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
-      console.log(user);
       this.userId = user._id;
       this.firstName = user.firstName;
       this.lastName = user.lastName;
@@ -38,7 +37,6 @@ export class PostCreateComponent implements OnInit {
   }
 
   openDialog() {
-    console.log(this.userId);
     const dialogRef = this.dialog.open(PostCreateDialogComponent, {
       width: '80%',
       position: {top: '5rem'},
@@ -85,7 +83,6 @@ export class PostCreateDialogComponent implements OnInit {
       const post = {
         id: this.data.id,
         userId: this.data.userId,
-        userName: this.data.userName,
         firstName: this.data.firstName,
         lastName: this.data.lastName,
         timeStamp: new Date().getTime(),

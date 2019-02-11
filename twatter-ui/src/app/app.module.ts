@@ -30,6 +30,7 @@ import {
   MatSnackBarModule
 } from '@angular/material';
 import { ProfileComponent } from './profile/profile.component';
+import { ScrollTopComponent } from './scroll-top/scroll-top.component';
 
 
 
@@ -45,7 +46,8 @@ import { ProfileComponent } from './profile/profile.component';
     TwatIconBtnComponent,
     RegisterComponent,
     ProfileComponent,
-    PostEditDialogComponent
+    PostEditDialogComponent,
+    ScrollTopComponent
  ],
   imports: [
     HttpClientModule,

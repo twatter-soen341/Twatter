@@ -31,6 +31,7 @@ import {
 } from '@angular/material';
 import { ProfileComponent } from './profile/profile.component';
 import { ScrollTopComponent } from './scroll-top/scroll-top.component';
+import { SidebarComponent } from './profile/sidebar/sidebar.component';
 
 
 
@@ -47,7 +48,8 @@ import { ScrollTopComponent } from './scroll-top/scroll-top.component';
     RegisterComponent,
     ProfileComponent,
     PostEditDialogComponent,
-    ScrollTopComponent
+    ScrollTopComponent,
+    SidebarComponent
  ],
   imports: [
     HttpClientModule,

@@ -27,17 +27,38 @@ export class PostsService {
       }>(`${BASE_URL}/${id}`);
     }
 
+    getUserPosts(userId: string){
+      this.http
+      .get<{message: string, posts: any}>(`${BASE_URL}/userId/${userId}`)
+      .pipe(map((postData) => {
+        return postData.posts.map(post => {
+        return {
+          id: post._id,
+          userId: post.user?post.user._id:-1,
+          firstName: post.user?post.user.firstName: -1,
+          lastName: post.user?post.user.lastName: -1,
+          timeStamp: post.timeStamp,
+          content: post.content
+        };
+        });
+      }))
+      .subscribe((transformedPosts) => {
+        this.posts = transformedPosts;
+        this.postsUpdated.next([...this.posts]);
+        }
+      );
+    }
+
     getPosts() {
       this.http
       .get<{message: string, posts: any}>( `${BASE_URL}`)
       .pipe(map((postData) => {
         return postData.posts.map(post => {
-
         return {
           id: post._id,
-          userId: post.user._id,
-          firstName: post.user.firstName,
-          lastName: post.user.lastName,
+          userId: post.user?post.user._id:-1,
+          firstName: post.user?post.user.firstName: -1,
+          lastName: post.user?post.user.lastName: -1,
           timeStamp: post.timeStamp,
           content: post.content
         };

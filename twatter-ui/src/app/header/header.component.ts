@@ -22,9 +22,4 @@ export class HeaderComponent implements OnInit {
   onLogout() {
     this.authService.logout();
   }
-
-  // Brings Back To Top
-  bringsBackToTop() {
-    window.scroll(0, 0);
-  }
 }

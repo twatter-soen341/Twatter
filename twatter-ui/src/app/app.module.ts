@@ -16,8 +16,11 @@ import { TwatlineComponent } from './feed/twatline/twatline.component';
 import { LoginComponent } from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import { AuthInterceptor } from './auth-interceptor';
+// ------     Profile     -------
+import { ProfileComponent } from './profile/profile.component';
+import { ScrollTopComponent } from './scroll-top/scroll-top.component';
+import { SidebarComponent } from './profile/sidebar/sidebar.component';
 // ------Angular Material------
-
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,8 +33,6 @@ import {
   MatDividerModule,
   MatSnackBarModule
 } from '@angular/material';
-import { ProfileComponent } from './profile/profile.component';
-import { ScrollTopComponent } from './scroll-top/scroll-top.component';
 
 
 
@@ -49,7 +50,8 @@ import { ScrollTopComponent } from './scroll-top/scroll-top.component';
     ProfileComponent,
     PostEditDialogComponent,
     ScrollTopComponent,
-    TwatlineComponent
+    TwatlineComponent,
+    SidebarComponent
  ],
   imports: [
     HttpClientModule,

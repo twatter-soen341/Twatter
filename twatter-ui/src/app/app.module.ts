@@ -11,7 +11,6 @@ import { PostListComponent, PostEditDialogComponent } from './feed/posts/post-li
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { TwatIconBtnComponent } from './icons/twat-icon-btn/twat-icon-btn.component';
-import { TwatlineComponent } from './feed/twatline/twatline.component';
 // ------     Login     -------
 import { LoginComponent } from './login/login.component';
 import {RegisterComponent} from './register/register.component';

@@ -14,6 +14,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.authService.resumeSession();
+    window.scroll(0,0);
+  }
+
+  onActivate() {
+    window.scroll(0,0);
   }
 
 }

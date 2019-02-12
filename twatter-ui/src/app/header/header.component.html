@@ -1,12 +1,14 @@
 <!--Sets the colour of the header-->
 <mat-toolbar class="header" color="primary">
   <span class="left-justify">
-    <div mat-card-avatar class="card-avatar-image"></div>
+    <nav><button mat-icon-button routerLink="/profile"><div mat-card-avatar class="card-avatar-image"></div></button></nav>
     <div class="text-after-image">{{ firstName }}</div>
   </span>
   
   <!--Middle button which brings user back on top of the page-->
   <button mat-flat-button color="primary" (click)="bringsBackToTop()">HOME</button>
+
+  <nav><button mat-flat-button color="primary" routerLink="/posts"><i class="material-icons">home</i></button></nav>
 
   <span class="right-justify">
     <ul class="navigation">

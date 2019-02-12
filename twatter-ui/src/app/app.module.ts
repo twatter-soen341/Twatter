@@ -15,8 +15,11 @@ import { TwatIconBtnComponent } from './icons/twat-icon-btn/twat-icon-btn.compon
 import { LoginComponent } from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import { AuthInterceptor } from './auth-interceptor';
+// ------     Profile     -------
+import { ProfileComponent } from './profile/profile.component';
+import { ScrollTopComponent } from './scroll-top/scroll-top.component';
+import { SidebarComponent } from './profile/sidebar/sidebar.component';
 // ------Angular Material------
-
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -46,7 +49,10 @@ import {MatBadgeModule} from '@angular/material/badge';
     TwatIconBtnComponent,
     RegisterComponent,
     ProfileComponent,
-    PostEditDialogComponent
+    PostEditDialogComponent,
+    ScrollTopComponent,
+    TwatlineComponent,
+    SidebarComponent
  ],
   imports: [
     HttpClientModule,

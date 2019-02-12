@@ -1,11 +1,9 @@
-import { Post } from '../models/post.model';
-import { Injectable } from '@angular/core';
-import { Subject, Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-import { User } from '../models/auth.model';
-import { mergeMap } from 'rxjs/operators';
+import {Post} from '../models/post.model';
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
+import {environment} from 'src/environments/environment';
 
 const BASE_URL = `${environment.baseUrl}/twat`;
 

@@ -104,25 +104,22 @@ export class AuthService {
       password: password
     };
 
-    this.httpClient
+    return this.httpClient
       .post<{ token: string; expiresIn: number; userId: string }>(
         `${BASE_URL}/login`,
         authData
-      )
-      .subscribe(data => {
-        const token = data.token;
-        if (token) {
-          this.setAuthenticated(token, data.userId);
-          /* Get the expiration date */
-          const expirationDate = this.getExpirationDate(data.expiresIn);
-          /* Save the data in localStorage */
-          this.saveAuthData(token, this.userId, expirationDate);
-          /* start the timer to logout */
-          this.tokenTimer = this.setTokenTimer(data.expiresIn * 1000);
-          /* redirect to homepage */
-          this.router.navigate(['/']);
-        }
-      });
+      );
+  }
+
+  setToken(data) {
+    const token = data.token;
+    this.setAuthenticated(token, data.userId);
+    /* Get the expiration date */
+    const expirationDate = this.getExpirationDate(data.expiresIn);
+    /* Save the data in localStorage */
+    this.saveAuthData(token, this.userId, expirationDate);
+    /* start the timer to logout */
+    this.tokenTimer = this.setTokenTimer(data.expiresIn * 1000);
   }
 
   /**

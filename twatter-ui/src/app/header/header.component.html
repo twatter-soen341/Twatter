@@ -1,26 +1,37 @@
+<!--Sets the colour of the header-->
 <mat-toolbar class="header" color="primary">
   <span class="left-justify">
     <div mat-card-avatar class="card-avatar-image"></div>
     <div class="text-after-image">{{ firstName }}</div>
   </span>
-
+  
+  <!--Middle button which brings user back on top of the page-->
   <button mat-flat-button color="primary" (click)="bringsBackToTop()">HOME</button>
 
   <span class="right-justify">
-
     <ul class="navigation">
+      <div class="notification">
+      <!--Notification button with notification badge-->
+      <button mat-flat-button color="primary" [matMenuTriggerFor]="menu"
+              matBadge={{notificationCount}} matBadgeOverlap="true" matBadgePosition="after" matBadgeColor="warn"  [matBadgeHidden]="notificationCount<=0">
+     Notifications</button>
 
-      <!--Settings menu button-->
-      <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">Settings</button>
+        <!--The menu which will show the notifications from an array of string-->
       <mat-menu #menu="matMenu" class="myMenu">
-        <button mat-menu-item (click)="changeThemeToDarkMode()">Dark Mode</button>
-        <button mat-menu-item (click)="changeThemeToLightMode()">Light Mode</button>
-      </mat-menu>
 
+        <!--Displays the list of notifications-->
+        <ul style="list-style: none">
+          <li *ngFor="let notification of notifications">
+              {{ notification }}
+        </li>
+        </ul>
+        <!--Buttons Clears all notifications-->
+        <button mat-flat-button color="primary" (click)="clearNotifications()" [disabled]="notificationCount<=0">Clear Notifications</button>
+      </mat-menu>
+    </div>
+
+      <!--Button which allows users to log out-->
     <button mat-flat-button color="primary" (click)="onLogout()">Logout</button>
     </ul>
-
 </span>
-
-
 </mat-toolbar>

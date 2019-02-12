@@ -37,6 +37,9 @@ main {
   justify-content: space-evenly;
 }
 
+.notification {
+  margin-right: 2rem;
+}
 
 .left-justify {
   display: flex;
@@ -55,6 +58,7 @@ main {
   z-index: 2;
 
 }
+
 
 /deep/ .mat-menu-content {
   background-color: rgb(192, 24, 91);

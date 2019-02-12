@@ -30,6 +30,7 @@ import {
   MatSnackBarModule, MatMenuModule
 } from '@angular/material';
 import { ProfileComponent } from './profile/profile.component';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -65,6 +66,7 @@ import { ProfileComponent } from './profile/profile.component';
     TextareaAutosizeModule,
     NgScrollbarModule,
     MatDividerModule,
+    MatBadgeModule,
     MatMenuModule
   ],
   providers: [

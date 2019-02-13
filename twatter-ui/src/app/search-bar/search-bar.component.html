@@ -1,0 +1,19 @@
+<div class="full-width">
+  <mat-form-field>
+    <input matInput #filter placeholder="Search" [matAutocomplete]="auto" />
+    <mat-autocomplete #auto="matAutocomplete">
+      <div *ngIf="error">
+        <mat-option>No user found</mat-option>
+      </div>
+      <div *ngIf="users && !error">
+        <mat-option
+          *ngFor="let user of users"
+          [value]="user.firstName + ' ' + user.lastName"
+        >
+          {{ user.firstName }} {{ user.lastName }}
+        </mat-option>
+      </div>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button mat-flat-button color="primary"><mat-icon>search</mat-icon></button>
+</div>

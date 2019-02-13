@@ -4,6 +4,7 @@ main {
 }
 
 .card-avatar-image {
+  background-color: black;
   background-image: url('https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg');
   background-size: cover;
   position: relative;
@@ -50,11 +51,11 @@ main {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
   top: 0;
   width: 100%;
   z-index: 2;
-
 }
 
 

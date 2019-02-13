@@ -31,8 +31,10 @@ import {
   MatIconModule,
   MatDialogModule,
   MatDividerModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatAutocompleteModule
 } from '@angular/material';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 
 
@@ -51,7 +53,8 @@ import {
     PostEditDialogComponent,
     ScrollTopComponent,
     TwatlineComponent,
-    SidebarComponent
+    SidebarComponent,
+    SearchBarComponent
  ],
   imports: [
     HttpClientModule,
@@ -71,6 +74,7 @@ import {
     TextareaAutosizeModule,
     NgScrollbarModule,
     MatDividerModule,
+    MatAutocompleteModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

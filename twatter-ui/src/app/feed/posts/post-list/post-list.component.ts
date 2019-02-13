@@ -95,28 +95,32 @@ export class PostListComponent implements OnInit, OnDestroy {
 })
 export class PostEditDialogComponent implements OnInit {
   content = '';
+  private userId;
 
   constructor(
     public dialogRef: MatDialogRef<PostEditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Post,
-    public postsService: PostsService) {
-  }
+    public postsService: PostsService,
+    private userService: UserService) {}
 
   ngOnInit() {
     console.log('inside dialog');
     this.content = this.data.content.replace(/<br>/g, '\n');
+    this.userService.getCurrentUser().subscribe(user => {
+      this.userId = user._id;
+    });
   }
 
   onSave(form: NgForm) {
     const post = {
       id: this.data.id,
-      userId: this.data.userId,
+      userId: this.userId,
       firstName: this.data.firstName,
       lastName: this.data.lastName,
       timeStamp: Date.now(),
       content: form.value.content.replace(/\n/g, '<br>'),
-    };
-
+  };
+    
     this.postsService.updatePost(post);
     this.dialogRef.close();
   }

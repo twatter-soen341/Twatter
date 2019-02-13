@@ -3,7 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
-import {PostListComponent} from './feed/posts/post-list/post-list.component';
+import {TwatlineComponent} from './feed/twatline/twatline.component';
 import {ProfileComponent} from './profile/profile.component';
 
 import { AuthGuard } from './guards/auth.guard';
@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [LoggedInGuard]},
   {path: '', redirectTo: '/posts', pathMatch: 'full'},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path: 'posts', component: PostListComponent, canActivate: [AuthGuard]}
+  {path: 'posts', component: TwatlineComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

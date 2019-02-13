@@ -5,13 +5,14 @@ import {
   Inject,
   Input
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {Subscription} from 'rxjs';
 
-import { Post } from '../../../models/post.model';
-import { PostsService } from '../../../services/post.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
-import { NgForm } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import {Post} from '../../../models/post.model';
+import {PostsService} from '../../../services/post.service';
+import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material';
+import {NgForm} from '@angular/forms';
+import {UserService} from 'src/app/services/user.service';
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-post-list',
@@ -23,7 +24,9 @@ export class PostListComponent implements OnInit, OnDestroy {
   private postsSub: Subscription;
   userId: any;
 
-  constructor(public aPostsService: PostsService, private userService: UserService, public dialog: MatDialog) {}
+  constructor(public aPostsService: PostsService, private userService: UserService,
+              private authService: AuthService, public dialog: MatDialog) {
+  }
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
@@ -69,6 +72,20 @@ export class PostListComponent implements OnInit, OnDestroy {
     }
   }
 
+  likePost(post, event) {
+    if (event === true) {
+      post.likes.push(this.authService.getUserId());
+    } else {
+      const index = post.likes.indexOf(this.authService.getUserId());
+      post.likes.splice(index, 1);
+    }
+    this.aPostsService.updatePost(post);
+  }
+
+  isLikedByUser(post) {
+    return post.likes.contains(this.authService.getUserId());
+  }
+
 }
 
 @Component({
@@ -82,7 +99,8 @@ export class PostEditDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<PostEditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Post,
-    public postsService: PostsService) {}
+    public postsService: PostsService) {
+  }
 
   ngOnInit() {
     console.log('inside dialog');
@@ -97,7 +115,7 @@ export class PostEditDialogComponent implements OnInit {
       lastName: this.data.lastName,
       timeStamp: Date.now(),
       content: form.value.content.replace(/\n/g, '<br>'),
-  };
+    };
 
     this.postsService.updatePost(post);
     this.dialogRef.close();

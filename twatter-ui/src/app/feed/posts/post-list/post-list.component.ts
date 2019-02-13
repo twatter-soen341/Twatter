@@ -9,9 +9,9 @@ import { Subscription } from 'rxjs';
 
 import { Post } from '../../../models/post.model';
 import { PostsService } from '../../../services/post.service';
-import { AuthService } from 'src/app/services/auth.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { NgForm } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-post-list',
@@ -21,10 +21,16 @@ import { NgForm } from '@angular/forms';
 export class PostListComponent implements OnInit, OnDestroy {
   @Input() posts: Post[] = [];
   private postsSub: Subscription;
+  userId: any;
 
-  constructor(public aPostsService: PostsService, private authService: AuthService, public dialog: MatDialog) {}
+  constructor(public aPostsService: PostsService, private userService: UserService, public dialog: MatDialog) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userService.getCurrentUser().subscribe(user => {
+      this.userId = user._id;
+      console.log(this.userId);
+    });
+  }
 
   onEdit(id: string) {
     const post = this.aPostsService.getPost(id).subscribe((postData) => {
@@ -51,8 +57,17 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.postsSub) {
+    if (this.postsSub) {
       this.postsSub.unsubscribe();
+    }
+  }
+
+  isUser(currentUserId) {
+    if (currentUserId === this.userId) {
+      return true;
+    } else {
+      console.log(this.userId);
+      return false;
     }
   }
 

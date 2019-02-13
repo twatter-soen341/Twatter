@@ -35,7 +35,7 @@ exports.getTwat = function (req, res, next) {
 };
 
 exports.getTwatsForUser = function(req, res, next){
-        Twat.find({user: req.params.userId})
+        Twat.find({user: req.params.id})
             .populate('user')
             .then(documents => {
                 console.log(documents);

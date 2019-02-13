@@ -16,7 +16,7 @@ import { NgForm } from '@angular/forms';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
-})  
+})
 export class ProfileComponent implements OnInit{
 
   posts: Post[] = [];
@@ -29,7 +29,6 @@ export class ProfileComponent implements OnInit{
     this.postsSub = this.aPostsService.getPostUpdateListener().subscribe(
       (posts: Post[]) => {
         this.posts = posts;
-        console.log(this.posts);
       }
     );
   }

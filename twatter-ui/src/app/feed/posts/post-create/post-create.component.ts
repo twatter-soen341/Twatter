@@ -45,7 +45,7 @@ export class PostCreateComponent implements OnInit {
         userName: this.userName,
         firstName: this.firstName,
         lastName: this.lastName,
-        timeStamp: new Date(),
+        // timeStamp: new Date(),
         content: 'x'
       }
     });

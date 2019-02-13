@@ -3,6 +3,6 @@ export interface Post {
   userId: string;
   firstName: string;
   lastName: string;
-  timeStamp: number;
+  timeStamp: string;
   content: string;
 }

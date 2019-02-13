@@ -1,16 +1,22 @@
 <mat-toolbar class="header mat-elevation-z5" color="primary">
   <span class="left-justify">
-    <nav><button mat-icon-button routerLink="/profile"><div mat-card-avatar class="card-avatar-image"></div></button></nav>
-    <div class="text-after-image">{{ firstName }}</div>
+    <nav>
+      <button mat-icon-button routerLink="/profile">
+        <div mat-card-avatar class="card-avatar-image"></div>
+        <div class="text-after-image">{{ firstName }}</div>
+    </button>
+  </nav>
   </span>
 
-  <nav><button mat-flat-button color="primary" routerLink="/posts"><i class="material-icons">home</i></button></nav>
 
   <span class="right-justify">
 
     <ul class="navigation">
+      <nav><button mat-flat-button color="primary" routerLink="/posts"><i class="material-icons">home</i></button></nav>
+      <button mat-flat-button color="primary"><i class="material-icons">notifications</i></button>
       <button mat-flat-button color="primary"><i class="material-icons">settings</i></button>
-      <button mat-flat-button color="primary" (click)="onLogout()">Logout</button>
+      <button mat-flat-button color="primary" (click)="onLogout()"><i class="material-icons">lock</i></button>
+      <!-- <button mat-flat-button color="primary" (click)="onLogout()">Logout</button> -->
     </ul>
 
 </span>

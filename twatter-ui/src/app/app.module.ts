@@ -32,7 +32,6 @@ import {
   MatDividerModule,
   MatSnackBarModule, MatMenuModule
 } from '@angular/material';
-import { ProfileComponent } from './profile/profile.component';
 import {MatBadgeModule} from '@angular/material/badge';
 
 
@@ -51,7 +50,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     ProfileComponent,
     PostEditDialogComponent,
     ScrollTopComponent,
-    TwatlineComponent,
+    // TwatlineComponent,
     SidebarComponent
  ],
   imports: [

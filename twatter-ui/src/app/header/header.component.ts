@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
       this.firstName = user.firstName;
     });
     this.notifications = new Array();
-    this.testNotifications();
+    this.notificationCount = this.notifications.length;
   }
 
   onLogout() {

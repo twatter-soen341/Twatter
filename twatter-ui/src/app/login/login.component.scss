@@ -24,12 +24,14 @@
 
 .logo {
   width:20vh;
+  align-self: center;
 }
 
 .twatter-name {
   color: rgb(192,24,91);
   text-align: center;
-  letter-spacing: 8px;
+  //letter-spacing: 1px;
+  font-family:  -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .register-link-container {

@@ -28,17 +28,29 @@ exports.createTwat = function (req, res, next) {
 /* To get a Twat (Tweet) */
 exports.getTwat = function (req, res, next) {
 
-    Twat.findById(req.params.id, function (err, twat) {
-        if (err) return next(err);
-        res.send(twat);
-    })
+    Twat.findById(req.params.id)
+            .populate('user')
+            .then(documents => {
+                res.status(200).json({
+                    message: 'Twats fetched succesfully!',
+                    post: documents
+                });
+            }).catch((err) => {
+                res.status(400).json({
+                    message: 'Failed at getting Posts',
+                    error: err
+                });
+                res.status(500).json({
+                    message: 'Failed at getting Posts',
+                    error: err
+                });
+              });
 };
 
 exports.getTwatsForUser = function(req, res, next){
-        Twat.find({user: req.params.userId})
+        Twat.find({user: req.params.id})
             .populate('user')
             .then(documents => {
-                console.log(documents);
                 res.status(200).json({
                     message: 'Twats fetched succesfully!',
                     posts: documents
@@ -60,7 +72,6 @@ exports.getTwats = (req, res, next) => {
     Twat.find()
     .populate('user')
     .then(documents => {
-        console.log(documents);
         res.status(200).json({
             message: 'Twats fetched succesfully!',
             posts: documents

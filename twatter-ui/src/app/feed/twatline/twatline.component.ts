@@ -14,7 +14,7 @@ import { PostsService } from '../../services/post.service';
 })
 export class TwatlineComponent implements OnInit {
 
-  private posts: Post[] = [];
+  posts: Post[] = [];
   private postsSub: Subscription;
   constructor(public aPostsService: PostsService) {}
 

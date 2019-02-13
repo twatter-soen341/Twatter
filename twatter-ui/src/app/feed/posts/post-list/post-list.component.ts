@@ -32,12 +32,12 @@ export class PostListComponent implements OnInit, OnDestroy {
         width: '80%',
         position: {top: '5rem'},
         data: {
-          id: postData._id,
-          userId: postData.userId,
-          firstName: postData.firstName,
-          lastName: postData.lastName,
-          timeStamp: postData.timeStamp,
-          content: postData.content
+          id: postData.post._id,
+          userID: postData.post.user._id,
+          firstName: postData.post.user.firstName,
+          lastName: postData.post.user.lastName,
+          timeStamp: postData.post.timeStamp,
+          content: postData.post.content
         }
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -71,20 +71,22 @@ export class PostEditDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Post,
     public postsService: PostsService) {}
 
-    ngOnInit() {
-      console.log('inside dialog');
-    this.content = this.data.content;
+  ngOnInit() {
+    console.log('inside dialog');
+    this.content = this.data.content.replace(/<br>/g, '\n');
   }
 
   onSave(form: NgForm) {
-    this.postsService.updatePost(
-      this.data.id,
-      this.data.firstName,
-      this.data.lastName,
-      new Date().getTime(),
-      form.value.content.replace(/\n/g, '<br>')
-    );
+    const post = {
+      id: this.data.id,
+      userId: this.data.userId,
+      firstName: this.data.firstName,
+      lastName: this.data.lastName,
+      timeStamp: new Date().getTime(),
+      content: form.value.content.replace(/\n/g, '<br>'),
+  };
 
+    this.postsService.updatePost(post);
     this.dialogRef.close();
   }
 

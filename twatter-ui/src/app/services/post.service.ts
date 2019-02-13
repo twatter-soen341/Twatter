@@ -97,7 +97,7 @@ export class PostsService {
         .subscribe((responseData) => {
           const id = responseData.postId;
           post.id = id;
-          this.posts.push(post);
+          this.posts.unshift(post);
           this.postsUpdated.next([...this.posts]);
         });
     }

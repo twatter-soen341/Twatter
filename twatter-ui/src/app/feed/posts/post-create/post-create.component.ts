@@ -115,6 +115,7 @@ export class PostCreateDialogComponent implements OnInit {
 
     this.postsService.addPost(post);
     submitted = true;
+    this.data.content = '';
     this.dialogRef.close();
   }
 

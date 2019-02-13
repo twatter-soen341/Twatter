@@ -3,6 +3,7 @@ import {
   OnInit,
   OnDestroy,
   Inject,
+  Input
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -18,19 +19,12 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit, OnDestroy {
-  posts: Post[] = [];
+  @Input() posts: Post[] = [];
   private postsSub: Subscription;
 
   constructor(public aPostsService: PostsService, private authService: AuthService, public dialog: MatDialog) {}
 
-  ngOnInit() {
-    this.aPostsService.getPosts();
-    this.postsSub = this.aPostsService.getPostUpdateListener().subscribe(
-      (posts: Post[]) => {
-        this.posts = posts;
-      }
-    );
-  }
+  ngOnInit() {}
 
   onEdit(id: string) {
     const post = this.aPostsService.getPost(id).subscribe((postData) => {
@@ -57,7 +51,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(postsSub) {
+    if(this.postsSub) {
       this.postsSub.unsubscribe();
     }
   }

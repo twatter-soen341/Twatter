@@ -1,9 +1,11 @@
-import {Post} from '../models/post.model';
-import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
-import {environment} from 'src/environments/environment';
+import { Post } from '../models/post.model';
+import { Injectable } from '@angular/core';
+import { Subject, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { User } from '../models/auth.model';
+import { mergeMap } from 'rxjs/operators';
 
 const BASE_URL = `${environment.baseUrl}/twat`;
 
@@ -25,17 +27,40 @@ export class PostsService {
       }>(`${BASE_URL}/${id}`);
     }
 
+    getUserPosts(userId: string){
+      console.log(userId);
+      this.http
+      .get<{message: string, posts: any}>(`${BASE_URL}/user/${userId}`)
+      .pipe(map((postData) => {
+        return postData.posts.map(post => {
+        return {
+          id: post._id,
+          userId: post.user?post.user._id:-1,
+          firstName: post.user?post.user.firstName: -1,
+          lastName: post.user?post.user.lastName: -1,
+          timeStamp: post.timeStamp,
+          content: post.content
+        };
+        });
+      }))
+      .subscribe((transformedPosts) => {
+        this.posts = transformedPosts;
+        this.postsUpdated.next([...this.posts]);
+        }
+      );
+    }
+
     getPosts() {
       this.http
       .get<{message: string, posts: any}>( `${BASE_URL}`)
       .pipe(map((postData) => {
         return postData.posts.map(post => {
-
+        
         return {
           id: post._id,
-          userId: post.user._id,
-          firstName: post.user.firstName,
-          lastName: post.user.lastName,
+          userId: post.user?post.user._id:-1,
+          firstName: post.user?post.user.firstName: -1,
+          lastName: post.user?post.user.lastName: -1,
           timeStamp: post.timeStamp,
           content: post.content
         };

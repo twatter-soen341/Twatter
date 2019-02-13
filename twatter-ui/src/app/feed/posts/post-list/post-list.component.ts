@@ -28,7 +28,6 @@ export class PostListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
       this.userId = user._id;
-      console.log(this.userId);
     });
   }
 
@@ -66,7 +65,6 @@ export class PostListComponent implements OnInit, OnDestroy {
     if (currentUserId === this.userId) {
       return true;
     } else {
-      console.log(this.userId);
       return false;
     }
   }

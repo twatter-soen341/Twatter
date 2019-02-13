@@ -47,7 +47,6 @@ export class PostCreateComponent implements OnInit {
         userName: this.userName,
         firstName: this.firstName,
         lastName: this.lastName,
-        // timeStamp: new Date(),
         content: this.content
       }
     });
@@ -110,7 +109,7 @@ export class PostCreateDialogComponent implements OnInit {
         userId: this.data.userId,
         firstName: this.data.firstName,
         lastName: this.data.lastName,
-        timeStamp: new Date().getTime(),
+        timeStamp: Date.now(),
         content: form.value.content.replace(/\n/g, '<br>'),
     };
 

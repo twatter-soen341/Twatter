@@ -26,5 +26,4 @@ export class TwatlineComponent implements OnInit {
         }
       );
   }
-
 }

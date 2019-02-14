@@ -7,3 +7,15 @@ export interface Post {
   content: string;
   likes: [string];
 }
+
+export interface ReturnedPost {
+  _id: string;
+  user: {
+    _id: string,
+    firstName: string,
+    lastName: string,
+  };
+  timeStamp: number;
+  content: string;
+  likes: [];
+}

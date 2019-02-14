@@ -1,0 +1,30 @@
+#wrapper{
+  width: 1400px;
+  margin: 0 auto;
+}
+#sidebar{
+  margin-top: 10px;
+  float: left;
+  position: fixed;
+  width: 300px;
+  height: 500px;
+}
+#posts{
+  float: right;
+  width: 1100px;
+  position: relative;
+}
+
+@media screen and (max-width: 1400px) {
+  #wrapper{
+    width: 100vw;
+    margin: 0 auto;
+  }
+  #sidebar {
+    width: 21vw;
+    height: 35vh;
+  }
+  #posts {
+    width: 79vw;
+  }
+}

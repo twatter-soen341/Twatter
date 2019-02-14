@@ -1,4 +1,4 @@
-import {Post} from '../models/post.model';
+import {Post, ReturnedPost} from '../models/post.model';
 import {Injectable} from '@angular/core';
 import {Subject, Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
@@ -22,16 +22,7 @@ export class PostsService {
   getPost(id: string) {
     return this.http.get<{
       message: string,
-      post: {
-        _id: string,
-        user: {
-          _id: string,
-          firstName: string,
-          lastName: string,
-        }
-        timeStamp: number,
-        content: string
-      }
+      post: ReturnedPost,
     }>(`${BASE_URL}/${id}`);
   }
 
@@ -94,7 +85,7 @@ export class PostsService {
       lastName: aPost.lastName,
       timeStamp: this.formatDate(new Date(aPost.timeStamp)),
       content: aPost.content,
-      likes: ['']
+      likes: aPost.likes
     };
     this.http
       .post<{ message: string, postId: string }>(`${BASE_URL}`, post)
@@ -116,6 +107,7 @@ export class PostsService {
       content: aPost.content,
       likes: aPost.likes
     };
+    console.log(aPost.likes);
     this.http
       .put(`${BASE_URL}/${aPost.id}`, post)
       .subscribe(response => {

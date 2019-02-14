@@ -47,7 +47,8 @@ export class PostListComponent implements OnInit, OnDestroy {
           firstName: postData.post.user.firstName,
           lastName: postData.post.user.lastName,
           timeStamp: postData.post.timeStamp,
-          content: postData.post.content
+          content: postData.post.content,
+          likes: postData.post.likes
         }
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -121,6 +122,7 @@ export class PostEditDialogComponent implements OnInit {
       lastName: this.data.lastName,
       timeStamp: Date.now(),
       content: form.value.content.replace(/\n/g, '<br>'),
+      likes: this.data.likes
   };
 
     this.postsService.updatePost(post);

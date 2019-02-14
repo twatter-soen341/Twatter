@@ -111,6 +111,7 @@ export class PostCreateDialogComponent implements OnInit {
         lastName: this.data.lastName,
         timeStamp: Date.now(),
         content: form.value.content.replace(/\n/g, '<br>'),
+        likes: []
     };
 
     this.postsService.addPost(post);

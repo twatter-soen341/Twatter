@@ -46,7 +46,8 @@ export class PostsService {
             firstName: post.user ? post.user.firstName : -1,
             lastName: post.user ? post.user.lastName : -1,
             timeStamp: this.formatDate(new Date(post.timeStamp)),
-            content: post.content
+            content: post.content,
+            likes: post.likes
           };
         });
       }))
@@ -69,7 +70,8 @@ export class PostsService {
             firstName: post.user ? post.user.firstName : -1,
             lastName: post.user ? post.user.lastName : -1,
             timeStamp: this.formatDate(new Date(post.timeStamp)),
-            content: post.content
+            content: post.content,
+            likes: post.likes
           };
         });
       }))
@@ -91,7 +93,8 @@ export class PostsService {
       firstName: aPost.firstName,
       lastName: aPost.lastName,
       timeStamp: this.formatDate(new Date(aPost.timeStamp)),
-      content: aPost.content
+      content: aPost.content,
+      likes: ['']
     };
     this.http
       .post<{ message: string, postId: string }>(`${BASE_URL}`, post)
@@ -110,7 +113,8 @@ export class PostsService {
       firstName: aPost.firstName,
       lastName: aPost.lastName,
       timeStamp: this.formatDate(new Date(aPost.timeStamp)),
-      content: aPost.content
+      content: aPost.content,
+      likes: aPost.likes
     };
     this.http
       .put(`${BASE_URL}/${aPost.id}`, post)

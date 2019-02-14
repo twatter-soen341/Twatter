@@ -3,7 +3,8 @@ import {
   OnInit,
   OnDestroy,
   Inject,
-  Input
+  Input,
+  Output
 } from '@angular/core';
 import {Subscription} from 'rxjs';
 
@@ -12,7 +13,7 @@ import {PostsService} from '../../../services/post.service';
 import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material';
 import {NgForm} from '@angular/forms';
 import {UserService} from 'src/app/services/user.service';
-import {AuthService} from "../../../services/auth.service";
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
   selector: 'app-post-list',
@@ -21,8 +22,9 @@ import {AuthService} from "../../../services/auth.service";
 })
 export class PostListComponent implements OnInit, OnDestroy {
   @Input() posts: Post[] = [];
+  @Output() liked;
   private postsSub: Subscription;
-  userId: any;
+  userId: string;
 
   constructor(public aPostsService: PostsService, private userService: UserService,
               private authService: AuthService, public dialog: MatDialog) {
@@ -72,7 +74,7 @@ export class PostListComponent implements OnInit, OnDestroy {
     }
   }
 
-  likePost(post, event) {
+  likePost(post: Post, event) {
     if (event === true) {
       post.likes.push(this.authService.getUserId());
     } else {
@@ -83,7 +85,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   isLikedByUser(post) {
-    return post.likes.contains(this.authService.getUserId());
+    return post.likes.includes(this.authService.getUserId());
   }
 
 }
@@ -120,7 +122,7 @@ export class PostEditDialogComponent implements OnInit {
       timeStamp: Date.now(),
       content: form.value.content.replace(/\n/g, '<br>'),
   };
-    
+
     this.postsService.updatePost(post);
     this.dialogRef.close();
   }

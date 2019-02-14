@@ -5,4 +5,5 @@ export interface Post {
   lastName: string;
   timeStamp: string;
   content: string;
+  likes: [string];
 }

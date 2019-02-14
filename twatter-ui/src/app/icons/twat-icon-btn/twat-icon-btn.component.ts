@@ -8,14 +8,11 @@ import {MatIconRegistry} from '@angular/material';
   styleUrls: ['./twat-icon-btn.component.scss']
 })
 export class TwatIconBtnComponent implements OnInit {
-  private clicked = false;
   public icon = 'flame';
 
-  @Output
-  public clickEvent = new EventEmitter<boolean>();
+  @Output() public clickEvent = new EventEmitter<boolean>();
 
-  @Input
-  public liked = false;
+  @Input() public liked;
 
   constructor(public iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
@@ -33,23 +30,19 @@ export class TwatIconBtnComponent implements OnInit {
     iconRegistry.addSvgIcon(
       'red-flame-flipped',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2-red-flipped.svg'));
+  }
 
+  ngOnInit() {
     if (this.liked) {
-      this.clicked = true;
       this.icon = 'red-flame';
     }
   }
 
-  ngOnInit() {
-  }
-
   onClick() {
-    if (this.clicked) {
+    if (this.liked) {
       this.icon = 'flame';
-      this.clicked = false;
       this.clickEvent.emit(false);
     } else {
-      this.clicked = true;
       this.icon = 'red-flame';
       this.clickEvent.emit(true);
     }

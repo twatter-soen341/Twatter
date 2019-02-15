@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry } from '@angular/material';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
+import {MatIconRegistry} from '@angular/material';
 
 @Component({
   selector: 'app-twat-icon-btn',
@@ -8,13 +8,16 @@ import { MatIconRegistry } from '@angular/material';
   styleUrls: ['./twat-icon-btn.component.scss']
 })
 export class TwatIconBtnComponent implements OnInit {
-  private clicked = false;
   public icon = 'flame';
+
+  @Output() public clickEvent = new EventEmitter<boolean>();
+
+  @Input() public liked;
 
   constructor(public iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
-        'flame',
-        sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2.svg'));
+      'flame',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2.svg'));
 
     iconRegistry.addSvgIcon(
       'red-flame',
@@ -30,15 +33,18 @@ export class TwatIconBtnComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.liked) {
+      this.icon = 'red-flame';
+    }
   }
 
   onClick() {
-    if (this.clicked) {
+    if (this.liked) {
       this.icon = 'flame';
-      this.clicked = false;
+      this.clickEvent.emit(false);
     } else {
-      this.clicked = true;
       this.icon = 'red-flame';
+      this.clickEvent.emit(true);
     }
   }
 }

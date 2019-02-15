@@ -9,7 +9,9 @@
     <div mat-card-avatar class="card-avatar-image"></div>
 
     <div class="imitate-form">
-      <button class="hover-cursor-text text-button" (click)="openDialog()">Hi {{ firstName }}, create a new Twat?</button>
+      <button class="hover-cursor-text text-button" (click)="openDialog()">
+        {{ getContentTruncated() }}
+      </button>
     </div>
 
   </mat-card-content>

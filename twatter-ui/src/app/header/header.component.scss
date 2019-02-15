@@ -6,14 +6,15 @@ main {
 .card-avatar-image {
   background-image: url('https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg');
   background-size: cover;
+  display: inline-block;
   position: relative;
 }
 
 .text-after-image {
-  margin-top: .2rem;
-  margin-right: 1rem;
-  margin-left: 3rem;
-  font-size: small;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 15%;
+  font-size: large;
 }
 
 .spacer {
@@ -52,7 +53,7 @@ main {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
   z-index: 2;

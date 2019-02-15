@@ -1,6 +1,9 @@
 <!--The header from the header component-->
-<app-header></app-header>
-
-<p>
-  profile works!
-</p>
+<div id="wrapper">
+  <div id="sidebar">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div id="posts">
+    <app-post-list [posts]="this.posts"></app-post-list>
+  </div>
+</div>

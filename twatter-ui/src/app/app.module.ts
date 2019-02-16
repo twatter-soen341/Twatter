@@ -31,8 +31,9 @@ import {
   MatIconModule,
   MatDialogModule,
   MatDividerModule,
-  MatSnackBarModule
+  MatSnackBarModule, MatMenuModule
 } from '@angular/material';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -50,7 +51,7 @@ import {
     ProfileComponent,
     PostEditDialogComponent,
     ScrollTopComponent,
-    TwatlineComponent,
+    // TwatlineComponent,
     SidebarComponent
  ],
   imports: [
@@ -71,6 +72,8 @@ import {
     TextareaAutosizeModule,
     NgScrollbarModule,
     MatDividerModule,
+    MatBadgeModule,
+    MatMenuModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

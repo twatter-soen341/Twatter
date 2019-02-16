@@ -26,7 +26,7 @@ main {
   list-style: none;
   margin: 0;
 
-  background: rgb(192,24,91);
+  background: rgb(192, 24, 91);
 
   display: -webkit-box;
   display: -moz-box;
@@ -38,7 +38,9 @@ main {
   justify-content: space-evenly;
 }
 
-
+.notification {
+  margin-right: 2rem;
+}
 
 .left-justify {
   display: flex;
@@ -46,7 +48,7 @@ main {
 
 }
 
-.header{
+.header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -56,6 +58,11 @@ main {
   width: 100%;
   z-index: 2;
 
+}
+
+
+/deep/ .mat-menu-content {
+  background-color: rgb(192, 24, 91);
 }
 
 

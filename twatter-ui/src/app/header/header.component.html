@@ -11,32 +11,34 @@
   </span>
 
   <nav>
-    <button mat-icon-button color={{colourForIcons}} routerLink="/posts"><mat-icon>home</mat-icon></button>
+    <button mat-icon-button color={{colourForIcons}} routerLink="/posts">
+      <mat-icon>home</mat-icon>
+    </button>
   </nav>
 
   <span class="right-justify">
     <ul class="navigation">
 
       <!--Notification button with notification badge-->
-      <button mat-icon-button color={{colourForIcons}} [matMenuTriggerFor]="menu" matBadge={{notificationCount}} matBadgeOverlap="true" matBadgePosition="after" matBadgeColor="white" [matBadgeHidden]="notificationCount<=0"> <mat-icon>notifications</mat-icon></button>
+      <button mat-icon-button color={{colourForIcons}} [matMenuTriggerFor]="menu" matBadge={{notificationCount}}
+              matBadgeOverlap="true" matBadgePosition="after" matBadgeColor="white" matBadgeSize="medium"
+              [matBadgeHidden]="notificationCount<=0"> <mat-icon>notifications</mat-icon></button>
 
       <!--The menu which will show the notifications from an array of string-->
       <mat-menu #menu="matMenu" class="myMenu">
 
-        <!--Displays the list of notifications-->
-        <ul style="list-style: none">
-          <li *ngFor="let notification of notifications">
-              {{ notification }}
-          </li>
-        </ul>
+        <mat-list *ngFor="let notification of notifications">
+         <mat-list-item >{{notification}}</mat-list-item>
+         <mat-divider class="lesNotifs"></mat-divider>
+       </mat-list>
 
         <!--Buttons Clears all notifications-->
         <button mat-flat-button color="primary" (click)="clearNotifications()" [disabled]="notificationCount<=0">Clear Notifications</button>
       </mat-menu>
 
-      <button mat-icon-button color={{colourForIcons}}><mat-icon>settings</mat-icon></button>
-      <button mat-icon-button color={{colourForIcons}} (click)="onLogout()"><mat-icon>logout</mat-icon></button>
-      <!-- <button mat-flat-button color="primary" (click)="onLogout()">Logout</button> -->
+      <button class="spacer" mat-icon-button color={{colourForIcons}}><mat-icon>settings</mat-icon></button>
+
+      <button class="spacer" mat-icon-button color={{colourForIcons}} (click)="onLogout()"><mat-icon>logout</mat-icon></button>
 
 
     </ul>

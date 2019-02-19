@@ -51,7 +51,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     ProfileComponent,
     PostEditDialogComponent,
     ScrollTopComponent,
-    // TwatlineComponent,
+    TwatlineComponent,
     SidebarComponent
  ],
   imports: [

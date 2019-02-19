@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
   firstName = '';
   private notificationCount: number;
   protected notifications: string[];
+  protected colourForIcons = 'white';
 
   constructor(private userService: UserService, private authService: AuthService) {
   }

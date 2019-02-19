@@ -1,4 +1,3 @@
-
 <!--Sets the colour of the header-->
 <mat-toolbar class="header mat-elevation-z5" color="primary">
 
@@ -6,43 +5,40 @@
     <nav>
       <button mat-icon-button routerLink="/profile">
         <div mat-card-avatar class="card-avatar-image"></div>
-        <div class="text-after-image">{{ firstName }}</div>
     </button>
+        <div class="text-after-image">{{ firstName }}</div>
   </nav>
   </span>
-  
-  <!--Middle button which brings user back on top of the page-->
-  <button mat-flat-button color="primary" (click)="addNotification('lol testing a bit ass notification')">Add Notifs</button>
 
+  <nav>
+    <button mat-icon-button color={{colourForIcons}} routerLink="/posts"><mat-icon>home</mat-icon></button>
+  </nav>
 
   <span class="right-justify">
     <ul class="navigation">
 
-      <nav><button mat-flat-button color="primary" routerLink="/posts"><i class="material-icons">home</i></button></nav>
-       <!--Notification button with notification badge-->
-      <button mat-flat-button color="primary"><i class="material-icons"  [matMenuTriggerFor]="menu" matBadge={{notificationCount}} matBadgeOverlap="true" matBadgePosition="after" matBadgeColor="warn"  [matBadgeHidden]="notificationCount<=0">notifications</i>
-      </button>
-      <button mat-flat-button color="primary"><i class="material-icons">settings</i></button>
-      <button mat-flat-button color="primary" (click)="onLogout()"><i class="material-icons">lock</i></button>
-      <!-- <button mat-flat-button color="primary" (click)="onLogout()">Logout</button> -->
-    </ul>
+      <!--Notification button with notification badge-->
+      <button mat-icon-button color={{colourForIcons}} [matMenuTriggerFor]="menu" matBadge={{notificationCount}} matBadgeOverlap="true" matBadgePosition="after" matBadgeColor="white" [matBadgeHidden]="notificationCount<=0"> <mat-icon>notifications</mat-icon></button>
 
-        <!--The menu which will show the notifications from an array of string-->
+      <!--The menu which will show the notifications from an array of string-->
       <mat-menu #menu="matMenu" class="myMenu">
 
         <!--Displays the list of notifications-->
         <ul style="list-style: none">
           <li *ngFor="let notification of notifications">
               {{ notification }}
-        </li>
+          </li>
         </ul>
+
         <!--Buttons Clears all notifications-->
         <button mat-flat-button color="primary" (click)="clearNotifications()" [disabled]="notificationCount<=0">Clear Notifications</button>
       </mat-menu>
-    </div>
 
-      <!--Button which allows users to log out-->
-    <button mat-flat-button color="primary" (click)="onLogout()">Logout</button>
+      <button mat-icon-button color={{colourForIcons}}><mat-icon>settings</mat-icon></button>
+      <button mat-icon-button color={{colourForIcons}} (click)="onLogout()"><mat-icon>logout</mat-icon></button>
+      <!-- <button mat-flat-button color="primary" (click)="onLogout()">Logout</button> -->
+
+
     </ul>
 </span>
 </mat-toolbar>

@@ -7,7 +7,6 @@ const mongoose = require('mongoose')
 const cors = require('cors');
 const passport = require('passport');
 
-const indexRoutes = require('./routes/index');
 const authRoute = require('./routes/auth');
 const userRoute = require('./routes/user');
 const twatRoute = require('./routes/twatRoute');
@@ -40,7 +39,6 @@ app.use(passport.session());
 require('./middleware/passport')(passport);
 
 //use routes
-app.use(indexRoutes)
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
 app.use('/api/twat', twatRoute);

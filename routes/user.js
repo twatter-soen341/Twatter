@@ -17,4 +17,8 @@ router.get('/search/:id', passport.authenticate('jwt', { session: false }), user
  */
 router.post('/search', passport.authenticate('jwt', { session: false }), userController.getUserByName);
 
+router.put('/follow-user', userController.followUser); // TODO: add auth 
+
+router.put('/unfollow-user', userController.unfollowUser); // TODO: add auth
+
 module.exports = router;

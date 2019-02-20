@@ -33,10 +33,10 @@ import {
   MatDividerModule,
   MatSnackBarModule,
   MatAutocompleteModule,
-  MatMenuModule
+  MatMenuModule,
+  MatBadgeModule
 } from '@angular/material';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -76,7 +76,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     TextareaAutosizeModule,
     NgScrollbarModule,
     MatDividerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
     MatBadgeModule,
     MatMenuModule
   ],

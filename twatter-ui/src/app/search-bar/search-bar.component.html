@@ -1,6 +1,6 @@
 <div class="full-width">
-  <mat-form-field>
-    <input matInput #filter placeholder="Search" [matAutocomplete]="auto" />
+  <mat-form-field floatLabel="never">
+    <input matInput type="text" #filter placeholder="Search" [matAutocomplete]="auto" />
     <mat-autocomplete #auto="matAutocomplete">
       <div *ngIf="error">
         <mat-option>No user found</mat-option>
@@ -15,5 +15,5 @@
       </div>
     </mat-autocomplete>
   </mat-form-field>
-  <button mat-flat-button color="primary"><mat-icon>search</mat-icon></button>
+  <mat-icon matSuffix style="font-size: 1.2em">search</mat-icon>
 </div>

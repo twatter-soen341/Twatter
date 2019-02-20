@@ -36,7 +36,7 @@
         <button mat-flat-button color="primary" (click)="clearNotifications()" [disabled]="notificationCount<=0">Clear Notifications</button>
       </mat-menu>
 
-      <button class="spacer" mat-icon-button color={{colourForIcons}}><mat-icon>settings</mat-icon></button>
+      <button class="spacer" mat-icon-button color={{colourForIcons}} routerLink="/settings"><mat-icon>settings</mat-icon></button>
 
       <button class="spacer" mat-icon-button color={{colourForIcons}} (click)="onLogout()"><mat-icon>logout</mat-icon></button>
 

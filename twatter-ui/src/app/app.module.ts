@@ -34,7 +34,10 @@ import {
   MatSnackBarModule, MatMenuModule
 } from '@angular/material';
 import {MatBadgeModule} from '@angular/material/badge';
-
+import { SettingsComponent } from './settings/settings.component';
+// ----Side Bar Settings in Setting Bar
+import { SidebarSettingsComponent } from './settings/sidebar-settings/sidebar-settings.component';
+import { MatTabsModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,9 @@ import {MatBadgeModule} from '@angular/material/badge';
     PostEditDialogComponent,
     ScrollTopComponent,
     TwatlineComponent,
-    SidebarComponent
+    SidebarComponent,
+    SettingsComponent,
+    SidebarSettingsComponent
   ],
   imports: [
     HttpClientModule,
@@ -71,7 +76,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     NgScrollbarModule,
     MatDividerModule,
     MatBadgeModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

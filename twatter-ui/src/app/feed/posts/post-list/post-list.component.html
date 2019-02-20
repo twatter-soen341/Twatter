@@ -1,7 +1,7 @@
 <div *ngIf="posts.length > 0">
   <mat-card *ngFor="let post of posts">
     <mat-card-header>
-      <div mat-card-avatar class="card-header-image"></div>
+      <div mat-card-avatar class="card-header-image" routerLink="/profile"></div>
       <mat-card-title>{{ post.firstName }} {{ post.lastName }}</mat-card-title>
       <mat-card-subtitle>{{ post.timeStamp }}</mat-card-subtitle>
     </mat-card-header>
@@ -13,16 +13,18 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
-      <app-twat-icon-btn>l</app-twat-icon-btn>
+      <app-twat-icon-btn [liked] = "isLikedByUser(post)" (clickEvent) = "likePost(post, $event)" >l</app-twat-icon-btn>
       <button mat-button>SHARE</button>
-      <button mat-button (click)="onEdit(post.id)">EDIT</button>
-      <button mat-button (click)="onDelete(post.id)">DELETE</button>
+      <div *ngIf="isUser(post.userId)">
+        <button mat-button (click)="onEdit(post.id)">EDIT</button>
+        <button mat-button (click)="onDelete(post.id)">DELETE</button>
+      </div>
     </mat-card-actions>
   </mat-card>
 </div>
 
 <div *ngIf="posts.length == 0" style="margin-top: 7rem;">
   <p class="info-text mat-display-1">
-    No posts added yet...
+    No Twats added yet...
   </p>
 </div>

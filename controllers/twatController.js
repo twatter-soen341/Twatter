@@ -5,7 +5,7 @@ exports.createTwat = function (req, res, next) {
     let twat = new Twat(
         {   
             user: req.body.userId,
-            timeStamp: new Date().getTime(),
+            timeStamp: Date.now(),
             content: req.body.content,
             likes: req.body.likes,
         }
@@ -49,6 +49,7 @@ exports.getTwat = function (req, res, next) {
 
 exports.getTwatsForUser = function(req, res, next){
         Twat.find({user: req.params.id})
+            .sort({timeStamp: -1})
             .populate('user')
             .then(documents => {
                 res.status(200).json({
@@ -70,6 +71,7 @@ exports.getTwatsForUser = function(req, res, next){
 /* to get all Twats (Tweets) */
 exports.getTwats = (req, res, next) => {
     Twat.find()
+    .sort({timeStamp: -1})
     .populate('user')
     .then(documents => {
         res.status(200).json({
@@ -89,8 +91,7 @@ exports.getTwats = (req, res, next) => {
 };
 
 exports.updateTwat = function (req, res, next) {
-    
-    Twat.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, twat) {
+   Twat.findByIdAndUpdate(req.params.id, {$set: {timeStamp: Date.now(), content: req.body.content}}, function (err, twat) {
         if (err) res.status(500).json({message: 'Update Failed.', error: err});
         res.status(200).json({message: 'Post Updated'});
     });

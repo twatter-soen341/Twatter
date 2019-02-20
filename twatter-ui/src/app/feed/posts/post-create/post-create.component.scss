@@ -1,8 +1,9 @@
 :host{
   display: block;
-  margin-top: 1rem;
-  // margin-left: 10%;
-  // width: 80%;
+}
+
+.theTopMargin{
+  margin-top: 6rem;
 }
 
 mat-form-field{
@@ -32,7 +33,7 @@ mat-card-content {
 }
 
 .header {
-  margin-top: -3rem;
+  margin-top: -1rem;
   margin-bottom: 1rem;
 }
 
@@ -69,6 +70,7 @@ mat-card-content {
 .text-dialog-inner {
   min-height: 3rem;
   max-height: 50vh;
+  margin-top: 1rem;
   border: none;
   outline: none;
   border-radius: 0.5rem;

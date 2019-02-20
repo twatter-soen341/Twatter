@@ -24,6 +24,7 @@ export class PostCreateComponent implements OnInit {
   firstName: string;
   lastName: string;
   userName: string;
+  content: string;
 
   constructor(public dialog: MatDialog, private userService: UserService) {}
 
@@ -33,6 +34,7 @@ export class PostCreateComponent implements OnInit {
       this.firstName = user.firstName;
       this.lastName = user.lastName;
       this.userName = user.userName;
+      if (!this.content) {this.content = 'Hi ' + this.firstName + ', create a post?'; }
     });
   }
 
@@ -45,15 +47,27 @@ export class PostCreateComponent implements OnInit {
         userName: this.userName,
         firstName: this.firstName,
         lastName: this.lastName,
-        // timeStamp: new Date(),
-        content: 'x'
+        content: this.content
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (!dialogRef._containerInstance._config.data.content) {
+        this.content = 'Hi ' + this.firstName + ', create a post?';
+      } else {
+        this.content = dialogRef._containerInstance._config.data.content;
+      }
       console.log('The dialog was closed');
       submitted = false;
     });
+  }
+
+  getContentTruncated() {
+    if (this.content) {
+      return this.content.length > 150 ? this.content.substring(0, 150) + '...' : this.content;
+    } else {
+      return this.content;
+    }
   }
 }
 
@@ -65,6 +79,7 @@ export class PostCreateComponent implements OnInit {
 export class PostCreateDialogComponent implements OnInit {
   userId: string;
   firstName: string;
+  content: string;
 
   constructor(
     public dialogRef: MatDialogRef<PostCreateDialogComponent>,
@@ -76,7 +91,16 @@ export class PostCreateDialogComponent implements OnInit {
     this.userService.getCurrentUser().subscribe(user => {
       this.userId = user.id;
       this.firstName = user.firstName;
+      if (this.data.content !== 'Hi ' + this.firstName + ', create a post?') {
+        this.content = this.data.content;
+      }
+      this.dialogRef._containerInstance._config.data.content = this.content;
     });
+  }
+
+  getContent(event) {
+    // console.log(event);
+    this.dialogRef._containerInstance._config.data.content = event;
   }
 
   onCreatePost(form: NgForm) {
@@ -85,12 +109,14 @@ export class PostCreateDialogComponent implements OnInit {
         userId: this.data.userId,
         firstName: this.data.firstName,
         lastName: this.data.lastName,
-        timeStamp: new Date().getTime(),
+        timeStamp: Date.now(),
         content: form.value.content.replace(/\n/g, '<br>'),
+        likes: []
     };
 
     this.postsService.addPost(post);
     submitted = true;
+    this.data.content = '';
     this.dialogRef.close();
   }
 

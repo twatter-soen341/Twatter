@@ -1,16 +1,20 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Create Post</mat-card-title>
-  </mat-card-header>
+<div class="theTopMargin">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Create Twat</mat-card-title>
+    </mat-card-header>
 
-  <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
 
-  <mat-card-content>
-    <div mat-card-avatar class="card-avatar-image"></div>
+    <mat-card-content>
+      <div mat-card-avatar class="card-avatar-image"></div>
 
-    <div class="imitate-form">
-      <button class="hover-cursor-text text-button" (click)="openDialog()">Hi {{ firstName }}, create a post?</button>
-    </div>
+      <div class="imitate-form">
+        <button class="hover-cursor-text text-button" (click)="openDialog()">
+          {{ getContentTruncated() }}
+        </button>
+      </div>
 
-  </mat-card-content>
-</mat-card>
+    </mat-card-content>
+  </mat-card>
+</div>

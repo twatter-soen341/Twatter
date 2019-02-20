@@ -32,9 +32,11 @@ import {
   MatDialogModule,
   MatDividerModule,
   MatSnackBarModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatMenuModule
 } from '@angular/material';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -75,6 +77,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     NgScrollbarModule,
     MatDividerModule,
     MatAutocompleteModule
+    MatBadgeModule,
+    MatMenuModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

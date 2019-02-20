@@ -5,4 +5,19 @@ export interface Post {
   lastName: string;
   timeStamp: string;
   content: string;
+  likes: string[];
+  comments: Comment[];
+}
+
+export interface ReturnedPost {
+  _id: string;
+  user: {
+    _id: string,
+    firstName: string,
+    lastName: string,
+  };
+  timeStamp: number;
+  content: string;
+  likes: string[];
+  comment: Comment[];
 }

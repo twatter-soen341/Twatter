@@ -1,16 +1,18 @@
 const mongoose = require('mongoose');
-var comment = require('./comment');
 
-const twatSchema = new mongoose.Schema({
+    var commentSchema = new mongoose.Schema({
+        userId: {type: String, required: true},
+        postId: {type: String, required: true},
+        text: {type: String, required: true}
+    });
+
+
+    const twatSchema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     content: { type: String, required: true },
     timeStamp: Date,
     likes: [String],
-    comment: {
-    type: [mongoose.Schema.Types.ObjectId],
-        ref: 'Comment',
-        required: true
-    }
+    comment: [commentSchema]
 
 });
 

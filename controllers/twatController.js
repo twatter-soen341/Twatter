@@ -13,12 +13,14 @@ exports.createTwat = function (req, res, next) {
     );
     twat.save()
         .then(createdPost => {
+
             res.status(201).json({
             message: 'Twat added successfully',
             postId: createdPost._id
             });
         })
         .catch((err) => {
+
             res.status(400).json({
                 message: 'Twat failed to be added',
                 error: err

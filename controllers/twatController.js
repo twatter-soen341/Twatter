@@ -8,6 +8,7 @@ exports.createTwat = function (req, res, next) {
             timeStamp: Date.now(),
             content: req.body.content,
             likes: req.body.likes,
+            comment: req.body.comment,
         }
     );
     twat.save()
@@ -46,8 +47,9 @@ exports.getTwat = function (req, res, next) {
                 });
               });
 };
-
+/* Get the twats created by the user only (profile page) */
 exports.getTwatsForUser = function(req, res, next){
+
         Twat.find({user: req.params.id})
             .sort({timeStamp: -1})
             .populate('user')
@@ -68,8 +70,9 @@ exports.getTwatsForUser = function(req, res, next){
               });
 }
 
-/* to get all Twats (Tweets) */
+/* Get the twats created by every users that the user follows (Twatline page)*/
 exports.getTwats = (req, res, next) => {
+
     Twat.find()
     .sort({timeStamp: -1})
     .populate('user')
@@ -89,18 +92,26 @@ exports.getTwats = (req, res, next) => {
         });
       });
 };
-
+/* Updating the Twat for likes, comment and editing its content */
 exports.updateTwat = function (req, res, next) {
-   Twat.findByIdAndUpdate(req.params.id, {$set: {timeStamp: Date.now(), content: req.body.content}}, function (err, twat) {
-        if (err) res.status(500).json({message: 'Update Failed.', error: err});
-        res.status(200).json({message: 'Post Updated'});
+
+   Twat.findByIdAndUpdate(req.params.id, {$set: {timeStamp: Date.now(), content: req.body.content, likes: req.body.likes, comment: req.body.comment}}, function (err, twat) {
+
+        if (err){
+            res.status(500).json({message: 'Update Failed.', error: err});
+        }
+        else {
+            res.status(200).json({message: 'Post Updated'});
+        }
     });
 };
-
+/* Deleting a Twat from DB*/
 exports.deleteTwat = function (req, res, next) {
+
     Twat.findByIdAndRemove(req.params.id, function (err) {
         
         if (err) res.status(500).json({message: 'Delete Failed.', error: err});
         res.status(200).json({message: 'Deleted successfully!'});
+
     });
 };

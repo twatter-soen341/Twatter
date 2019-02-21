@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="083d561f-0ed5-4997-a23d-f9035e8509bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/twatter-ui/src/app/settings/settings.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/twatter-ui/src/app/settings/settings.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twatter-ui/src/app/settings/settings.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/twatter-ui/src/app/settings/settings.component.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,8 +32,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/twatter-ui/src/app/settings/settings.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1500">
-              <caret line="100" column="16" lean-forward="true" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
+            <state relative-caret-position="-107">
+              <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/twatter-ui/src/app/settings/settings.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+              <folding>
+                <element signature="e#0#48#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -120,8 +133,8 @@
         <option value="$PROJECT_DIR$/twatter-ui/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/twatter-ui/src/app/settings/sidebar-settings/sidebar-settings.component.scss" />
         <option value="$PROJECT_DIR$/twatter-ui/src/app/settings/sidebar-settings/sidebar-settings.component.html" />
-        <option value="$PROJECT_DIR$/twatter-ui/src/app/settings/settings.component.ts" />
         <option value="$PROJECT_DIR$/twatter-ui/src/app/settings/settings.component.scss" />
+        <option value="$PROJECT_DIR$/twatter-ui/src/app/settings/settings.component.ts" />
         <option value="$PROJECT_DIR$/twatter-ui/src/app/settings/settings.component.html" />
       </list>
     </option>
@@ -256,12 +269,12 @@
       <workItem from="1550010739279" duration="334000" />
       <workItem from="1550011141688" duration="5436000" />
       <workItem from="1550444457023" duration="304000" />
-      <workItem from="1550539932736" duration="19483000" />
+      <workItem from="1550539932736" duration="20005000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66238000" />
+    <option name="totallyTimeSpent" value="66760000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -276,7 +289,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4974359" visible="true" weight="0.119456366" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4974359" visible="true" weight="0.119456366" />
       <window_info id="Structure" order="1" sideWeight="0.50256413" side_tool="true" weight="0.12160229" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -291,7 +304,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32954547" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.498503" visible="true" weight="0.15472127" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.498503" visible="true" weight="0.15472127" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50149703" side_tool="true" weight="0.334471" />
       <window_info anchor="bottom" id="TypeScript" order="12" weight="0.32992035" />
       <window_info anchor="bottom" id="Messages" order="13" />
@@ -698,13 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/twatter-ui/src/app/profile/sidebar/sidebar.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="10" lean-forward="true" selection-start-column="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/twatter-ui/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
@@ -723,13 +729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/twatter-ui/src/app/settings/settings.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="116" column="24" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/twatter-ui/src/app/profile/sidebar/sidebar.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -737,10 +736,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/twatter-ui/src/app/profile/sidebar/sidebar.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="10" lean-forward="true" selection-start-column="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/twatter-ui/src/app/settings/settings.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="643">
+          <caret line="116" column="24" selection-start-line="116" selection-start-column="24" selection-end-line="116" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/twatter-ui/src/app/settings/settings.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
-          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        <state relative-caret-position="435">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
           </folding>
@@ -749,8 +762,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/twatter-ui/src/app/settings/settings.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1500">
-          <caret line="100" column="16" lean-forward="true" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
+        <state relative-caret-position="-107">
+          <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
         </state>
       </provider>
     </entry>

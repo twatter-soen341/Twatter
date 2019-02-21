@@ -14,6 +14,7 @@ export class SettingsComponent implements OnInit {
     lastNameController: new FormControl('', [Validators.required]),
     usernameController: new FormControl('', [Validators.required]),
     emailController: new FormControl('', [Validators.required, Validators.email]),
+    currentPasswordController: new FormControl('', [Validators.required]),
     passwordController: new FormControl('', [Validators.required]),
     passwordConfirmController: new FormControl('', [Validators.required])
   });

@@ -67,7 +67,21 @@
               <form [formGroup]="changeForm" class="action-container">
 
                 <mat-form-field appearance="outline">
-                  <mat-label>Password</mat-label>
+                  <mat-label>Current Password</mat-label>
+                  <input matInput placeholder="Current Password" [type]="hide_Password ? 'password' : 'text'"
+                         formControlName="currentPasswordController" required>
+
+                  <mat-icon class="cursor-pointer" matSuffix (mousedown)="showPassword()" (mouseup)="hidePassword()">
+                    {{hide_Password ? 'visibility_off' : 'visibility'}}
+                  </mat-icon>
+                  <!--TODO: Check that the password is the original one-->
+                  <mat-error *ngIf="changeForm.get('passwordController').hasError('dumbUser')">I said NOT abc123
+                  </mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline">
+                  <mat-label>New Password</mat-label>
                   <input matInput placeholder="NOT abc123" [type]="hide_Password ? 'password' : 'text'"
                          formControlName="passwordController" required>
 
@@ -79,7 +93,7 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>Confirm password</mat-label>
+                  <mat-label>Confirm New Password</mat-label>
                   <input matInput placeholder="Please don't use abc123" [type]="hide_Confirmation ? 'password' : 'text'"
                          formControlName="passwordConfirmController" required>
 

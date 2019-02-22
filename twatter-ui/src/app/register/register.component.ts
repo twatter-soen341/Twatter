@@ -54,8 +54,7 @@ export class RegisterComponent implements OnInit {
   // @PARAM confirmation is FromGroup
   passwordConfirmationMatchValidator(confirmation: AbstractControl) {
     return (confirmation.get('passwordController').value === confirmation.get('passwordConfirmController').value)
-      ? null
-      : {'passwordDontMatch': true};
+      ? null : {'passwordDontMatch': true};
   }
 
   notForbiddenPassword(confirmation: AbstractControl) {

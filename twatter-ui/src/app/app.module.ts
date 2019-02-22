@@ -34,6 +34,7 @@ import {
   MatSnackBarModule, MatMenuModule
 } from '@angular/material';
 import {MatBadgeModule} from '@angular/material/badge';
+import { CommentComponent } from './feed/posts/comment/comment.component';
 
 
 
@@ -52,7 +53,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     PostEditDialogComponent,
     ScrollTopComponent,
     TwatlineComponent,
-    SidebarComponent
+    SidebarComponent,
+    CommentComponent
  ],
   imports: [
     HttpClientModule,

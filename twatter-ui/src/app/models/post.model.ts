@@ -19,5 +19,5 @@ export interface ReturnedPost {
   timeStamp: number;
   content: string;
   likes: string[];
-  comment: Comment[];
+  comments: Comment[];
 }

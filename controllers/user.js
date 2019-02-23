@@ -25,27 +25,25 @@ exports.getUsersByIds = async (req, res, next) => {
         var users = [];
 
         req.body.ids.forEach(function(value) {
-            console.log(value);
+
             var user = User.findById(value);
 
             if (user) {
                 users.push(user);
             } else {
-                console.log(4);
                 res.status(404).json({
                     message: 'Incorrect Id sent'
                 });
             }
         });
 
-        if (users.length > 0) res.status(200).jsons(users);
-
-        else
-            {
+        if (users.length != 0) res.status(200).send(users);
+        else {
             res.status(404).json({
-                message: 'Wrong Id sent'
+                message: 'User not found.'
             });
-            }
+        }
+
     } catch (error) {
         res.status(500).json({
             error: error,

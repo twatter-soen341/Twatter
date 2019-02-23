@@ -19,6 +19,42 @@ exports.getUserByName = async (req, res, next) => {
     });
   }
 };
+//http://localhost:8080/api/user/users/
+exports.getUsersByIds = async (req, res, next) => {
+    try {
+        var users = [];
+
+        req.body.ids.forEach(function(value) {
+            console.log(value);
+            var user = User.findById(value);
+
+            if (user) {
+                users.push(user);
+            } else {
+                console.log(4);
+                res.status(404).json({
+                    message: 'Incorrect Id sent'
+                });
+            }
+        });
+
+        if (users.length > 0) res.status(200).jsons(users);
+
+        else
+            {
+            res.status(404).json({
+                message: 'Wrong Id sent'
+            });
+            }
+    } catch (error) {
+        res.status(500).json({
+            error: error,
+            message: 'Could not get user.'
+        });
+    }
+    console.log(req.body.ids);
+    console.log(users.length);
+};
 
 exports.getUserById = async (req, res, next) => {
   try {

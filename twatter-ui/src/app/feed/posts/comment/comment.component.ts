@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Comment} from '../../../models/comment.model';
 import {AuthService} from '../../../services/auth.service';
+import {User} from "../../../models/auth.model";
 
 @Component({
   selector: 'app-comment',
@@ -12,19 +13,22 @@ export class CommentComponent implements OnInit {
 
   commentControl = new FormControl('');
 
-  @Input
+  @Input()
   postId: string;
 
   @Output('commented')
   commentEmitter = new EventEmitter<null>();
 
-  @Input
+  @Input()
   comments: Comment[] = [];
+
+  commentNameMap = new Map<User, Comment>();
 
   constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
+    //TODO Get comment user and map them
   }
 
   postComment() {

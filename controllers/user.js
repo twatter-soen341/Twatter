@@ -30,6 +30,7 @@ exports.getUsersByIds = async (req, res, next) => {
 
             if (user) {
                 users.push(user);
+
             } else {
                 res.status(404).json({
                     message: 'Incorrect Id sent'
@@ -37,7 +38,7 @@ exports.getUsersByIds = async (req, res, next) => {
             }
         });
 
-        if (users.length != 0) res.status(200).send(users);
+        if (users.length != 0) res.status(200).send(JSON.stringify(users));
         else {
             res.status(404).json({
                 message: 'User not found.'

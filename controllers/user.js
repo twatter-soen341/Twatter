@@ -38,12 +38,7 @@ exports.getUsersByIds = async (req, res, next) => {
             }
         });
 
-        if (users.length != 0) res.status(200).send(JSON.stringify(users));
-        else {
-            res.status(404).json({
-                message: 'User not found.'
-            });
-        }
+        res.status(200).send(JSON.stringify(users));
 
     } catch (error) {
         res.status(500).json({

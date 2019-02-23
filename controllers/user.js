@@ -23,31 +23,23 @@ exports.getUserByName = async (req, res, next) => {
 exports.getUsersByIds = async (req, res, next) => {
     try {
         var users = [];
-
         req.body.ids.forEach(function(value) {
-
             var user = User.findById(value);
-
             if (user) {
                 users.push(user);
-
             } else {
                 res.status(404).json({
                     message: 'Incorrect Id sent'
                 });
             }
         });
-
         res.status(200).send(JSON.stringify(users));
-
     } catch (error) {
         res.status(500).json({
             error: error,
             message: 'Could not get user.'
         });
     }
-    console.log(req.body.ids);
-    console.log(users.length);
 };
 
 exports.getUserById = async (req, res, next) => {

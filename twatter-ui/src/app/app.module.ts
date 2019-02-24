@@ -37,6 +37,8 @@ import {
   MatBadgeModule
 } from '@angular/material';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import { CommentComponent } from './feed/posts/comment/comment.component';
 
 
 
@@ -56,7 +58,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     ScrollTopComponent,
     TwatlineComponent,
     SidebarComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    CommentComponent
  ],
   imports: [
     HttpClientModule,

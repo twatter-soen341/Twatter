@@ -48,7 +48,8 @@ export class PostListComponent implements OnInit, OnDestroy {
           lastName: postData.post.user.lastName,
           timeStamp: postData.post.timeStamp,
           content: postData.post.content,
-          likes: postData.post.likes
+          likes: postData.post.likes,
+          comments: postData.post.comments
         }
       });
       dialogRef.afterClosed().subscribe(result => {

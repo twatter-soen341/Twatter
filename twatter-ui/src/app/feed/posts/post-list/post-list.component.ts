@@ -48,7 +48,7 @@ export class PostListComponent implements OnInit, OnDestroy {
           lastName: postData.post.user.lastName,
           timeStamp: postData.post.timeStamp,
           content: postData.post.content,
-          likes: postData.post.likes,
+          likedBy: postData.post.likedBy,
           comments: postData.post.comments
         }
       });
@@ -78,16 +78,16 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   likePost(post: Post, event) {
     if (event === true) {
-      post.likes.push(this.authService.getUserId());
+      post.likedBy.push(this.authService.getUserId());
     } else {
-      const index = post.likes.indexOf(this.authService.getUserId());
-      post.likes.splice(index, 1);
+      const index = post.likedBy.indexOf(this.authService.getUserId());
+      post.likedBy.splice(index, 1);
     }
     this.aPostsService.updatePost(post);
   }
 
   isLikedByUser(post) {
-    return post.likes.includes(this.authService.getUserId());
+    return post.likedBy.includes(this.authService.getUserId());
   }
 
 }
@@ -123,7 +123,7 @@ export class PostEditDialogComponent implements OnInit {
       lastName: this.data.lastName,
       timeStamp: Date.now(),
       content: form.value.content.replace(/\n/g, '<br>'),
-      likes: this.data.likes
+      likedBy: this.data.likedBy
   };
 
     this.postsService.updatePost(post);

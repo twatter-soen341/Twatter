@@ -19,6 +19,31 @@ exports.getUserByName = async (req, res, next) => {
     });
   }
 };
+//http://localhost:8080/api/user/users/
+exports.getUsersByIds = async (req, res, next) => {
+    try {
+        var users = [];
+        const ids = req.body.ids;
+
+        for(userId in ids){
+            var user = await User.findById(ids[userId]);
+            if (user) {
+                users.push(user);
+            } else {
+                res.status(404).json({
+                    message: 'Incorrect Id sent'
+                });
+            }
+        }
+        res.status(200).send(JSON.stringify(users));
+    } catch (error) {
+        res.status(500).json({
+            error: error,
+            message: 'Could not get user.'
+        });
+    }
+
+};
 
 exports.getUserById = async (req, res, next) => {
   try {

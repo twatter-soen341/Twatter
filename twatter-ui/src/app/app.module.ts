@@ -31,8 +31,12 @@ import {
   MatIconModule,
   MatDialogModule,
   MatDividerModule,
-  MatSnackBarModule, MatMenuModule
+  MatSnackBarModule,
+  MatAutocompleteModule,
+  MatMenuModule,
+  MatBadgeModule
 } from '@angular/material';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { CommentComponent } from './feed/posts/comment/comment.component';
 
@@ -54,6 +58,7 @@ import { CommentComponent } from './feed/posts/comment/comment.component';
     ScrollTopComponent,
     TwatlineComponent,
     SidebarComponent,
+    SearchBarComponent,
     CommentComponent
  ],
   imports: [
@@ -74,6 +79,7 @@ import { CommentComponent } from './feed/posts/comment/comment.component';
     TextareaAutosizeModule,
     NgScrollbarModule,
     MatDividerModule,
+    MatAutocompleteModule,
     MatBadgeModule,
     MatMenuModule
   ],

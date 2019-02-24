@@ -4,11 +4,11 @@ exports.getUserByName = async (req, res, next) => {
   try {
     let search = req.body.search;
     const regex = new RegExp(`^${search}`, 'i');
-    let user = await User.find({$or: [{ 'firstName': regex }, {'lastName': regex}]});
+    let user = await User.find({$or: [{ 'firstName': regex }, {'lastName': regex}]}).limit(5);
     if (user.length > 0) {
       res.status(200).json(user);
     } else {
-      res.status(404).json({
+      res.status(200).json({
         message: 'User not found.'
       });
     }

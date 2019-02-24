@@ -51,7 +51,7 @@ A social platform for ranting about society. Users will see the most triggering 
 * [Express - framework for NodeJS to sweet things up](https://expressjs.com/en/guide/routing.html)
 * [Angular - for the UI ](https://material.angular.io/)
 * [Node.js](https://nodejs.org/api/)
-###Testing
+### Testing
 * [TravisCI](https://travis-ci.org/)
 ## How to start the app
 

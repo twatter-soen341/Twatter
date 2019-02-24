@@ -31,13 +31,20 @@ import {
   MatIconModule,
   MatDialogModule,
   MatDividerModule,
-  MatSnackBarModule, MatMenuModule
+  MatSnackBarModule,
+  MatAutocompleteModule,
+  MatMenuModule,
+  MatBadgeModule
 } from '@angular/material';
-import {MatBadgeModule} from '@angular/material/badge';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SettingsComponent } from './settings/settings.component';
 // ----Side Bar Settings in Setting Bar
 import { SidebarSettingsComponent } from './settings/sidebar-settings/sidebar-settings.component';
 import { MatTabsModule } from '@angular/material';
+import { CommentComponent } from './feed/posts/comment/comment.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -55,8 +62,10 @@ import { MatTabsModule } from '@angular/material';
     TwatlineComponent,
     SidebarComponent,
     SettingsComponent,
-    SidebarSettingsComponent
-  ],
+    SidebarSettingsComponent,
+    SearchBarComponent,
+    CommentComponent
+ ],
   imports: [
     HttpClientModule,
     AppRoutingModule,
@@ -75,6 +84,7 @@ import { MatTabsModule } from '@angular/material';
     TextareaAutosizeModule,
     NgScrollbarModule,
     MatDividerModule,
+    MatAutocompleteModule,
     MatBadgeModule,
     MatMenuModule,
     MatTabsModule

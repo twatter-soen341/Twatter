@@ -9,9 +9,7 @@ const BASE_URL = `${environment.baseUrl}/user`;
   providedIn: 'root'
 })
 export class UserService {
-
-  constructor(private http: HttpClient, private authService: AuthService) {
-  }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getCurrentUser() {
     const userId = this.authService.getUserId();
@@ -21,5 +19,11 @@ export class UserService {
   updateUserNames(firstName: string, lastName: string) {
     // TODO: To recheck that
     // this.http.put(`${BASE_URL}/update/`);
+  }
+
+  searchUser(name: string) {
+    const query = { search: name };
+    console.log(`Calling api with %c${name}`, 'font-weight:bold');
+    return this.http.post<any>(`${BASE_URL}/search`, query);
   }
 }

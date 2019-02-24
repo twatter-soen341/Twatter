@@ -1,0 +1,18 @@
+<div>
+  <mat-form-field>
+    <span class="side-by-side">
+    <input matInput placeholder="Comment" [formControl]="commentControl">
+    <button mat-flat-button color="primary" (click)="postComment()">Comment</button>
+    </span>
+    <mat-divider></mat-divider>
+    <mat-list>
+      <h3 mat-subheader>Comments</h3>
+      <mat-list-item *ngFor="let comment of comments">
+        <div class="comment">
+          <p>Name</p>
+          <p>text</p>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-form-field>
+</div>

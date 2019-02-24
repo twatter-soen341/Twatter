@@ -20,6 +20,8 @@
         <button mat-button (click)="onDelete(post.id)">DELETE</button>
       </div>
     </mat-card-actions>
+
+    <app-comment [comments]="post.comments" [postId] ="post.id" (commented)="onEdit(post.id)"></app-comment>
   </mat-card>
 </div>
 

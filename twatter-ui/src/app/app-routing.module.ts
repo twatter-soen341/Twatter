@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/posts', pathMatch: 'full'},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'posts', component: TwatlineComponent, canActivate: [AuthGuard]},
-  {path: 'settings', component: SettingsComponent}
+  {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

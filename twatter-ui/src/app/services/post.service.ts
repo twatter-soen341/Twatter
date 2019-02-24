@@ -34,7 +34,7 @@ export class PostsService {
             lastName: post.user ? post.user.lastName : -1,
             timeStamp: this.formatDate(new Date(post.timeStamp)),
             content: post.content,
-            likes: post.likes,
+            likedBy: post.likedBy,
             comments: post.comments
           };
         });
@@ -59,7 +59,7 @@ export class PostsService {
             lastName: post.user ? post.user.lastName : -1,
             timeStamp: this.formatDate(new Date(post.timeStamp)),
             content: post.content,
-            likes: post.likes,
+            likedBy: post.likedBy,
             comments: post.comments
           };
         });
@@ -83,7 +83,7 @@ export class PostsService {
       lastName: aPost.lastName,
       timeStamp: this.formatDate(new Date(aPost.timeStamp)),
       content: aPost.content,
-      likes: aPost.likes,
+      likedBy: aPost.likedBy,
       comments: []
     };
     this.http
@@ -104,10 +104,10 @@ export class PostsService {
       lastName: aPost.lastName,
       timeStamp: this.formatDate(new Date(aPost.timeStamp)),
       content: aPost.content,
-      likes: aPost.likes,
+      likedBy: aPost.likedBy,
       comments: aPost.comments
     };
-    console.log(aPost.likes);
+    console.log(aPost.likedBy);
     this.http
       .put(`${BASE_URL}/${aPost.id}`, post)
       .subscribe(response => {

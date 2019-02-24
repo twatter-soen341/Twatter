@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     content: { type: String, required: true },
     timeStamp: Date,
-    likes: [String],
+    likedBy: [String],
     comment: [commentSchema]
 
 });

@@ -7,7 +7,7 @@ exports.createTwat = function (req, res, next) {
             user: req.body.userId,
             timeStamp: Date.now(),
             content: req.body.content,
-            likes: req.body.likes,
+            likedBy: req.body.likedBy,
             comment: req.body.comment,
         }
     );
@@ -94,10 +94,10 @@ exports.getTwats = (req, res, next) => {
         });
       });
 };
-/* Updating the Twat for likes, comment and editing its content */
+/* Updating the Twat for likedBy, comment and editing its content */
 exports.updateTwat = function (req, res, next) {
 
-   Twat.findByIdAndUpdate(req.params.id, {$set: {timeStamp: Date.now(), content: req.body.content, likes: req.body.likes, comment: req.body.comment}}, function (err, twat) {
+   Twat.findByIdAndUpdate(req.params.id, {$set: {timeStamp: Date.now(), content: req.body.content, likedBy: req.body.likedBy, comment: req.body.comment}}, function (err, twat) {
 
         if (err){
             res.status(500).json({message: 'Update Failed.', error: err});

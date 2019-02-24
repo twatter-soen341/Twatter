@@ -5,7 +5,7 @@ export interface Post {
   lastName: string;
   timeStamp: string;
   content: string;
-  likes: string[];
+  likedBy: string[];
   comments: Comment[];
 }
 
@@ -18,6 +18,6 @@ export interface ReturnedPost {
   };
   timeStamp: number;
   content: string;
-  likes: string[];
+  likedBy: string[];
   comments: Comment[];
 }

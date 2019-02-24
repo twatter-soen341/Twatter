@@ -9,8 +9,8 @@ const userSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   }
-  /* 
-  likes: {
+  /*
+  likedBy: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: 'Post',
     required: true

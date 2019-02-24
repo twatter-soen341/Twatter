@@ -1,6 +1,6 @@
-<div class="full-width">
-  <mat-form-field floatLabel="never">
-    <input matInput type="text" #filter placeholder="Search" [matAutocomplete]="auto" />
+<!-- <div class="full-width">
+  <mat-form-field floatLabel="never" >
+    <input matInput type="search" #filter placeholder="Search" [matAutocomplete]="auto" />
     <mat-autocomplete #auto="matAutocomplete">
       <div *ngIf="error">
         <mat-option>No user found</mat-option>
@@ -16,4 +16,21 @@
     </mat-autocomplete>
   </mat-form-field>
   <mat-icon matSuffix style="font-size: 1.2em">search</mat-icon>
-</div>
+</div> -->
+
+<form id="search-bar">
+    <input matInput type="search" #filter placeholder="Search" [matAutocomplete]="auto" />
+    <mat-autocomplete #auto="matAutocomplete">
+        <div *ngIf="error">
+          <mat-option>No user found</mat-option>
+        </div>
+        <div *ngIf="users && !error">
+          <mat-option
+            *ngFor="let user of users"
+            [value]="user.firstName + ' ' + user.lastName"
+          >
+            {{ user.firstName }} {{ user.lastName }}
+          </mat-option>
+        </div>
+      </mat-autocomplete>
+</form>

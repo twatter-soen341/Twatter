@@ -5,9 +5,9 @@
     <nav>
       <button mat-icon-button routerLink="/profile">
         <div mat-card-avatar class="card-avatar-image"></div>
-    </button>
         <div class="text-after-image">{{ firstName }}</div>
-  </nav>
+      </button>
+    </nav>
   </span>
 
   <nav>
@@ -16,6 +16,8 @@
 
   <span class="right-justify">
     <ul class="navigation">
+      <!-- Search -->
+      <app-search-bar></app-search-bar>
 
       <!--Notification button with notification badge-->
       <button mat-icon-button color={{colourForIcons}} [matMenuTriggerFor]="menu" matBadge={{notificationCount}} matBadgeOverlap="true" matBadgePosition="after" matBadgeColor="white" [matBadgeHidden]="notificationCount<=0"> <mat-icon>notifications</mat-icon></button>
@@ -41,10 +43,4 @@
 
     </ul>
 </span>
-</mat-toolbar>
-
-<!-- Added another mat-toolbar temporarily until search is completed -->
-<mat-toolbar>
-  <span class="spacer"></span>
-    <app-search-bar></app-search-bar>
 </mat-toolbar>

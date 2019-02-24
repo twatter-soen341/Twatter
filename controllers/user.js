@@ -23,8 +23,10 @@ exports.getUserByName = async (req, res, next) => {
 exports.getUsersByIds = async (req, res, next) => {
     try {
         var users = [];
-        req.body.ids.forEach(function(value) {
-            var user = User.findById(value);
+        const ids = req.body.ids;
+
+        for(userId in ids){
+            var user = await User.findById(ids[userId]);
             if (user) {
                 users.push(user);
             } else {
@@ -32,7 +34,7 @@ exports.getUsersByIds = async (req, res, next) => {
                     message: 'Incorrect Id sent'
                 });
             }
-        });
+        }
         res.status(200).send(JSON.stringify(users));
     } catch (error) {
         res.status(500).json({
@@ -40,6 +42,7 @@ exports.getUsersByIds = async (req, res, next) => {
             message: 'Could not get user.'
         });
     }
+
 };
 
 exports.getUserById = async (req, res, next) => {

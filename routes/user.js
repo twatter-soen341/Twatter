@@ -21,6 +21,6 @@ router.post('/search', passport.authenticate('jwt', { session: false }), userCon
  * This route should be used to find a group of users by id, a group of user id is sent and a group of users object is sent back
  *  @throws exception when ...
  */
-router.get('/users', userController.getUsersByIds);
+router.get('/users', passport.authenticate('jwt', { session: false }), userController.getUsersByIds);
 
 module.exports = router;

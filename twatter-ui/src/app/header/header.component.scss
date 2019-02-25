@@ -4,6 +4,7 @@ main {
 }
 
 .card-avatar-image {
+  background-color: black;
   background-image: url('https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg');
   background-size: cover;
   display: inline-block;
@@ -18,7 +19,7 @@ main {
 }
 
 .spacer {
-  flex: 1 1 auto;
+margin-left: 15px;
 }
 
 
@@ -26,7 +27,7 @@ main {
   list-style: none;
   margin: 0;
 
-  background: rgb(192,24,91);
+  background: rgb(192, 24, 91);
 
   display: -webkit-box;
   display: -moz-box;
@@ -38,24 +39,32 @@ main {
   justify-content: space-evenly;
 }
 
-
+.lesNotifs{
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
 
 .left-justify {
   display: flex;
   flex-direction: row;
-
 }
 
-.header{
+.header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 2;
+}
 
+
+/deep/ .mat-menu-content {
+  background-color: rgb(192, 24, 91);
+  text-align: center;
 }
 
 

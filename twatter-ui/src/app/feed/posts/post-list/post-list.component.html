@@ -1,7 +1,7 @@
 <div *ngIf="posts.length > 0">
   <mat-card *ngFor="let post of posts">
     <mat-card-header>
-      <div mat-card-avatar class="card-header-image"></div>
+      <div mat-card-avatar class="card-header-image" routerLink="/profile"></div>
       <mat-card-title>{{ post.firstName }} {{ post.lastName }}</mat-card-title>
       <mat-card-subtitle>{{ post.timeStamp }}</mat-card-subtitle>
     </mat-card-header>
@@ -20,11 +20,13 @@
         <button mat-button (click)="onDelete(post.id)">DELETE</button>
       </div>
     </mat-card-actions>
+
+    <app-comment [comments]="post.comments" [postId] ="post.id" (commented)="onEdit(post.id)"></app-comment>
   </mat-card>
 </div>
 
 <div *ngIf="posts.length == 0" style="margin-top: 7rem;">
   <p class="info-text mat-display-1">
-    No posts added yet...
+    No Twats added yet...
   </p>
 </div>

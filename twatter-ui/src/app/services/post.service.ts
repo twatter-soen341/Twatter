@@ -1,13 +1,9 @@
 import {Post, ReturnedPost} from '../models/post.model';
 import {Injectable} from '@angular/core';
-import {Subject, Observable, of} from 'rxjs';
+import {Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {environment} from 'src/environments/environment';
-import {User} from '../models/auth.model';
-import {mergeMap} from 'rxjs/operators';
-import {post} from 'selenium-webdriver/http';
-import {formatDate} from '@angular/common';
 
 const BASE_URL = `${environment.baseUrl}/twat`;
 
@@ -38,7 +34,8 @@ export class PostsService {
             lastName: post.user ? post.user.lastName : -1,
             timeStamp: this.formatDate(new Date(post.timeStamp)),
             content: post.content,
-            likes: post.likes
+            likes: post.likes,
+            comments: post.comments
           };
         });
       }))
@@ -62,7 +59,8 @@ export class PostsService {
             lastName: post.user ? post.user.lastName : -1,
             timeStamp: this.formatDate(new Date(post.timeStamp)),
             content: post.content,
-            likes: post.likes
+            likes: post.likes,
+            comments: post.comments
           };
         });
       }))
@@ -85,7 +83,8 @@ export class PostsService {
       lastName: aPost.lastName,
       timeStamp: this.formatDate(new Date(aPost.timeStamp)),
       content: aPost.content,
-      likes: aPost.likes
+      likes: aPost.likes,
+      comments: []
     };
     this.http
       .post<{ message: string, postId: string }>(`${BASE_URL}`, post)
@@ -105,7 +104,8 @@ export class PostsService {
       lastName: aPost.lastName,
       timeStamp: this.formatDate(new Date(aPost.timeStamp)),
       content: aPost.content,
-      likes: aPost.likes
+      likes: aPost.likes,
+      comments: aPost.comments
     };
     console.log(aPost.likes);
     this.http

@@ -1,25 +1,52 @@
+<!--Sets the colour of the header-->
 <mat-toolbar class="header mat-elevation-z5" color="primary">
+
   <span class="left-justify">
     <nav>
       <button mat-icon-button routerLink="/profile">
         <div mat-card-avatar class="card-avatar-image"></div>
-        <div class="text-after-image">{{ firstName }}</div>
     </button>
+        <div class="text-after-image">{{ firstName }}</div>
   </nav>
   </span>
 
+  <nav>
+    <button mat-icon-button color={{colourForIcons}} routerLink="/posts">
+      <mat-icon>home</mat-icon>
+    </button>
+  </nav>
 
   <span class="right-justify">
-
     <ul class="navigation">
-      <nav><button mat-flat-button color="primary" routerLink="/posts"><i class="material-icons">home</i></button></nav>
-      <button mat-flat-button color="primary"><i class="material-icons">notifications</i></button>
-      <button mat-flat-button color="primary"><i class="material-icons">settings</i></button>
-      <button mat-flat-button color="primary" (click)="onLogout()"><i class="material-icons">lock</i></button>
-      <!-- <button mat-flat-button color="primary" (click)="onLogout()">Logout</button> -->
+
+      <!--Notification button with notification badge-->
+      <button mat-icon-button color={{colourForIcons}} [matMenuTriggerFor]="menu" matBadge={{notificationCount}}
+              matBadgeOverlap="true" matBadgePosition="after" matBadgeColor="white" matBadgeSize="medium"
+              [matBadgeHidden]="notificationCount<=0"> <mat-icon>notifications</mat-icon></button>
+
+      <!--The menu which will show the notifications from an array of string-->
+      <mat-menu #menu="matMenu" class="myMenu">
+
+        <mat-list *ngFor="let notification of notifications">
+         <mat-list-item >{{notification}}</mat-list-item>
+         <mat-divider class="lesNotifs"></mat-divider>
+       </mat-list>
+
+        <!--Buttons Clears all notifications-->
+        <button mat-flat-button color="primary" (click)="clearNotifications()" [disabled]="notificationCount<=0">Clear Notifications</button>
+      </mat-menu>
+
+      <button class="spacer" mat-icon-button color={{colourForIcons}} routerLink="/settings"><mat-icon>settings</mat-icon></button>
+
+      <button class="spacer" mat-icon-button color={{colourForIcons}} (click)="onLogout()"><mat-icon>logout</mat-icon></button>
+
+
     </ul>
-
 </span>
+</mat-toolbar>
 
-
+<!-- Added another mat-toolbar temporarily until search is completed -->
+<mat-toolbar>
+  <span class="spacer"></span>
+    <app-search-bar></app-search-bar>
 </mat-toolbar>

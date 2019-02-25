@@ -21,15 +21,23 @@
 <form id="search-bar">
     <input matInput type="search" #filter placeholder="Search" [matAutocomplete]="auto" />
     <mat-autocomplete #auto="matAutocomplete">
-        <div *ngIf="error">
-          <mat-option>No user found</mat-option>
+        <div *ngIf="userError && postError">
+          <mat-option>No results found</mat-option>
         </div>
-        <div *ngIf="users && !error">
+        <div *ngIf="users && !userError">
           <mat-option
             *ngFor="let user of users"
             [value]="user.firstName + ' ' + user.lastName"
           >
             {{ user.firstName }} {{ user.lastName }}
+          </mat-option>
+        </div>
+        <div *ngIf="posts && !postError">
+          <mat-option
+            *ngFor="let post of posts"
+            [value]="post.content"
+          >
+            {{ post.content }}
           </mat-option>
         </div>
       </mat-autocomplete>

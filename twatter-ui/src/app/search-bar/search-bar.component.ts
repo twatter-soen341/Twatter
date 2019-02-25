@@ -14,6 +14,8 @@ import {
 } from 'rxjs/operators';
 import { UserService } from '../services/user.service';
 import { User } from '../models/auth.model';
+import { PostsService } from '../services/post.service';
+import { Post } from '../models/post.model';
 
 @Component({
   selector: 'app-search-bar',
@@ -24,14 +26,17 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
   @ViewChild('filter') filter: ElementRef;
   keyUpSub: Subscription;
   users: { user: User; error: string };
-  error = false;
+  posts: { post: Post; error: string};
+  userError = false;
+  postError = false;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private postService: PostsService) {}
 
   /* debounceTime and distinctUnilChange
    * used to limit the number of api queries
    */
   ngAfterViewInit() {
+    /* Searching Users */
     this.keyUpSub = fromEvent(this.filter.nativeElement, 'keyup')
       .pipe(
         debounceTime(200),
@@ -40,14 +45,33 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
         switchMap(value => this.userService.searchUser(value))
       )
       .subscribe(data => {
-        this.error = false;
+        console.log(data);
+        this.userError = false;
         if (data.message) {
           this.users = null;
-          this.error = true;
+          this.userError = true;
         } else {
           this.users = data;
         }
       });
+    /* Searching Posts */
+    this.keyUpSub = fromEvent(this.filter.nativeElement, 'keyup')
+    .pipe(
+      debounceTime(200),
+      map((event: Event) => (<HTMLInputElement>event.target).value),
+      distinctUntilChanged(),
+      switchMap(value => this.postService.searchPost(value))
+    )
+    .subscribe(data => {
+      console.log(data);
+      this.postError = false;
+      if (data.message) {
+        this.posts = null;
+        this.postError = true;
+      } else {
+        this.posts = data;
+      }
+    });
   }
 
   ngOnDestroy() {

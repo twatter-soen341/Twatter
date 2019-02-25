@@ -142,4 +142,10 @@ export class PostsService {
 
     return `${monthNames[monthIndex]} ${day}, ${year}`;
   }
+
+  searchPost(words: string) {
+    const query = { search: words };
+    console.log(`Calling api with %c${words}`, 'font-weight:bold');
+    return this.http.post<any>(`${BASE_URL}/search`, query);
+  }
 }

@@ -5,7 +5,8 @@ export interface Post {
   lastName: string;
   timeStamp: string;
   content: string;
-  likes: [string];
+  likes: string[];
+  comments: Comment[];
 }
 
 export interface ReturnedPost {
@@ -17,5 +18,6 @@ export interface ReturnedPost {
   };
   timeStamp: number;
   content: string;
-  likes: [];
+  likes: string[];
+  comments: Comment[];
 }

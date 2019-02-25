@@ -145,7 +145,7 @@ export class PostsService {
 
   searchPost(words: string) {
     const query = { search: words };
-    console.log(`Calling api with %c${words}`, 'font-weight:bold');
+    console.log(`searchPost calling api with %c${words}`, 'font-weight:bold');
     return this.http.post<any>(`${BASE_URL}/search`, query);
   }
 }

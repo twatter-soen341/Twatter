@@ -7,7 +7,7 @@
   cursor: pointer;
 }
 #search-bar input[type=search]:focus {
-	width: 150px;
+	width: 200px;
 	padding-left: 38px;
   color: white;
   cursor: auto;
@@ -27,7 +27,7 @@ input::-webkit-input-placeholder {
 }
 
 input[type=search]:focus {
-	width: 130px;
+	width: 200px;
 
 	-webkit-box-shadow: 0 0 5px rgba(255, 255, 255, 0.719);
 	-moz-box-shadow: 0 0 5px rgba(255, 255, 255, 0.719);
@@ -63,3 +63,22 @@ input::-webkit-search-cancel-button {
 input {
 	outline: none;
 }
+
+.card-avatar-image {
+  background-image: url('https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg');
+  background-size: cover;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+
+.text-after-image {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5%;
+  font-size: large;
+}
+
+.material-icons.mt-12 {
+   font-size: 12px;
+  }

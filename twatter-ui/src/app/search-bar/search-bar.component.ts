@@ -45,7 +45,6 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
         switchMap(value => this.userService.searchUser(value))
       )
       .subscribe(data => {
-        console.log(data);
         this.userError = false;
         if (data.message) {
           this.users = null;
@@ -63,7 +62,6 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
       switchMap(value => this.postService.searchPost(value))
     )
     .subscribe(data => {
-      console.log(data);
       this.postError = false;
       if (data.message) {
         this.posts = null;

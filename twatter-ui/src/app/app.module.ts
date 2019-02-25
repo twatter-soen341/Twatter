@@ -12,6 +12,7 @@ import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { TwatIconBtnComponent } from './icons/twat-icon-btn/twat-icon-btn.component';
 import { TwatlineComponent } from './feed/twatline/twatline.component';
+import { CommentComponent } from './feed/posts/comment/comment.component';
 // ------     Login     -------
 import { LoginComponent } from './login/login.component';
 import {RegisterComponent} from './register/register.component';
@@ -36,8 +37,10 @@ import {
   MatMenuModule,
   MatBadgeModule
 } from '@angular/material';
-import { SearchBarComponent } from './search-bar/search-bar.component';
-import { CommentComponent } from './feed/posts/comment/comment.component';
+// ------Search Components------
+import { SearchBarComponent } from './search/search-bar/search-bar.component';
+import { SearchResultsComponent } from './search/search-results/search-results.component';
+import { DragScrollModule } from 'ngx-drag-scroll';
 
 
 
@@ -58,6 +61,7 @@ import { CommentComponent } from './feed/posts/comment/comment.component';
     TwatlineComponent,
     SidebarComponent,
     SearchBarComponent,
+    SearchResultsComponent,
     CommentComponent
  ],
   imports: [
@@ -80,7 +84,8 @@ import { CommentComponent } from './feed/posts/comment/comment.component';
     MatDividerModule,
     MatAutocompleteModule,
     MatBadgeModule,
-    MatMenuModule
+    MatMenuModule,
+    DragScrollModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

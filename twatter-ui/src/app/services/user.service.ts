@@ -18,7 +18,7 @@ export class UserService {
 
   searchUser(name: string) {
     const query = { search: name };
-    console.log(`Calling api with %c${name}`, 'font-weight:bold');
+    console.log(`searchUser calling api with %c${name}`, 'font-weight:bold');
     return this.http.post<any>(`${BASE_URL}/search`, query);
   }
 }

@@ -5,6 +5,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {TwatlineComponent} from './feed/twatline/twatline.component';
 import {ProfileComponent} from './profile/profile.component';
+import {SearchResultsComponent} from './search/search-results/search-results.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoggedInGuard } from './guards/loggedIn.guard';
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/posts', pathMatch: 'full'},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'posts', component: TwatlineComponent, canActivate: [AuthGuard]},
+  {path: 'search/:search', component: SearchResultsComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

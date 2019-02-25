@@ -94,6 +94,28 @@ exports.getTwats = (req, res, next) => {
         });
       });
 };
+
+/* Get Twats by matching words */
+exports.getTwatsByMatch = async (req, res, next) => {
+    try {
+      let search = req.body.search;
+      const regex = new RegExp(`${search}`, 'i');
+      let twat = await Twat.find({'content': regex }).limit(5);
+      if (twat.length > 0) {
+        res.status(200).json(twat);
+      } else {
+        res.status(200).json({
+          message: 'Twat not found.'
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+          error: error,
+          message: 'Could not get twat.'
+      });
+    }
+  };
+
 /* Updating the Twat for likedBy, comment and editing its content */
 exports.updateTwat = function (req, res, next) {
 

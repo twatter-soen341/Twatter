@@ -1,0 +1,37 @@
+<form id="search-bar" (submit)="getResults(searchForm)" #searchForm="ngForm">
+    <input matInput type="search" name="search" #filter placeholder="Search" [matAutocomplete]="auto" [ngModel]="value"/>
+    <mat-autocomplete #auto="matAutocomplete">
+        <div *ngIf="userError && postError">
+          <mat-option>No results found</mat-option>
+        </div>
+        <div *ngIf="users && !userError">
+          <mat-option
+            *ngFor="let user of users"
+            [value]="user.firstName + ' ' + user.lastName"
+          >
+            <div mat-card-avatar class="card-avatar-image" routerLink="/profile"></div>
+            <div class="text-after-image">{{ user.firstName }} {{ user.lastName }}</div>
+          </mat-option>
+        </div>
+        <mat-divider></mat-divider>
+        <div *ngIf="posts && !postError">
+          <mat-option
+            *ngFor="let post of posts"
+            [value]="post.content"
+          >
+            <i class="material-icons mt-12">comment</i>
+            {{ post.content }}
+          </mat-option>
+        </div>
+        <mat-divider></mat-divider>
+        <!-- for comments
+        <div *ngIf="comments && !commentError">
+          <mat-option
+            *ngFor="let comment of comments"
+            [value]="comment.content"
+          >
+            {{ comment.content }}
+          </mat-option>
+        </div> -->
+      </mat-autocomplete>
+</form>

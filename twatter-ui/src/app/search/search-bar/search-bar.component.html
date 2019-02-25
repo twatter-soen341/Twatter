@@ -1,5 +1,5 @@
-<form id="search-bar">
-    <input matInput type="search" #filter placeholder="Search" [matAutocomplete]="auto" />
+<form id="search-bar" (submit)="getResults(searchForm)" #searchForm="ngForm">
+    <input matInput type="search" name="search" #filter placeholder="Search" [matAutocomplete]="auto" [ngModel]="value"/>
     <mat-autocomplete #auto="matAutocomplete">
         <div *ngIf="userError && postError">
           <mat-option>No results found</mat-option>

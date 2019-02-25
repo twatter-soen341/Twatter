@@ -12,10 +12,12 @@ import {
   distinctUntilChanged,
   debounceTime
 } from 'rxjs/operators';
-import { UserService } from '../services/user.service';
-import { User } from '../models/auth.model';
-import { PostsService } from '../services/post.service';
-import { Post } from '../models/post.model';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/auth.model';
+import { PostsService } from '../../services/post.service';
+import { Post } from '../../models/post.model';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-search-bar',
@@ -29,8 +31,9 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
   posts: { post: Post; error: string};
   userError = false;
   postError = false;
+  value: string;
 
-  constructor(private userService: UserService, private postService: PostsService) {}
+  constructor(private router: Router, private userService: UserService, private postService: PostsService) {}
 
   /* debounceTime and distinctUnilChange
    * used to limit the number of api queries
@@ -74,5 +77,11 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.keyUpSub.unsubscribe();
+  }
+
+  getResults(form: NgForm) {
+    if (form.value.search) {
+      this.router.navigate([`/search/${form.value.search}`]);
+    }
   }
 }

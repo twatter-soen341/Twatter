@@ -1,27 +1,12 @@
 .side-by-side{
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
+  flex-direction: column;
 }
 
 .comment-input{
-  width: 85%;
-}
-
-.comment-button{
-  margin-left: 5em;
+  width: 80%;
 }
 
 .comment{
-  margin-left: 1em;
-}
 
-.name{
-  font-size: 1.3em;
-}
-
-.comment-body {
-  width:100%;
 }

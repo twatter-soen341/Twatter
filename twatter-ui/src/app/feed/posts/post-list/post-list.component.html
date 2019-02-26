@@ -2,7 +2,9 @@
   <mat-card *ngFor="let post of posts">
     <mat-card-header>
       <div mat-card-avatar class="card-header-image" routerLink="/profile"></div>
-      <mat-card-title>{{ post.firstName }} {{ post.lastName }}</mat-card-title>
+      <mat-card-title>{{ post.firstName }} {{ post.lastName }}
+        <button mat-button (click)="onFollow(post.userId)">FOLLOW</button>
+      </mat-card-title>
       <mat-card-subtitle>{{ post.timeStamp }}</mat-card-subtitle>
     </mat-card-header>
 

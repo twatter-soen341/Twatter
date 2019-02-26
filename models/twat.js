@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
     content: { type: String, required: true },
     timeStamp: Date,
     likedBy: [String],
-    comments: [commentSchema]
+    comment: [commentSchema]
 
 });
 

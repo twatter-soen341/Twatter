@@ -3,7 +3,6 @@ import {FormControl} from '@angular/forms';
 import {Comment} from '../../../models/comment.model';
 import {AuthService} from '../../../services/auth.service';
 import {User} from "../../../models/auth.model";
-import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-comment',
@@ -18,39 +17,30 @@ export class CommentComponent implements OnInit {
   postId: string;
 
   @Output('commented')
-  commentEmitter = new EventEmitter<Comment>();
+  commentEmitter = new EventEmitter<null>();
 
   @Input()
   comments: Comment[] = [];
 
-  commentNameMap = new Map<string, string>();
+  commentNameMap = new Map<User, Comment>();
 
-  constructor(private authService: AuthService, private userService: UserService) {
-
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
-    if(!this.comments){
-      this.comments = [];
-    }else{
-      const ids = this.comments.map((comment) => comment.userId);
-
-      this.userService.getUsersNames(ids).subscribe((response) => {
-        for(let user of response){
-          this.commentNameMap.set(user._id, user.firstName + ' ' + user.lastName);
-        }
-        });
-    }
+    //TODO Get comment user and map them
   }
 
   postComment() {
+
     const comment: Comment = {
       userId: this.authService.getUserId(),
       postId: this.postId,
       text: this.commentControl.value
     };
 
-    this.commentEmitter.emit(comment);
+    this.commentEmitter.emit(null);
+    this.comments.push(comment);
     this.commentControl.reset();
   }
 }

@@ -21,9 +21,4 @@ export class UserService {
     console.log(`searchUser calling api with %c${name}`, 'font-weight:bold');
     return this.http.post<any>(`${BASE_URL}/search`, query);
   }
-
-  getUsersNames(names: string[]): any{
-    const body = {ids: names};
-    return this.http.post<any>(`${BASE_URL}/users`, body);
-  }
 }

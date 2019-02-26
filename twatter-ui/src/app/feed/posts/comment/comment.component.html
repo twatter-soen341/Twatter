@@ -1,27 +1,18 @@
-<div class="comment-body">
-  <span class="side-by-side">
-
-    <mat-form-field class="comment-input">
-      <input matInput placeholder="Comment" [formControl]="commentControl">
-    </mat-form-field>
-
+<div>
+  <mat-form-field>
+    <span class="side-by-side">
+    <input matInput placeholder="Comment" [formControl]="commentControl">
     <button mat-flat-button color="primary" (click)="postComment()">Comment</button>
-  </span>
-
-  <mat-divider></mat-divider>
-
-  <mat-list *ngIf="comments.length > 0;else no_comment">
-    <h3 mat-subheader>Comments</h3>
-    <mat-list-item *ngFor="let comment of comments">
-      <div>
-        <p class="name">{{commentNameMap.get(comment.userId)}}</p>
-        <p class="comment">{{comment.text}}</p>
-      </div>
-    </mat-list-item>
-  </mat-list>
-
-  <ng-template #no_comment>
-    <p>Be the first one to roast!</p>
-  </ng-template>
-
+    </span>
+    <mat-divider></mat-divider>
+    <mat-list>
+      <h3 mat-subheader>Comments</h3>
+      <mat-list-item *ngFor="let comment of comments">
+        <div class="comment">
+          <p>Name</p>
+          <p>{{comment.text}}</p>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-form-field>
 </div>

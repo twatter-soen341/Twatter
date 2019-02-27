@@ -1,3 +1,8 @@
-<button mat-icon-button aria-label="Roasty" aria-hidden="false" color="warn" class="medium-icon" (click)="onClick()">
-  <mat-icon [svgIcon]="icon" matTooltip="ROAST IT!" matTooltipPosition="above"></mat-icon>
-</button>
+<span class="side-by-side">
+  <button mat-icon-button aria-label="Roasty" aria-hidden="false" color="warn" class="medium-icon" (click)="onClick()">
+    <mat-icon [svgIcon]="icon" matTooltip="ROAST IT!" matTooltipPosition="above"></mat-icon>
+  </button>
+  <button mat-mini-fab [disableRipple]="true"
+          [matTooltip]="getNamesLikes()"
+          [matTooltipClass]="'my-tooltip'">x {{likes.length}}</button>
+</span>

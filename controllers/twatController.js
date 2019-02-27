@@ -100,7 +100,7 @@ exports.getTwatsByMatch = async (req, res, next) => {
     try {
       let search = req.body.search;
       const regex = new RegExp(`${search}`, 'i');
-      let twat = await Twat.find({'content': regex }).limit(5);
+      let twat = await Twat.find({'content': regex });
       if (twat.length > 0) {
         res.status(200).json(twat);
       } else {

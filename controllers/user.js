@@ -4,7 +4,7 @@ exports.getUserByName = async (req, res, next) => {
   try {
     let search = req.body.search;
     const regex = new RegExp(`^${search}`, 'i');
-    let user = await User.find({$or: [{ 'firstName': regex }, {'lastName': regex}]}).limit(5);
+    let user = await User.find({$or: [{ 'firstName': regex }, {'lastName': regex}]});
     if (user.length > 0) {
       res.status(200).json(user);
     } else {

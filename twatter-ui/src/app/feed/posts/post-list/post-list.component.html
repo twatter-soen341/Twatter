@@ -13,11 +13,11 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
-      <app-twat-icon-btn [liked] = "isLikedByUser(post)" (clickEvent) = "likePost(post, $event)" >l</app-twat-icon-btn>
-      <button mat-button>SHARE</button>
+      <app-twat-icon-btn [likes]="post.likedBy" [liked] = "isLikedByUser(post)" (clickEvent) = "likePost(post, $event)" >l</app-twat-icon-btn>
+      <button mat-icon-button><mat-icon>share</mat-icon></button>
       <div *ngIf="isUser(post.userId)">
-        <button mat-button (click)="onEdit(post.id)">EDIT</button>
-        <button mat-button (click)="onDelete(post.id)">DELETE</button>
+        <button mat-icon-button (click)="onEdit(post.id)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button (click)="onDelete(post.id)"><mat-icon>delete</mat-icon></button>
       </div>
     </mat-card-actions>
   <mat-card-content>

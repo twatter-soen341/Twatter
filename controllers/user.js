@@ -142,6 +142,7 @@ exports.unfollowUser = (req, res, next) => {
 }
 
 exports.getFollowers = (req, res, next) => {
+  U
 
   // User.findOne({ firstName: req.body.wantToFollow }, (err, user) => {
 

@@ -80,6 +80,7 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   isUser(currentUserId) {
     if (currentUserId === this.userId) {
+      this.colspan = 1;
       return true;
     } else {
       return false;
@@ -133,7 +134,8 @@ export class PostEditDialogComponent implements OnInit {
       lastName: this.data.lastName,
       timeStamp: Date.now(),
       content: form.value.content.replace(/\n/g, '<br>'),
-      likedBy: this.data.likedBy
+      likedBy: this.data.likedBy,
+      comments: this.data.comments
   };
 
     this.postsService.updatePost(post);

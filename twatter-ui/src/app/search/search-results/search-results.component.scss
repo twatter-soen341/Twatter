@@ -1,16 +1,26 @@
 @import '~@angular/material/theming';
 
 .carousel {
-  height: 35%;
+  height: 40%;
   width: 100%;
 }
 
 mat-card {
   width: 20%;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+}
+
+mat-card-content {
+  margin-top:1rem;
 }
 
 h1 {
   margin-left: 1rem;
   color: mat-color(mat-palette($mat-pink));
+}
+
+.center {
+  text-align: center;
 }
 

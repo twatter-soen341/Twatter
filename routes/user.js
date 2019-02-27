@@ -18,12 +18,28 @@ router.get('/search/:id', userController.getUserById);
  */
 router.post('/search', passport.authenticate('jwt', { session: false }), userController.getUserByName);
 
+/**
+ * This route should be used to follow a user
+ * @throws exception when ...
+ */
 router.put('/follow-user', userController.followUser); // TODO: add auth 
 
+/**
+ * This route should be used to unfollow a user
+ * @throws exception when ...
+ */
 router.put('/unfollow-user', userController.unfollowUser); // TODO: add auth
 
+/**
+ * This route should be used to get the array of followers
+ * @throws exception when ...
+ */
 router.get('/get-followers', userController.getFollowers);
 
+/**
+ * This route should be used to get the array of following
+ * @throws exception when ...
+ */
 router.get('get-following', userController.getFollowing);
 
 /**

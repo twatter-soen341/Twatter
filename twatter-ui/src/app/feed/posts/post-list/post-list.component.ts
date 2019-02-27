@@ -25,6 +25,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   @Output() liked;
   private postsSub: Subscription;
   userId: string;
+  colspan: number;
 
   constructor(public aPostsService: PostsService, private userService: UserService,
               private authService: AuthService, public dialog: MatDialog, private snack: MatSnackBar) {
@@ -83,6 +84,7 @@ export class PostListComponent implements OnInit, OnDestroy {
       this.colspan = 1;
       return true;
     } else {
+      this.colspan = 3;
       return false;
     }
   }

@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 :host,
 mat-card {
     display: block;
@@ -21,4 +23,26 @@ mat-card {
 .post-list {
   max-height: 20vh;
   padding-left: 3.5rem;
+}
+
+.btn-45 {
+  width: 45%;
+  color: mat-color(mat-palette($mat-pink));
+}
+
+.colored {
+  color: mat-color(mat-palette($mat-pink));
+}
+
+.number {
+  color: white;
+}
+
+mat-card-actions {
+  margin-bottom: -0.25rem;
+  margin-right: 1rem;
+}
+
+mat-card-content {
+  margin-bottom: 2rem;
 }

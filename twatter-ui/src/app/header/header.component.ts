@@ -9,7 +9,7 @@ import {AuthService} from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   firstName = '';
-  private notificationCount: number;
+  public notificationCount: number;
   protected notifications: string[];
   protected colourForIcons = 'white';
 

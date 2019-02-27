@@ -50,7 +50,6 @@ import { CommentComponent } from './feed/posts/comment/comment.component';
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

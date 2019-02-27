@@ -20,8 +20,10 @@
         <button mat-button (click)="onDelete(post.id)">DELETE</button>
       </div>
     </mat-card-actions>
-
-    <app-comment [comments]="post.comments" [postId] ="post.id" (commented)="onEdit(post.id)"></app-comment>
+  <mat-card-content>
+    <mat-divider></mat-divider>
+    <app-comment [comments]="post.comments" [postId] ="post.id" (commented)="commentPost(post, $event)"></app-comment>
+  </mat-card-content>
   </mat-card>
 </div>
 

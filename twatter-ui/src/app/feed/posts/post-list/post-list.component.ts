@@ -10,7 +10,7 @@ import {Subscription} from 'rxjs';
 
 import {Post} from '../../../models/post.model';
 import {PostsService} from '../../../services/post.service';
-import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material';
+import {MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatSnackBar} from '@angular/material';
 import {NgForm} from '@angular/forms';
 import {UserService} from 'src/app/services/user.service';
 import {AuthService} from '../../../services/auth.service';
@@ -27,7 +27,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   userId: string;
 
   constructor(public aPostsService: PostsService, private userService: UserService,
-              private authService: AuthService, public dialog: MatDialog) {
+              private authService: AuthService, public dialog: MatDialog, private snack: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -56,6 +56,16 @@ export class PostListComponent implements OnInit, OnDestroy {
         console.log('The dialog was closed');
       });
     });
+  }
+
+  commentPost(post: Post, comment: Comment){
+
+    if(!post.comments) {
+      post.comments = [comment];
+    }else {
+      post.comments.push(comment);
+    }
+    this.aPostsService.updatePost(post);
   }
 
   onDelete(postID: string) {

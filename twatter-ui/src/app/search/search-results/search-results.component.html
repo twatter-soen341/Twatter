@@ -1,5 +1,5 @@
 <h1>USERS</h1>
-<drag-scroll scrollbar-hidden=true class="carousel" *ngIf="users">
+<drag-scroll scrollbar-hidden=true class="carousel" *ngIf="!userError">
   <mat-card drag-scroll-item *ngFor="let user of users">
     <img mat-card-image src="../../../assets/images/twatterLogo.png"/>
     <mat-card-content>
@@ -8,4 +8,6 @@
   </mat-card>
 </drag-scroll>
 
-<h1>TWATS</h1>
+<div *ngIf="!postError">
+  <h1>TWATS</h1>
+</div>

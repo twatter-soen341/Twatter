@@ -140,3 +140,64 @@ exports.unfollowUser = (req, res, next) => {
     });
   });
 }
+
+exports.getFollowers = (req, res, next) => {
+
+  // User.findOne({ firstName: req.body.wantToFollow }, (err, user) => {
+
+  //   var wantToFollow = user._id
+
+  //   user.save((err) => {
+  //     if (err) {
+  //       console.log(err)
+  //     } else {
+
+  //       User.findById(req.body.user_id, (err, user) => {
+
+  //         user.following.addToSet(wantToFollow);
+
+  //         user.save((err) => {
+  //           if (err) {
+  //             console.log(err)
+  //           } else {
+  //             res.status(200).json({
+  //               message: 'ressource updated successfully'
+  //             })
+  //           }
+  //         });
+
+  //       });
+  //     }
+  //   });
+  // });
+}
+exports.getFollowing = (req, res, next) => {
+
+  // User.findOne({ firstName: req.body.wantToFollow }, (err, user) => {
+
+  //   var wantToFollow = user._id
+
+  //   user.save((err) => {
+  //     if (err) {
+  //       console.log(err)
+  //     } else {
+
+  //       User.findById(req.body.user_id, (err, user) => {
+
+  //         user.following.addToSet(wantToFollow);
+
+  //         user.save((err) => {
+  //           if (err) {
+  //             console.log(err)
+  //           } else {
+  //             res.status(200).json({
+  //               message: 'ressource updated successfully'
+  //             })
+  //           }
+  //         });
+
+  //       });
+  //     }
+  //   });
+  // });
+}

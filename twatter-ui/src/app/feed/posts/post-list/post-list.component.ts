@@ -75,6 +75,14 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.aPostsService.updatePost(post);
   }
 
+  editComment(post: Post, comments: any){
+    const index = post.comments.indexOf(comments.oldComment);
+    post.comments[index] = comments.newComment;
+
+    this.aPostsService.updatePost(post);
+  }
+
+
   onDelete(postID: string) {
     this.aPostsService.deletePost(postID);
   }

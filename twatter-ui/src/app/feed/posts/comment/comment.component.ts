@@ -13,18 +13,24 @@ import {Post} from "../../../models/post.model";
 })
 export class CommentComponent implements OnInit {
 
-  commentControl = new FormControl('');
+
 
   @Input()
   post: Post;
+  @Input()
+  comments: Comment[] = [];
 
   @Output('commented')
   commentEmitter = new EventEmitter<Comment>();
   @Output('deleted')
   deleteEmitter = new EventEmitter<Comment>();
+  @Output('edited')
+  editEmitter = new EventEmitter<any>();
 
-  @Input()
-  comments: Comment[] = [];
+  commentControl = new FormControl('');
+
+  editControl = new FormControl('');
+  currentlyEditing: Comment;
 
   commentNameMap = new Map<string, string>();
 
@@ -54,9 +60,35 @@ export class CommentComponent implements OnInit {
     }
   }
 
+  canEdit(comment: Comment){
+    if(comment.userId == this.authService.getUserId()){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   deleteComment(comment: Comment){
     this.deleteEmitter.emit(comment);
   }
+
+  editComment(comment: Comment){
+    this.editControl.setValue(comment.text);
+    this.currentlyEditing = comment;
+  }
+
+  finishEditComment(comment: Comment){
+    const newComment:Comment = {
+      userId: comment.userId,
+      text: this.editControl.value,
+      postId: comment.postId
+    };
+
+    this.editEmitter.emit({oldComment: comment, newComment: newComment});
+    this.editControl.reset();
+    this.currentlyEditing = null;
+  }
+
 
   postComment() {
     const comment: Comment = {

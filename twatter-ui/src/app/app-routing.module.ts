@@ -7,8 +7,9 @@ import {TwatlineComponent} from './feed/twatline/twatline.component';
 import {ProfileComponent} from './profile/profile.component';
 import {SearchResultsComponent} from './search/search-results/search-results.component';
 
-import { AuthGuard } from './guards/auth.guard';
-import { LoggedInGuard } from './guards/loggedIn.guard';
+import {AuthGuard} from './guards/auth.guard';
+import {LoggedInGuard} from './guards/loggedIn.guard';
+import {SettingsComponent} from './settings/settings.component';
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent, canActivate: [LoggedInGuard]},
@@ -17,6 +18,8 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'posts', component: TwatlineComponent, canActivate: [AuthGuard]},
   {path: 'search/:search', component: SearchResultsComponent, canActivate: [AuthGuard]},
+  {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]}
+
 ];
 
 @NgModule({
@@ -24,5 +27,6 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [AuthGuard, LoggedInGuard]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
 

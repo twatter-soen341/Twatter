@@ -2,7 +2,7 @@
 name: User Story issue template
 about: This is the template for creating a user story.
 title: ''
-labels: User Story, Normal, size:3
+labels: Normal, User Story, size:3
 assignees: ''
 
 ---

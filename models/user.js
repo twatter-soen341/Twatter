@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
+
   }],
 
   followers: [{
@@ -18,6 +19,10 @@ const userSchema = new mongoose.Schema({
   }]
   /* 
   likes: {
+
+  }
+  /*
+  likedBy: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: 'Post',
     required: true

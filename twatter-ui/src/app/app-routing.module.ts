@@ -5,16 +5,21 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {TwatlineComponent} from './feed/twatline/twatline.component';
 import {ProfileComponent} from './profile/profile.component';
+import {SearchResultsComponent} from './search/search-results/search-results.component';
 
-import { AuthGuard } from './guards/auth.guard';
-import { LoggedInGuard } from './guards/loggedIn.guard';
+import {AuthGuard} from './guards/auth.guard';
+import {LoggedInGuard} from './guards/loggedIn.guard';
+import {SettingsComponent} from './settings/settings.component';
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent, canActivate: [LoggedInGuard]},
   {path: 'login', component: LoginComponent, canActivate: [LoggedInGuard]},
   {path: '', redirectTo: '/posts', pathMatch: 'full'},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path: 'posts', component: TwatlineComponent, canActivate: [AuthGuard]}
+  {path: 'posts', component: TwatlineComponent, canActivate: [AuthGuard]},
+  {path: 'search/:search', component: SearchResultsComponent, canActivate: [AuthGuard]},
+  {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]}
+
 ];
 
 @NgModule({
@@ -22,5 +27,6 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [AuthGuard, LoggedInGuard]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
 

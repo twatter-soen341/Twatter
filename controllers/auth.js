@@ -52,7 +52,7 @@ exports.signup = async (req, res) => {
       lastName: req.body.lastName,
       // profilePicturePath: '',  // waiting to implement posts model 
       following: [],
-      // likes: []  // waiting to implement posts model
+      // likedBy: []  // waiting to implement posts model
     });
     
     /* When user is created, create the auth data with the new user's id */

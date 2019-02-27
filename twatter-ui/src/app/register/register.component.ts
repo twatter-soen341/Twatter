@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
 import {AuthService} from '../services/auth.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -54,8 +54,7 @@ export class RegisterComponent implements OnInit {
   // @PARAM confirmation is FromGroup
   passwordConfirmationMatchValidator(confirmation: AbstractControl) {
     return (confirmation.get('passwordController').value === confirmation.get('passwordConfirmController').value)
-      ? null
-      : {'passwordDontMatch': true};
+      ? null : {'passwordDontMatch': true};
   }
 
   notForbiddenPassword(confirmation: AbstractControl) {

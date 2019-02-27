@@ -53,7 +53,7 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
           this.users = null;
           this.userError = true;
         } else {
-          this.users = data;
+          this.users = data.slice(0, 4);
         }
       });
     /* Searching Posts */
@@ -70,7 +70,7 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
         this.posts = null;
         this.postError = true;
       } else {
-        this.posts = data;
+        this.posts = data.slice(0, 4);
       }
     });
   }

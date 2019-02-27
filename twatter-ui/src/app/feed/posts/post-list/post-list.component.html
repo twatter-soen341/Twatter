@@ -22,7 +22,7 @@
     </mat-card-actions>
   <mat-card-content>
     <mat-divider></mat-divider>
-    <app-comment [comments]="post.comments" [postId] ="post.id" (commented)="commentPost(post, $event)"></app-comment>
+    <app-comment [comments]="post.comments.reverse()" [post] ="post" (deleted)="deleteComment(post, $event)" (commented)="commentPost(post, $event)"></app-comment>
   </mat-card-content>
   </mat-card>
 </div>

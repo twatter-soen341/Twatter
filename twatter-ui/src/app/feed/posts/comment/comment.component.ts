@@ -4,6 +4,7 @@ import {Comment} from '../../../models/comment.model';
 import {AuthService} from '../../../services/auth.service';
 import {User} from "../../../models/auth.model";
 import {UserService} from "../../../services/user.service";
+import {Post} from "../../../models/post.model";
 
 @Component({
   selector: 'app-comment',
@@ -15,10 +16,12 @@ export class CommentComponent implements OnInit {
   commentControl = new FormControl('');
 
   @Input()
-  postId: string;
+  post: Post;
 
   @Output('commented')
   commentEmitter = new EventEmitter<Comment>();
+  @Output('deleted')
+  deleteEmitter = new EventEmitter<Comment>();
 
   @Input()
   comments: Comment[] = [];
@@ -43,10 +46,22 @@ export class CommentComponent implements OnInit {
     }
   }
 
+  canDelete(comment: Comment){
+    if(comment.userId == this.authService.getUserId() || this.post.userId == this.authService.getUserId()){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  deleteComment(comment: Comment){
+    this.deleteEmitter.emit(comment);
+  }
+
   postComment() {
     const comment: Comment = {
       userId: this.authService.getUserId(),
-      postId: this.postId,
+      postId: this.post.id,
       text: this.commentControl.value
     };
 

@@ -39,12 +39,13 @@ import {
 } from '@angular/material';
 // ------Search Components------
 import { DragScrollModule } from 'ngx-drag-scroll';
-import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SettingsComponent } from './settings/settings.component';
+import {SearchBarComponent} from "./search/search-bar/search-bar.component";
 // ----Side Bar Settings in Setting Bar
 import { SidebarSettingsComponent } from './settings/sidebar-settings/sidebar-settings.component';
 import { MatTabsModule } from '@angular/material';
 import { CommentComponent } from './feed/posts/comment/comment.component';
+import {SearchResultsComponent} from "./search/search-results/search-results.component";
 
 
 
@@ -92,7 +93,7 @@ import { CommentComponent } from './feed/posts/comment/comment.component';
     MatAutocompleteModule,
     MatBadgeModule,
     MatMenuModule,
-    DragScrollModule
+    DragScrollModule,
     MatTabsModule
 
   ],

@@ -21,4 +21,11 @@ router.put('/follow-user', userController.followUser); // TODO: add auth
 
 router.put('/unfollow-user', userController.unfollowUser); // TODO: add auth
 
+/**
+ * This route should be used to find a group of users by id, a group of user id is sent and a group of users object is sent back
+ *  @throws exception when ...
+ */
+router.post('/users', passport.authenticate('jwt', { session: false }), userController.getUsersByIds);
+
+
 module.exports = router;

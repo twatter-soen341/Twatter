@@ -12,7 +12,7 @@ import { PostsService } from 'src/app/services/post.service';
 })
 export class SearchResultsComponent implements OnInit {
   private searchValue: string[];
-  users: { user: User; error: string }[];
+  users: { user: User; error: string; firstName: string, lastName: string }[];
   posts: { post: Post; error: string}[];
   userError = false;
   postError = false;
@@ -26,7 +26,13 @@ export class SearchResultsComponent implements OnInit {
 
       /* Users */
       this.userService.searchUser(this.searchValue[0]).subscribe(result => {
-        this.users = result;
+        if (result.message) {
+          this.users = null;
+          this.userError = true;
+        } else {
+          this.users = result;
+          this.userError = false;
+        }
       });
       /* TODO Posts */
       /* TODO Comments */

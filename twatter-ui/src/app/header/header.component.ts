@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 export class HeaderComponent implements OnInit {
   firstName = '';
   userId = '';
-  private notificationCount: number;
+  protected notificationCount: number;
   protected notifications: string[];
   protected colourForIcons = 'white';
 

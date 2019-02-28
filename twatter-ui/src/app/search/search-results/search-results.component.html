@@ -1,11 +1,21 @@
-<h1>USERS</h1>
-<drag-scroll scrollbar-hidden=true class="carousel" *ngIf="users">
+<h1 *ngIf="!userError">USERS</h1>
+<drag-scroll scrollbar-hidden=true class="carousel" *ngIf="!userError">
   <mat-card drag-scroll-item *ngFor="let user of users">
     <img mat-card-image src="../../../assets/images/twatterLogo.png"/>
-    <mat-card-content>
-      {{ user.firstName }} {{ user.lastName }}
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content> <!-- Add link to profile -->
+      {{ user.firstName }} {{ user.lastName }} <br>
+      <!-- Add Follow Button -->
+      Twat Score <!-- Add Twat Score --> <br>
+      <!-- Add Twat Age --> Twat years old
     </mat-card-content>
   </mat-card>
 </drag-scroll>
 
-<h1>TWATS</h1>
+
+<h1 *ngIf="!postError">TWATS</h1>
+
+<h1 *ngIf="userError && postError" class="center"> Uh Oh, there is no match for your search!</h1>
+

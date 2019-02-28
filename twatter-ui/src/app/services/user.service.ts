@@ -27,7 +27,7 @@ export class UserService {
     return this.http.post<any>(`${BASE_URL}/search`, query);
   }
 
-  getUsersNames(names: string[]): any{
+  getUsersNames(names: string[]): any {
     const body = {ids: names};
     return this.http.post<any>(`${BASE_URL}/users`, body);
   }

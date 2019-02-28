@@ -10,6 +10,7 @@ import {UserService} from "../../services/user.service";
 })
 export class TwatIconBtnComponent implements OnInit {
   public icon = 'flame';
+ likesStyle = 'defaultLikes';
 
   @Output() public clickEvent = new EventEmitter<boolean>();
 
@@ -40,6 +41,7 @@ export class TwatIconBtnComponent implements OnInit {
   ngOnInit() {
     if (this.liked) {
       this.icon = 'red-flame';
+      this.likesStyle = 'coloredLikes';
     }
 
     if (this.likes) {
@@ -54,9 +56,11 @@ export class TwatIconBtnComponent implements OnInit {
   onClick() {
     if (this.liked) {
       this.icon = 'flame';
+      this.likesStyle = 'defaultLikes';
       this.clickEvent.emit(false);
     } else {
       this.icon = 'red-flame';
+      this.likesStyle = 'coloredLikes';
       this.clickEvent.emit(true);
     }
   }

@@ -160,7 +160,8 @@ export class PostEditDialogComponent implements OnInit {
       lastName: this.data.lastName,
       timeStamp: Date.now(),
       content: form.value.content.replace(/\n/g, '<br>'),
-      likedBy: this.data.likedBy
+      likedBy: this.data.likedBy,
+      comments: this.data.comments
   };
 
     this.postsService.updatePost(post);

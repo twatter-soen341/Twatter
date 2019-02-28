@@ -35,7 +35,8 @@ import {
   MatSnackBarModule,
   MatAutocompleteModule,
   MatMenuModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatTooltipModule
 } from '@angular/material';
 // ------Search Components------
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -93,7 +94,8 @@ import { CommentComponent } from './feed/posts/comment/comment.component';
     MatBadgeModule,
     MatMenuModule,
     DragScrollModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTooltipModule
 
   ],
   providers: [

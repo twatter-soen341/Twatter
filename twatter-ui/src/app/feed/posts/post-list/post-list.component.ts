@@ -14,6 +14,7 @@ import {MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatSnackBar} from '@angular/ma
 import {NgForm} from '@angular/forms';
 import {UserService} from 'src/app/services/user.service';
 import {AuthService} from '../../../services/auth.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-post-list',
@@ -25,16 +26,26 @@ export class PostListComponent implements OnInit, OnDestroy {
   @Output() liked;
   private postsSub: Subscription;
   userId: string;
-  colspan: number;
+  posterId: string;
 
-  constructor(public aPostsService: PostsService, private userService: UserService,
-              private authService: AuthService, public dialog: MatDialog, private snack: MatSnackBar) {
-  }
+  constructor(
+    public aPostsService: PostsService,
+    private userService: UserService,
+    private authService: AuthService,
+    private router: Router,
+    public dialog: MatDialog,
+    private snack: MatSnackBar
+  ) {}
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
       this.userId = user._id;
     });
+
+  }
+
+  goToProfile(posterId: string) {
+    this.router.navigate(['/profile', posterId]);
   }
 
   onEdit(id: string) {
@@ -69,6 +80,21 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.aPostsService.updatePost(post);
   }
 
+  deleteComment(post: Post, comment: Comment){
+    const index = post.comments.indexOf(comment);
+    post.comments.splice(index,1);
+
+    this.aPostsService.updatePost(post);
+  }
+
+  editComment(post: Post, comments: any){
+    const index = post.comments.indexOf(comments.oldComment);
+    post.comments[index] = comments.newComment;
+
+    this.aPostsService.updatePost(post);
+  }
+
+
   onDelete(postID: string) {
     this.aPostsService.deletePost(postID);
   }
@@ -81,10 +107,8 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   isUser(currentUserId) {
     if (currentUserId === this.userId) {
-      this.colspan = 1;
       return true;
     } else {
-      this.colspan = 3;
       return false;
     }
   }

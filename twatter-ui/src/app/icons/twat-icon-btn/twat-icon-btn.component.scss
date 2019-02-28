@@ -7,6 +7,20 @@
   font-size:25px !important;
 }
 
+.side-by-side{
+  display: flex;
+  flex-direction: row;
+}
+
+::ng-deep .mat-tooltip  {
+  white-space: pre-line    !important;
+}
+
+.mat-button{
+  padding-left:0;
+  padding-right:0;
+}
+
 @keyframes appear {
   from {
       opacity: 0.5;

@@ -1,6 +1,7 @@
 <div class="comment-body">
-  <span class="side-by-side">
-
+  <h3 mat-subheader>Comments</h3>
+  <mat-divider></mat-divider>
+  <span class="space-between">
     <mat-form-field class="comment-input">
       <input matInput placeholder="Comment" [formControl]="commentControl">
     </mat-form-field>
@@ -11,17 +12,39 @@
   <mat-divider></mat-divider>
 
   <mat-list *ngIf="comments.length > 0;else no_comment">
-    <h3 mat-subheader>Comments</h3>
     <mat-list-item *ngFor="let comment of comments">
-      <div>
+      <div class="space-between">
+        <span *ngIf="!currentlyEditing || comment != currentlyEditing;else edit_comment">
         <p class="name">{{commentNameMap.get(comment.userId)}}</p>
         <p class="comment">{{comment.text}}</p>
+          </span>
+        <span>
+          <button mat-icon-button *ngIf="canEdit(comment)" (click)="editComment(comment)"><mat-icon>create</mat-icon></button>
+          <button mat-icon-button *ngIf="canDelete(comment)" (click)="deleteComment(comment)"><mat-icon>delete</mat-icon></button>
+        </span>
       </div>
+      <mat-divider></mat-divider>
+
+
+      <ng-template #edit_comment>
+        <div class="comment-input">
+          <p class="name">{{commentNameMap.get(comment.userId)}}</p>
+          <span class="side-by-side">
+             <mat-form-field class="comment-input">
+              <input matInput placeholder="Editing comment" [formControl]="editControl">
+             </mat-form-field>
+              <button class="action-button" mat-mini-fab color="primary" (click)="finishEditComment(comment)"><mat-icon>check</mat-icon></button>
+              <button class="action-button" mat-mini-fab color="accent" (click)="currentlyEditing=null"><mat-icon>clear</mat-icon></button>
+           </span>
+        </div>
+      </ng-template>
+
+
     </mat-list-item>
   </mat-list>
 
   <ng-template #no_comment>
     <p>Be the first one to roast!</p>
   </ng-template>
-
 </div>
+

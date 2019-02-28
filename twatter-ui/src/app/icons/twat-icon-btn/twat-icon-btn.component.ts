@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material';
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-twat-icon-btn',
@@ -14,7 +15,11 @@ export class TwatIconBtnComponent implements OnInit {
 
   @Input() public liked;
 
-  constructor(public iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  @Input() public likes: string[];
+
+  likesNames = [];
+
+  constructor(public iconRegistry: MatIconRegistry, private userService: UserService, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
       'flame',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2.svg'));
@@ -36,6 +41,14 @@ export class TwatIconBtnComponent implements OnInit {
     if (this.liked) {
       this.icon = 'red-flame';
     }
+
+    if (this.likes) {
+      this.userService.getUsersNames(this.likes).subscribe((response) => {
+        for (let user of response) {
+          this.likesNames.push(user.firstName + ' ' + user.lastName);
+        }
+      });
+    }
   }
 
   onClick() {
@@ -45,6 +58,16 @@ export class TwatIconBtnComponent implements OnInit {
     } else {
       this.icon = 'red-flame';
       this.clickEvent.emit(true);
+    }
+  }
+
+  getNamesLikes(): string {
+    if (this.likes.length > 0) {
+      let toReturn = 'Liked by:';
+      this.likesNames.forEach((name) => toReturn += '\n' + name);
+      return toReturn;
+    } else {
+      return "No one loves you";
     }
   }
 }

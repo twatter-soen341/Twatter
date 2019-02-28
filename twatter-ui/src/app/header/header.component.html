@@ -3,7 +3,7 @@
 
   <span class="left-justify">
     <nav>
-      <button mat-icon-button routerLink="/profile">
+      <button mat-icon-button (click)="goToProfile()">
         <div mat-card-avatar class="card-avatar-image"></div>
         <div class="text-after-image">{{ firstName }}</div>
       </button>

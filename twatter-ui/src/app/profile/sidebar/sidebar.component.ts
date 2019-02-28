@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,15 +8,23 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  firstName = '';
-  lastName = '';
 
-  constructor(private userService: UserService) { }
+userId: string;
+  user = {
+    firstName: '',
+    lastName: '',
+  };
+
+  constructor(private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.userService.getCurrentUser().subscribe(user => {
-      this.firstName = user.firstName;
-      this.lastName = user.lastName;
+    this.route.params.subscribe(params => {
+      this.userId = params['id'];
+
+      this.userService.getUserWithId(this.userId).subscribe(user => {
+        this.user = user;
+      });
+
     });
   }
 

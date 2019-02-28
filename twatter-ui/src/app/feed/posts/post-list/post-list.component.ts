@@ -14,6 +14,7 @@ import {MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatSnackBar} from '@angular/ma
 import {NgForm} from '@angular/forms';
 import {UserService} from 'src/app/services/user.service';
 import {AuthService} from '../../../services/auth.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-post-list',
@@ -25,15 +26,26 @@ export class PostListComponent implements OnInit, OnDestroy {
   @Output() liked;
   private postsSub: Subscription;
   userId: string;
+  posterId: string;
 
-  constructor(public aPostsService: PostsService, private userService: UserService,
-              private authService: AuthService, public dialog: MatDialog, private snack: MatSnackBar) {
-  }
+  constructor(
+    public aPostsService: PostsService,
+    private userService: UserService,
+    private authService: AuthService,
+    private router: Router,
+    public dialog: MatDialog,
+    private snack: MatSnackBar
+  ) {}
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
       this.userId = user._id;
     });
+
+  }
+
+  goToProfile(posterId: string) {
+    this.router.navigate(['/profile', posterId]);
   }
 
   onEdit(id: string) {

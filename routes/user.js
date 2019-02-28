@@ -10,6 +10,7 @@ const userController = require('../controllers/user');
  * @throws exception when ...
  */
 router.get('/search/:id', userController.getUserById);
+// DO NOT FORGET TO REPLACE THIS 
 // , passport.authenticate('jwt', { session: false })
 
 /**
@@ -34,13 +35,13 @@ router.put('/unfollow-user', userController.unfollowUser); // TODO: add auth
  * This route should be used to get the array of followers
  * @throws exception when ...
  */
-router.get('/get-followers', userController.getFollowers);
+router.get('/get-followers/:id', userController.getFollowers);
 
 /**
  * This route should be used to get the array of following
  * @throws exception when ...
  */
-router.get('get-following', userController.getFollowing);
+router.get('get-following/:id', userController.getFollowing);
 
 /**
  * This route should be used to find a group of users by id, a group of user id is sent and a group of users object is sent back

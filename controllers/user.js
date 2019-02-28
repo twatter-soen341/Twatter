@@ -108,6 +108,8 @@ exports.followUser = (req, res, next) => {
 //   "user_id":"5c6b711a94db5f4bed34bc0f",
 // 	"wantToUnfollow": "john"
 // }
+
+
 exports.unfollowUser = (req, res, next) => {
 
   User.findOne({ firstName: req.body.wantToUnfollow }, (err, user) => {
@@ -142,63 +144,29 @@ exports.unfollowUser = (req, res, next) => {
 }
 
 exports.getFollowers = (req, res, next) => {
-  U
-
-  // User.findOne({ firstName: req.body.wantToFollow }, (err, user) => {
-
-  //   var wantToFollow = user._id
-
-  //   user.save((err) => {
-  //     if (err) {
-  //       console.log(err)
-  //     } else {
-
-  //       User.findById(req.body.user_id, (err, user) => {
-
-  //         user.following.addToSet(wantToFollow);
-
-  //         user.save((err) => {
-  //           if (err) {
-  //             console.log(err)
-  //           } else {
-  //             res.status(200).json({
-  //               message: 'ressource updated successfully'
-  //             })
-  //           }
-  //         });
-
-  //       });
-  //     }
-  //   });
-  // });
+  User.findById(req.body.user_id, (err, user) => {
+    if(err){
+      console.log(err);
+    }else{
+      console.log(user.followers);
+      res.status(200).json({
+      message: 'ressource updated successfully',
+      followers: user.followers
+    })
+    }
+  });
 }
+
 exports.getFollowing = (req, res, next) => {
-
-  // User.findOne({ firstName: req.body.wantToFollow }, (err, user) => {
-
-  //   var wantToFollow = user._id
-
-  //   user.save((err) => {
-  //     if (err) {
-  //       console.log(err)
-  //     } else {
-
-  //       User.findById(req.body.user_id, (err, user) => {
-
-  //         user.following.addToSet(wantToFollow);
-
-  //         user.save((err) => {
-  //           if (err) {
-  //             console.log(err)
-  //           } else {
-  //             res.status(200).json({
-  //               message: 'ressource updated successfully'
-  //             })
-  //           }
-  //         });
-
-  //       });
-  //     }
-  //   });
-  // });
+  User.findById(req.body.user_id, (err, user) => {
+    if(err){
+      console.log(err);
+    }else{
+      console.log(user.following);
+      res.status(200).json({
+      message: 'ressource updated successfully',
+      following: user.following
+    })
+    }
+  });
 }

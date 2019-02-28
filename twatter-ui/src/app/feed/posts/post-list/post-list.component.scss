@@ -1,4 +1,7 @@
 @import '~@angular/material/theming';
+@include mat-core();
+
+$primary: mat-palette($mat-red);
 
 :host,
 mat-card {
@@ -27,7 +30,7 @@ mat-card {
 
 .btn-45 {
   width: 45%;
-  color: mat-color(mat-palette($mat-pink));
+  // color: mat-color($primary);
 }
 
 .colored {

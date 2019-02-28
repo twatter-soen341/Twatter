@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@import '../../../twatter-default-style.scss';
 
 .carousel {
   height: 40%;
@@ -17,7 +17,7 @@ mat-card-content {
 
 h1 {
   margin-left: 1rem;
-  color: mat-color(mat-palette($mat-pink));
+  color: mat-color($primary);
 }
 
 .center {

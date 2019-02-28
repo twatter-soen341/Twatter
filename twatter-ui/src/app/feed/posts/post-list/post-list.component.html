@@ -17,16 +17,20 @@
       <mat-grid-list cols="4" rowHeight="1">
         <!-- Edit -->
         <mat-grid-title *ngIf="isUser(post.userId)">
-          <button mat-button class="btn-45" (click)="onEdit(post.id)">EDIT</button>
+          <button mat-button class="btn-45" (click)="onEdit(post.id)" color="accent">EDIT</button>
         </mat-grid-title>
         <!-- Delete -->
         <mat-grid-title *ngIf="isUser(post.userId)">
-          <button mat-button class="btn-45" (click)="onDelete(post.id)">DELETE</button>
+          <button mat-button class="btn-45" (click)="onDelete(post.id)" color="warn">DELETE</button>
         </mat-grid-title>
         <!-- Like -->
         <mat-grid-title [colspan]="colspan">
           <app-twat-icon-btn [liked] = "isLikedByUser(post)" (clickEvent) = "likePost(post, $event)" >l</app-twat-icon-btn>
         </mat-grid-title>
+        <!-- Number of Likes -->
+        <mat-grid-list>
+          <span class="isLikedByUser(post)?colored:number">{{ getNumLikes(post) }}</span>
+        </mat-grid-list>
       </mat-grid-list>
     </mat-card-actions>
 

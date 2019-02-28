@@ -18,8 +18,8 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit{
-  userId: String;
+export class ProfileComponent implements OnInit {
+  userId: string;
   posts: Post[] = [];
   private postsSub: Subscription;
 

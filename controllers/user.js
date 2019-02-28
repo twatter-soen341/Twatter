@@ -70,6 +70,8 @@ exports.getUserById = async (req, res, next) => {
 //   "user_id":"5c6b711a94db5f4bed34bc0f",
 // 	"wantToFollow": "john"
 // }
+
+/* Follow a user A by adding user A from following array of current user and by adding current user to follower array of user A*/
 exports.followUser = (req, res, next) => {
 
   User.findOne({ firstName: req.body.wantToFollow }, (err, user) => {
@@ -109,7 +111,7 @@ exports.followUser = (req, res, next) => {
 // 	"wantToUnfollow": "john"
 // }
 
-
+/* Unfollow a user A by removing user A from following array and by removing current user from follower array of user A*/
 exports.unfollowUser = (req, res, next) => {
 
   User.findOne({ firstName: req.body.wantToUnfollow }, (err, user) => {
@@ -143,6 +145,7 @@ exports.unfollowUser = (req, res, next) => {
   });
 }
 
+/* Get followers */
 exports.getFollowers = (req, res, next) => {
   User.findById(req.body.user_id, (err, user) => {
     if(err){
@@ -157,6 +160,7 @@ exports.getFollowers = (req, res, next) => {
   });
 }
 
+/* Get users that id is following */
 exports.getFollowing = (req, res, next) => {
   User.findById(req.body.user_id, (err, user) => {
     if(err){

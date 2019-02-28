@@ -1,3 +1,5 @@
+@import '../../twatter-default-style.scss';
+
 main {
   width: 80%;
   margin: auto;
@@ -62,7 +64,8 @@ margin-left: 15px;
 
 
 /deep/ .mat-menu-content {
-  background-color: rgb(192, 24, 91);
+  // background-color: rgb(192, 24, 91);
+  background-color: mat-color($accent);
   text-align: center;
 }
 

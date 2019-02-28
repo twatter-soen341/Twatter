@@ -1,7 +1,7 @@
 <div *ngIf="posts.length > 0">
   <mat-card *ngFor="let post of posts">
     <mat-card-header>
-      <div mat-card-avatar class="card-header-image" routerLink="/profile"></div>
+      <div mat-card-avatar class="card-header-image" (click)="goToProfile(post.userId)"></div>
       <mat-card-title>{{ post.firstName }} {{ post.lastName }}</mat-card-title>
       <mat-card-subtitle>{{ post.timeStamp }}</mat-card-subtitle>
     </mat-card-header>

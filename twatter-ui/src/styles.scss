@@ -3,8 +3,18 @@
 @include mat-core();
 @include angular-material-theme($twatter-theme);
 
-html, body {
-   height: 100%;
-   background-color: rgb(48, 48, 48);
-  }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: white;}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: rgb(48, 48, 48);
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  color: white;
+}
+
+.mat-tab-body-wrapper {
+  flex-grow: 1;
+}

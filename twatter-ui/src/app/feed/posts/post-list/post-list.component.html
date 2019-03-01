@@ -1,5 +1,5 @@
-<div *ngIf="posts.length > 0">
-  <mat-card *ngFor="let post of posts">
+<div *ngIf="posts && posts.length > 0">
+  <mat-card *ngFor="let post of (posts | slice: 0:limit); let i = index">
     <mat-card-header>
       <div mat-card-avatar class="card-header-image" (click)="goToProfile(post.userId)"></div>
       <mat-card-title>{{ post.firstName }} {{ post.lastName }}</mat-card-title>
@@ -14,23 +14,23 @@
 
     <mat-card-actions align="end">
       <app-twat-icon-btn [likes]="post.likedBy" [liked] = "isLikedByUser(post)" (clickEvent) = "likePost(post, $event)" >l</app-twat-icon-btn>
-      <button mat-icon-button><mat-icon color="accent">share</mat-icon></button>
-      <div *ngIf="isUser(post.userId)">
-        <button mat-icon-button (click)="onEdit(post.id)"><mat-icon color="accent">edit</mat-icon></button>
-        <button mat-icon-button (click)="onDelete(post.id)"><mat-icon color="primary">delete</mat-icon></button>
+      <div *ngIf="!simplified">
+        <button mat-icon-button><mat-icon color="accent">share</mat-icon></button>
+        <div *ngIf="isUser(post.userId)">
+          <button mat-icon-button (click)="onEdit(post.id)"><mat-icon color="accent">edit</mat-icon></button>
+          <button mat-icon-button (click)="onDelete(post.id)"><mat-icon color="primary">delete</mat-icon></button>
+        </div>
       </div>
     </mat-card-actions>
-  <mat-card-content>
+  <mat-card-content *ngIf="!simplified">
     <mat-divider></mat-divider>
     <app-comment [comments]="post.comments.reverse()" [post] ="post" (deleted)="deleteComment(post, $event)" (commented)="commentPost(post, $event)" (edited)="editComment(post, $event)"></app-comment>
   </mat-card-content>
   </mat-card>
 </div>
 
-<div *ngIf="posts.length == 0" style="margin-top: 7rem;">
+<div *ngIf="posts.length == 0 && !simplified" style="margin-top: 7rem;">
   <p class="info-text mat-display-1">
     No Twats added yet...
   </p>
 </div>
-
-

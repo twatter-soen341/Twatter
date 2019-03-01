@@ -8,7 +8,7 @@ exports.getUserByName = async (req, res, next) => {
     if (user.length > 0) {
       res.status(200).json(user);
     } else {
-      res.status(200).json({
+      res.status(404).json({
         message: 'User not found.'
       });
     }

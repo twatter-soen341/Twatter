@@ -35,18 +35,18 @@ import {
   MatSnackBarModule,
   MatAutocompleteModule,
   MatMenuModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatTooltipModule
 } from '@angular/material';
 // ------Search Components------
 import { DragScrollModule } from 'ngx-drag-scroll';
+import { SearchBarComponent } from './search/search-bar/search-bar.component';
+import { SearchResultsComponent } from './search/search-results/search-results.component';
 import { SettingsComponent } from './settings/settings.component';
-import {SearchBarComponent} from "./search/search-bar/search-bar.component";
 // ----Side Bar Settings in Setting Bar
 import { SidebarSettingsComponent } from './settings/sidebar-settings/sidebar-settings.component';
 import { MatTabsModule } from '@angular/material';
 import { CommentComponent } from './feed/posts/comment/comment.component';
-import {SearchResultsComponent} from "./search/search-results/search-results.component";
-
 
 
 
@@ -94,7 +94,8 @@ import {SearchResultsComponent} from "./search/search-results/search-results.com
     MatBadgeModule,
     MatMenuModule,
     DragScrollModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTooltipModule
 
   ],
   providers: [

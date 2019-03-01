@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/auth.model';
 import { Post } from 'src/app/models/post.model';
 import { UserService } from 'src/app/services/user.service';
 import { PostsService } from 'src/app/services/post.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search-results',
@@ -12,12 +13,17 @@ import { PostsService } from 'src/app/services/post.service';
 })
 export class SearchResultsComponent implements OnInit {
   private searchValue: string[];
-  users: { user: User; error: string; firstName: string, lastName: string }[];
-  posts: { post: Post; error: string}[];
+  users: User[];
   userError = false;
   postError = false;
+  posts: Post[] = [];
+  private postsSub: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private postsService: PostsService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService,
+    private postsService: PostsService
+  ) {}
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -35,6 +41,13 @@ export class SearchResultsComponent implements OnInit {
         }
       });
       /* TODO Posts */
+      this.postsService.searchPost(this.searchValue[0]).subscribe(
+        posts => {
+          this.posts = posts;
+        },
+        error => {
+          this.posts = null;
+      });
       /* TODO Comments */
     });
   }

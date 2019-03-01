@@ -14,8 +14,9 @@
   </mat-card>
 </drag-scroll>
 
-
-<h1 *ngIf="!postError">TWATS</h1>
-
+<div *ngIf="!postError">
+  <h1>TWATS</h1>
+  <app-post-list [posts]="posts" style="padding-bottom:25px" [simplified]="true"></app-post-list>
+</div>
 <h1 *ngIf="userError && postError" class="center"> Uh Oh, there is no match for your search!</h1>
 

@@ -23,6 +23,7 @@ import {Router} from "@angular/router";
 })
 export class PostListComponent implements OnInit, OnDestroy {
   @Input() posts: Post[] = [];
+  @Input() simplified = false;
   @Output() liked;
   private postsSub: Subscription;
   userId: string;

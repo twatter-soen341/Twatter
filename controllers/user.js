@@ -74,9 +74,9 @@ exports.getUserById = async (req, res, next) => {
 /* Follow a user A by adding user A from following array of current user and by adding current user to follower array of user A*/
 exports.followUser = (req, res, next) => {
 
-  User.findOne({ firstName: req.body.wantToFollow }, (err, user) => {
+  User.findOne({ _id : req.body.wantToFollow}, (err, user) => {
 
-    var wantToFollow = user._id
+    // var wantToFollow = user._id;
 
     user.followers.addToSet(req.body.user_id); // todo: get it from params and not from body
 
@@ -87,7 +87,7 @@ exports.followUser = (req, res, next) => {
 
         User.findById(req.body.user_id, (err, user) => {
 
-          user.following.addToSet(wantToFollow);
+          user.following.addToSet(req.body.wantToFollow);
 
           user.save((err) => {
             if (err) {
@@ -114,7 +114,7 @@ exports.followUser = (req, res, next) => {
 /* Unfollow a user A by removing user A from following array and by removing current user from follower array of user A*/
 exports.unfollowUser = (req, res, next) => {
 
-  User.findOne({ firstName: req.body.wantToUnfollow }, (err, user) => {
+  User.findOne({ userId: req.body.wantToUnfollow }, (err, user) => {
 
     var wantToUnfollow = user._id
 

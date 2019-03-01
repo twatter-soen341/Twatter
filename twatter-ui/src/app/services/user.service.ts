@@ -32,6 +32,14 @@ export class UserService {
     return this.http.post<any>(`${BASE_URL}/users`, body);
   }
 
+  updateFollowers(idToFollow:string){
+    const body = {
+      user_id:this.authService.getUserId(),
+      wantToFollow: idToFollow
+    }
+    return this.http.put(`${BASE_URL}/follow-user`, body);
+  }
+
   getUserWithId(id: string) {
     return this.http.get<any>(`${BASE_URL}/search/${id}`);
   }

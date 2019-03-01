@@ -1,3 +1,5 @@
+@import '../../../twatter-default-style.scss';
+
 ::ng-deep mat-icon {
   vertical-align: middle;
   align-content: center;
@@ -5,6 +7,20 @@
   height:25px !important;
   width:25px !important;
   font-size:25px !important;
+}
+
+.side-by-side{
+  display: flex;
+  flex-direction: row;
+}
+
+::ng-deep .mat-tooltip  {
+  white-space: pre-line    !important;
+}
+
+.mat-button{
+  padding-left:0;
+  padding-right:0;
 }
 
 @keyframes appear {
@@ -41,4 +57,17 @@
   width:35px !important;
   font-size:35px !important;
   animation: 1.5s fade-in;
+}
+
+.defaultLikes {
+  cursor: default;
+  background-color: rgba(0, 0, 0, 0.432);
+  color: white;
+  font-weight: normal;
+}
+
+.coloredLikes {
+  cursor: default;
+  background-color: mat-color($accent);
+  color: black;
 }

@@ -28,12 +28,16 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
   @ViewChild('filter') filter: ElementRef;
   keyUpSub: Subscription;
   users: { user: User; error: string };
-  posts: { post: Post; error: string};
+  posts: { post: Post; error: string };
   userError = false;
   postError = false;
   value: string;
 
-  constructor(private router: Router, private userService: UserService, private postService: PostsService) {}
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private postService: PostsService
+  ) {}
 
   /* debounceTime and distinctUnilChange
    * used to limit the number of api queries
@@ -53,26 +57,33 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
           this.users = null;
           this.userError = true;
         } else {
-          this.users = data;
+          this.users = data.slice(0, 4);
         }
       });
     /* Searching Posts */
     this.keyUpSub = fromEvent(this.filter.nativeElement, 'keyup')
-    .pipe(
-      debounceTime(200),
-      map((event: Event) => (<HTMLInputElement>event.target).value),
-      distinctUntilChanged(),
-      switchMap(value => this.postService.searchPost(value))
-    )
-    .subscribe(data => {
-      this.postError = false;
-      if (data.message) {
-        this.posts = null;
-        this.postError = true;
-      } else {
-        this.posts = data;
-      }
-    });
+      .pipe(
+        debounceTime(200),
+        map((event: Event) => (<HTMLInputElement>event.target).value),
+        distinctUntilChanged(),
+        switchMap(value => this.postService.searchPost(value))
+      )
+      .subscribe(
+        data => {
+          console.log(data);
+          this.postError = false;
+          if (data.message) {
+            this.posts = null;
+            this.postError = true;
+          } else {
+            this.posts = data;
+          }
+        },
+        error => {
+          this.posts = null;
+          this.postError = true;
+        }
+      );
   }
 
   ngOnDestroy() {

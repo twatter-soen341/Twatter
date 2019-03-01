@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+
+$primary: mat-palette($mat-red, 900);
+$accent : mat-palette($mat-red, 400);
+$warn   : mat-palette($mat-deep-orange, 800);
+
+$twatter-theme: mat-dark-theme(
+    $primary,
+    $accent,
+    $warn,
+);
+
+// Color Palette:
+// https://www.materialpalette.com/colors

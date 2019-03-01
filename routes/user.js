@@ -33,13 +33,13 @@ router.put('/unfollow-user', userController.unfollowUser); // TODO: add auth
  * This route should be used to get the array of followers
  * @throws exception when ...
  */
-router.get('/get-followers/:id', userController.getFollowers);
+router.get('/followers/:id', userController.getFollowers);
 
 /**
  * This route should be used to get the array of following
  * @throws exception when ...
  */
-router.get('get-following/:id', userController.getFollowing);
+router.get('/following/:id', userController.getFollowing);
 
 /**
  * This route should be used to find a group of users by id, a group of user id is sent and a group of users object is sent back

@@ -1,5 +1,5 @@
 <div *ngIf="posts && posts.length > 0">
-  <mat-card *ngFor="let post of posts">
+  <mat-card *ngFor="let post of (posts | slice: 0:limit); let i = index">
     <mat-card-header>
       <div mat-card-avatar class="card-header-image" (click)="goToProfile(post.userId)"></div>
       <mat-card-title>{{ post.firstName }} {{ post.lastName }}</mat-card-title>
@@ -19,6 +19,7 @@
         <div *ngIf="isUser(post.userId)">
           <button mat-icon-button (click)="onEdit(post.id)"><mat-icon color="accent">edit</mat-icon></button>
           <button mat-icon-button (click)="onDelete(post.id)"><mat-icon color="primary">delete</mat-icon></button>
+        </div>
       </div>
     </mat-card-actions>
   <mat-card-content *ngIf="!simplified">
@@ -33,5 +34,3 @@
     No Twats added yet...
   </p>
 </div>
-
-

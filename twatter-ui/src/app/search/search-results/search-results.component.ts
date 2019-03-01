@@ -17,7 +17,6 @@ export class SearchResultsComponent implements OnInit {
   userError = false;
   postError = false;
   posts: Post[] = [];
-  private postsSub: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -31,23 +30,28 @@ export class SearchResultsComponent implements OnInit {
       this.searchValue = params.search.split(' ');
 
       /* Users */
-      this.userService.searchUser(this.searchValue[0]).subscribe(result => {
-        if (result.message) {
+      this.userService.searchUser(this.searchValue[0]).subscribe(
+        users => {
+          console.log(users);
+          this.users = users;
+          this.userError = false;
+        },
+        error => {
           this.users = null;
           this.userError = true;
-        } else {
-          this.users = result;
-          this.userError = false;
         }
-      });
+      );
       /* TODO Posts */
       this.postsService.searchPost(this.searchValue[0]).subscribe(
         posts => {
           this.posts = posts;
+          this.postError = false;
         },
         error => {
           this.posts = null;
-      });
+          this.postError = true;
+        }
+      );
       /* TODO Comments */
     });
   }

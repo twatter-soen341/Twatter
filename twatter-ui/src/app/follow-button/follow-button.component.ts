@@ -17,9 +17,13 @@ export class FollowButtonComponent implements OnInit {
   ngOnInit() {
   }
 
+  alreadyFollowing(){
+    return false; //TODO: check if current user has his.router.url.split('/profile/')[1]; as id inside his following
+  }
+
   toggleFollow() {
     this.userToFollow = this.router.url.split('/profile/')[1];
-    this.userService.updateFollowers(this.userToFollow);
+    this.userService.followUser(this.userToFollow);
   }
 
 }

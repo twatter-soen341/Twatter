@@ -72,37 +72,38 @@ exports.getUserById = async (req, res, next) => {
 // }
 
 /* Follow a user A by adding user A from following array of current user and by adding current user to follower array of user A*/
-exports.followUser = (req, res, next) => {
+exports.followUser = async(req, res, next) => {
+  const userToFollow = await User.findById(req.body.wantToFollow); //User.findOne({ _id : req.body.wantToFollow}, (err, user) => {
 
-  User.findOne({ _id : req.body.wantToFollow}, (err, user) => {
-
-    // var wantToFollow = user._id;
-
-    user.followers.addToSet(req.body.user_id); // todo: get it from params and not from body
-
-    user.save((err) => {
-      if (err) {
-        console.log(err)
-      } else {
-
-        User.findById(req.body.user_id, (err, user) => {
-
-          user.following.addToSet(req.body.wantToFollow);
-
-          user.save((err) => {
+    if (userToFollow){
+        userToFollow.followers.addToSet(req.body.user_id); // todo: get it from params and not from body
+        userToFollow.save((err) => {
             if (err) {
-              console.log(err)
+                console.log(err)
             } else {
-              res.status(200).json({
-                message: 'ressource updated successfully'
-              })
-            }
-          });
 
+                User.findById(req.body.user_id, (err, user) => {
+                    console.log("found the user");
+                    user.following.addToSet(req.body.wantToFollow);
+
+                    user.save((err) => {
+                        if (err) {
+                            console.log(err)
+                        } else {
+                            res.status(200).json({
+                                message: 'ressource updated successfully'
+                            })
+                        }
+                    });
+
+                });
+            }
         });
-      }
-    });
-  });
+    }
+    else {
+    }
+
+
 }
 
 //TODO: need to fetch the user ID from the authService.getCurrentUserId
@@ -112,37 +113,35 @@ exports.followUser = (req, res, next) => {
 // }
 
 /* Unfollow a user A by removing user A from following array and by removing current user from follower array of user A*/
-exports.unfollowUser = (req, res, next) => {
+exports.unfollowUser = async(req, res, next) => {
 
-  User.findOne({ userId: req.body.wantToUnfollow }, (err, user) => {
+      const userToUnfollow = await User.findById(req.body.wantToUnfollow);
+      if (userToUnfollow) {
+          userToUnfollow.followers.pull(req.body.user_id);
 
-    var wantToUnfollow = user._id
+          userToUnfollow.save((err) => {
+              if (err) {
+                  console.log(err)
+              } else {
 
-    user.followers.pull(req.body.user_id); // todo: get it from params and not from body
+                  User.findById(req.body.user_id, (err, user) => {
 
-    user.save((err) => {
-      if (err) {
-        console.log(err)
-      } else {
+                      user.following.pull(req.body.wantToUnfollow);
 
-        User.findById(req.body.user_id, (err, user) => {
+                      user.save((err) => {
+                          if (err) {
+                              console.log(err)
+                          } else {
+                              res.status(200).json({
+                                  message: 'ressource updated successfully'
+                              })
+                          }
+                      });
 
-          user.following.pull(wantToUnfollow);
-
-          user.save((err) => {
-            if (err) {
-              console.log(err)
-            } else {
-              res.status(200).json({
-                message: 'ressource updated successfully'
-              })
-            }
+                  });
+              }
           });
-
-        });
       }
-    });
-  });
 }
 
 /* Get followers */

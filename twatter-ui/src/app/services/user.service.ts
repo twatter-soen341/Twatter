@@ -32,15 +32,16 @@ export class UserService {
     return this.http.post<any>(`${BASE_URL}/users`, body);
   }
 
-  followUser(idToFollow:string){
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+  followUser(idToFollow: string)
+  {
+    // const headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
     const body = {
       user_id: this.authService.getUserId(),
       wantToFollow: idToFollow,
     };
     return this.http
-      .put(`${BASE_URL}/follow-user`, body, {headers: headers})
+      .put(`${BASE_URL}/follow-user`, body)
       .subscribe(res => console.log(res));
   }
 

@@ -3,6 +3,7 @@
     <mat-card-header>
       <div mat-card-avatar class="card-header-image" (click)="goToProfile(post.userId)"></div>
       <mat-card-title>{{ post.firstName }} {{ post.lastName }}</mat-card-title>
+      <!-- <app-follow-button [otherUser]="post.userId"></app-follow-button> -->
       <mat-card-subtitle>{{ post.timeStamp }}</mat-card-subtitle>
     </mat-card-header>
 

@@ -24,7 +24,12 @@ export class FollowButtonComponent implements OnInit {
 
   isFollowing(){
     this.followingUser = this.router.url.split('/profile/')[1];
-    return this.arrayOfFollowing.includes(this.followingUser);
+    if(this.arrayOfFollowing){
+      return this.arrayOfFollowing.includes(this.followingUser);
+    }else{
+      return false;
+    }
+
   }
 
   toggleFollow() {

@@ -49,7 +49,7 @@ export class UserService {
   {
     const body = {
       user_id: this.authService.getUserId(),
-      wantToFollow: idToUnfollow,
+      wantToUnfollow: idToUnfollow,
     };
     return this.http
       .put(`${BASE_URL}/unfollow-user`, body)

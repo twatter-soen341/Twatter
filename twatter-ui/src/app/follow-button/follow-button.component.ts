@@ -8,22 +8,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./follow-button.component.scss']
 })
 export class FollowButtonComponent implements OnInit {
-  private userToFollow;
+  private userFollow;
+  private followingUser;
+  private arrayOfFollowing : Array<String>;
 
   constructor(private userService:UserService, private router: Router) { 
     
   }
 
   ngOnInit() {
+    this.userService.getCurrentUser().subscribe(user => {
+      this.arrayOfFollowing = user.following;
+    });
   }
 
-  alreadyFollowing(){
-    return false; //TODO: check if current user has his.router.url.split('/profile/')[1]; as id inside his following
+  isFollowing(){
+    this.followingUser = this.router.url.split('/profile/')[1];
+    return this.arrayOfFollowing.includes(this.followingUser);
   }
 
   toggleFollow() {
-    this.userToFollow = this.router.url.split('/profile/')[1];
-    this.userService.followUser(this.userToFollow);
+    this.userFollow = this.router.url.split('/profile/')[1];
+    if(this.isFollowing()){
+      this.userService.unfollowUser(this.userFollow);
+    }else{
+      this.userService.followUser(this.userFollow);
+    }
   }
 
 }

@@ -45,6 +45,24 @@ export class UserService {
       .subscribe(res => console.log(res));
   }
 
+  unfollowUser(idToUnfollow: string)
+  {
+    const body = {
+      user_id: this.authService.getUserId(),
+      wantToFollow: idToUnfollow,
+    };
+    return this.http
+      .put(`${BASE_URL}/unfollow-user`, body)
+      .subscribe(res => console.log(res));
+  }
+
+  getFollowing()
+  {
+    const userId = this.authService.getUserId();
+    return this.http.get(`${BASE_URL}/following/${userId}`);
+      // .subscribe(res => console.log(res));
+  }
+
   getUserWithId(id: string) {
     return this.http.get<any>(`${BASE_URL}/search/${id}`);
   }

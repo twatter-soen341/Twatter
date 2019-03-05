@@ -1,5 +1,1 @@
-<!-- <button">{{isFollowing()? 'Unfollow':'Follow'}}</button> -->
-<div style="text-align: center">
-    <!-- *ngIf="this.authService.getUserId() != this.userId"  -->
-    <button mat-flat-button *ngIf="this.currentUser != this.otherUser" color="primary" class="follow" (click)="toggleFollow()">{{this.followTxt}}</button>
-</div>
+<button mat-button color="accent" (click)="toggleFollow()">{{ btnText }}</button>

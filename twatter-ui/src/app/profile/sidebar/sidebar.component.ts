@@ -33,4 +33,12 @@ loggedUser: string;
     });
   }
 
+  /**
+   * Navigates to a page where user can see most recent posts
+   * of user's followers.
+   */
+  seeFollowersPost() {
+    this.router.navigate([`/followers/${this.loggedUser}`]);
+  }
+
 }

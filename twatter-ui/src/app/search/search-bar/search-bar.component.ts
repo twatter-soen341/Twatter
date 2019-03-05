@@ -70,7 +70,6 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
       )
       .subscribe(
         data => {
-          console.log(data);
           this.postError = false;
           if (data.message) {
             this.posts = null;

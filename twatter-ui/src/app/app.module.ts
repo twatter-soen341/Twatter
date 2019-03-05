@@ -47,6 +47,9 @@ import { SettingsComponent } from './settings/settings.component';
 import { SidebarSettingsComponent } from './settings/sidebar-settings/sidebar-settings.component';
 import { MatTabsModule } from '@angular/material';
 import { CommentComponent } from './feed/posts/comment/comment.component';
+// ------Follow Button------
+import { FollowButtonComponent } from './follow-button/follow-button.component';
+
 
 
 
@@ -70,7 +73,8 @@ import { CommentComponent } from './feed/posts/comment/comment.component';
     SidebarSettingsComponent,
     SearchBarComponent,
     SearchResultsComponent,
-    CommentComponent
+    CommentComponent,
+    FollowButtonComponent
  ],
   imports: [
     HttpClientModule,

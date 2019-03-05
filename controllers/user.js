@@ -14,8 +14,8 @@ exports.getUserByName = async (req, res, next) => {
     }
   } catch (error) {
     res.status(500).json({
-        error: error,
-        message: 'Could not get user.'
+      error: error,
+      message: 'Could not get user.'
     });
   }
 };
@@ -56,9 +56,121 @@ exports.getUserById = async (req, res, next) => {
       });
     }
   } catch (error) {
-      res.status(500).json({
-          error: error,
-          message: 'Could not get user.'
-      });
+    res.status(500).json({
+      error: error,
+      message: 'Could not get user.'
+    });
   }
 };
+
+
+//TODO: need to fetch the user ID from the authService.getCurrentUserId
+//Current body: 
+// {
+//   "user_id":"5c6b711a94db5f4bed34bc0f",
+// 	"wantToFollow": "john"
+// }
+
+/* Follow a user A by adding user A from following array of current user and by adding current user to follower array of user A*/
+exports.followUser = (req, res, next) => {
+
+  User.findOne({ _id : req.body.wantToFollow}, (err, user) => {
+
+    // var wantToFollow = user._id;
+
+    user.followers.addToSet(req.body.user_id); // todo: get it from params and not from body
+
+    user.save((err) => {
+      if (err) {
+        console.log(err)
+      } else {
+
+        User.findById(req.body.user_id, (err, user) => {
+
+          user.following.addToSet(req.body.wantToFollow);
+
+          user.save((err) => {
+            if (err) {
+              console.log(err)
+            } else {
+              res.status(200).json({
+                message: 'ressource updated successfully'
+              })
+            }
+          });
+
+        });
+      }
+    });
+  });
+}
+
+//TODO: need to fetch the user ID from the authService.getCurrentUserId
+// {
+//   "user_id":"5c6b711a94db5f4bed34bc0f",
+// 	"wantToUnfollow": "john"
+// }
+
+/* Unfollow a user A by removing user A from following array and by removing current user from follower array of user A*/
+exports.unfollowUser = (req, res, next) => {
+
+  User.findOne({ userId: req.body.wantToUnfollow }, (err, user) => {
+
+    var wantToUnfollow = user._id
+
+    user.followers.pull(req.body.user_id); // todo: get it from params and not from body
+
+    user.save((err) => {
+      if (err) {
+        console.log(err)
+      } else {
+
+        User.findById(req.body.user_id, (err, user) => {
+
+          user.following.pull(wantToUnfollow);
+
+          user.save((err) => {
+            if (err) {
+              console.log(err)
+            } else {
+              res.status(200).json({
+                message: 'ressource updated successfully'
+              })
+            }
+          });
+
+        });
+      }
+    });
+  });
+}
+
+/* Get followers */
+exports.getFollowers = (req, res, next) => {
+  User.findById(req.body.user_id, (err, user) => {
+    if(err){
+      console.log(err);
+    }else{
+      console.log(user.followers);
+      res.status(200).json({
+      message: 'ressource updated successfully',
+      followers: user.followers
+    })
+    }
+  });
+}
+
+/* Get users that id is following */
+exports.getFollowing = (req, res, next) => {
+  User.findById(req.body.user_id, (err, user) => {
+    if(err){
+      console.log(err);
+    }else{
+      console.log(user.following);
+      res.status(200).json({
+      message: 'ressource updated successfully',
+      following: user.following
+    })
+    }
+  });
+}

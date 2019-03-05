@@ -159,24 +159,10 @@ exports.getFollowers = (req, res, next) => {
   });
 }
 
-/* Get users that id is following */
-// exports.getFollowing = (req, res, next) => {
-//   User.findById(req.body.user_id, (err, user) => {
-//     if(err){
-//       console.log(err);
-//     }else{
-//       console.log(user.following);
-//       res.status(200).json({
-//       message: 'ressource updated successfully',
-//       following: user.following
-//     })
-//     }
-//   });
-// }
-
+/* Get following */
 exports.getFollowing = async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.params.id).populate('following');
     if (user) {
       res.status(200).json({following : user.following});
     } else {

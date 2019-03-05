@@ -59,8 +59,7 @@ export class UserService {
   getFollowing()
   {
     const userId = this.authService.getUserId();
-    return this.http.get(`${BASE_URL}/following/${userId}`);
-      // .subscribe(res => console.log(res));
+    return this.http.get(`${BASE_URL}/following/${userId}`).subscribe(res => console.log(res));
   }
 
   getUserWithId(id: string) {

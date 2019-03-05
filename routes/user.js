@@ -21,13 +21,13 @@ router.post('/search', passport.authenticate('jwt', { session: false }), userCon
  * This route should be used to follow a user
  * @throws exception when ...
  */
-router.put('/follow-user', userController.followUser); // TODO: add auth 
+router.put('/follow-user', passport.authenticate('jwt', { session: false }), userController.followUser); // TODO: add auth
 
 /**
  * This route should be used to unfollow a user
  * @throws exception when ...
  */
-router.put('/unfollow-user', userController.unfollowUser); // TODO: add auth
+router.put('/unfollow-user/:id', userController.unfollowUser); // TODO: add auth
 
 /**
  * This route should be used to get the array of followers

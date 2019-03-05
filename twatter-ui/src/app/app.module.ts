@@ -49,6 +49,7 @@ import { MatTabsModule } from '@angular/material';
 import { CommentComponent } from './feed/posts/comment/comment.component';
 // ------Follow Button------
 import { FollowButtonComponent } from './follow-button/follow-button.component';
+import { FollowingPostComponent } from './feed/following-post/following-post.component';
 
 
 
@@ -74,7 +75,8 @@ import { FollowButtonComponent } from './follow-button/follow-button.component';
     SearchBarComponent,
     SearchResultsComponent,
     CommentComponent,
-    FollowButtonComponent
+    FollowButtonComponent,
+    FollowingPostComponent,
  ],
   imports: [
     HttpClientModule,

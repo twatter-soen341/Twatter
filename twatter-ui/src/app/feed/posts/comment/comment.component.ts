@@ -5,7 +5,6 @@ import {AuthService} from '../../../services/auth.service';
 import {User} from "../../../models/auth.model";
 import {UserService} from "../../../services/user.service";
 import {Post} from "../../../models/post.model";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-comment',
@@ -35,7 +34,7 @@ export class CommentComponent implements OnInit {
 
   commentNameMap = new Map<string, string>();
 
-  constructor(private authService: AuthService, private userService: UserService, private router: Router) {
+  constructor(private authService: AuthService, private userService: UserService) {
 
   }
 
@@ -100,10 +99,5 @@ export class CommentComponent implements OnInit {
 
     this.commentEmitter.emit(comment);
     this.commentControl.reset();
-  }
-
-
-  goToProfile(posterId: string) {
-    this.router.navigate(['/profile', posterId]);
   }
 }

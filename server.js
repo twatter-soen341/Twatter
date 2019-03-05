@@ -46,3 +46,6 @@ app.use('/api/twat', twatRoute);
 app.listen(8080, () => {
     console.log("connected on port 8080")
 });
+
+
+module.exports = app

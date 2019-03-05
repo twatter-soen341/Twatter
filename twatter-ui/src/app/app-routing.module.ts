@@ -10,7 +10,7 @@ import {SearchResultsComponent} from './search/search-results/search-results.com
 import {AuthGuard} from './guards/auth.guard';
 import {LoggedInGuard} from './guards/loggedIn.guard';
 import {SettingsComponent} from './settings/settings.component';
-import { FollowingPost } from './feed/following-post/following-post.component';
+import { FollowingPostComponent } from './feed/following-post/following-post.component';
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent, canActivate: [LoggedInGuard]},
@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'posts', component: TwatlineComponent, canActivate: [AuthGuard]},
   {path: 'search/:search', component: SearchResultsComponent, canActivate: [AuthGuard]},
   {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
-  {path: 'followers/:id', component: FollowingPost, canActivate: [AuthGuard]}
+  {path: 'followers/:id', component: FollowingPostComponent, canActivate: [AuthGuard]}
 
 ];
 

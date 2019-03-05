@@ -1,9 +1,8 @@
 <div id="sidebar">
 
   <img class="profile-picture" src="https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg">
-  <app-follow-button [otherUser]="this.userId"></app-follow-button>
   <mat-card class="user-info">
-    <h1 class="name">{{user.firstName}} {{user.lastName}} </h1>
+    <h1 class="name">{{user.firstName}} {{user.lastName}} <app-follow-button *ngIf="userId !== loggedUser"></app-follow-button></h1>
     <p>
       Twat Age
       <br>

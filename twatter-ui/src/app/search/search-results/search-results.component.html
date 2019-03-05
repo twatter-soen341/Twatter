@@ -1,7 +1,7 @@
 <div class="container">
   <div id="content">
     <div id="main-content">
-      <mat-tab-group>
+      <mat-tab-group #tabGroup>
         <mat-tab label="ALL">
           <div class="flex-container">
             <div class="action-container">
@@ -38,9 +38,9 @@
                   [simplified]="true"
                   [limit]="2"
                 ></app-post-list>
-                <p *ngIf="posts.length > 2" class="link-container">
-                  <a>go to twats tab to view more</a>
-                </p>
+                <div *ngIf="posts.length > 2" class="link-container">
+                    <button mat-button (click)="tabGroup.selectedIndex = 2">See more</button>
+                </div>
               </div>
               <h1 *ngIf="userError && postError" class="center">
                 Uh Oh, there is no match for your search!

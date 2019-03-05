@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-follow-button',
@@ -8,36 +8,41 @@ import { Router } from '@angular/router';
   styleUrls: ['./follow-button.component.scss']
 })
 export class FollowButtonComponent implements OnInit {
-  private userFollow;
-  private followingUser;
-  private arrayOfFollowing : Array<String>;
 
-  constructor(private userService:UserService, private router: Router) { 
-    
-  }
+  @Input()
+  private otherUser;
+  private currentUser;
+  followTxt : string;
+
+  constructor(private userService:UserService, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      if(params['id'])
+        this.otherUser = params['id'];
+    });
+
     this.userService.getCurrentUser().subscribe(user => {
-      this.arrayOfFollowing = user.following;
+      this.currentUser = user._id;
+      this.followTxt = user.following.includes(this.otherUser)? 'Unfollow': 'Follow';
     });
   }
 
-  isFollowing(){
-    this.followingUser = this.router.url.split('/profile/')[1];
-    if(this.arrayOfFollowing){
-      return this.arrayOfFollowing.includes(this.followingUser);
+  isFollowing(array){
+    if(array){
+      return array.includes(this.otherUser);
     }else{
       return false;
     }
-
   }
 
   toggleFollow() {
-    this.userFollow = this.router.url.split('/profile/')[1];
-    if(this.isFollowing()){
-      this.userService.unfollowUser(this.userFollow);
+    if(this.followTxt == 'Unfollow'){
+      this.userService.unfollowUser(this.otherUser);
+      this.followTxt =  'Follow';
     }else{
-      this.userService.followUser(this.userFollow);
+      this.userService.followUser(this.otherUser);
+      this.followTxt = 'Unfollow';
     }
   }
 

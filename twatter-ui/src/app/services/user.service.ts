@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from 'src/environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from './auth.service';
+import { User } from '../models/auth.model';
 
 const BASE_URL = `${environment.baseUrl}/user`;
 
@@ -45,21 +46,20 @@ export class UserService {
       .subscribe(res => console.log(res));
   }
 
-  unfollowUser(idToUnfollow: string)
-  {
+  unfollowUser(id: string) {
     const body = {
       user_id: this.authService.getUserId(),
-      wantToUnfollow: idToUnfollow,
+      wantToUnFollow: id,
     };
-    return this.http
-      .put(`${BASE_URL}/unfollow-user`, body)
-      .subscribe(res => console.log(res));
+    return this.http.put(`${BASE_URL}/unfollow-user/${id}`, body).subscribe(res => console.log(res));
   }
 
-  getFollowing()
-  {
-    const userId = this.authService.getUserId();
-    return this.http.get(`${BASE_URL}/following/${userId}`).subscribe(res => console.log(res));
+  getFollowers(id: string) {
+    return this.http.get<{message: string, followers: User[]}>(`${BASE_URL}/followers/${id}`);
+  }
+
+  getFollowing(id: string) {
+    return this.http.get<any>(`${BASE_URL}/following/${id}`);
   }
 
   getUserWithId(id: string) {

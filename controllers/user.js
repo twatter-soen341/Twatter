@@ -115,7 +115,7 @@ exports.followUser = async(req, res, next) => {
 /* Unfollow a user A by removing user A from following array and by removing current user from follower array of user A*/
 exports.unfollowUser = async(req, res, next) => {
 
-      const userToUnfollow = await User.findById(req.body.wantToUnfollow);
+      const userToUnfollow = await User.findById(req.params.id);
       if (userToUnfollow) {
           userToUnfollow.followers.pull(req.body.user_id);
 
@@ -126,14 +126,15 @@ exports.unfollowUser = async(req, res, next) => {
 
                   User.findById(req.body.user_id, (err, user) => {
 
-                      user.following.pull(req.body.wantToUnfollow);
+                      user.following.pull(req.params.id);
 
                       user.save((err) => {
                           if (err) {
                               console.log(err)
                           } else {
                               res.status(200).json({
-                                  message: 'ressource updated successfully'
+                                  message: 'Unfollowed successfully',
+                                  user: user
                               })
                           }
                       });
@@ -145,35 +146,47 @@ exports.unfollowUser = async(req, res, next) => {
 }
 
 /* Get followers */
-exports.getFollowers = (req, res, next) => {
-  User.findById(req.body.user_id, (err, user) => {
-    if(err){
-      console.log(err);
-    }else{
-      console.log(user.followers);
-      res.status(200).json({
-      message: 'ressource updated successfully',
-      followers: user.followers
-    })
-    }
-  });
-}
-
-/* Get following */
-exports.getFollowing = async (req, res, next) => {
+exports.getFollowers = async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id).populate('following');
-    if (user) {
-      res.status(200).json({following : user.following});
-    } else {
-      res.status(404).json({
-        message: 'User not found.'
-      });
-    }
+    const user = await User.findById(req.params.id).populate('followers'); 
+    console.log(user.followers);
+    // => {
+      // if(err){
+      //   console.log(err);
+      // }else{
+        // console.log(user.followers);
+      if (user) {
+        res.status(200).json({
+          message: 'Found followers',
+          followers: user.followers
+        });
+      } else {
+        res.status(404).json({
+          message: 'Followers cannot be found'
+        });
+      }
+  // });
   } catch (error) {
     res.status(500).json({
       error: error,
-      message: 'Could not get user.'
+      message: 'Could not get followers.'
     });
   }
-};
+}
+
+/* Get users that id is following */
+exports.getFollowing = async (req, res, next) => {
+  const user = await User.findById(req.params.id).populate('following');
+    try{
+        console.log(user.following);
+        res.status(200).json({
+          message: 'Found following',
+          following: user.following
+        });
+    } catch (error) {
+      res.status(500).json({
+        error: error,
+        message: 'Could not get following.'
+      });
+    }
+}

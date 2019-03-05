@@ -1,78 +1,103 @@
-<mat-tab-group mat-stretch-tabs class="stretched-tabs">
-  <!-- Displaying all the content -->
-  <mat-tab label="ALL">
-    <div *ngIf="!userError">
-      <h1>USERS</h1>
-      <drag-scroll class="carousel">
-        <mat-card drag-scroll-item *ngFor="let user of users">
-          <img mat-card-image src="../../../assets/images/twatterLogo.png" />
+<div class="container">
+  <div id="content">
+    <div id="main-content">
+      <mat-tab-group>
+        <mat-tab label="ALL">
+          <div class="flex-container">
+            <div class="action-container">
+              <div *ngIf="!userError">
+                <h1>USERS</h1>
+                <drag-scroll class="carousel">
+                  <mat-card class="mat-card-carousel" drag-scroll-item *ngFor="let user of users">
+                    <img
+                      mat-card-image
+                      src="../../../assets/images/twatterLogo.png"
+                    />
 
-          <mat-divider></mat-divider>
+                    <mat-divider></mat-divider>
 
-          <mat-card-content>
-            <!-- Add link to profile -->
-            {{ user.firstName }} {{ user.lastName }} <br />
-            <!-- Add Follow Button -->
-            Twat Score
-            <!-- Add Twat Score -->
-            <br />
-            <!-- Add Twat Age -->
-            Twat years old
-          </mat-card-content>
-        </mat-card>
-      </drag-scroll>
+                    <mat-card-content class="mat-card-content-carousel">
+                      <!-- Add link to profile -->
+                      {{ user.firstName }} {{ user.lastName }} <br />
+                      <!-- Add Follow Button -->
+                      Twat Score
+                      <!-- Add Twat Score -->
+                      <br />
+                      <!-- Add Twat Age -->
+                      Twat years old
+                    </mat-card-content>
+                  </mat-card>
+                </drag-scroll>
+              </div>
+
+              <div *ngIf="!postError">
+                <h1>TWATS</h1>
+                <app-post-list
+                  [posts]="posts"
+                  style="padding-bottom:25px"
+                  [simplified]="true"
+                  [limit]="2"
+                ></app-post-list>
+                <p *ngIf="posts.length > 2" class="link-container">
+                  <a>go to twats tab to view more</a>
+                </p>
+              </div>
+              <h1 *ngIf="userError && postError" class="center">
+                Uh Oh, there is no match for your search!
+              </h1>
+            </div>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="USERS">
+          <div class="flex-container">
+            <div class="action-container">
+
+                <div *ngFor="let user of users">
+
+                    <mat-card class="gallery-img">
+                        <img
+                          mat-card-image
+                          src="../../../assets/images/twatterLogo.png"
+                        />
+
+                        <mat-divider></mat-divider>
+
+                        <mat-card-content>
+                          <br />
+                          <!-- Add link to profile -->
+                          {{ user.firstName }} {{ user.lastName }} <br />
+                          <!-- Add Follow Button -->
+                          Twat Score
+                          <!-- Add Twat Score -->
+                          <br />
+                          <!-- Add Twat Age -->
+                          Twat years old
+                        </mat-card-content>
+                      </mat-card>
+
+               </div>
+            </div>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="TWATS">
+          <div class="flex-container">
+            <div class="action-container">
+              <div *ngIf="!postError">
+                <app-post-list
+                  [posts]="posts"
+                  style="padding-bottom:25px"
+                  [simplified]="true"
+                ></app-post-list>
+              </div>
+              <p *ngIf="userError && postError" class="center">
+                Uh Oh, there is no match for your search!
+              </p>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
     </div>
-
-    <div *ngIf="!postError">
-      <h1>TWATS</h1>
-      <app-post-list
-        [posts]="posts"
-        style="padding-bottom:25px"
-        [simplified]="true"
-        [limit]="2"
-      ></app-post-list>
-      <p *ngIf="posts.length > 2" class="link-container">
-        <a>go to twats tab to view more</a>
-      </p>
-    </div>
-    <h1 *ngIf="userError && postError" class="center">
-      Uh Oh, there is no match for your search!
-    </h1>
-  </mat-tab>
-
-  <!-- Displaying only users -->
-  <mat-tab label="USERS">
-    <drag-scroll class="carousel">
-      <mat-card drag-scroll-item *ngFor="let user of users">
-        <img mat-card-image src="../../../assets/images/twatterLogo.png" />
-
-        <mat-divider></mat-divider>
-
-        <mat-card-content>
-          <!-- Add link to profile -->
-          {{ user.firstName }} {{ user.lastName }} <br />
-          <!-- Add Follow Button -->
-          Twat Score
-          <!-- Add Twat Score -->
-          <br />
-          <!-- Add Twat Age -->
-          Twat years old
-        </mat-card-content>
-      </mat-card>
-    </drag-scroll>
-  </mat-tab>
-
-  <!-- Displaying only the twats -->
-  <mat-tab label="TWATS">
-    <div *ngIf="!postError">
-      <app-post-list
-        [posts]="posts"
-        style="padding-bottom:25px"
-        [simplified]="true"
-      ></app-post-list>
-    </div>
-    <h1 *ngIf="userError && postError" class="center">
-      Uh Oh, there is no match for your search!
-    </h1>
-  </mat-tab>
-</mat-tab-group>
+  </div>
+</div>

@@ -1,11 +1,12 @@
 @import '../../../twatter-default-style.scss';
 
 .carousel {
+  margin-left: 10%;
   height: 300px;
-  width: 100%;
+  width: 80%;
 }
 
-mat-card {
+.mat-card-carousel {
   height: 220px;
   width: 200px;
   margin-left: 2.5px;
@@ -13,7 +14,7 @@ mat-card {
   cursor: ew-resize;
 }
 
-mat-card-content {
+.mat-card-content-carousel {
   margin-top: 1rem;
   cursor: pointer;
 }
@@ -58,4 +59,85 @@ a {
 
 a:visited {
   color: #ffffff;
+}
+
+.gallery{
+  width: 80%
+}
+
+.gallery-img{
+  margin: 5px;
+  max-width: 300px;
+  float:left;
+}
+
+// sidebar
+
+:host {
+  > .container {
+    //max-width: 1264px;
+    width: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    background: none;
+  }
+
+  /deep/ {
+    .mat-tab-group {
+      flex-direction: row;
+    }
+
+    .mat-tab-header {
+      border-bottom: none;
+    }
+
+    .mat-tab-header-pagination {
+      display: none !important;
+    }
+
+    .mat-tab-labels {
+      flex-direction: column;
+    }
+
+    .mat-ink-bar {
+      height: 100%;
+      left: 98% !important;
+    }
+
+    .mat-tab-body-wrapper {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+.container {
+  // position: fixed;
+  width: 100%;
+  flex: 1 0 auto;
+  margin: 0 auto;
+  text-align: left;
+  margin-top: 5em;
+}
+
+#content {
+  margin: 0 auto;
+  width: 75%;
+  box-sizing: border-box;
+  margin-top: 1em;
+
+}
+
+#content,
+#main-content {
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
 }

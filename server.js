@@ -40,8 +40,8 @@ require('./middleware/passport')(passport);
 
 //use routes
 app.use('/api/auth', authRoute);
-app.use('/api/user', userRoute);
-app.use('/api/twat', twatRoute);
+app.use('/api/user', passport.authenticate('jwt', { session: false }), userRoute);
+app.use('/api/twat', passport.authenticate('jwt', { session: false }), twatRoute);
 
 app.listen(8080, () => {
     console.log("connected on port 8080")

@@ -99,6 +99,7 @@ describe("Twats", () => {
         it("should get all twats", (done) =>{
             chai.request(app)
                 .get('/api/twat/')
+                .set('Authorization', `Bearer ${authenticatedUserJWT}`) //setting JWT token in header
                 .end((err, res) =>{
                     res.should.have.status(200);
                     res.body.should.be.a('object');
@@ -147,7 +148,7 @@ describe("Users", () => {
             .set('Authorization', `Bearer ${authenticatedUserJWT}`) // setting JWT token in header
             .end((err, res) =>{
                 res.should.have.status(200);
-                assert.equal(res.body.length > 0)
+                assert.isTrue(res.body.length > 0)
                 done();
             })
         });

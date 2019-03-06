@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class FollowingPostComponent implements OnInit {
   private followingUsers: string[];
+  private isFollowingSomeone: boolean;
   protected posts: Post[] = [];
   private postsSub: Subscription;
 
@@ -21,7 +22,8 @@ export class FollowingPostComponent implements OnInit {
     this.userService.getCurrentUser().subscribe(user => {
         this.followingUsers = user.following;
 
-        if (this.followingUsers) {
+        if (this.followingUsers.length>0) {
+          this.isFollowingSomeone = true;
           // tslint:disable-next-line:forin
           for (let i in this.followingUsers) {
             this.postsService.getUserPosts(this.followingUsers[i]);
@@ -35,7 +37,13 @@ export class FollowingPostComponent implements OnInit {
               }
               );
           }
+        }else{
+          this.isFollowingSomeone = false;
         }
     });
+  }
+
+  isFollowingSomeoneFunction(){
+    return this.isFollowingSomeone;
   }
 }

@@ -94,3 +94,6 @@ A social platform for ranting about society. Users will see the most triggering 
    cd twatter-ui
    npm run prod
    ```
+   
+   ## Block Diagram
+   ![Block Diagram](block_diagram.png)

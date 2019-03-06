@@ -43,9 +43,13 @@ app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
 app.use('/api/twat', twatRoute);
 
-app.listen(8080, () => {
+var server = app.listen(8080, () => {
     console.log("connected on port 8080")
+    
 });
 
 
+
 module.exports = app
+
+//https://github.com/dwyl/the-book/issues/44

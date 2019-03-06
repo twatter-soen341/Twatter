@@ -1,3 +1,6 @@
 language: node_js
 node_js:
   - "lts/*"
+
+env:
+  - PROD_DATABASE=mongodb://admin:pwtwatter@cluster-twatter-shard-00-00-jvmht.mongodb.net:27017,cluster-twatter-shard-00-01-jvmht.mongodb.net:27017,cluster-twatter-shard-00-02-jvmht.mongodb.net:27017/test?ssl=true&replicaSet=Cluster-Twatter-shard-0&authSource=admin&retryWrites=true

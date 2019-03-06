@@ -8,6 +8,12 @@ const app = require('../server');
 // needed for protected routes
 let authenticatedUserID;
 let authenticatedUserJWT;
+const newUser = {
+    "firstName": "test",
+    "lastName": "test",
+    "email": "test@test.com",
+    "password": "test"
+}
 const userCredentials = {
     "email": "test@test.com",
     "password": "test"
@@ -18,23 +24,71 @@ chai.use(chaiHttp);
 
 chai.should();
 
-// Runs before each test to authenticate a test user
-before( (done) => {
-    chai.request(app)
-      .post('/api/auth/login')
-      .send(userCredentials)
-      .end(function(err, response){
-        expect(response.statusCode).to.equal(200);
-        authenticatedUserID = response.body.userId
-        authenticatedUserJWT = response.body.token
-        done();
-    });
-});
+describe("Authentication", () => {
+    // Test for user signing up to twatter
+    describe("GET /api/auth/signup", () => {
+        let hashedPassword = '';
 
-after( (done) => {
-    authenticatedUserID = null;
-    authenticatedUserJWT = null;
-    done();
+        it("should create a new user", (done) =>{
+            chai.request(app)
+                .post('/api/auth/signup')
+                .send(newUser)
+                .end((err, response) => {
+            expect(response.statusCode).to.equal(200);
+            expect(response.body.message).to.equal('Sign up success!');
+            hashedPassword = response.body.auth.password;
+            done();
+            });
+        });
+
+        // The password stored in the DB should be encrypted
+        it("should have hashed the password", done => {
+            expect(hashedPassword).to.not.equal('test');
+            done()
+        })
+
+        // The email should be unique, so an error should be thrown if not unique
+        it("should not create multiple users with same email", done => {
+            chai.request(app)
+                .post('/api/auth/signup')
+                .send(newUser)
+                .end((err, response) => {
+            expect(response.statusCode).to.equal(500);
+            expect(response.body.message).to.equal('Sign up Failed.')
+            done();
+            });
+        })
+    });
+    
+    // Test for user login to Twatter
+    describe("GET /api/auth/login", () => {
+        
+        it("should log in with valid credentials", (done) =>{
+            chai.request(app)
+                .post('/api/auth/login')
+                .send(userCredentials)
+                .end((err, response) => {
+            expect(response.statusCode).to.equal(200);
+            authenticatedUserID = response.body.userId
+            authenticatedUserJWT = response.body.token
+            done();
+            });
+        });
+
+        it("should NOT log in with invalid credentials", (done) =>{
+            let invalidCredentials = {
+                "email": "test@test.com",
+                "password": "wrong password"
+            }
+            chai.request(app)
+                .post('/api/auth/login')
+                .send(invalidCredentials)
+                .end((err, response) => {
+            expect(response.statusCode).to.equal(401); // Not Authorized
+            done();
+            });
+        });
+    });
 });
 
 describe("Twats", () => {
@@ -57,11 +111,11 @@ describe("Twats", () => {
 describe("Users", () => {
 
     describe('GET /search/:id', (done) => {
-        //addresses 1st bullet point: if the user is logged in we should get a 200 status code
-        it('should return a 200 response if the user is authenticated', (done) => {
+        
+        it('should return the user by id', (done) => {
         chai.request(app)
             .get(`/api/user/search/${authenticatedUserID}`)
-            .set('Authorization', `Bearer ${authenticatedUserJWT}`)
+            .set('Authorization', `Bearer ${authenticatedUserJWT}`) //setting JWT token in header
             .end((err, res) =>{
                 res.should.have.status(200);
                 // Verifying the content of user returned
@@ -71,7 +125,7 @@ describe("Users", () => {
                 done();
             })
         });
-        //addresses 2nd bullet point: if the user is not logged in we should get a 402 error
+        // if the user is not logged in we should get a 401 error
         it('should return a 401 response if the users is not authenticated', (done) => {
         chai.request(app)
             .get(`/api/user/search/${authenticatedUserID}`)
@@ -85,21 +139,19 @@ describe("Users", () => {
     describe('POST /search', (done) => {
 
         const searchTerm = { search : 'test'};
-        //addresses 1st bullet point: if the user is logged in we should get a 200 status code
-        it('should return a 200 response if the user is authenticated', (done) => {
+
+        it('should return array of users with test as last name or first name', (done) => {
         chai.request(app)
             .post('/api/user/search')
             .send(searchTerm)
-            .set('Authorization', `Bearer ${authenticatedUserJWT}`)
+            .set('Authorization', `Bearer ${authenticatedUserJWT}`) // setting JWT token in header
             .end((err, res) =>{
                 res.should.have.status(200);
-                assert.equal(res.body.length, 1)
-                assert.equal(res.body[0].firstName, 'test');
-                assert.equal(res.body[0].lastName, 'test');
+                assert.equal(res.body.length > 0)
                 done();
             })
         });
-        //addresses 2nd bullet point: if the user is not logged in we should get a 402 error
+        
         it('should return a 401 response if the users is not authenticated', (done) => {
         chai.request(app)
             .post('/api/user/search')
@@ -109,5 +161,22 @@ describe("Users", () => {
                     done();
                 })
             });
+    });
+});
+
+describe("Deleting created test user", () => {
+    
+    describe("DELETE /api/auth", () => {
+
+        it("should delete the created test user", (done) =>{
+            chai.request(app)
+                .delete('/api/auth/')
+                .send(userCredentials)
+                .end((err, response) => {
+                    expect(response.statusCode).to.equal(200);
+                    expect(response.body.message).to.equal('Deleted successfully!')
+                    done();
+                });
+        });
     });
 });

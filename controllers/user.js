@@ -46,14 +46,20 @@ exports.getUsersByIds = async (req, res, next) => {
 };
 
 exports.getUserById = async (req, res, next) => {
-  try {
-    const user = await User.findById(req.params.id);
-    if (user) {
-      res.status(200).json(user);
-    } else {
-      res.status(404).json({
-        message: 'User not found.'
-      });
+    try {
+        const user = await User.findById(req.params.id);
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            res.status(404).json({
+                message: 'User not found.'
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            error: error,
+            message: 'Could not get user.'
+        });
     }
   } catch (error) {
     res.status(500).json({
@@ -177,3 +183,21 @@ exports.getFollowing = async (req, res, next) => {
       });
     }
 }
+// Used to update the user
+exports.updateUser = async (req, res, next) => {
+    console.log('here');
+    User.findByIdAndUpdate(req.params.id, {
+        $set: {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            following: req.body.following,
+            followers: req.body.followers
+        }
+    }, function (err) {
+        if (err) {
+            res.status(500).json({message: 'Update Failed.', error: err});
+        } else {
+            res.status(200).json({message: 'User Updated'});
+        }
+    });
+};

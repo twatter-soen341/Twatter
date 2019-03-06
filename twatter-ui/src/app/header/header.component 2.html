@@ -3,11 +3,11 @@
   <!--<mat-toolbar-row>-->
   <span class="left-justify">
     <nav>
-      <button mat-icon-button (click)="goToProfile()">
+      <button mat-icon-button routerLink="/profile">
         <div mat-card-avatar class="card-avatar-image"></div>
+    </button>
         <div class="text-after-image">{{ firstName }}</div>
-      </button>
-    </nav>
+  </nav>
   </span>
 
   <nav>
@@ -19,8 +19,6 @@
   <!--<span class="firstRow">-->
   <span class="right-justify">
     <ul class="navigation">
-      <!-- Search -->
-      <app-search-bar></app-search-bar>
 
       <!--Notification button with notification badge-->
       <button mat-icon-button color={{colourForIcons}} [matMenuTriggerFor]="menu" matBadge={{notificationCount}}
@@ -45,3 +43,6 @@
 
     </ul>
     </span>
+
+</mat-toolbar>
+

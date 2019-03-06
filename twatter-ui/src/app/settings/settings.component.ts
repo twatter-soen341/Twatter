@@ -4,6 +4,7 @@ import {MatSnackBar, MatTabChangeEvent} from '@angular/material';
 import {AuthService} from '../services/auth.service';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
+import {UserService} from '../services/user.service';
 
 const baseURL = `${environment.baseUrl}/user`;
 
@@ -14,7 +15,8 @@ const baseURL = `${environment.baseUrl}/user`;
 })
 
 export class SettingsComponent implements OnInit {
-  headerTitle = 'Change your Settings';
+  private headerTitle = 'Change your Settings';
+  private user;
   changeForm: FormGroup = new FormGroup({
     firstNameController: new FormControl('', [Validators.required]),
     lastNameController: new FormControl('', [Validators.required]),
@@ -28,10 +30,13 @@ export class SettingsComponent implements OnInit {
   hide_Password = true;
   hide_Confirmation = true;
 
-  constructor(private authService: AuthService, private snack: MatSnackBar, private http: HttpClient) {
+  constructor(private authService: AuthService, private userService: UserService, private http: HttpClient) {
   }
 
   ngOnInit() {
+    this.userService.getCurrentUser().subscribe(user => {
+      this.user = user;
+    });
   }
 
   changeHeaderTitle(title: string) {
@@ -66,11 +71,14 @@ export class SettingsComponent implements OnInit {
     this.hide_Confirmation = true;
   }
 
+  // ICI
   changeUserName() {
-    const userID = this.authService.getUserId();
-    // TODO : Recheck that
-
-    // this.http.put(`${baseURL}`, userID, 'password', this.changeForm.get('firstNameController').value);
+    this.user.firstName = this.changeForm.get('firstNameController').value;
+    this.user.lastName = this.changeForm.get('lastNameController').value;
+    console.log(this.user);
+    this.userService.updateUserNames(this.user.firstName, this.user.lastName).subscribe(res => {
+      console.log(res);
+    });
   }
 
   changeUserEmail() {

@@ -10,10 +10,11 @@ import {Subscription} from 'rxjs';
 
 import {Post} from '../../../models/post.model';
 import {PostsService} from '../../../services/post.service';
-import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material';
+import {MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatSnackBar} from '@angular/material';
 import {NgForm} from '@angular/forms';
 import {UserService} from 'src/app/services/user.service';
 import {AuthService} from '../../../services/auth.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-post-list',
@@ -22,18 +23,31 @@ import {AuthService} from '../../../services/auth.service';
 })
 export class PostListComponent implements OnInit, OnDestroy {
   @Input() posts: Post[] = [];
+  @Input() simplified = false;
+  @Input() limit = 1000;
   @Output() liked;
   private postsSub: Subscription;
   userId: string;
+  posterId: string;
 
-  constructor(public aPostsService: PostsService, private userService: UserService,
-              private authService: AuthService, public dialog: MatDialog) {
-  }
+  constructor(
+    public aPostsService: PostsService,
+    private userService: UserService,
+    private authService: AuthService,
+    private router: Router,
+    public dialog: MatDialog,
+    private snack: MatSnackBar
+  ) {}
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
       this.userId = user._id;
     });
+
+  }
+
+  goToProfile(posterId: string) {
+    this.router.navigate(['/profile', posterId]);
   }
 
   onEdit(id: string) {
@@ -48,7 +62,7 @@ export class PostListComponent implements OnInit, OnDestroy {
           lastName: postData.post.user.lastName,
           timeStamp: postData.post.timeStamp,
           content: postData.post.content,
-          likes: postData.post.likes,
+          likedBy: postData.post.likedBy,
           comments: postData.post.comments
         }
       });
@@ -57,6 +71,31 @@ export class PostListComponent implements OnInit, OnDestroy {
       });
     });
   }
+
+  commentPost(post: Post, comment: Comment){
+
+    if(!post.comments) {
+      post.comments = [comment];
+    }else {
+      post.comments.push(comment);
+    }
+    this.aPostsService.updatePost(post);
+  }
+
+  deleteComment(post: Post, comment: Comment){
+    const index = post.comments.indexOf(comment);
+    post.comments.splice(index,1);
+
+    this.aPostsService.updatePost(post);
+  }
+
+  editComment(post: Post, comments: any){
+    const index = post.comments.indexOf(comments.oldComment);
+    post.comments[index] = comments.newComment;
+
+    this.aPostsService.updatePost(post);
+  }
+
 
   onDelete(postID: string) {
     this.aPostsService.deletePost(postID);
@@ -78,16 +117,16 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   likePost(post: Post, event) {
     if (event === true) {
-      post.likes.push(this.authService.getUserId());
+      post.likedBy.push(this.authService.getUserId());
     } else {
-      const index = post.likes.indexOf(this.authService.getUserId());
-      post.likes.splice(index, 1);
+      const index = post.likedBy.indexOf(this.authService.getUserId());
+      post.likedBy.splice(index, 1);
     }
     this.aPostsService.updatePost(post);
   }
 
   isLikedByUser(post) {
-    return post.likes.includes(this.authService.getUserId());
+    return post.likedBy.includes(this.authService.getUserId());
   }
 
 }
@@ -123,7 +162,8 @@ export class PostEditDialogComponent implements OnInit {
       lastName: this.data.lastName,
       timeStamp: Date.now(),
       content: form.value.content.replace(/\n/g, '<br>'),
-      likes: this.data.likes
+      likedBy: this.data.likedBy,
+      comments: this.data.comments
   };
 
     this.postsService.updatePost(post);

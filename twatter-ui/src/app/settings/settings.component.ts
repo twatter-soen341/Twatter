@@ -14,7 +14,7 @@ const baseURL = `${environment.baseUrl}/user`;
 })
 
 export class SettingsComponent implements OnInit {
-  private headerTitle = 'Change your Settings';
+  headerTitle = 'Change your Settings';
   changeForm: FormGroup = new FormGroup({
     firstNameController: new FormControl('', [Validators.required]),
     lastNameController: new FormControl('', [Validators.required]),

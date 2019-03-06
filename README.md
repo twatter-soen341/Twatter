@@ -27,6 +27,13 @@ A social platform for ranting about society. Users will see the most triggering 
 ### 3. Follow a User
    The system should allow an existing user to follow another user. User A will click a button "follow" in the profile page of user B. User A will then be able to see all posts from user B in his timeline.
 
+## Optional features:
+### 1. Comment a post
+   The system should allow an existing user to comment a post from another user. The user will click a button "comment "and it will allow him to write a text expressing his reaction/feelings to the post. This comment should be viewed by everyone that has access to the specific post.
+   
+### 2. Profile page
+   The system should allow an existing user to have a profile page. This page would contain his tweets, name and username. The user should be able to update self-profile and check other users' profile.
+   
 ## Objectives: 
 * Learn how to work within a team in an agile environment.
 * Learn how to use the MEAN stack.
@@ -44,14 +51,49 @@ A social platform for ranting about society. Users will see the most triggering 
 * [Express - framework for NodeJS to sweet things up](https://expressjs.com/en/guide/routing.html)
 * [Angular - for the UI ](https://material.angular.io/)
 * [Node.js](https://nodejs.org/api/)
+### Testing
+* [TravisCI](https://travis-ci.org/)
 
 ## How to start the app
-
-1. Have MongoDB, Node and npm installed
+1. Have [MongoDB](https://www.mongodb.com/download-center/community), [Node](https://nodejs.org/en/download/) and [npm](https://www.npmjs.com/get-npm) installed
 2. Clone the project
-3. Create your branch
-4. In the main directory prompt **npm install** to install all the dependencies that are listed in the package.json
-5. set a .env with the contents of pinned file on discord/general. Add this file in the root directory of project
-* **npm start** to run development
-* **npm run dev** to run development
-* **npm run prod** to run production
+   ```
+   git clone https://github.com/twatter-soen341/Twatter
+   cd Twatter
+   ```
+3. Create your branch 
+   ```
+   git checkout -b 'name-of-your-branch'
+   ```
+4. In the main directory, install all the dependencies that are listed in the package.json
+   ```
+   npm install
+   ```
+5. Set a .env with the contents of pinned file on discord/general. Add this file in the root directory of project
+6. In the main directory, start the server
+   ```
+   node server
+   ```
+7. In the main directory, start the MongoDB process 
+   ```
+   mongod
+   ```
+8. There are three way to start the project
+  * To start
+   ```
+   cd twatter-ui
+   npm start 
+   ```
+  * To run development
+   ```
+   cd twatter-ui
+   npm run dev
+   ```
+  * To run production
+   ```
+   cd twatter-ui
+   npm run prod
+   ```
+   
+   ## Block Diagram
+   ![Block Diagram](block_diagram.png)

@@ -2,10 +2,14 @@
 
   <img class="profile-picture" src="https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg">
   <mat-card class="user-info">
-    <h1 class="name">{{firstName}} {{lastName}}</h1>
-
+    <h1 class="name">{{user.firstName}} {{user.lastName}}</h1>
+    <app-follow-button class="button" *ngIf="userId !== loggedUser"></app-follow-button>
+    <button mat-button class="button" *ngIf="userId == loggedUser" color="accent" (click)="seeFollowersPost()">
+      Following's posts</button>
     <p>
-      sidebar works!
+      Twat Age
+      <br>
+      Twat Score
     </p>
   </mat-card>
 

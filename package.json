@@ -4,11 +4,10 @@
   "description": "341 group project",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha tests/*.js --exit",
     "start": "NODE_ENV=dev node server.js",
     "dev": "NODE_ENV=dev node server.js",
-    "prod": "cross-env NODE_ENV=prod node server.js",
-    "test": "mocha tests/*.js --exit"
+    "prod": "cross-env NODE_ENV=prod node server.js"
   },
   "repository": {
     "type": "git",

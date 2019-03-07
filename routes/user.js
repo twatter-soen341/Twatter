@@ -7,45 +7,38 @@ const userController = require('../controllers/user');
 
 /**
  * This route should be used to find users by id, works only when authenticated
- * @throws exception when ...
  */
-router.get('/search/:id', passport.authenticate('jwt', {session: false}), userController.getUserById);
+router.get('/search/:id', userController.getUserById);
 
 /**
  * This route should be used to find users by name(using regex), works only when authenticated
- * @throws exception when ...
  */
-router.post('/search', passport.authenticate('jwt', {session: false}), userController.getUserByName);
+router.post('/search', userController.getUserByName);
 
 /**
  * This route should be used to follow a user
- * @throws exception when ...
  */
-router.put('/follow-user', passport.authenticate('jwt', { session: false }), userController.followUser); // TODO: add auth
+router.put('/follow-user', userController.followUser);
 
 /**
  * This route should be used to unfollow a user
- * @throws exception when ...
  */
-router.put('/unfollow-user/:id', userController.unfollowUser); // TODO: add auth
+router.put('/unfollow-user/:id', userController.unfollowUser);
 
 /**
  * This route should be used to get the array of followers
- * @throws exception when ...
  */
 router.get('/followers/:id', userController.getFollowers);
 
 /**
  * This route should be used to get the array of following
- * @throws exception when ...
  */
 router.get('/following/:id', userController.getFollowing);
 
 /**
  * This route should be used to find a group of users by id, a group of user id is sent and a group of users object is sent back
- *  @throws exception when ...
  */
-router.post('/users', passport.authenticate('jwt', { session: false }), userController.getUsersByIds);
+router.post('/users', userController.getUsersByIds);
 
 /**
  * Route used to update the information about a user

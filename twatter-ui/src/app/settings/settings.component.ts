@@ -5,8 +5,7 @@ import {AuthService} from '../services/auth.service';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from '../services/user.service';
-
-const baseURL = `${environment.baseUrl}/user`;
+import {User} from '../models/auth.model';
 
 @Component({
   selector: 'app-settings',
@@ -16,7 +15,7 @@ const baseURL = `${environment.baseUrl}/user`;
 
 export class SettingsComponent implements OnInit {
   private headerTitle = 'Change your Settings';
-  private user;
+  private user: User;
   changeForm: FormGroup = new FormGroup({
     firstNameController: new FormControl('', [Validators.required]),
     lastNameController: new FormControl('', [Validators.required]),
@@ -34,9 +33,13 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getUser();
+    // Gets an 'object' of the current user
+    this.userService.getCurrentUser().subscribe(user => {
+      this.user = user;
+    });
   }
 
+  // function which will change the title depending on the menu chosen
   changeHeaderTitle(title: string) {
     this.headerTitle = title;
   }
@@ -69,16 +72,12 @@ export class SettingsComponent implements OnInit {
     this.hide_Confirmation = true;
   }
 
-  // ICI
+  // Function which changes the name of a user
   changeUserName() {
     this.user.firstName = this.changeForm.get('firstNameController').value;
     this.user.lastName = this.changeForm.get('lastNameController').value;
-    this.userService.updateUserNames(this.user.firstName, this.user.lastName);
-  }
-
-  getUser() {
-    this.userService.getCurrentUser().subscribe(user => {
-      this.user = user;
+    this.userService.updateUserNames(this.user).subscribe(res => {
+      console.log(res);
     });
   }
 

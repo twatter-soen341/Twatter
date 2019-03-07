@@ -18,14 +18,8 @@ export class UserService {
     return this.http.get<any>(`${BASE_URL}/search/${userId}`);
   }
 
-  async updateUserNames(newFirstName: string, newLastName: string) {
-    const userID = this.authService.getUserId();
-    let body = await this.getCurrentUser().toPromise();
-    body.firstName = newFirstName;
-    body.lastName = newLastName;
-
-    return this.http
-      .put(`${BASE_URL}/users/${userID}`, body);
+   updateUserNames(user) {
+    return this.http.put(`${BASE_URL}/users/${user._id}`, user);
   }
 
   searchUser(name: string) {

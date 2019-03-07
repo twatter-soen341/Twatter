@@ -24,8 +24,10 @@ export class UserService {
       firstName: newFirstName,
       lastName: newLastName
     };
+
+    // ICI
     return this.http
-      .put(`${BASE_URL}/users/${userID}`, body);
+      .put(`${BASE_URL}/users:${userID}`, body);
   }
 
   searchUser(name: string) {

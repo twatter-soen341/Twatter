@@ -10,7 +10,7 @@ const BASE_URL = `${environment.baseUrl}/user`;
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private http: HttpClient, private authService: AuthService, private userService: UserService) {
   }
 
   getCurrentUser() {
@@ -18,14 +18,12 @@ export class UserService {
     return this.http.get<any>(`${BASE_URL}/search/${userId}`);
   }
 
-  updateUserNames(newFirstName: string, newLastName: string) {
+  async updateUserNames(newFirstName: string, newLastName: string) {
     const userID = this.authService.getUserId();
-    const body = {
-      firstName: newFirstName,
-      lastName: newLastName
-    };
+    let body = await this.getCurrentUser().toPromise();
+    body.firstName = newFirstName;
+    body.lastName = newLastName;
 
-    // ICI
     return this.http
       .put(`${BASE_URL}/users:${userID}`, body);
   }

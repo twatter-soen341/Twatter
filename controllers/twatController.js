@@ -79,7 +79,7 @@ exports.getTwats = (req, res, next) => {
     .sort({timeStamp: -1})
     .populate('user')
     .then(documents => {
-        res.status(200).json({
+            res.status(200).json({
             message: 'Twats fetched succesfully!',
             posts: documents
         });

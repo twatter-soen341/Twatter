@@ -1,5 +1,5 @@
-<h2>Following's recent post.</h2>
-
+<h2 *ngIf="isFollowingSomeoneFunction()">Following's recent post.</h2>
+<h2 *ngIf="!isFollowingSomeoneFunction()">Not Following Anyone Yet</h2>
 <app-post-list
         [posts]="posts"
         style="padding-bottom:25px"

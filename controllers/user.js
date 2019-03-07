@@ -83,7 +83,6 @@ exports.followUser = async(req, res, next) => {
             } else {
 
                 User.findById(req.body.user_id, (err, user) => {
-                    console.log("found the user");
                     user.following.addToSet(req.body.wantToFollow);
 
                     user.save((err) => {
@@ -91,7 +90,7 @@ exports.followUser = async(req, res, next) => {
                             console.log(err)
                         } else {
                             res.status(200).json({
-                                message: 'ressource updated successfully'
+                                message: 'Followed Successfully'
                             })
                         }
                     });
@@ -100,10 +99,6 @@ exports.followUser = async(req, res, next) => {
             }
         });
     }
-    else {
-    }
-
-
 }
 
 //TODO: need to fetch the user ID from the authService.getCurrentUserId
@@ -149,12 +144,6 @@ exports.unfollowUser = async(req, res, next) => {
 exports.getFollowers = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id).populate('followers'); 
-    console.log(user.followers);
-    // => {
-      // if(err){
-      //   console.log(err);
-      // }else{
-        // console.log(user.followers);
       if (user) {
         res.status(200).json({
           message: 'Found followers',
@@ -165,7 +154,6 @@ exports.getFollowers = async (req, res, next) => {
           message: 'Followers cannot be found'
         });
       }
-  // });
   } catch (error) {
     res.status(500).json({
       error: error,
@@ -178,7 +166,6 @@ exports.getFollowers = async (req, res, next) => {
 exports.getFollowing = async (req, res, next) => {
   const user = await User.findById(req.params.id).populate('following');
     try{
-        console.log(user.following);
         res.status(200).json({
           message: 'Found following',
           following: user.following

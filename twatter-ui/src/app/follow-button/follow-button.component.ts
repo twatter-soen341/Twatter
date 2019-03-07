@@ -28,7 +28,6 @@ export class FollowButtonComponent implements OnInit {
       .subscribe(user => {
         this.user = user;
         this.userId = user._id;
-        console.log(this.userId);
 
         // get id of user to follow
         this.userToFollow = this.router.url.split('/profile/')[1];
@@ -40,7 +39,6 @@ export class FollowButtonComponent implements OnInit {
   // Check if initially followed and update button
   alreadyFollowing() {
     this.userService.getFollowers(this.userToFollow).subscribe(data => {
-      console.log(data.followers);
       try {
         for ( const user of data.followers ) {
           if (user.id === this.user.id) {

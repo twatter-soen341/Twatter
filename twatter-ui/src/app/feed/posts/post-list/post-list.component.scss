@@ -22,3 +22,10 @@ mat-card {
   max-height: 20vh;
   padding-left: 3.5rem;
 }
+
+
+mat-card-actions{
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+}

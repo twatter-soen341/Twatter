@@ -25,7 +25,7 @@ export class UserService {
     body.lastName = newLastName;
 
     return this.http
-      .put(`${BASE_URL}/users:${userID}`, body);
+      .put(`${BASE_URL}/users/${userID}`, body);
   }
 
   searchUser(name: string) {
@@ -40,7 +40,7 @@ export class UserService {
   }
 
   followUser(idToFollow: string) {
-    // const headers = new Headers();
+     // const headers = new Headers();
     // headers.append('Content-Type', 'application/json');
     const body = {
       user_id: this.authService.getUserId(),

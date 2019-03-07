@@ -2,4 +2,6 @@
 <div class="create-container">
   <app-post-create></app-post-create>
 </div>
-<app-post-list [posts]="this.posts"></app-post-list>
+<!--Fetches an array of post from the backend and
+sends it to post-list to create a list of posts-->
+<app-post-list [posts]="this.posts" style="padding-bottom:25px"></app-post-list>

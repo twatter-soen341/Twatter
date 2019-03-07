@@ -12,6 +12,7 @@ import {TextareaAutosizeModule} from 'ngx-textarea-autosize';
 import {NgScrollbarModule} from 'ngx-scrollbar';
 import {TwatIconBtnComponent} from './icons/twat-icon-btn/twat-icon-btn.component';
 import {TwatlineComponent} from './feed/twatline/twatline.component';
+
 // ------     Login     -------
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
@@ -34,14 +35,22 @@ import {
   MatSnackBarModule,
   MatAutocompleteModule,
   MatMenuModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatTooltipModule
 } from '@angular/material';
-import { SearchBarComponent } from './search-bar/search-bar.component';
+// ------Search Components------
+import { DragScrollModule } from 'ngx-drag-scroll';
+import { SearchBarComponent } from './search/search-bar/search-bar.component';
+import { SearchResultsComponent } from './search/search-results/search-results.component';
 import { SettingsComponent } from './settings/settings.component';
 // ----Side Bar Settings in Setting Bar
 import { SidebarSettingsComponent } from './settings/sidebar-settings/sidebar-settings.component';
 import { MatTabsModule } from '@angular/material';
 import { CommentComponent } from './feed/posts/comment/comment.component';
+// ------Follow Button------
+import { FollowButtonComponent } from './follow-button/follow-button.component';
+import { FollowingPostComponent } from './feed/following-post/following-post.component';
+
 
 
 
@@ -64,7 +73,10 @@ import { CommentComponent } from './feed/posts/comment/comment.component';
     SettingsComponent,
     SidebarSettingsComponent,
     SearchBarComponent,
-    CommentComponent
+    SearchResultsComponent,
+    CommentComponent,
+    FollowButtonComponent,
+    FollowingPostComponent,
  ],
   imports: [
     HttpClientModule,
@@ -87,7 +99,10 @@ import { CommentComponent } from './feed/posts/comment/comment.component';
     MatAutocompleteModule,
     MatBadgeModule,
     MatMenuModule,
-    MatTabsModule
+    DragScrollModule,
+    MatTabsModule,
+    MatTooltipModule
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

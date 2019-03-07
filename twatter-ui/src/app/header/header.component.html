@@ -1,13 +1,13 @@
 <!--Sets the colour of the header-->
 <mat-toolbar class="header mat-elevation-z5" color="primary">
-
+  <!--<mat-toolbar-row>-->
   <span class="left-justify">
     <nav>
-      <button mat-icon-button routerLink="/profile">
+      <button mat-icon-button (click)="goToProfile()">
         <div mat-card-avatar class="card-avatar-image"></div>
-    </button>
         <div class="text-after-image">{{ firstName }}</div>
-  </nav>
+      </button>
+    </nav>
   </span>
 
   <nav>
@@ -16,8 +16,11 @@
     </button>
   </nav>
 
+  <!--<span class="firstRow">-->
   <span class="right-justify">
     <ul class="navigation">
+      <!-- Search -->
+      <app-search-bar class="spacer"></app-search-bar>
 
       <!--Notification button with notification badge-->
       <button mat-icon-button color={{colourForIcons}} [matMenuTriggerFor]="menu" matBadge={{notificationCount}}
@@ -28,7 +31,7 @@
       <mat-menu #menu="matMenu" class="myMenu">
 
         <mat-list *ngFor="let notification of notifications">
-         <mat-list-item >{{notification}}</mat-list-item>
+         <mat-list-item>{{notification}}</mat-list-item>
          <mat-divider class="lesNotifs"></mat-divider>
        </mat-list>
 
@@ -40,13 +43,6 @@
 
       <button class="spacer" mat-icon-button color={{colourForIcons}} (click)="onLogout()"><mat-icon>logout</mat-icon></button>
 
-
     </ul>
-</span>
-</mat-toolbar>
-
-<!-- Added another mat-toolbar temporarily until search is completed -->
-<mat-toolbar>
-  <span class="spacer"></span>
-    <app-search-bar></app-search-bar>
-</mat-toolbar>
+    </span>
+  </mat-toolbar>

@@ -4,8 +4,8 @@ import {MatSnackBar, MatTabChangeEvent} from '@angular/material';
 import {AuthService} from '../services/auth.service';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-
-const baseURL = `${environment.baseUrl}/user`;
+import {UserService} from '../services/user.service';
+import {User} from '../models/auth.model';
 
 @Component({
   selector: 'app-settings',
@@ -15,6 +15,7 @@ const baseURL = `${environment.baseUrl}/user`;
 
 export class SettingsComponent implements OnInit {
   private headerTitle = 'Change your Settings';
+  private user: User;
   changeForm: FormGroup = new FormGroup({
     firstNameController: new FormControl('', [Validators.required]),
     lastNameController: new FormControl('', [Validators.required]),
@@ -28,12 +29,17 @@ export class SettingsComponent implements OnInit {
   hide_Password = true;
   hide_Confirmation = true;
 
-  constructor(private authService: AuthService, private snack: MatSnackBar, private http: HttpClient) {
+  constructor(private authService: AuthService, private userService: UserService, private http: HttpClient) {
   }
 
   ngOnInit() {
+    // Gets an 'object' of the current user
+    this.userService.getCurrentUser().subscribe(user => {
+      this.user = user;
+    });
   }
 
+  // function which will change the title depending on the menu chosen
   changeHeaderTitle(title: string) {
     this.headerTitle = title;
   }
@@ -66,16 +72,19 @@ export class SettingsComponent implements OnInit {
     this.hide_Confirmation = true;
   }
 
+  // Function which changes the name of a user
   changeUserName() {
-    const userID = this.authService.getUserId();
-    // TODO : Recheck that
-
-    // this.http.put(`${baseURL}`, userID, 'password', this.changeForm.get('firstNameController').value);
+    this.user.firstName = this.changeForm.get('firstNameController').value;
+    this.user.lastName = this.changeForm.get('lastNameController').value;
+    this.userService.updateUserNames(this.user).subscribe(res => {
+      console.log(res);
+    });
   }
 
   changeUserEmail() {
 
   }
+
 
   changeUserPassword() {
 

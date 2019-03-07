@@ -1,3 +1,10 @@
+<div class="container">
+
 <button mat-icon-button aria-label="Roasty" aria-hidden="false" color="warn" class="medium-icon" (click)="onClick()">
-  <mat-icon [svgIcon]="icon" matTooltip="ROAST IT!" matTooltipPosition="above"></mat-icon>
+  <mat-icon [svgIcon]="icon" matTooltip="ROAST IT!" [matTooltipDisabled]="liked" matTooltipPosition="above"></mat-icon>
 </button>
+<h5     [ngClass]="{'red' : liked}"
+        [matTooltip]="getNamesLikes()"
+        [matTooltipClass]="'my-tooltip'">{{likes.length}}
+</h5>
+</div>

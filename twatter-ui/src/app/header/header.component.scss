@@ -1,10 +1,11 @@
+@import '../../twatter-default-style.scss';
+
 main {
   width: 80%;
   margin: auto;
 }
 
 .card-avatar-image {
-  background-color: black;
   background-image: url('https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg');
   background-size: cover;
   display: inline-block;
@@ -26,9 +27,6 @@ margin-left: 15px;
 .navigation {
   list-style: none;
   margin: 0;
-
-  background: rgb(192, 24, 91);
-
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -54,7 +52,6 @@ margin-left: 15px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   width: 100%;
@@ -63,8 +60,18 @@ margin-left: 15px;
 
 
 /deep/ .mat-menu-content {
-  background-color: rgb(192, 24, 91);
+  // background-color: rgb(192, 24, 91);
+  background-color: mat-color($accent);
   text-align: center;
 }
 
 
+.searchBar{
+  position: fixed;
+  margin-top: 3em;
+  z-index: 2;
+}
+
+.firstRow{
+  flex: 1 1 auto;
+}

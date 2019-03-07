@@ -42,7 +42,6 @@ export class SearchResultsComponent implements OnInit {
           this.userError = true;
         }
       );
-      /* TODO Posts */
       this.postsService.searchPost(this.searchValue[0]).subscribe(
         posts => {
           this.posts = posts;

@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class FollowingPostComponent implements OnInit {
   private followingUsers: string[];
+  private isFollowingSomeone: boolean;
   protected posts: Post[] = [];
   private postsSub: Subscription;
 
@@ -20,25 +21,29 @@ export class FollowingPostComponent implements OnInit {
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
         this.followingUsers = user.following;
-        console.log(this.followingUsers);
 
-        if (this.followingUsers) {
+        if (this.followingUsers.length>0) {
+          this.isFollowingSomeone = true;
           // tslint:disable-next-line:forin
           for (let i in this.followingUsers) {
-            console.log(this.followingUsers[i]);
             this.postsService.getUserPosts(this.followingUsers[i]);
             this.postsSub = this.postsService.getPostUpdateListener().subscribe(
               (posts: Post[]) => {
-                console.log(posts);
                 // if statement is a temporary fix
                 // TODO: Find what causes 2x request
-                if (!this.posts.includes(posts[posts.length - 1])) {
-                  this.posts.push(posts[posts.length - 1]);
-                }
+                  if (!this.posts.includes(posts[i])) {
+                    this.posts.push(posts[i]);
+                  }
               }
               );
           }
+        }else{
+          this.isFollowingSomeone = false;
         }
     });
+  }
+
+  isFollowingSomeoneFunction(){
+    return this.isFollowingSomeone;
   }
 }

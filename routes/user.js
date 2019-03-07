@@ -40,4 +40,10 @@ router.get('/following/:id', userController.getFollowing);
  */
 router.post('/users', userController.getUsersByIds);
 
+/**
+ * Route used to update the information about a user
+ **/
+router.put('/users/:id', passport.authenticate('jwt', {session: false}), userController.updateUser);
+
 module.exports = router;
+

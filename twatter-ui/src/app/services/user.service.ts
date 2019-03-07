@@ -19,19 +19,19 @@ export class UserService {
   }
 
   updateUserNames(newFirstName: string, newLastName: string) {
-const userID = this.authService.getUserId();
+    const userID = this.authService.getUserId();
     const body = {
       firstName: newFirstName,
-    lastName: newLastName
-  };
+      lastName: newLastName
+    };
+    return this.http
+      .put(`${BASE_URL}/users/${userID}`, body);
+  }  
 
   searchUser(name: string) {
     const query = { search: name };
     console.log(`searchUser calling api with %c${name}`, 'font-weight:bold');
     return this.http.post<any>(`${BASE_URL}/search`, query);
-    // ICI
-    return this.http
-      .put(`${BASE_URL}/users:${userID}`, body);
   }
 
   getUsersNames(names: string[]): any {

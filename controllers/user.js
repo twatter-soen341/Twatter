@@ -61,12 +61,6 @@ exports.getUserById = async (req, res, next) => {
             message: 'Could not get user.'
         });
     }
-  } catch (error) {
-    res.status(500).json({
-      error: error,
-      message: 'Could not get user.'
-    });
-  }
 };
 
 

@@ -34,9 +34,7 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getCurrentUser().subscribe(user => {
-      this.user = user;
-    });
+    this.getUser();
   }
 
   changeHeaderTitle(title: string) {
@@ -75,9 +73,14 @@ export class SettingsComponent implements OnInit {
   changeUserName() {
     this.user.firstName = this.changeForm.get('firstNameController').value;
     this.user.lastName = this.changeForm.get('lastNameController').value;
-    console.log(this.user);
-    this.userService.updateUserNames(this.user.firstName, this.user.lastName).subscribe(res => {
-      console.log(res);
+    this.userService.updateUserNames(this.user.firstName, this.user.lastName);
+
+    this.getUser();
+  }
+
+  getUser(){
+    this.userService.getCurrentUser().subscribe(user => {
+      this.user = user;
     });
   }
 

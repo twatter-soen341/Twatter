@@ -10,15 +10,17 @@ import {SearchResultsComponent} from './search/search-results/search-results.com
 import {AuthGuard} from './guards/auth.guard';
 import {LoggedInGuard} from './guards/loggedIn.guard';
 import {SettingsComponent} from './settings/settings.component';
+import { FollowingPostComponent } from './feed/following-post/following-post.component';
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent, canActivate: [LoggedInGuard]},
   {path: 'login', component: LoginComponent, canActivate: [LoggedInGuard]},
   {path: '', redirectTo: '/posts', pathMatch: 'full'},
-  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'posts', component: TwatlineComponent, canActivate: [AuthGuard]},
   {path: 'search/:search', component: SearchResultsComponent, canActivate: [AuthGuard]},
-  {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]}
+  {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
+  {path: 'followers/:id', component: FollowingPostComponent, canActivate: [AuthGuard]}
 
 ];
 
@@ -29,4 +31,3 @@ const routes: Routes = [
 })
 export class AppRoutingModule {
 }
-

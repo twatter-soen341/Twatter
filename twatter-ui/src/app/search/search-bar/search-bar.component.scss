@@ -1,3 +1,4 @@
+@import '../../../twatter-default-style.scss';
 #search-bar input[type=search] {
   width: 15px;
   height: 20px;
@@ -9,7 +10,7 @@
 #search-bar input[type=search]:focus {
 	width: 200px;
 	padding-left: 38px;
-  color: white;
+  color: white; //text color
   cursor: auto;
 }
 #search-bar input:-moz-placeholder {
@@ -33,7 +34,6 @@ input[type=search]:focus {
 	-moz-box-shadow: 0 0 5px rgba(255, 255, 255, 0.719);
 	box-shadow: 0 0 5px rgba(255, 255, 255, 0.719);
 }
-
 input[type=search] {
   background: url(../../../assets/images/baseline-search-24px.svg) no-repeat 12px center;
   // border: solid 0.5px white;
@@ -57,11 +57,12 @@ input[type=search] {
 
 input::-webkit-search-decoration,
 input::-webkit-search-cancel-button {
-	display: none;
+  display: none;
 }
 
 input {
-	outline: none;
+  outline: none;
+  border: mat-color($primary);
 }
 
 .card-avatar-image {

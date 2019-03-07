@@ -1,3 +1,5 @@
+@import '../../twatter-default-style.scss';
+
 main {
   width: 80%;
   margin: auto;
@@ -26,7 +28,7 @@ margin-left: 15px;
   list-style: none;
   margin: 0;
 
-  background: rgb(192, 24, 91);
+  // background: rgb(192, 24, 91);
 
   display: -webkit-box;
   display: -moz-box;
@@ -53,7 +55,6 @@ margin-left: 15px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   width: 100%;
@@ -62,7 +63,8 @@ margin-left: 15px;
 
 
 /deep/ .mat-menu-content {
-  background-color: rgb(192, 24, 91);
+  // background-color: rgb(192, 24, 91);
+  background-color: mat-color($accent);
   text-align: center;
 }
 

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from 'src/environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from './auth.service';
+import { User } from '../models/auth.model';
 
 const BASE_URL = `${environment.baseUrl}/user`;
 
@@ -27,8 +28,41 @@ export class UserService {
     return this.http.post<any>(`${BASE_URL}/search`, query);
   }
 
-  getUsersNames(names: string[]): any{
+  getUsersNames(names: string[]): any {
     const body = {ids: names};
     return this.http.post<any>(`${BASE_URL}/users`, body);
+  }
+
+  followUser(idToFollow: string)
+  {
+    // const headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
+    const body = {
+      user_id: this.authService.getUserId(),
+      wantToFollow: idToFollow,
+    };
+    return this.http
+      .put(`${BASE_URL}/follow-user`, body)
+      .subscribe(res => console.log(res));
+  }
+
+  unfollowUser(id: string) {
+    const body = {
+      user_id: this.authService.getUserId(),
+      wantToUnFollow: id,
+    };
+    return this.http.put(`${BASE_URL}/unfollow-user/${id}`, body).subscribe(res => console.log(res));
+  }
+
+  getFollowers(id: string) {
+    return this.http.get<{message: string, followers: User[]}>(`${BASE_URL}/followers/${id}`);
+  }
+
+  getFollowing(id: string) {
+    return this.http.get<any>(`${BASE_URL}/following/${id}`);
+  }
+
+  getUserWithId(id: string) {
+    return this.http.get<any>(`${BASE_URL}/search/${id}`);
   }
 }

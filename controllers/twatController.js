@@ -79,7 +79,7 @@ exports.getTwats = (req, res, next) => {
     .sort({timeStamp: -1})
     .populate('user')
     .then(documents => {
-        res.status(200).json({
+            res.status(200).json({
             message: 'Twats fetched succesfully!',
             posts: documents
         });
@@ -97,24 +97,26 @@ exports.getTwats = (req, res, next) => {
 
 /* Get Twats by matching words */
 exports.getTwatsByMatch = async (req, res, next) => {
-    try {
-      let search = req.body.search;
-      const regex = new RegExp(`${search}`, 'i');
-      let twat = await Twat.find({'content': regex }).limit(5);
-      if (twat.length > 0) {
-        res.status(200).json(twat);
-      } else {
-        res.status(200).json({
-          message: 'Twat not found.'
-        });
-      }
-    } catch (error) {
-      res.status(500).json({
-          error: error,
-          message: 'Could not get twat.'
+  try {
+    let search = req.body.search;
+    const regex = new RegExp(`${search}`, 'i');
+    let twats = await Twat.find({ content: regex })
+      .sort({ timeStamp: -1 })
+      .populate('user');
+    if (twats.length > 0) {
+      res.status(200).json(twats);
+    } else {
+      res.status(404).json({
+        message: 'Twat not found.'
       });
     }
-  };
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+      message: 'Could not get twat.'
+    });
+  }
+};
 
 /* Updating the Twat for likedBy, comments and editing its content */
 exports.updateTwat = function (req, res, next) {

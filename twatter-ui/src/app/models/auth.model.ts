@@ -21,4 +21,6 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
+  followers: Array<User>;
+  following: Array<User>;
 }

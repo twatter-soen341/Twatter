@@ -1,3 +1,8 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$primary: mat-palette($mat-red);
+
 :host,
 mat-card {
     display: block;
@@ -12,6 +17,7 @@ mat-card {
 .card-header-image {
     background-image: url('https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg');
     background-size: cover;
+    cursor: pointer;
 }
 
 .info-text {
@@ -23,9 +29,19 @@ mat-card {
   padding-left: 3.5rem;
 }
 
+.btn-45 {
+  width: 45%;
+  // color: mat-color($primary);
+}
 
-mat-card-actions{
+mat-card-actions {
+  margin-bottom: -0.25rem;
+  margin-right: 1rem;
   display: flex;
   justify-content: flex-end;
   align-items: baseline;
+}
+
+mat-card-content {
+  margin-bottom: 2rem;
 }

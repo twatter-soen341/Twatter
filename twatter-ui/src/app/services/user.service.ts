@@ -25,7 +25,7 @@ export class UserService {
     body.lastName = newLastName;
 
     return this.http
-      .put(`${BASE_URL}/users:${userID}`, body);
+      .put(`${BASE_URL}/users/${userID}`, body);
   }
 
   searchUser(name: string) {

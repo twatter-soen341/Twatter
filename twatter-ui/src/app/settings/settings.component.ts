@@ -71,17 +71,15 @@ export class SettingsComponent implements OnInit {
 
   // ICI
   changeUserName() {
-    this.user.firstName = this.changeForm.get('firstNameController').value;
-    this.user.lastName = this.changeForm.get('lastNameController').value;
-    this.userService.updateUserNames(this.user.firstName, this.user.lastName);
-
-    this.getUser();
+    let firstName = this.changeForm.get('firstNameController').value;
+    let lastName = this.changeForm.get('lastNameController').value;
+    this.userService.updateUserNames(firstName, lastName).then(() => this.getUser());
   }
 
   getUser(){
-    this.userService.getCurrentUser().subscribe(user => {
-      this.user = user;
-    });
+    // this.userService.getCurrentUser().subscribe(user => {
+    //   this.user = user;
+    // });
   }
 
   changeUserEmail() {

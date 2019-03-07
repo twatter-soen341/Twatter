@@ -30,8 +30,7 @@
                   <input matInput placeholder="Last Name" formControlName="lastNameController" required>
                 </mat-form-field>
               </form>
-              <button mat-flat-button color="primary">Save Name
-              </button>
+              <button mat-flat-button color="primary" (click)="changeUserName()">Change Name</button>
             </div>
           </div>
         </mat-tab>
@@ -50,7 +49,7 @@
                   <input matInput type="email" placeholder="twat@twat.com" formControlName="emailController" required>
                 </mat-form-field>
               </form>
-              <button mat-flat-button color="primary">Save Email
+              <button mat-flat-button color="primary">Change Email
               </button>
             </div>
           </div>
@@ -105,7 +104,7 @@
                   <mat-error *ngIf="changeForm.hasError('passwordDontMatch')">Passwords do not match</mat-error>
                 </mat-form-field>
               </form>
-              <button mat-flat-button color="primary">Save Password
+              <button mat-flat-button color="primary">Change Password
               </button>
             </div>
           </div>

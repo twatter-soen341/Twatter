@@ -22,6 +22,7 @@ export class PostsService {
     }>(`${BASE_URL}/${id}`);
   }
 
+  // function which gets the posts of a user from the database
   getUserPosts(userId: string) {
     this.http
       .get<{ message: string, posts: any }>(`${BASE_URL}/user/${userId}`)
@@ -46,6 +47,7 @@ export class PostsService {
       );
   }
 
+  // Function which returns all the posts
   getPosts() {
     this.http
       .get<{ message: string, posts: any }>(`${BASE_URL}`)

@@ -76,10 +76,9 @@ export class SettingsComponent implements OnInit {
     this.user.firstName = this.changeForm.get('firstNameController').value;
     this.user.lastName = this.changeForm.get('lastNameController').value;
     console.log(this.user);
-    this.userService.updateUserNames(this.user.firstName, this.user.lastName).subscribe(res => {
-      console.log(res);
-    });
-  }
+    this.userService.updateUserNames(this.user.firstName, this.user.lastName);
+    }
+  // }
 
   changeUserEmail() {
 

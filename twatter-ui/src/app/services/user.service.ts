@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from 'src/environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from './auth.service';
-import { User } from '../models/auth.model';
+import {User} from '../models/auth.model';
 
 const BASE_URL = `${environment.baseUrl}/user`;
 
@@ -22,14 +22,10 @@ export class UserService {
     const userID = this.authService.getUserId();
     const body = {
       firstName: newFirstName,
-      lastName: newLastName
-    };
-    return this.http
       .put(`${BASE_URL}/users/${userID}`, body);
-  }  
 
   searchUser(name: string) {
-    const query = { search: name };
+    const query = {search: name};
     console.log(`searchUser calling api with %c${name}`, 'font-weight:bold');
     return this.http.post<any>(`${BASE_URL}/search`, query);
   }
@@ -39,8 +35,7 @@ export class UserService {
     return this.http.post<any>(`${BASE_URL}/users`, body);
   }
 
-  followUser(idToFollow: string)
-  {
+  followUser(idToFollow: string) {
     // const headers = new Headers();
     // headers.append('Content-Type', 'application/json');
     const body = {
@@ -61,7 +56,7 @@ export class UserService {
   }
 
   getFollowers(id: string) {
-    return this.http.get<{message: string, followers: User[]}>(`${BASE_URL}/followers/${id}`);
+    return this.http.get<{ message: string, followers: User[] }>(`${BASE_URL}/followers/${id}`);
   }
 
   getFollowing(id: string) {

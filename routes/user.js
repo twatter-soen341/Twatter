@@ -9,13 +9,13 @@ const userController = require('../controllers/user');
  * This route should be used to find users by id, works only when authenticated
  * @throws exception when ...
  */
-router.get('/search/:id', passport.authenticate('jwt', { session: false }), userController.getUserById);
+router.get('/search/:id', passport.authenticate('jwt', {session: false}), userController.getUserById);
 
 /**
  * This route should be used to find users by name(using regex), works only when authenticated
  * @throws exception when ...
  */
-router.post('/search', passport.authenticate('jwt', { session: false }), userController.getUserByName);
+router.post('/search', passport.authenticate('jwt', {session: false}), userController.getUserByName);
 
 /**
  * This route should be used to follow a user
@@ -47,4 +47,10 @@ router.get('/following/:id', userController.getFollowing);
  */
 router.post('/users', passport.authenticate('jwt', { session: false }), userController.getUsersByIds);
 
+/**
+ * Route used to update the information about a user
+ **/
+router.put('/users/:id', passport.authenticate('jwt', {session: false}), userController.updateUser);
+
 module.exports = router;
+

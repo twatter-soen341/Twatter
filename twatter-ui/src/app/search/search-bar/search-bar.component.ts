@@ -91,7 +91,25 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
 
   getResults(form: NgForm) {
     if (form.value.search) {
-      this.router.navigate([`/search/${form.value.search}`]);
+      const searchTerm = form.value.search;
+      form.reset();
+      this.users = null;
+      this.posts = null;
+      this.userError = false;
+      this.postError = false;
+      this.router.navigate([`/search/${searchTerm}`]);
     }
+  }
+
+  goToProfile(userId: string) {
+    this.router.navigate(['/profile', userId]);
+  }
+
+  clearResults(form: NgForm) {
+    form.reset();
+    this.users = null;
+    this.posts = null;
+    this.userError = false;
+    this.postError = false;
   }
 }

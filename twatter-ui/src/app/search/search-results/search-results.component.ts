@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/auth.model';
 import { Post } from 'src/app/models/post.model';
 import { UserService } from 'src/app/services/user.service';
@@ -21,7 +21,8 @@ export class SearchResultsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private postsService: PostsService
+    private postsService: PostsService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -52,7 +53,10 @@ export class SearchResultsComponent implements OnInit {
           this.postError = true;
         }
       );
-      /* TODO Comments */
     });
+  }
+
+  goToProfile(userId: string) {
+    this.router.navigate(['/profile', userId]);
   }
 }

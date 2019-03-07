@@ -22,7 +22,11 @@ export class UserService {
     const userID = this.authService.getUserId();
     const body = {
       firstName: newFirstName,
+      lastName: newLastName
+    };
+    return this.http
       .put(`${BASE_URL}/users/${userID}`, body);
+  }
 
   searchUser(name: string) {
     const query = {search: name};

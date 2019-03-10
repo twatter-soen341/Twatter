@@ -11,16 +11,17 @@
   </span>
 
   <nav>
-    <button mat-icon-button color={{colourForIcons}} routerLink="/posts">
-      <mat-icon>home</mat-icon>
+    <button mat-icon-button routerLink="/posts">
+      <img class="logo" src="../assets/images/twatterLogoInGrey.PNG">
     </button>
   </nav>
 
   <!--<span class="firstRow">-->
   <span class="right-justify">
     <ul class="navigation">
+
       <!-- Search -->
-      <app-search-bar class="spacer"></app-search-bar>
+      <app-search-bar class="spacer2" ></app-search-bar>
 
       <!--Notification button with notification badge-->
       <button mat-icon-button color={{colourForIcons}} [matMenuTriggerFor]="menu" matBadge={{notificationCount}}
@@ -45,4 +46,4 @@
 
     </ul>
     </span>
-  </mat-toolbar>
+</mat-toolbar>

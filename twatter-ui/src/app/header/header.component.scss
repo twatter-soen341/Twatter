@@ -5,6 +5,12 @@ main {
   margin: auto;
 }
 
+.logo {
+  width: 4vh;
+  align-self: center;
+  //background-color: crimson;
+}
+
 .card-avatar-image {
   background-image: url('https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg');
   background-size: cover;
@@ -22,7 +28,10 @@ main {
 .spacer {
 margin-left: 15px;
 }
-
+.spacer2{
+  margin-right: 15px;
+  margin-top: 3.5px;
+}
 
 .navigation {
   list-style: none;

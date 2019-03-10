@@ -79,6 +79,7 @@ export class SettingsComponent implements OnInit {
     this.userService.updateUserNames(this.user).subscribe(res => {
       console.log(res);
     });
+    window.location.reload(); // To Update the name in Header
   }
 
   changeUserEmail() {

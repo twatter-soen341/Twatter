@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar, MatTabChangeEvent} from '@angular/material';
 import {AuthService} from '../services/auth.service';
@@ -6,6 +6,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from '../services/user.service';
 import {User} from '../models/auth.model';
+import {HeaderComponent} from '../header/header.component';
 
 @Component({
   selector: 'app-settings',
@@ -14,6 +15,7 @@ import {User} from '../models/auth.model';
 })
 
 export class SettingsComponent implements OnInit {
+  @Output() test = new EventEmitter();
   private headerTitle = 'Change your Settings';
   private user: User;
   changeForm: FormGroup = new FormGroup({
@@ -28,6 +30,7 @@ export class SettingsComponent implements OnInit {
 
   hide_Password = true;
   hide_Confirmation = true;
+
 
   constructor(private authService: AuthService, private userService: UserService, private http: HttpClient) {
   }
@@ -74,12 +77,20 @@ export class SettingsComponent implements OnInit {
 
   // Function which changes the name of a user
   changeUserName() {
-    this.user.firstName = this.changeForm.get('firstNameController').value;
-    this.user.lastName = this.changeForm.get('lastNameController').value;
-    this.userService.updateUserNames(this.user).subscribe(res => {
-      console.log(res);
-    });
-    window.location.reload(); // To Update the name in Header
+
+    if ((this.changeForm.get('firstNameController').value !== '') && (this.changeForm.get('lastNameController').value !== '')) {
+      this.user.firstName = this.changeForm.get('firstNameController').value;
+      this.user.lastName = this.changeForm.get('lastNameController').value;
+      this.userService.updateUserNames(this.user).subscribe(res => {
+        console.log(res);
+      });
+      window.location.reload(); // To Update the name in Header
+    }
+  }
+
+  tested() {
+    this.test.emit(0);
+    console.log('Message emitted');
   }
 
   changeUserEmail() {

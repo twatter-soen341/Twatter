@@ -1,16 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
+
+// import {Events} from 'ionic-angular';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnChanges {
   firstName = '';
   userId = '';
+  @Input('app-settings') test: number;
   protected notificationCount: number;
   protected notifications: string[];
   protected colourForIcons = 'white';
@@ -19,7 +22,8 @@ export class HeaderComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
@@ -30,6 +34,19 @@ export class HeaderComponent implements OnInit {
     });
     this.notifications = new Array();
     this.notificationCount = this.notifications.length;
+  }
+
+  displayUpdatedUserName() {
+    this.userService.getCurrentUser().subscribe(user => {
+      this.firstName = user.firstName;
+    });
+  }
+
+  ngOnChanges() {
+    console.log('checking received Message');
+    if (this.test = 0) {
+      this.displayUpdatedUserName();
+    }
   }
 
   onLogout() {

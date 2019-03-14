@@ -22,6 +22,20 @@ router.post('/signup', authController.signup);
  * Username and password must be sent in the body to authenticate the user
  * @throws exception when credentials are invalid
  */
-router.delete('/', authController.deleteUser)
+router.delete('/', passport.authenticate('jwt', { session: false }), authController.deleteUser);
+
+/**
+ * This route should be used to change a user's password
+ * Username and password must be sent in the body to authenticate the user
+ * @throws exception when credentials are invalid
+ */
+router.put('/pass', passport.authenticate('jwt', { session: false }), authController.changePassword);
+
+/**
+ * This route should be used to change a user's email
+ * Username and password must be sent in the body to authenticate the user
+ * @throws exception when credentials are invalid
+ */
+router.put('/email', passport.authenticate('jwt', { session: false }), authController.changeEmail);
 
 module.exports = router;

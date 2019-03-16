@@ -4,11 +4,10 @@
   "description": "341 group project",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha tests/*.js --timeout 10000 --exit",
     "start": "NODE_ENV=dev node server.js",
     "dev": "NODE_ENV=dev node server.js",
-    "prod": "cross-env NODE_ENV=prod node server.js",
-    "test": "mocha tests/*.js --exit"
+    "prod": "cross-env NODE_ENV=prod node server.js"
   },
   "repository": {
     "type": "git",
@@ -42,6 +41,8 @@
     "chai-http": "^4.2.1",
     "cross-env": "^5.2.0",
     "mocha": "^6.0.2",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "superagent": "^4.1.0",
+    "supertest": "^3.4.2"
   }
 }

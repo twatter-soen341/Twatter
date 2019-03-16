@@ -20,23 +20,7 @@ export class TwatIconBtnComponent implements OnInit {
 
   likesNames = [];
 
-  constructor(public iconRegistry: MatIconRegistry, private userService: UserService, sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon(
-      'flame',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2.svg'));
-
-    iconRegistry.addSvgIcon(
-      'red-flame',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2-red.svg'));
-
-    iconRegistry.addSvgIcon(
-      'flame-flipped',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2-flipped.svg'));
-
-    iconRegistry.addSvgIcon(
-      'red-flame-flipped',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2-red-flipped.svg'));
-  }
+  constructor(public iconRegistry: MatIconRegistry, private userService: UserService, sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     if (this.liked) {

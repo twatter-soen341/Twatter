@@ -41,13 +41,13 @@ export class FollowButtonComponent implements OnInit {
     this.userService.getFollowers(this.userToFollow).subscribe(data => {
       try {
         for ( const user of data.followers ) {
-          if (user.id === this.user.id) {
-            this.btnText = 'Unfollow';
-            this.followed = true;
-          } else {
-            this.btnText = 'Follow';
-            this.followed = false;
-          }
+            if (user && user._id === this.userId) {
+              this.btnText = 'Unfollow';
+              this.followed = true;
+            } else {
+              this.btnText = 'Follow';
+              this.followed = false;
+            }
         }
       } catch (error) {
         console.log(data.message);

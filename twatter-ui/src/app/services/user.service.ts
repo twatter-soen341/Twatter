@@ -54,7 +54,7 @@ export class UserService {
   }
 
   getFollowers(id: string) {
-    return this.http.get<{ message: string, followers: User[] }>(`${BASE_URL}/followers/${id}`);
+    return this.http.get<{ message: string, followers: any }>(`${BASE_URL}/followers/${id}`);
   }
 
   getFollowing(id: string) {

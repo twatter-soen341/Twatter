@@ -32,7 +32,7 @@
   </mat-card>
 </div>
 
-<div *ngIf="posts.length == 0 && !simplified" style="margin-top: 7rem;">
+<div *ngIf="posts && posts.length == 0 && !simplified" style="margin-top: 7rem;">
   <p class="info-text mat-display-1">
     No Twats added yet...
   </p>

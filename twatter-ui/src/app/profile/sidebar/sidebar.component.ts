@@ -11,11 +11,15 @@ import { User } from 'src/app/models/auth.model';
 export class SidebarComponent implements OnInit {
 
 userId: string;
+loggedUser: string;
 user = {
   firstName: '',
-  lastName: ''
+  lastName: '',
+  following: [],
+  followers: []
 };
-loggedUser: string;
+nbFollowing: int;
+nbFollowers: int;
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
 
@@ -25,6 +29,10 @@ loggedUser: string;
 
       this.userService.getUserWithId(this.userId).subscribe(user => {
         this.user = user;
+        console.log(user);
+
+        this.nbFollowing = user.following.length;
+        this.nbFollowers = user.followers.length;
 
         this.userService.getCurrentUser().subscribe(cUser => {
           this.loggedUser = cUser._id;

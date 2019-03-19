@@ -31,7 +31,7 @@ export class FollowingPostComponent implements OnInit {
               (posts: Post[]) => {
                 // if statement is a temporary fix
                 // TODO: Find what causes 2x request
-                  if (posts[i] && !this.posts.includes(posts[i])) {
+                   if(posts[i] && (this.posts.findIndex(p => p.id === posts[i].id) < 0)) {
                     this.posts.push(posts[i]);
                   }
               }

@@ -8,6 +8,8 @@ const app = require('../server');
 // needed for protected routes
 let authenticatedUserID;
 let authenticatedUserJWT;
+let authenticatedUserID1;
+let authenticatedUserJWT1;
 const newUser = {
     "firstName": "test",
     "lastName": "test",
@@ -92,7 +94,7 @@ describe("Authentication", () => {
     // Test for user login to Twatter
     describe("POST /api/auth/login", () => {
 
-        it("should log in with valid credentials", (done) =>{
+        it("should log in with valid credentials (user1)", (done) =>{
             chai.request(app)
                 .post('/api/auth/login')
                 .send(userCredentials)
@@ -100,6 +102,18 @@ describe("Authentication", () => {
             expect(response.statusCode).to.equal(200);
             authenticatedUserID = response.body.userId
             authenticatedUserJWT = response.body.token
+            done();
+            });
+        });
+
+        it("should log in with valid credentials (user2)", (done) =>{
+            chai.request(app)
+                .post('/api/auth/login')
+                .send(userCredentials1)
+                .end((err, response) => {
+            expect(response.statusCode).to.equal(200);
+            authenticatedUserID1 = response.body.userId
+            authenticatedUserJWT1 = response.body.token
             done();
             });
         });
@@ -348,6 +362,7 @@ describe("Deleting created test user", () => {
         it("should delete the created test users", (done) =>{
             chai.request(app)
                 .delete('/api/auth/')
+                .set('Authorization', `Bearer ${authenticatedUserJWT}`) //setting JWT token in header
                 .send(userCredentials)
                 .end((err, response) => {
                     expect(response.statusCode).to.equal(200);
@@ -359,6 +374,7 @@ describe("Deleting created test user", () => {
         it("should delete the created test users", (done) =>{
             chai.request(app)
                 .delete('/api/auth/')
+                .set('Authorization', `Bearer ${authenticatedUserJWT1}`) //setting JWT token in header
                 .send(userCredentials1)
                 .end((err, response) => {
                     expect(response.statusCode).to.equal(200);

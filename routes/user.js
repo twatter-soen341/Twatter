@@ -43,7 +43,7 @@ router.post('/users', userController.getUsersByIds);
 /**
  * Route used to update the information about a user
  **/
-router.put('/users/:id', passport.authenticate('jwt', {session: false}), userController.updateUser);
+router.put('/users/:id', userController.updateUser);
 
 module.exports = router;
 

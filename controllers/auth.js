@@ -41,7 +41,6 @@ exports.signup = async (req, res) => {
     const user = new User({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      // profilePicturePath: '',  // waiting to implement posts model 
       following: [],
       followers: []
     });

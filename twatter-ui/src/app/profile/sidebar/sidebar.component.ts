@@ -18,8 +18,8 @@ user = {
   following: [],
   followers: []
 };
-nbFollowing: int;
-nbFollowers: int;
+nbFollowing: number;
+nbFollowers: number;
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
 

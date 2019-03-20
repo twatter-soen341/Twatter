@@ -184,6 +184,7 @@ exports.updateUser = async (req, res, next) => {
         $set: {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
+            bio: req.body.bio,
             following: req.body.following,
             followers: req.body.followers
         }

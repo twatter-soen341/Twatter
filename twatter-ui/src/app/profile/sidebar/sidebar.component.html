@@ -11,6 +11,9 @@
       <br>
       Twat Score
     </p>
+    <app-display-user-list [list]="this.followerList$" label='Follower(s): '></app-display-user-list>
+    <br>
+    <app-display-user-list [list]="this.followingList$" label='Following: '></app-display-user-list>
   </mat-card>
 
 </div>

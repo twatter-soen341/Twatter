@@ -1,0 +1,9 @@
+<!-- Display the given label and the firstName/lastName of each user in the given Observable-->
+<ng-container *ngIf="this.list && this.list[0] != undefined">
+  {{this.label}}
+    <div *ngFor="let user of this.list">
+      {{user.firstName}} {{user.lastName}}
+    <br>
+    </div>
+</ng-container> 
+

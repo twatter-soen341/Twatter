@@ -50,6 +50,7 @@ import { CommentComponent } from './feed/posts/comment/comment.component';
 // ------Follow Button------
 import { FollowButtonComponent } from './follow-button/follow-button.component';
 import { FollowingPostComponent } from './feed/following-post/following-post.component';
+import { DisplayUserListComponent } from './profile/display-user-list/display-user-list.component';
 
 
 
@@ -77,6 +78,7 @@ import { FollowingPostComponent } from './feed/following-post/following-post.com
     CommentComponent,
     FollowButtonComponent,
     FollowingPostComponent,
+    DisplayUserListComponent,
  ],
   imports: [
     HttpClientModule,

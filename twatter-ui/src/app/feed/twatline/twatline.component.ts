@@ -6,7 +6,6 @@ import { Subscription } from 'rxjs';
 
 import { Post } from '../../models/post.model';
 import { PostsService } from '../../services/post.service';
-import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-twatline',
@@ -15,39 +14,16 @@ import { UserService } from '../../services/user.service';
 })
 export class TwatlineComponent implements OnInit {
 
-  posts: Post[]=[];
-  followingUsers: string[];
-  isFollowingSomeone: boolean;
+  posts: Post[] = [];
   private postsSub: Subscription;
-  constructor(private aPostsService: PostsService, private userService: UserService) {}
+  constructor(public aPostsService: PostsService) {}
 
   ngOnInit() {
-    // // get current user's following
-    // this.userService.getCurrentUser().subscribe(user =>{
-    //   this.followingUsers = user.following;
-    //   if(this.followingUsers){
-    //     this.isFollowingSomeone = true;
-    //   }else{
-    //     this.isFollowingSomeone = false;
-    //   }
-    // });
-    
-    // // get all posts on database
-    // this.aPostsService.getPosts();
-
-    // // get latest updates on posts
-    // this.postsSub = this.aPostsService.getPostUpdateListener().subscribe(
-    //   (posts: Post[]) => {
-    //     for(let post in posts){
-    //       if(this.followingUsers && this.followingUsers.includes(posts[post].userId)){
-    //         this.posts.push(posts[post]);
-    //       }
-    //     }
-    //   }
-    // );
-  }
-
-  isFollowingSomeoneFunction(){
-    return this.isFollowingSomeone;
+    this.aPostsService.getPosts();
+      this.postsSub = this.aPostsService.getPostUpdateListener().subscribe(
+        (posts: Post[]) => {
+          this.posts = posts;
+        }
+      );
   }
 }

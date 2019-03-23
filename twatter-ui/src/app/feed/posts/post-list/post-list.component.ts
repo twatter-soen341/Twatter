@@ -29,6 +29,9 @@ export class PostListComponent implements OnInit, OnDestroy {
   private postsSub: Subscription;
   userId: string;
   posterId: string;
+  // posts: Post[]=[];
+  followingUsers: string[];
+  isFollowingSomeone: boolean;
 
   constructor(
     public aPostsService: PostsService,
@@ -43,6 +46,30 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.userService.getCurrentUser().subscribe(user => {
       this.userId = user._id;
     });
+
+        // get current user's following
+        this.userService.getCurrentUser().subscribe(user =>{
+          this.followingUsers = user.following;
+          if(this.followingUsers){
+            this.isFollowingSomeone = true;
+          }else{
+            this.isFollowingSomeone = false;
+          }
+        });
+        
+        // get all posts on database
+        this.aPostsService.getPosts();
+    
+        // get latest updates on posts
+        this.postsSub = this.aPostsService.getPostUpdateListener().subscribe(
+          (posts: Post[]) => {
+            for(let post in posts){
+              if(this.followingUsers && this.followingUsers.includes(posts[post].userId)){
+                this.posts.push(posts[post]);
+              }
+            }
+          }
+        );
 
   }
 

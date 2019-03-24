@@ -163,7 +163,7 @@ export class PostsService {
           };
         });
       } catch (error) {
-        throw new Error('No results found.')
+        throw new Error('No results found.');
       }
     }));
   }

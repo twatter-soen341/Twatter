@@ -14,7 +14,7 @@ import {MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatSnackBar} from '@angular/ma
 import {NgForm} from '@angular/forms';
 import {UserService} from 'src/app/services/user.service';
 import {AuthService} from '../../../services/auth.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-post-list',
@@ -72,24 +72,24 @@ export class PostListComponent implements OnInit, OnDestroy {
     });
   }
 
-  commentPost(post: Post, comment: Comment){
+  commentPost(post: Post, comment: Comment) {
 
-    if(!post.comments) {
+    if (!post.comments) {
       post.comments = [comment];
-    }else {
+    } else {
       post.comments.push(comment);
     }
     this.aPostsService.updatePost(post);
   }
 
-  deleteComment(post: Post, comment: Comment){
+  deleteComment(post: Post, comment: Comment) {
     const index = post.comments.indexOf(comment);
-    post.comments.splice(index,1);
+    post.comments.splice(index, 1);
 
     this.aPostsService.updatePost(post);
   }
 
-  editComment(post: Post, comments: any){
+  editComment(post: Post, comments: any) {
     const index = post.comments.indexOf(comments.oldComment);
     post.comments[index] = comments.newComment;
 

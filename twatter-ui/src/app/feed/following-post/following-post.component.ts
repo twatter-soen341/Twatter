@@ -22,10 +22,10 @@ export class FollowingPostComponent implements OnInit {
     this.userService.getCurrentUser().subscribe(user => {
         this.followingUsers = user.following;
 
-        if (this.followingUsers.length>0) {
+        if (this.followingUsers.length > 0) {
           this.isFollowingSomeone = true;
           // tslint:disable-next-line:forin
-          for (let i in this.followingUsers) {
+          for (const i in this.followingUsers) {
             this.postsService.getUserPosts(this.followingUsers[i]);
             this.postsSub = this.postsService.getPostUpdateListener().subscribe(
               (posts: Post[]) => {
@@ -37,13 +37,13 @@ export class FollowingPostComponent implements OnInit {
               }
               );
           }
-        }else{
+        } else {
           this.isFollowingSomeone = false;
         }
     });
   }
 
-  isFollowingSomeoneFunction(){
+  isFollowingSomeoneFunction() {
     return this.isFollowingSomeone;
   }
 }

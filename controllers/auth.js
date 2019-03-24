@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 const Auth = require('../models/auth');
+const Twat = require('../models/twat');
 
 exports.login = async (req, res, next) => {
   try {

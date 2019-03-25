@@ -54,11 +54,7 @@ export class CommentComponent implements OnInit {
   }
 
   canDelete(comment: Comment) {
-<<<<<<< HEAD:twatter-ui/src/app/feed/posts/comment/comment.component.ts
-    if (comment.userId == this.authService.getUserId() || this.post.userId == this.authService.getUserId()) {
-=======
     if (comment.userId === this.authService.getUserId() || this.twat.userId === this.authService.getUserId()) {
->>>>>>> dev:twatter-ui/src/app/feed/twats/comment/comment.component.ts
       return true;
     } else {
       return false;
@@ -66,11 +62,7 @@ export class CommentComponent implements OnInit {
   }
 
   canEdit(comment: Comment) {
-<<<<<<< HEAD:twatter-ui/src/app/feed/posts/comment/comment.component.ts
-    if (comment.userId == this.authService.getUserId()) {
-=======
     if (comment.userId === this.authService.getUserId()) {
->>>>>>> dev:twatter-ui/src/app/feed/twats/comment/comment.component.ts
       return true;
     } else {
       return false;

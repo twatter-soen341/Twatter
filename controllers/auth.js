@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 const Auth = require('../models/auth');
+const Twat = require('../models/twat');
 
 exports.login = async (req, res, next) => {
   try {
@@ -114,9 +115,10 @@ exports.deleteUser = async (req, res) => {
   try {
     const authUser = await authenticatUser(req.body.email, req.body.password);
     
-    /* save the user only if auth is successful */
-    await Auth.deleteOne({ email: req.body.email });
-    await User.findOneAndDelete({_id: authUser.user});
+    /* delete the user and their posts only if auth is successful */
+    await Auth.deleteOne({email: req.body.email});
+    await User.deleteOne({_id: authUser.user});
+    await Twat.deleteMany({user: authUser.user});
 
      /* Sending response */
      res.status(200).json({

@@ -26,12 +26,13 @@ export class FollowingPostComponent implements OnInit {
           this.isFollowingSomeone = true;
           // tslint:disable-next-line:forin
           for (const i in this.followingUsers) {
-            this.postsService.getUserPosts(this.followingUsers[i]);
+            const postsTest = this.postsService.getUserPosts(this.followingUsers[i]);
+            console.log('postService get user posts', postsTest);
             this.postsSub = this.postsService.getPostUpdateListener().subscribe(
               (posts: Post[]) => {
                 // if statement is a temporary fix
                 // TODO: Find what causes 2x request
-                   if(posts[i] && (this.posts.findIndex(p => p.id === posts[i].id) < 0)) {
+                   if (posts[i] && (this.posts.findIndex(p => p.id === posts[i].id) < 0)) {
                     this.posts.push(posts[i]);
                   }
               }

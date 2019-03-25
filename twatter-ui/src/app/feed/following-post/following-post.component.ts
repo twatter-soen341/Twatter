@@ -31,8 +31,8 @@ export class FollowingPostComponent implements OnInit {
               (twats: Twat[]) => {
                 // if statement is a temporary fix
                 // TODO: Find what causes 2x request
-                   if(twats[i] && (this.twats.findIndex(p => p.id === twats[i].id) < 0)) {
-                    this.twats.push(twats[i]);
+                   if(twats[0] && (this.twats.findIndex(p => p.id === twats[0].id) < 0)) {
+                    this.twats.push(twats[0]);
                   }
               }
               );

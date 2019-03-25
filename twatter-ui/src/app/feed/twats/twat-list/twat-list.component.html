@@ -1,0 +1,39 @@
+<!--Fetch the array of twat and makes a mat-card model for each twat in the array-->
+<div *ngIf="twats && twats.length > 0">
+  <mat-card *ngFor="let twat of (twats | slice: 0:limit); let i = index">
+    <mat-card-header>
+      <div mat-card-avatar class="card-header-image" (click)="goToProfile(twat.userId)"></div>
+      <mat-card-title>{{ twat.firstName }} {{ twat.lastName }}</mat-card-title>
+      <mat-card-subtitle>{{ twat.timeStamp }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <ng-scrollbar class="scrollbar">
+        <div [innerHTML]="twat.content" class="twat-list"></div>
+      </ng-scrollbar>
+    </mat-card-content>
+
+    <!--user actions that are available after twat creation-->
+    <mat-card-actions align="end">
+      <!--checks if the twat has been liked by the user, if yes color red else color dark-->
+      <!--Emits event onclick that updates the twat to be liked/unliked by user on the backend-->
+      <app-twat-icon-btn [likes]="twat.likedBy" [liked] = "isLikedByUser(twat)" (clickEvent) = "likeTwat(twat, $event)" >l</app-twat-icon-btn>
+        <button mat-icon-button *ngIf="!simplified"><mat-icon color="accent">share</mat-icon></button>
+        <div *ngIf="isUser(twat.userId)">
+          <button mat-icon-button *ngIf="!simplified" (click)="onEdit(twat.id)"><mat-icon color="accent">edit</mat-icon></button>
+          <button mat-icon-button *ngIf="!simplified" (click)="onDelete(twat.id)"><mat-icon color="primary">delete</mat-icon></button>
+        </div>
+    </mat-card-actions>
+
+  <mat-card-content *ngIf="!simplified">
+    <mat-divider></mat-divider>
+    <app-comment [comments]="twat.comments.reverse()" [twat] ="twat" (deleted)="deleteComment(twat, $event)" (commented)="commentTwat(twat, $event)" (edited)="editComment(twat, $event)"></app-comment>
+  </mat-card-content>
+  </mat-card>
+</div>
+
+<div *ngIf="twats && twats.length == 0 && !simplified" style="margin-top: 7rem;">
+  <p class="info-text mat-display-1">
+    No Twats added yet...
+  </p>
+</div>

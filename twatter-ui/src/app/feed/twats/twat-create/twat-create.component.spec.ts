@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostListComponent } from './post-list.component';
+import { TwatCreateComponent } from './twat-create.component';
 
-describe('PostListComponent', () => {
-  let component: PostListComponent;
-  let fixture: ComponentFixture<PostListComponent>;
+describe('TwatCreateComponent', () => {
+  let component: TwatCreateComponent;
+  let fixture: ComponentFixture<TwatCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PostListComponent ]
+      declarations: [ TwatCreateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PostListComponent);
+    fixture = TestBed.createComponent(TwatCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

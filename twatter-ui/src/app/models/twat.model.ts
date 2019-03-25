@@ -1,4 +1,4 @@
-export interface Post {
+export interface Twat {
   id: string;
   userId: string;
   firstName: string;
@@ -9,7 +9,7 @@ export interface Post {
   comments: Comment[];
 }
 
-export interface ReturnedPost {
+export interface ReturnedTwat {
   _id: string;
   user: {
     _id: string,

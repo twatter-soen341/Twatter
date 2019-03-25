@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/auth.model';
-import { Post } from 'src/app/models/post.model';
+import { Twat } from 'src/app/models/twat.model';
 import { UserService } from 'src/app/services/user.service';
-import { PostsService } from 'src/app/services/post.service';
+import { TwatsService } from 'src/app/services/twat.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -16,12 +16,12 @@ export class SearchResultsComponent implements OnInit {
   users: User[];
   userError = false;
   postError = false;
-  posts: Post[] = [];
+  posts: Twat[] = []; // TODO: refactor variables
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private postsService: PostsService,
+    private postsService: TwatsService, // TODO: refactor variables
     private router: Router
     ) {}
 
@@ -43,7 +43,7 @@ export class SearchResultsComponent implements OnInit {
         }
       );
       /* TODO Posts */
-      this.postsService.searchPost(this.searchValue[0]).subscribe(
+      this.postsService.searchTwat(this.searchValue[0]).subscribe(
         posts => {
           this.posts = posts;
           this.postError = false;

@@ -20,8 +20,7 @@ exports.createTwat = function (req, res, next) {
             });
         })
         .catch((err) => {
-
-            res.status(400).json({
+            res.status(500).json({
                 message: 'Twat failed to be added',
                 error: err
             });
@@ -39,10 +38,6 @@ exports.getTwat = function (req, res, next) {
                     post: documents
                 });
             }).catch((err) => {
-                res.status(400).json({
-                    message: 'Failed at getting Posts',
-                    error: err
-                });
                 res.status(500).json({
                     message: 'Failed at getting Posts',
                     error: err
@@ -61,10 +56,6 @@ exports.getTwatsForUser = function(req, res, next){
                     posts: documents
                 });
             }).catch((err) => {
-                res.status(400).json({
-                    message: 'Failed at getting Posts',
-                    error: err
-                });
                 res.status(500).json({
                     message: 'Failed at getting Posts',
                     error: err
@@ -84,10 +75,6 @@ exports.getTwats = (req, res, next) => {
             posts: documents
         });
     }).catch((err) => {
-        res.status(400).json({
-            message: 'Failed at getting Posts',
-            error: err
-        });
         res.status(500).json({
             message: 'Failed at getting Posts',
             error: err

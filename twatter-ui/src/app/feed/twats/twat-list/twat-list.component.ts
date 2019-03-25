@@ -17,11 +17,11 @@ import {AuthService} from '../../../services/auth.service';
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-post-list',
-  templateUrl: './post-list.component.html',
-  styleUrls: ['./post-list.component.scss']
+  selector: 'app-twat-list',
+  templateUrl: './twat-list.component.html',
+  styleUrls: ['./twat-list.component.scss']
 })
-export class PostListComponent implements OnInit, OnDestroy {
+export class TwatListComponent implements OnInit, OnDestroy {
   @Input() posts: Post[] = [];
   @Input() simplified = false;
   @Input() limit = 1000;
@@ -51,19 +51,19 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   onEdit(id: string) {
-    const post = this.aPostsService.getPost(id).subscribe((postData) => {
-      const dialogRef = this.dialog.open(PostEditDialogComponent, {
+    const post = this.aPostsService.getPost(id).subscribe((twatData) => {
+      const dialogRef = this.dialog.open(TwatEditDialogComponent, {
         width: '80%',
         position: {top: '5rem'},
         data: {
-          id: postData.post._id,
-          userID: postData.post.user._id,
-          firstName: postData.post.user.firstName,
-          lastName: postData.post.user.lastName,
-          timeStamp: postData.post.timeStamp,
-          content: postData.post.content,
-          likedBy: postData.post.likedBy,
-          comments: postData.post.comments
+          id: twatData.post._id,
+          userID: twatData.post.user._id,
+          firstName: twatData.post.user.firstName,
+          lastName: twatData.post.user.lastName,
+          timeStamp: twatData.post.timeStamp,
+          content: twatData.post.content,
+          likedBy: twatData.post.likedBy,
+          comments: twatData.post.comments
         }
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -82,14 +82,14 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.aPostsService.updatePost(post);
   }
 
-  deleteComment(post: Post, comment: Comment){
+  deleteComment(post: Post, comment: Comment) {
     const index = post.comments.indexOf(comment);
-    post.comments.splice(index,1);
+    post.comments.splice(index, 1);
 
     this.aPostsService.updatePost(post);
   }
 
-  editComment(post: Post, comments: any){
+  editComment(post: Post, comments: any) {
     const index = post.comments.indexOf(comments.oldComment);
     post.comments[index] = comments.newComment;
 
@@ -132,16 +132,16 @@ export class PostListComponent implements OnInit, OnDestroy {
 }
 
 @Component({
-  selector: 'app-post-edit-dialog',
-  templateUrl: './post-edit-dialog.component.html',
+  selector: 'app-twat-edit-dialog',
+  templateUrl: './twat-edit-dialog.component.html',
   styleUrls: ['../twat-create/twat-create.component.scss']
 })
-export class PostEditDialogComponent implements OnInit {
+export class TwatEditDialogComponent implements OnInit {
   content = '';
   private userId;
 
   constructor(
-    public dialogRef: MatDialogRef<PostEditDialogComponent>,
+    public dialogRef: MatDialogRef<TwatEditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Post,
     public postsService: PostsService,
     private userService: UserService) {}

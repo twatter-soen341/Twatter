@@ -13,6 +13,7 @@
     <div *ngIf="userError && postError">
       <mat-option>No results found</mat-option>
     </div>
+    <!-- Show users -->
     <div *ngIf="users && !userError">
       <mat-option
         *ngFor="let user of users"
@@ -30,8 +31,12 @@
       </mat-option>
     </div>
     <mat-divider></mat-divider>
+    <!-- Show twats -->
     <div *ngIf="posts && !postError">
-      <mat-option *ngFor="let post of posts" [value]="post.content">
+      <mat-option
+        *ngFor="let post of posts"
+        (click)="goToProfile(post.userId)"
+      >
         <i class="material-icons mt-12">comment</i>
         {{ post.content }}
       </mat-option>

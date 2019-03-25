@@ -41,9 +41,10 @@ export class FollowButtonComponent implements OnInit {
     this.userService.getFollowers(this.userToFollow).subscribe(data => {
       try {
         for ( const user of data.followers ) {
-            if (user && user._id === this.userId) {
+            if (user && (user._id === this.userId)) {
               this.btnText = 'Unfollow';
               this.followed = true;
+              break;
             } else {
               this.btnText = 'Follow';
               this.followed = false;

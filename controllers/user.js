@@ -179,15 +179,17 @@ exports.getFollowing = async (req, res, next) => {
 }
 // Used to update the user
 exports.updateUser = async (req, res, next) => {
-    console.log('here');
-    User.findByIdAndUpdate(req.params.id, {
-        $set: {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            following: req.body.following,
-            followers: req.body.followers
-        }
-    }, function (err) {
+
+    const updateQuery = {};
+
+    /* Updating only the fields that are given */
+    if(req.body.firstName) updateQuery.firstName = req.body.firstName;
+    if(req.body.lastName) updateQuery.lastName = req.body.lastName;
+    if(req.body.bio) updateQuery.bio = req.body.bio;
+    if(req.body.following) updateQuery.following = req.body.following;
+    if(req.body.followers) updateQuery.followers = req.body.followers;
+
+    User.findByIdAndUpdate(req.params.id, { $set: updateQuery }, (err) => {
         if (err) {
             res.status(500).json({message: 'Update Failed.', error: err});
         } else {

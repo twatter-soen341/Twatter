@@ -46,6 +46,7 @@ import { SettingsComponent } from './settings/settings.component';
 // ----Side Bar Settings in Setting Bar
 import { SidebarSettingsComponent } from './settings/sidebar-settings/sidebar-settings.component';
 import { MatTabsModule } from '@angular/material';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { CommentComponent } from './feed/posts/comment/comment.component';
 // ------Follow Button------
 import { FollowButtonComponent } from './follow-button/follow-button.component';
@@ -101,7 +102,8 @@ import { FollowingPostComponent } from './feed/following-post/following-post.com
     MatMenuModule,
     DragScrollModule,
     MatTabsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatCheckboxModule
 
   ],
   providers: [

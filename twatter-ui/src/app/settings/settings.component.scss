@@ -104,6 +104,7 @@
 .action-container {
   display: flex;
   flex-direction: column;
+  width: 300px;
 }
 
 //For the main title
@@ -115,4 +116,13 @@
 
 .title{
   color: rgb(192,24,91);
+}
+
+.understand{
+  padding-bottom: 1em;
+}
+
+.mat-tab-labels{
+  text-align: right;
+  //margin-right: 5px;
 }

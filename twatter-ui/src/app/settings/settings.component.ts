@@ -18,6 +18,7 @@ export class SettingsComponent implements OnInit {
   @Output() test = new EventEmitter();
   private headerTitle = 'Change your Settings';
   private user: User;
+  consent = false;
   changeForm: FormGroup = new FormGroup({
     firstNameController: new FormControl('', [Validators.required]),
     lastNameController: new FormControl('', [Validators.required]),
@@ -52,10 +53,10 @@ export class SettingsComponent implements OnInit {
     console.log('tabChangeEvent => ', tabChangeEvent);
     console.log('index => ', tabChangeEvent.index);
 
-    if (tabChangeEvent.index < 4) {
+    if (tabChangeEvent.index <= 2) {
       this.headerTitle = 'Change your Info';
     } else {
-      this.headerTitle = 'Change your Preferences';
+      this.headerTitle = 'Delete your Account';
     }
   }
 

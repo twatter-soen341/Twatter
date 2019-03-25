@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
@@ -10,10 +10,9 @@ import {Router} from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnChanges {
+export class HeaderComponent implements OnInit {
   firstName = '';
   userId = '';
-  @Input('app-settings') test: number;
   protected notificationCount: number;
   protected notifications: string[];
   protected colourForIcons = 'white';
@@ -40,13 +39,6 @@ export class HeaderComponent implements OnInit, OnChanges {
     this.userService.getCurrentUser().subscribe(user => {
       this.firstName = user.firstName;
     });
-  }
-
-  ngOnChanges() {
-    console.log('checking received Message');
-    if (this.test = 0) {
-      this.displayUpdatedUserName();
-    }
   }
 
   onLogout() {

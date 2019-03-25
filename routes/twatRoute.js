@@ -19,10 +19,6 @@ router.post('/search', twatController.getTwatsByMatch);
  */
 router.get('/', twatController.getTwats);
 
-// /**
-//  * This route should be used to retrieve a collection of post (twat) from all users that current user follows
-//  */
-// router.get('/', twatController.getFollowingTwats);
 
 /**
  * This route should be used to get a post (twat) with a specific id

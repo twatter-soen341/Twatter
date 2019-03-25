@@ -15,11 +15,11 @@ let submitted = false;
 
 // The Component decorator
 @Component({
-  selector: 'app-post-create',
-  templateUrl: './post-create.component.html',
-  styleUrls: ['./post-create.component.scss']
+  selector: 'app-twat-create',
+  templateUrl: './twat-create.component.html',
+  styleUrls: ['./twat-create.component.scss']
 })
-export class PostCreateComponent implements OnInit {
+export class TwatCreateComponent implements OnInit {
   userId: string;
   firstName: string;
   lastName: string;
@@ -39,7 +39,7 @@ export class PostCreateComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(PostCreateDialogComponent, {
+    const dialogRef = this.dialog.open(TwatCreateDialogComponent, {
       width: '80%',
       position: {top: '5rem'},
       data: {
@@ -72,17 +72,17 @@ export class PostCreateComponent implements OnInit {
 }
 
 @Component({
-  selector: 'app-post-create-dialog',
-  templateUrl: './post-create-dialog.component.html',
-  styleUrls: ['./post-create.component.scss']
+  selector: 'app-twat-create-dialog',
+  templateUrl: './twat-create-dialog.component.html',
+  styleUrls: ['./twat-create.component.scss']
 })
-export class PostCreateDialogComponent implements OnInit {
+export class TwatCreateDialogComponent implements OnInit {
   userId: string;
   firstName: string;
   content: string;
 
   constructor(
-    public dialogRef: MatDialogRef<PostCreateDialogComponent>,
+    public dialogRef: MatDialogRef<TwatCreateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Post,
     public postsService: PostsService,
     private userService: UserService) {}

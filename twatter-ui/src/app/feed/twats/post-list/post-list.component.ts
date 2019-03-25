@@ -134,7 +134,7 @@ export class PostListComponent implements OnInit, OnDestroy {
 @Component({
   selector: 'app-post-edit-dialog',
   templateUrl: './post-edit-dialog.component.html',
-  styleUrls: ['../post-create/post-create.component.scss']
+  styleUrls: ['../twat-create/twat-create.component.scss']
 })
 export class PostEditDialogComponent implements OnInit {
   content = '';

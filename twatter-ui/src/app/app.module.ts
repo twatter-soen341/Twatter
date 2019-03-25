@@ -6,8 +6,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HeaderComponent} from './header/header.component';
 // ------Feed Components-------
-import {PostCreateComponent, PostCreateDialogComponent} from './feed/posts/post-create/post-create.component';
-import {PostListComponent, PostEditDialogComponent} from './feed/posts/post-list/post-list.component';
+import {TwatCreateComponent, TwatCreateDialogComponent} from './feed/twats/twat-create/twat-create.component';
+import {PostListComponent, PostEditDialogComponent} from './feed/twats/post-list/post-list.component';
 import {TextareaAutosizeModule} from 'ngx-textarea-autosize';
 import {NgScrollbarModule} from 'ngx-scrollbar';
 import {TwatIconBtnComponent} from './icons/twat-icon-btn/twat-icon-btn.component';
@@ -46,7 +46,7 @@ import { SettingsComponent } from './settings/settings.component';
 // ----Side Bar Settings in Setting Bar
 import { SidebarSettingsComponent } from './settings/sidebar-settings/sidebar-settings.component';
 import { MatTabsModule } from '@angular/material';
-import { CommentComponent } from './feed/posts/comment/comment.component';
+import { CommentComponent } from './feed/twats/comment/comment.component';
 // ------Follow Button------
 import { FollowButtonComponent } from './follow-button/follow-button.component';
 import { FollowingPostComponent } from './feed/following-post/following-post.component';
@@ -61,8 +61,8 @@ import { DisplayUserListComponent } from './profile/display-user-list/display-us
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    PostCreateComponent,
-    PostCreateDialogComponent,
+    TwatCreateComponent,
+    TwatCreateDialogComponent,
     PostListComponent,
     TwatIconBtnComponent,
     RegisterComponent,
@@ -112,7 +112,7 @@ import { DisplayUserListComponent } from './profile/display-user-list/display-us
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [
-    PostCreateDialogComponent,
+    TwatCreateDialogComponent,
     PostEditDialogComponent
   ]
 })

@@ -72,7 +72,7 @@ exports.getTwats = (req, res, next) => {
     .then(documents => {
             res.status(200).json({
             message: 'Twats fetched succesfully!',
-            posts: documents
+            twats: documents
         });
     }).catch((err) => {
         res.status(500).json({

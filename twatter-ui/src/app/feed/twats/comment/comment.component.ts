@@ -4,7 +4,7 @@ import {Comment} from '../../../models/comment.model';
 import {AuthService} from '../../../services/auth.service';
 import {User} from "../../../models/auth.model";
 import {UserService} from "../../../services/user.service";
-import {Post} from "../../../models/post.model";
+import {Twat} from "../../../models/twat.model";
 import {Router} from "@angular/router";
 
 @Component({
@@ -17,7 +17,7 @@ export class CommentComponent implements OnInit {
 
 
   @Input()
-  post: Post;
+  post: Twat; // TODO rename variables related to post -> twat
   @Input()
   comments: Comment[] = [];
 

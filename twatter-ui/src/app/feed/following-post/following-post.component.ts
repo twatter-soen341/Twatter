@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/auth.model';
-import { Post } from 'src/app/models/post.model';
-import { PostsService } from 'src/app/services/post.service';
+import { Twat } from 'src/app/models/twat.model';
+import { TwatsService } from 'src/app/services/twat.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,22 +13,22 @@ import { Subscription } from 'rxjs';
 export class FollowingPostComponent implements OnInit {
   private followingUsers: string[];
   private isFollowingSomeone: boolean;
-  protected posts: Post[] = [];
-  private postsSub: Subscription;
+  protected posts: Twat[] = []; // TODO rename variables related to post -> twat
+  private twatsSub: Subscription;
 
-  constructor (private userService: UserService, private postsService: PostsService) {}
+  constructor (private userService: UserService, private postsService: TwatsService) {}
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
         this.followingUsers = user.following;
 
-        if (this.followingUsers.length>0) {
+        if (this.followingUsers.length > 0) {
           this.isFollowingSomeone = true;
           // tslint:disable-next-line:forin
           for (let i in this.followingUsers) {
-            this.postsService.getUserPosts(this.followingUsers[i]);
-            this.postsSub = this.postsService.getPostUpdateListener().subscribe(
-              (posts: Post[]) => {
+            this.postsService.getUserTwats(this.followingUsers[i]);
+            this.twatsSub = this.postsService.getTwatUpdateListener().subscribe(
+              (posts: Twat[]) => {
                 // if statement is a temporary fix
                 // TODO: Find what causes 2x request
                    if(posts[i] && (this.posts.findIndex(p => p.id === posts[i].id) < 0)) {
@@ -37,7 +37,7 @@ export class FollowingPostComponent implements OnInit {
               }
               );
           }
-        }else{
+        } else {
           this.isFollowingSomeone = false;
         }
     });

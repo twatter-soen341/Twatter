@@ -14,8 +14,8 @@ import {
 } from 'rxjs/operators';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/auth.model';
-import { PostsService } from '../../services/post.service';
-import { Post } from '../../models/post.model';
+import { TwatsService } from '../../services/twat.service';
+import { Twat } from '../../models/twat.model';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
@@ -28,15 +28,15 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
   @ViewChild('filter') filter: ElementRef;
   keyUpSub: Subscription;
   users: { user: User; error: string };
-  posts: { post: Post; error: string };
+  posts: { post: Twat; error: string }; // TODO: rename posts to twats
   userError = false;
-  postError = false;
+  postError = false; // TODO rename postError to twatError
   value: string;
 
   constructor(
     private router: Router,
     private userService: UserService,
-    private postService: PostsService
+    private postService: TwatsService // TODO rename postService to twatService
   ) {}
 
   /* debounceTime and distinctUnilChange
@@ -66,7 +66,7 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
         debounceTime(200),
         map((event: Event) => (<HTMLInputElement>event.target).value),
         distinctUntilChanged(),
-        switchMap(value => this.postService.searchPost(value))
+        switchMap(value => this.postService.searchTwat(value))
       )
       .subscribe(
         data => {

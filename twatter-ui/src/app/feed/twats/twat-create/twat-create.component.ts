@@ -6,9 +6,9 @@ import {
 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import { Post } from '../../../models/post.model';
+import { Twat } from '../../../models/twat.model';
 import { NgForm } from '@angular/forms';
-import { PostsService } from '../../../services/post.service';
+import { TwatsService } from '../../../services/twat.service';
 import { UserService } from 'src/app/services/user.service';
 
 let submitted = false;
@@ -34,7 +34,7 @@ export class TwatCreateComponent implements OnInit {
       this.firstName = user.firstName;
       this.lastName = user.lastName;
       this.userName = user.userName;
-      if (!this.content) {this.content = 'Hi ' + this.firstName + ', create a post?'; }
+      if (!this.content) {this.content = 'Hi ' + this.firstName + ', create a twat?'; }
     });
   }
 
@@ -53,7 +53,7 @@ export class TwatCreateComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (!dialogRef._containerInstance._config.data.content) {
-        this.content = 'Hi ' + this.firstName + ', create a post?';
+        this.content = 'Hi ' + this.firstName + ', create a twat?';
       } else {
         this.content = dialogRef._containerInstance._config.data.content;
       }
@@ -83,15 +83,15 @@ export class TwatCreateDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<TwatCreateDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Post,
-    public postsService: PostsService,
+    @Inject(MAT_DIALOG_DATA) public data: Twat,
+    public twatsService: TwatsService,
     private userService: UserService) {}
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
       this.userId = user.id;
       this.firstName = user.firstName;
-      if (this.data.content !== 'Hi ' + this.firstName + ', create a post?') {
+      if (this.data.content !== 'Hi ' + this.firstName + ', create a twat?') {
         this.content = this.data.content;
       }
       this.dialogRef._containerInstance._config.data.content = this.content;
@@ -103,8 +103,8 @@ export class TwatCreateDialogComponent implements OnInit {
     this.dialogRef._containerInstance._config.data.content = event;
   }
 
-  onCreatePost(form: NgForm) {
-      const post = {
+  onCreateTwat(form: NgForm) {
+      const twat = {
         id: this.data.id,
         userId: this.data.userId,
         firstName: this.data.firstName,
@@ -114,7 +114,7 @@ export class TwatCreateDialogComponent implements OnInit {
         likedBy: []
     };
 
-    this.postsService.addPost(post);
+    this.twatsService.addTwat(twat);
     submitted = true;
     this.data.content = '';
     this.dialogRef.close();

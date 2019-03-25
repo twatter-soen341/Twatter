@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 import {Subscription} from 'rxjs';
 
-import {Post} from '../../../models/post.model';
-import {PostsService} from '../../../services/post.service';
+import {Twat} from '../../../models/twat.model';
+import {TwatsService} from '../../../services/twat.service';
 import {MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatSnackBar} from '@angular/material';
 import {NgForm} from '@angular/forms';
 import {UserService} from 'src/app/services/user.service';
@@ -22,16 +22,16 @@ import {Router} from "@angular/router";
   styleUrls: ['./twat-list.component.scss']
 })
 export class TwatListComponent implements OnInit, OnDestroy {
-  @Input() posts: Post[] = [];
+  @Input() twats: Twat[] = [];
   @Input() simplified = false;
   @Input() limit = 1000;
   @Output() liked;
-  private postsSub: Subscription;
+  private twatsSub: Subscription;
   userId: string;
-  posterId: string;
+  userTwatId: string;
 
   constructor(
-    public aPostsService: PostsService,
+    public aTwatsService: TwatsService,
     private userService: UserService,
     private authService: AuthService,
     private router: Router,
@@ -46,24 +46,24 @@ export class TwatListComponent implements OnInit, OnDestroy {
 
   }
 
-  goToProfile(posterId: string) {
-    this.router.navigate(['/profile', posterId]);
+  goToProfile(userTwatId: string) {
+    this.router.navigate(['/profile', userTwatId]);
   }
 
   onEdit(id: string) {
-    const post = this.aPostsService.getPost(id).subscribe((twatData) => {
+    const twat = this.aTwatsService.getTwat(id).subscribe((twatData) => {
       const dialogRef = this.dialog.open(TwatEditDialogComponent, {
         width: '80%',
         position: {top: '5rem'},
         data: {
-          id: twatData.post._id,
-          userID: twatData.post.user._id,
-          firstName: twatData.post.user.firstName,
-          lastName: twatData.post.user.lastName,
-          timeStamp: twatData.post.timeStamp,
-          content: twatData.post.content,
-          likedBy: twatData.post.likedBy,
-          comments: twatData.post.comments
+          id: twatData.twat._id,
+          userID: twatData.twat.user._id,
+          firstName: twatData.twat.user.firstName,
+          lastName: twatData.twat.user.lastName,
+          timeStamp: twatData.twat.timeStamp,
+          content: twatData.twat.content,
+          likedBy: twatData.twat.likedBy,
+          comments: twatData.twat.comments
         }
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -72,38 +72,38 @@ export class TwatListComponent implements OnInit, OnDestroy {
     });
   }
 
-  commentPost(post: Post, comment: Comment){
+  commentTwat(twat: Twat, comment: Comment) {
 
-    if(!post.comments) {
-      post.comments = [comment];
-    }else {
-      post.comments.push(comment);
+    if (!twat.comments) {
+      twat.comments = [comment];
+    } else {
+      twat.comments.push(comment);
     }
-    this.aPostsService.updatePost(post);
+    this.aTwatsService.updateTwat(twat);
   }
 
-  deleteComment(post: Post, comment: Comment) {
-    const index = post.comments.indexOf(comment);
-    post.comments.splice(index, 1);
+  deleteComment(twat: Twat, comment: Comment) {
+    const index = twat.comments.indexOf(comment);
+    twat.comments.splice(index, 1);
 
-    this.aPostsService.updatePost(post);
+    this.aTwatsService.updateTwat(twat);
   }
 
-  editComment(post: Post, comments: any) {
-    const index = post.comments.indexOf(comments.oldComment);
-    post.comments[index] = comments.newComment;
+  editComment(twat: Twat, comments: any) {
+    const index = twat.comments.indexOf(comments.oldComment);
+    twat.comments[index] = comments.newComment;
 
-    this.aPostsService.updatePost(post);
+    this.aTwatsService.updateTwat(twat);
   }
 
 
-  onDelete(postID: string) {
-    this.aPostsService.deletePost(postID);
+  onDelete(twatID: string) {
+    this.aTwatsService.deleteTwat(twatID);
   }
 
   ngOnDestroy() {
-    if (this.postsSub) {
-      this.postsSub.unsubscribe();
+    if (this.twatsSub) {
+      this.twatsSub.unsubscribe();
     }
   }
 
@@ -115,18 +115,18 @@ export class TwatListComponent implements OnInit, OnDestroy {
     }
   }
 
-  likePost(post: Post, event) {
+  likeTwat(twat: Twat, event) {
     if (event === true) {
-      post.likedBy.push(this.authService.getUserId());
+      twat.likedBy.push(this.authService.getUserId());
     } else {
-      const index = post.likedBy.indexOf(this.authService.getUserId());
-      post.likedBy.splice(index, 1);
+      const index = twat.likedBy.indexOf(this.authService.getUserId());
+      twat.likedBy.splice(index, 1);
     }
-    this.aPostsService.updatePost(post);
+    this.aTwatsService.updateTwat(twat);
   }
 
-  isLikedByUser(post) {
-    return post.likedBy.includes(this.authService.getUserId());
+  isLikedByUser(twat) {
+    return twat.likedBy.includes(this.authService.getUserId());
   }
 
 }
@@ -142,8 +142,8 @@ export class TwatEditDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<TwatEditDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Post,
-    public postsService: PostsService,
+    @Inject(MAT_DIALOG_DATA) public data: Twat,
+    public twatsService: TwatsService,
     private userService: UserService) {}
 
   ngOnInit() {
@@ -155,7 +155,7 @@ export class TwatEditDialogComponent implements OnInit {
   }
 
   onSave(form: NgForm) {
-    const post = {
+    const twat = {
       id: this.data.id,
       userId: this.userId,
       firstName: this.data.firstName,
@@ -166,7 +166,7 @@ export class TwatEditDialogComponent implements OnInit {
       comments: this.data.comments
   };
 
-    this.postsService.updatePost(post);
+    this.twatsService.updateTwat(twat);
     this.dialogRef.close();
   }
 

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TwatCreateComponent } from './twat-create.component';
 
-describe('PostCreateComponent', () => {
+describe('TwatCreateComponent', () => {
   let component: TwatCreateComponent;
   let fixture: ComponentFixture<TwatCreateComponent>;
 

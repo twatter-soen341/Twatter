@@ -18,7 +18,7 @@ export class FollowButtonComponent implements OnInit {
   private followed: boolean;
 
 
-  constructor(private userService:UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router) {
 
   }
 

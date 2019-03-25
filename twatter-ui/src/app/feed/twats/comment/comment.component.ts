@@ -40,13 +40,13 @@ export class CommentComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(!this.comments){
+    if (!this.comments) {
       this.comments = [];
-    }else{
+    } else {
       const ids = this.comments.map((comment) => comment.userId);
 
       this.userService.getUsersNames(ids).subscribe((response) => {
-        for(let user of response){
+        for (const user of response) {
           this.commentNameMap.set(user._id, user.firstName + ' ' + user.lastName);
         }
         });
@@ -73,7 +73,7 @@ export class CommentComponent implements OnInit {
     this.deleteEmitter.emit(comment);
   }
 
-  editComment(comment: Comment){
+  editComment(comment: Comment) {
     this.editControl.setValue(comment.text);
     this.currentlyEditing = comment;
   }

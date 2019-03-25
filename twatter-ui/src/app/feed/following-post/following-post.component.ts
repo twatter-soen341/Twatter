@@ -43,7 +43,7 @@ export class FollowingPostComponent implements OnInit {
     });
   }
 
-  isFollowingSomeoneFunction(){
+  isFollowingSomeoneFunction() {
     return this.isFollowingSomeone;
   }
 }

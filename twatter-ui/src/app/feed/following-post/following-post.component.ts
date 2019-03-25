@@ -13,10 +13,10 @@ import { Subscription } from 'rxjs';
 export class FollowingPostComponent implements OnInit {
   private followingUsers: string[];
   private isFollowingSomeone: boolean;
-  protected posts: Twat[] = []; // TODO rename variables related to post -> twat
+  protected twats: Twat[] = []; // TODO rename variables related to post -> twat
   private twatsSub: Subscription;
 
-  constructor (private userService: UserService, private postsService: TwatsService) {}
+  constructor (private userService: UserService, private twatsService: TwatsService) {}
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
@@ -26,13 +26,13 @@ export class FollowingPostComponent implements OnInit {
           this.isFollowingSomeone = true;
           // tslint:disable-next-line:forin
           for (let i in this.followingUsers) {
-            this.postsService.getUserTwats(this.followingUsers[i]);
-            this.twatsSub = this.postsService.getTwatUpdateListener().subscribe(
-              (posts: Twat[]) => {
+            this.twatsService.getUserTwats(this.followingUsers[i]);
+            this.twatsSub = this.twatsService.getTwatUpdateListener().subscribe(
+              (twats: Twat[]) => {
                 // if statement is a temporary fix
                 // TODO: Find what causes 2x request
-                   if(posts[i] && (this.posts.findIndex(p => p.id === posts[i].id) < 0)) {
-                    this.posts.push(posts[i]);
+                   if(twats[i] && (this.twats.findIndex(p => p.id === twats[i].id) < 0)) {
+                    this.twats.push(twats[i]);
                   }
               }
               );

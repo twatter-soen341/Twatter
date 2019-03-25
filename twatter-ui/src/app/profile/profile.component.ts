@@ -6,8 +6,8 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Post } from '../models/post.model';
-import { PostsService } from '../services/post.service';
+import { Twat } from '../models/twat.model';
+import { TwatsService } from '../services/twat.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { NgForm } from '@angular/forms';
@@ -20,11 +20,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   userId: string;
-  posts: Post[] = [];
+  posts: Twat[] = []; // TODO rename posts to twats
   private postsSub: Subscription;
 
   constructor(
-    public aPostsService: PostsService,
+    public aPostsService: TwatsService, // TODO rename aPostsService to aTwatsService
     private authService: AuthService,
     public dialog: MatDialog,
     private route: ActivatedRoute
@@ -34,9 +34,9 @@ export class ProfileComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.userId = params['id'];
 
-      this.aPostsService.getUserPosts(this.userId);
-      this.postsSub = this.aPostsService.getPostUpdateListener().subscribe(
-        (posts: Post[]) => {
+      this.aPostsService.getUserTwats(this.userId);
+      this.postsSub = this.aPostsService.getTwatUpdateListener().subscribe(
+        (posts: Twat[]) => { // TODO Rename posts to twats
           this.posts = posts;
         }
       );

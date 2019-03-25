@@ -232,8 +232,8 @@ describe("Twats", () => {
                     .end((err, res) =>{
                         res.should.have.status(200);
                         // Verifying the content of twat returned
-                        assert.equal(res.body.post._id, twatID);
-                        assert.equal(res.body.post.content, 'First test Content');
+                        assert.equal(res.body.twat._id, twatID);
+                        assert.equal(res.body.twat.content, 'First test Content');
                         done();
                     })
             });

@@ -4,8 +4,8 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Post } from '../../models/post.model';
-import { PostsService } from '../../services/post.service';
+import { Twat } from '../../models/twat.model';
+import { TwatsService } from '../../services/twat.service';
 
 @Component({
   selector: 'app-twatline',
@@ -14,15 +14,15 @@ import { PostsService } from '../../services/post.service';
 })
 export class TwatlineComponent implements OnInit {
 
-  posts: Post[] = [];
-  private postsSub: Subscription;
-  constructor(public aPostsService: PostsService) {}
+  twats: Twat[] = [];
+  private twatsSub: Subscription;
+  constructor(public aTwatsService: TwatsService) {}
 
   ngOnInit() {
-    this.aPostsService.getPosts();
-      this.postsSub = this.aPostsService.getPostUpdateListener().subscribe(
-        (posts: Post[]) => {
-          this.posts = posts;
+    this.aTwatsService.getTwats();
+      this.twatsSub = this.aTwatsService.getTwatUpdateListener().subscribe(
+        (twats: Twat[]) => {
+          this.twats = twats;
         }
       );
   }

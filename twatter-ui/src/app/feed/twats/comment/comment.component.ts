@@ -4,7 +4,7 @@ import {Comment} from '../../../models/comment.model';
 import {AuthService} from '../../../services/auth.service';
 import {User} from '../../../models/auth.model';
 import {UserService} from '../../../services/user.service';
-import {Post} from '../../../models/post.model';
+import {Twat} from '../../../models/twat.model';
 import {Router} from '@angular/router';
 
 @Component({
@@ -17,7 +17,7 @@ export class CommentComponent implements OnInit {
 
 
   @Input()
-  post: Post;
+  twat: Twat;
   @Input()
   comments: Comment[] = [];
 
@@ -54,7 +54,11 @@ export class CommentComponent implements OnInit {
   }
 
   canDelete(comment: Comment) {
+<<<<<<< HEAD:twatter-ui/src/app/feed/posts/comment/comment.component.ts
     if (comment.userId == this.authService.getUserId() || this.post.userId == this.authService.getUserId()) {
+=======
+    if (comment.userId === this.authService.getUserId() || this.twat.userId === this.authService.getUserId()) {
+>>>>>>> dev:twatter-ui/src/app/feed/twats/comment/comment.component.ts
       return true;
     } else {
       return false;
@@ -62,7 +66,11 @@ export class CommentComponent implements OnInit {
   }
 
   canEdit(comment: Comment) {
+<<<<<<< HEAD:twatter-ui/src/app/feed/posts/comment/comment.component.ts
     if (comment.userId == this.authService.getUserId()) {
+=======
+    if (comment.userId === this.authService.getUserId()) {
+>>>>>>> dev:twatter-ui/src/app/feed/twats/comment/comment.component.ts
       return true;
     } else {
       return false;
@@ -82,7 +90,7 @@ export class CommentComponent implements OnInit {
     const newComment: Comment = {
       userId: comment.userId,
       text: this.editControl.value,
-      postId: comment.postId
+      postId: comment.postId // TODO change postId to twat id in comment model
     };
 
     this.editEmitter.emit({oldComment: comment, newComment: newComment});
@@ -94,7 +102,7 @@ export class CommentComponent implements OnInit {
   postComment() {
     const comment: Comment = {
       userId: this.authService.getUserId(),
-      postId: this.post.id,
+      postId: this.twat.id,
       text: this.commentControl.value
     };
 
@@ -102,8 +110,8 @@ export class CommentComponent implements OnInit {
     this.commentControl.reset();
   }
 
-  goToProfile(posterId: string) {
-    this.router.navigate(['/profile', posterId]);
+  goToProfile(userTwatId: string) {
+    this.router.navigate(['/profile', userTwatId]);
   }
 
 }

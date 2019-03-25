@@ -3,8 +3,6 @@ import {UserService} from '../services/user.service';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
 
-// import {Events} from 'ionic-angular';
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -35,12 +33,6 @@ export class HeaderComponent implements OnInit {
     this.notificationCount = this.notifications.length;
   }
 
-  displayUpdatedUserName() {
-    this.userService.getCurrentUser().subscribe(user => {
-      this.firstName = user.firstName;
-    });
-  }
-
   onLogout() {
     this.authService.logout();
   }
@@ -52,25 +44,6 @@ export class HeaderComponent implements OnInit {
   // Brings Back To Top
   bringsBackToTop() {
     window.scroll(0, 0);
-  }
-
-  // TO DO: Implement in future sprints
-  changeThemeToDarkMode() {
-
-  }
-
-  // TO DO: Implement in future sprints
-  changeThemeToLightMode() {
-
-  }
-
-  // The function to test notifications
-  testNotifications() {
-    this.notifications.push('Testing Test 1');
-    this.notifications.push('Testing Test 2');
-    this.notifications.push('Testing Test Tesdy Tesdt 3');
-    // this.notifications.push('Testing Test 4');
-    this.notificationCount = this.notifications.length;
   }
 
   // function which adds notifications

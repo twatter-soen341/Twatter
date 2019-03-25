@@ -89,11 +89,6 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  tested() {
-    this.test.emit(0);
-    console.log('Message emitted');
-  }
-
   changeUserEmail() {
 
   }

@@ -35,21 +35,21 @@
                 </drag-scroll>
               </div>
 
-              <div *ngIf="!postError">
+              <div *ngIf="!twatError">
                 <h1>TWATS</h1>
                 <app-twat-list
-                  [posts]="posts"
+                  [twats]="twats"
                   style="padding-bottom:25px"
                   [simplified]="true"
                   [limit]="2"
                 ></app-twat-list>
-                <div *ngIf="posts.length > 2" class="link-container">
+                <div *ngIf="twats.length > 2" class="link-container">
                   <button mat-button (click)="tabGroup.selectedIndex = 2">
                     See more
                   </button>
                 </div>
               </div>
-              <h1 *ngIf="userError && postError" class="center">
+              <h1 *ngIf="userError && twatError" class="center">
                 Uh Oh, there is no match for your search!
               </h1>
             </div>
@@ -88,14 +88,14 @@
         <mat-tab label="TWATS">
           <div class="flex-container">
             <div class="action-container">
-              <div *ngIf="!postError">
+              <div *ngIf="!twatError">
                 <app-twat-list
-                  [posts]="posts"
+                  [twats]="twats"
                   style="padding-bottom:25px"
                   [simplified]="true"
                 ></app-twat-list>
               </div>
-              <p *ngIf="userError && postError" class="center">
+              <p *ngIf="userError && twatError" class="center">
                 Uh Oh, there is no match for your search!
               </p>
             </div>

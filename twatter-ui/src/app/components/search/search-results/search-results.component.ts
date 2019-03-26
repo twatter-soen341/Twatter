@@ -15,13 +15,13 @@ export class SearchResultsComponent implements OnInit {
   private searchValue: string[];
   users: User[];
   userError = false;
-  postError = false;
-  posts: Twat[] = []; // TODO: refactor variables
+  twatError = false;
+  twats: Twat[] = []; // TODO: refactor variables
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private postsService: TwatsService, // TODO: refactor variables
+    private twatsService: TwatsService, // TODO: refactor variables
     private router: Router
     ) {}
 
@@ -42,15 +42,15 @@ export class SearchResultsComponent implements OnInit {
           this.userError = true;
         }
       );
-      /* TODO Posts */
-      this.postsService.searchTwat(this.searchValue[0]).subscribe(
-        posts => {
-          this.posts = posts;
-          this.postError = false;
+      /* TODO Twats */
+      this.twatsService.searchTwat(this.searchValue[0]).subscribe(
+        twats => {
+          this.twats = twats;
+          this.twatError = false;
         },
         error => {
-          this.posts = null;
-          this.postError = true;
+          this.twats = null;
+          this.twatError = true;
         }
       );
     });

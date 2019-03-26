@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/auth.model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { TwatsService } from 'src/app/services/twat.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -20,12 +21,14 @@ export class SidebarComponent implements OnInit {
   twatterAge: string;
   followerList$: Observable<any>;
   followingList$: Observable<any>;
+  @Input () totalLikes;
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router,
+    private twatsService: TwatsService
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {

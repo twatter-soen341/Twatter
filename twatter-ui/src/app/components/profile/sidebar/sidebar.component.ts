@@ -5,7 +5,6 @@ import { User } from 'src/app/models/auth.model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TwatsService } from 'src/app/services/twat.service';
-import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({

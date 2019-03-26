@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
-  }]
+  }],
+  dateCreated: {type: Number, required: true}
 });
 
 module.exports = mongoose.model('User', userSchema);

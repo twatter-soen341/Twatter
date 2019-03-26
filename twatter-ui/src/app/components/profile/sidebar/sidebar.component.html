@@ -7,7 +7,7 @@
     <h1 class="name">{{user.firstName}} {{user.lastName}}</h1>
 
     <div class="bio" *ngIf="!editMode">
-      <button mat-icon-button id="editButton" matTooltip="Edit bio" [matTooltipPosition]="tooltipPosition" class="primary" *ngIf="userId == loggedUser" (click)="editBio()"><mat-icon>edit</mat-icon></button>
+      <button mat-icon-button id="editButton" class="primary" *ngIf="userId == loggedUser" (click)="editBio()"><mat-icon>edit</mat-icon></button>
       <p id="bioText">{{ user.bio }}</p>
     </div>
 

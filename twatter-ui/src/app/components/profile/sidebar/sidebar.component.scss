@@ -3,17 +3,21 @@
 #sidebar {
   color: white;
 }
+
 .profile-picture {
   width: 60%;
   display: block;
   margin: 0 auto;
 }
+
 .name {
   text-align: center;
 }
+
 .user-info{
   margin: 10px;
 }
+
 .button {
   display: block;
   margin: auto;
@@ -21,6 +25,16 @@
   line-height: 1rem;
   justify-content: center;
 }
+
+.stat{
+  float: left;
+  width: 50%;
+}
+
 .primary {
   color: mat-color($accent);
+}
+
+#list {
+  margin-top: 75px;
 }

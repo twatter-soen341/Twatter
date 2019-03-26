@@ -34,6 +34,8 @@ export class CommentComponent implements OnInit {
 
   commentNameMap = new Map<string, string>();
 
+  buttonIsDisabled = true;
+
   constructor(private authService: AuthService, private userService: UserService, private router: Router) {
 
   }
@@ -100,6 +102,16 @@ export class CommentComponent implements OnInit {
     this.commentEmitter.emit(comment);
     this.commentControl.reset();
   }
+
+  onAddComment(event: string): void {
+    this.buttonIsDisabled = true;
+    const passedString = event;
+    if (/\S/.test(passedString)) {
+        // string is not empty and not just whitespace
+        // activate button
+        this.buttonIsDisabled = false;
+    }
+ }
 
   goToProfile(userTwatId: string) {
     this.router.navigate(['/profile', userTwatId]);

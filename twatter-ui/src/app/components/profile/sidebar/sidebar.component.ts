@@ -5,10 +5,11 @@ import { User } from 'src/app/models/auth.model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TwatsService } from 'src/app/services/twat.service';
+import { TooltipPosition } from '@angular/material';
 
 @Component({
   selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html,
+  templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {

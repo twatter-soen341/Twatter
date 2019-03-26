@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
 import {UserService} from '../services/user.service';
 import {User} from '../models/auth.model';
 import {HeaderComponent} from '../header/header.component';
+import {Alert} from "selenium-webdriver";
 
 @Component({
   selector: 'app-settings',
@@ -24,9 +25,13 @@ export class SettingsComponent implements OnInit {
     lastNameController: new FormControl('', [Validators.required]),
     usernameController: new FormControl('', [Validators.required]),
     emailController: new FormControl('', [Validators.required, Validators.email]),
+    emailForPassword: new FormControl('', [Validators.required]),
+    currentPasswordForEmail: new FormControl('', [Validators.required]),
     currentPasswordController: new FormControl('', [Validators.required]),
     passwordController: new FormControl('', [Validators.required]),
-    passwordConfirmController: new FormControl('', [Validators.required])
+    passwordConfirmController: new FormControl('', [Validators.required]),
+    passwordToDelete: new FormControl('', [Validators.required]),
+    emailToDelete: new FormControl('', [Validators.required])
   });
 
   hide_Password = true;
@@ -41,11 +46,6 @@ export class SettingsComponent implements OnInit {
     this.userService.getCurrentUser().subscribe(user => {
       this.user = user;
     });
-  }
-
-  // function which will change the title depending on the menu chosen
-  changeHeaderTitle(title: string) {
-    this.headerTitle = title;
   }
 
   // Function which will change the title of the menu depending on the tabs the user will choose
@@ -90,11 +90,41 @@ export class SettingsComponent implements OnInit {
   }
 
   changeUserEmail() {
-
+    const email = this.changeForm.get('emailController').value;
+    const password = this.changeForm.get('currentPasswordForEmail').value;
+    if ((email !== '') && (password !== '')) {
+      this.authService.updateUserEmail(email, password).subscribe(res => {
+        console.log(res);
+      });
+      window.location.reload();
+    }
   }
 
 
   changeUserPassword() {
+    const currentPassword = this.changeForm.get('currentPasswordController').value;
+    const newPassword = this.changeForm.get('passwordController').value;
+    const newPasswordConfirmation = this.changeForm.get('passwordConfirmController').value;
+    const email = this.changeForm.get('emailForPassword').value;
 
+    if ((currentPassword !== '') && (newPassword !== '') && (newPasswordConfirmation !== '') && (email !== '')) {
+      if (newPassword === newPasswordConfirmation) {
+        this.authService.updateUserPassword(email, currentPassword, newPassword).subscribe(res => {
+          console.log(res);
+        });
+        window.location.reload();
+      }
+    }
+  }
+
+  deleteUserAccount() {
+    const password = this.changeForm.get('passwordToDelete').value;
+    const email = this.changeForm.get('emailToDelete').value;
+
+    if ((password !== '') && (email !== '')) {
+      this.authService.deleteAccount(password, email).subscribe(res => {
+        console.log(res);
+      });
+    }
   }
 }

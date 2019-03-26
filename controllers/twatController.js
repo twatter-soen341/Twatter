@@ -1,5 +1,8 @@
+/**
+ * controller responsible for the implementation of the methods in the routes files.
+ */
 const Twat = require('../models/twat');
-
+/* To create a Twat (post) */
 exports.createTwat = function (req, res, next) {
 
     let twat = new Twat(
@@ -20,56 +23,48 @@ exports.createTwat = function (req, res, next) {
             });
         })
         .catch((err) => {
-
-            res.status(400).json({
+            res.status(500).json({
                 message: 'Twat failed to be added',
                 error: err
             });
         });
 };
 
-/* To get a Twat (Tweet) */
+/* To get a Twat (post) */
 exports.getTwat = function (req, res, next) {
 
     Twat.findById(req.params.id)
-            .populate('user')
-            .then(documents => {
-                res.status(200).json({
-                    message: 'Twats fetched succesfully!',
-                    post: documents
-                });
-            }).catch((err) => {
-                res.status(400).json({
-                    message: 'Failed at getting Posts',
-                    error: err
-                });
-                res.status(500).json({
-                    message: 'Failed at getting Posts',
-                    error: err
-                });
-              });
+        .populate('user')
+        .then(documents => {
+            res.status(200).json({
+                message: 'Twats fetched succesfully!',
+                twat: documents
+            });
+        }).catch((err) => {
+            res.status(500).json({
+                message: 'Failed at getting Posts',
+                error: err
+            });
+        });
 };
+
 /* Get the twats created by the user only (profile page) */
 exports.getTwatsForUser = function(req, res, next){
 
-        Twat.find({user: req.params.id})
-            .sort({timeStamp: -1})
-            .populate('user')
-            .then(documents => {
-                res.status(200).json({
-                    message: 'Twats fetched succesfully!',
-                    posts: documents
-                });
-            }).catch((err) => {
-                res.status(400).json({
-                    message: 'Failed at getting Posts',
-                    error: err
-                });
-                res.status(500).json({
-                    message: 'Failed at getting Posts',
-                    error: err
-                });
-              });
+    Twat.find({user: req.params.id})
+        .sort({timeStamp: -1})
+        .populate('user')
+        .then(documents => {
+            res.status(200).json({
+                message: 'Twats fetched succesfully!',
+                twats: documents
+            });
+        }).catch((err) => {
+            res.status(500).json({
+                message: 'Failed at getting Posts',
+                error: err
+            });
+        });
 }
 
 /* Get the twats created by every users that the user follows (Twatline page)*/
@@ -81,18 +76,14 @@ exports.getTwats = (req, res, next) => {
     .then(documents => {
             res.status(200).json({
             message: 'Twats fetched succesfully!',
-            posts: documents
+            twats: documents
         });
     }).catch((err) => {
-        res.status(400).json({
-            message: 'Failed at getting Posts',
-            error: err
-        });
         res.status(500).json({
             message: 'Failed at getting Posts',
             error: err
         });
-      });
+    });
 };
 
 /* Get Twats by matching words */

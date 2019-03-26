@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/auth.model';
-import { Post } from 'src/app/models/post.model';
-import { PostsService } from 'src/app/services/post.service';
+import { Twat } from 'src/app/models/twat.model';
+import { TwatsService } from 'src/app/services/twat.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,37 +13,37 @@ import { Subscription } from 'rxjs';
 export class FollowingPostComponent implements OnInit {
   private followingUsers: string[];
   private isFollowingSomeone: boolean;
-  protected posts: Post[] = [];
-  private postsSub: Subscription;
+  protected twats: Twat[] = []; // TODO rename variables related to post -> twat
+  private twatsSub: Subscription;
 
-  constructor (private userService: UserService, private postsService: PostsService) {}
+  constructor (private userService: UserService, private twatsService: TwatsService) {}
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
         this.followingUsers = user.following;
 
-        if (this.followingUsers.length>0) {
+        if (this.followingUsers.length > 0) {
           this.isFollowingSomeone = true;
           // tslint:disable-next-line:forin
           for (let i in this.followingUsers) {
-            this.postsService.getUserPosts(this.followingUsers[i]);
-            this.postsSub = this.postsService.getPostUpdateListener().subscribe(
-              (posts: Post[]) => {
+            this.twatsService.getUserTwats(this.followingUsers[i]);
+            this.twatsSub = this.twatsService.getTwatUpdateListener().subscribe(
+              (twats: Twat[]) => {
                 // if statement is a temporary fix
                 // TODO: Find what causes 2x request
-                  if (!this.posts.includes(posts[i])) {
-                    this.posts.push(posts[i]);
+                   if(twats[0] && (this.twats.findIndex(p => p.id === twats[0].id) < 0)) {
+                    this.twats.push(twats[0]);
                   }
               }
               );
           }
-        }else{
+        } else {
           this.isFollowingSomeone = false;
         }
     });
   }
 
-  isFollowingSomeoneFunction(){
+  isFollowingSomeoneFunction() {
     return this.isFollowingSomeone;
   }
 }

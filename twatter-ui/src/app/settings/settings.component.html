@@ -47,8 +47,21 @@
                   <mat-label>Email</mat-label>
                   <input matInput type="email" placeholder="twat@twat.com" formControlName="emailController" required>
                 </mat-form-field>
+
+                  <!-- To make sure the user is safe to change his input email -->
+                <mat-form-field appearance="outline">
+                  <mat-label>Current Password</mat-label>
+                  <input matInput placeholder="Current Password" [type]="hide_Password ? 'password' : 'text'"
+                         formControlName="currentPasswordForEmail" required>
+
+                  <mat-icon class="cursor-pointer" matSuffix (mousedown)="showPassword()" (mouseup)="hidePassword()">
+                    {{hide_Password ? 'visibility_off' : 'visibility'}}
+                  </mat-icon>
+
+                </mat-form-field>
+
               </form>
-              <button mat-flat-button color="primary">Change Email
+              <button mat-flat-button color="primary" (click)="changeUserEmail()">Change Email
               </button>
             </div>
           </div>
@@ -63,6 +76,12 @@
               <h2 class="title">Change your Password</h2>
 
               <form [formGroup]="changeForm" class="action-container">
+
+                <!-- Makes sure only user which knows both current email and password can change info -->
+                <mat-form-field appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input matInput type="email" placeholder="twat@twat.com" formControlName="emailForPassword" required>
+                </mat-form-field>
 
                 <mat-form-field appearance="outline">
                   <mat-label>Current Password</mat-label>
@@ -80,6 +99,7 @@
 
                 <mat-form-field appearance="outline">
                   <mat-label>New Password</mat-label>
+
                   <input matInput placeholder="NOT abc123" [type]="hide_Password ? 'password' : 'text'"
                          formControlName="passwordController" required>
 
@@ -103,7 +123,7 @@
                   <mat-error *ngIf="changeForm.hasError('passwordDontMatch')">Passwords do not match</mat-error>
                 </mat-form-field>
               </form>
-              <button mat-flat-button color="primary">Change Password
+              <button mat-flat-button color="primary" (click)="changeUserPassword()">Change Password
               </button>
             </div>
           </div>
@@ -122,7 +142,7 @@
                 <mat-checkbox class="understand" [(ngModel)]="consent">I understand, delete my account</mat-checkbox>
               </section>
               <p></p>
-              <button mat-flat-button color="primary" [disabled]="!consent">Delete Account</button>
+              <button mat-flat-button color="primary" [disabled]="!consent" (click)="deleteUserAccount()">Delete Account</button>
             </div>
           </div>
         </mat-tab>

@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { UserData, AuthData, TokenData, User } from '../models/auth.model';
-import { Router } from '@angular/router';
-import { Subject, Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {UserData, AuthData, TokenData, User} from '../models/auth.model';
+import {Router} from '@angular/router';
+import {Subject, Observable} from 'rxjs';
 
 const BASE_URL = `${environment.baseUrl}/auth`;
 
@@ -21,7 +21,8 @@ export class AuthService {
   private isAuthenticated = false;
   private authListener = new Subject<boolean>();
 
-  constructor(private router: Router, private httpClient: HttpClient) {}
+  constructor(private router: Router, private httpClient: HttpClient) {
+  }
 
   /**
    * @returns the current user's token
@@ -224,5 +225,30 @@ export class AuthService {
   /* Removing the auth data from the local storage */
   private clearAuthData() {
     localStorage.clear();
+  }
+
+  updateUserEmail(email: string, password: string) {
+    const emailData: AuthData = {
+      email: email,
+      password: password
+    };
+    return this.httpClient.put(`${BASE_URL}/email/`, emailData);
+  }
+
+  updateUserPassword(email: string, currentPassword: string, newPassword: string) {
+    const passwordData: any = {
+      email: email,
+      password: currentPassword,
+      newPassword: newPassword
+    };
+    return this.httpClient.put(`${BASE_URL}/password/`, passwordData);
+  }
+
+  deleteAccount(password: string, email: string) {
+    const deleteData: any = {
+      password: password,
+      email: email
+    };
+    return this.httpClient.delete(`${BASE_URL}/`, deleteData);
   }
 }

@@ -15,7 +15,7 @@
     <mat-list-item *ngFor="let comment of comments">
       <div class="space-between">
         <span *ngIf="!currentlyEditing || comment != currentlyEditing;else edit_comment">
-        <p class="name">{{commentNameMap.get(comment.userId)}}</p>
+        <p class="name" (click)="goToProfile(comment.userId)">{{commentNameMap.get(comment.userId)}}</p>
         <p class="comment">{{comment.text}}</p>
           </span>
         <span>

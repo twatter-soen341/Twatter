@@ -4,8 +4,9 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Post } from '../../models/post.model';
-import { PostsService } from '../../services/post.service';
+import { Twat } from '../../models/twat.model';
+import { TwatsService } from '../../services/twat.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-twatline',
@@ -14,15 +15,27 @@ import { PostsService } from '../../services/post.service';
 })
 export class TwatlineComponent implements OnInit {
 
-  posts: Post[] = [];
-  private postsSub: Subscription;
-  constructor(public aPostsService: PostsService) {}
+  twats: Twat[] = [];
+  private followingUsers: string[];
+  private userId;
+  private twatsSub: Subscription;
+  constructor(public aTwatsService: TwatsService, public userService: UserService) {}
 
   ngOnInit() {
-    this.aPostsService.getPosts();
-      this.postsSub = this.aPostsService.getPostUpdateListener().subscribe(
-        (posts: Post[]) => {
-          this.posts = posts;
+    this.userService.getCurrentUser().subscribe(user =>{
+      this.userId = user._id;
+      this.followingUsers = user.following;
+    });
+
+    this.aTwatsService.getTwats();
+      this.twatsSub = this.aTwatsService.getTwatUpdateListener().subscribe(
+        (twats: Twat[]) => {
+          this.twats = [];
+          for(let i in twats){
+            if(this.followingUsers && twats[i] && (twats[i].userId == this.userId || this.followingUsers.includes(twats[i].userId)) ){
+              this.twats.push(twats[i]);
+            }
+          }
         }
       );
   }

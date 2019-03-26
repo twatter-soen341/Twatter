@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material';
-import {UserService} from "../../services/user.service";
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-twat-icon-btn',
@@ -20,23 +20,7 @@ export class TwatIconBtnComponent implements OnInit {
 
   likesNames = [];
 
-  constructor(public iconRegistry: MatIconRegistry, private userService: UserService, sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon(
-      'flame',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2.svg'));
-
-    iconRegistry.addSvgIcon(
-      'red-flame',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2-red.svg'));
-
-    iconRegistry.addSvgIcon(
-      'flame-flipped',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2-flipped.svg'));
-
-    iconRegistry.addSvgIcon(
-      'red-flame-flipped',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/images/flame-2-red-flipped.svg'));
-  }
+  constructor(public iconRegistry: MatIconRegistry, private userService: UserService, sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     if (this.liked) {
@@ -46,7 +30,7 @@ export class TwatIconBtnComponent implements OnInit {
 
     if (this.likes) {
       this.userService.getUsersNames(this.likes).subscribe((response) => {
-        for (let user of response) {
+        for (const user of response) {
           this.likesNames.push(user.firstName + ' ' + user.lastName);
         }
       });
@@ -71,7 +55,7 @@ export class TwatIconBtnComponent implements OnInit {
       this.likesNames.forEach((name) => toReturn += '\n' + name);
       return toReturn;
     } else {
-      return "No one loves you";
+      return 'No one loves you';
     }
   }
 }

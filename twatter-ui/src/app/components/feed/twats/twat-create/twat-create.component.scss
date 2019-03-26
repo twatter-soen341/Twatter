@@ -2,8 +2,8 @@
   display: block;
 }
 
-.theTopMargin{
-  margin-top: 4rem;
+.top-margin{
+  margin-top: 1rem;
 }
 
 mat-form-field{
@@ -70,7 +70,6 @@ mat-card-content {
 .text-dialog-inner {
   min-height: 3rem;
   max-height: 50vh;
-  margin-top: 1rem;
   border: none;
   outline: none;
   border-radius: 0.5rem;
@@ -78,7 +77,7 @@ mat-card-content {
 }
 
 // iphoneX
-@media only screen and (width: 375px) {
+@media only screen and (max-width: 375px) {
   .text-dialog {
     width: 60%;
   }
@@ -88,6 +87,12 @@ mat-card-content {
 @media only screen and (max-width: 768px) {
   .text-dialog {
     width: 80%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .pop-up-avatar {
+    visibility: hidden;
   }
 }
 

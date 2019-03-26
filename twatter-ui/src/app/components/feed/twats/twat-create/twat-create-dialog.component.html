@@ -4,9 +4,9 @@
   <mat-divider class="header"></mat-divider>
 
   <mat-form-field appearance="standard">
-    <div mat-card-avatar class="card-avatar-image"></div>
+    <div mat-card-avatar class="card-avatar-image pop-up-avatar"></div>
     <div class="text-dialog-outer">
-      <textarea matInput autosize class="text-dialog-inner"
+      <textarea matInput maxlength="250" autosize class="text-dialog-inner"
       name="content"
       placeholder="Hi {{ firstName }}, create a Twat?"
       [ngModel]="data.content"

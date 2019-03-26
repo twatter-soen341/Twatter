@@ -15,7 +15,7 @@ import {ActivatedRoute} from '@angular/router';
 export class ProfileComponent implements OnInit {
   userId: string;
   twats: Twat[] = [];
-  private postsSub: Subscription;
+  private twatsSub: Subscription;
   @Output () totalLikes = 0;
 
   constructor(
@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
       this.userId = params['id'];
 
       this.twatsService.getUserTwats(this.userId);
-      this.postsSub = this.twatsService.getTwatUpdateListener().subscribe(
+      this.twatsSub = this.twatsService.getTwatUpdateListener().subscribe(
         (twats: Twat[]) => {
           this.twats = twats;
           // reset likes to properly count total likes

@@ -115,7 +115,7 @@ exports.deleteUser = async (req, res) => {
   try {
     const authUser = await authenticatUser(req.body.email, req.body.password);
     
-    /* delete the user and their posts only if auth is successful */
+    /* delete the user and their twats only if auth is successful */
     await Auth.deleteOne({email: req.body.email});
     await User.deleteOne({_id: authUser.user});
     await Twat.deleteMany({user: authUser.user});

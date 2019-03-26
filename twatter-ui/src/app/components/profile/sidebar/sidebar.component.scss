@@ -1,0 +1,40 @@
+@import '../../../../twatter-default-style';
+
+#sidebar {
+  color: white;
+}
+.profile-picture {
+  width: 60%;
+  display: block;
+  margin: 0 auto;
+}
+.name {
+  text-align: center;
+}
+.user-info{
+  margin: 10px;
+}
+.button {
+  display: block;
+  margin: auto;
+  text-align: center;
+  line-height: 1rem;
+  justify-content: center;
+}
+
+#following{
+  float: left;
+  width: 50%;
+}
+
+#followers{
+  float: right;
+  width: 50%;
+}
+
+h2{
+  margin: 5px;
+
+.primary {
+  color: mat-color($accent);
+}

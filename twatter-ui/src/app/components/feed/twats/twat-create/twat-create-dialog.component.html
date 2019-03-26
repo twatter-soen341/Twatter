@@ -1,0 +1,21 @@
+<form (submit)="onCreateTwat(twatForm)" #twatForm="ngForm">
+  <p class="mat-display-1">Create a Twat</p>
+
+  <mat-divider class="header"></mat-divider>
+
+  <mat-form-field appearance="standard">
+    <div mat-card-avatar class="card-avatar-image"></div>
+    <div class="text-dialog-outer">
+      <textarea matInput autosize class="text-dialog-inner"
+      name="content"
+      placeholder="Hi {{ firstName }}, create a Twat?"
+      [ngModel]="data.content"
+      (ngModelChange)="getContent($event)">
+      </textarea>
+    </div>
+  </mat-form-field>
+
+  <mat-card-actions align="end">
+    <button mat-button type="submit">SHARE</button>
+  </mat-card-actions>
+ </form>

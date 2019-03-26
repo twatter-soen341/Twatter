@@ -1,0 +1,28 @@
+<div id="sidebar">
+
+  <img class="profile-picture" src="https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg">
+  <mat-card class="user-info">
+    <h1 class="name">{{user.firstName}} {{user.lastName}}</h1>
+    <div id="following">
+      Following
+      <h2>{{nbFollowing}}</h2>
+    </div>
+    <div id="followers">
+      Followers
+      <h2>{{nbFollowers}}</h2>
+    </div>
+    <app-follow-button class="button" *ngIf="userId !== loggedUser"></app-follow-button>
+    <p class="primary">
+      Twat Age
+      <br>
+      Twat Score {{ totalLikes }}
+    </p>
+    <app-display-user-list [list]="this.followerList$" label='Follower(s): '></app-display-user-list>
+    <br>
+    <app-display-user-list [list]="this.followingList$" label='Following: '></app-display-user-list>
+    <br>
+    <button mat-button class="button" *ngIf="userId == loggedUser" color="accent" (click)="seeFollowersPost()">
+      FOLLOWING<br>RECENT ACTIVITY</button>
+  </mat-card>
+
+</div>

@@ -1,0 +1,20 @@
+<div class="theTopMargin">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Create a Twat</mat-card-title>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+      <div mat-card-avatar class="card-avatar-image"></div>
+
+      <div class="imitate-form">
+        <button class="hover-cursor-text text-button" (click)="openDialog()">
+          {{ getContentTruncated() }}
+        </button>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>

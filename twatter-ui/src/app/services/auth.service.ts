@@ -229,8 +229,9 @@ export class AuthService {
 
   updateUserEmail(email: string, password: string, userID: string) {
 
-    const emailData: AuthData = {
-      email: email,
+    const emailData: any = {
+      id : userID,
+      newEmail: email,
       password: password
     };
     return this.httpClient.put(`${BASE_URL}/email/`, emailData);

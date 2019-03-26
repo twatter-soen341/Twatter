@@ -94,7 +94,9 @@ exports.changePassword = async (req, res, next) => {
 
 exports.changeEmail = async (req, res, next) => {
   try {
-    const authUser = await authenticatUser(req.body.email, req.body.password);
+    const user = await Auth.findOne({user: req.body.id});
+    console.log('email:', user.email)
+    const authUser = await authenticatUser(user.email, req.body.password);
     /* Authorization is sucessful, so change email */
 
     await Auth.findByIdAndUpdate(authUser._id, {email: req.body.newEmail})

@@ -1,3 +1,5 @@
+@import '../../../../twatter-default-style';
+
 #sidebar {
   color: white;
 }
@@ -18,4 +20,7 @@
   text-align: center;
   line-height: 1rem;
   justify-content: center;
+}
+.primary {
+  color: mat-color($accent);
 }

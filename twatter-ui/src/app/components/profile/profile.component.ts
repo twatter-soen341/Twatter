@@ -1,4 +1,4 @@
-import {Component, OnInit,} from '@angular/core';
+import {Component, OnInit, Output,} from '@angular/core';
 import {Subscription} from 'rxjs';
 
 import {Twat} from '../../models/twat.model';
@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   userId: string;
   twats: Twat[] = [];
   private postsSub: Subscription;
+  @Output () totalLikes = 0;
 
   constructor(
     public twatsService: TwatsService,
@@ -30,8 +31,15 @@ export class ProfileComponent implements OnInit {
 
       this.twatsService.getUserTwats(this.userId);
       this.postsSub = this.twatsService.getTwatUpdateListener().subscribe(
-        (posts: Twat[]) => {
-          this.twats = posts;
+        (twats: Twat[]) => {
+          this.twats = twats;
+          // reset likes to properly count total likes
+          this.totalLikes = 0;
+          for (let twat in twats) {
+            if (twats[twat]) {
+              this.totalLikes += twats[twat].likedBy.length;
+            }
+          }
         }
       );
     });

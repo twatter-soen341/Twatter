@@ -1,7 +1,7 @@
 <!--The header from the header component-->
 <div id="wrapper">
   <div id="sidebar">
-    <app-sidebar></app-sidebar>
+    <app-sidebar [totalLikes]="totalLikes"></app-sidebar>
   </div>
   <div id="posts">
     <app-twat-list [twats]="this.twats"></app-twat-list>

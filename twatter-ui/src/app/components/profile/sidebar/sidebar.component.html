@@ -4,10 +4,10 @@
   <mat-card class="user-info">
     <h1 class="name">{{user.firstName}} {{user.lastName}}</h1>
     <app-follow-button class="button" *ngIf="userId !== loggedUser"></app-follow-button>
-    <p>
+    <p class="primary">
       Twat Age
       <br>
-      Twat Score
+      Twat Score {{ totalLikes }}
     </p>
     <app-display-user-list [list]="this.followerList$" label='Follower(s): '></app-display-user-list>
     <br>

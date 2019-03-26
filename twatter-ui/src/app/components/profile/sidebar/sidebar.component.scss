@@ -22,19 +22,19 @@
   justify-content: center;
 }
 
-#following{
+.stat{
   float: left;
   width: 50%;
 }
 
-#followers{
-  float: right;
-  width: 50%;
-}
-
-h2{
-  margin: 5px;
-
 .primary {
   color: mat-color($accent);
+}
+
+#bio {
+
+}
+
+#list {
+  margin-top: 75px;
 }

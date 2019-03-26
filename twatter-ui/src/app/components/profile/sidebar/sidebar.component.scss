@@ -10,12 +10,19 @@
   margin: 0 auto;
 }
 
-.name {
-  text-align: center;
+.follow-button {
+  margin: 10px;
+  padding: 0;
+  //background-color: #ce4e4e;
 }
 
-.user-info{
+.user-info {
   margin: 10px;
+  overflow: hidden;
+}
+
+.name {
+  text-align: center;
 }
 
 .button {
@@ -35,6 +42,44 @@
   color: mat-color($accent);
 }
 
-#list {
-  margin-top: 75px;
+.bio {
+  position: relative;
+  //border: solid 1px cyan;
+}
+
+.bioEdit {
+  position: relative;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+#bioText {
+  margin: 0;
+  padding: 8px 5px 20px 0;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+#editButton {
+  //position: absolute;
+  //top: 0;
+  //right: 0;
+  float: right;
+}
+
+mat-form-field {
+  width: 100%;
+  padding: 0;
+}
+
+#cancelButton {
+  position: absolute;
+  right: 65px;
+  bottom: 0;
+}
+
+#saveButton {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }

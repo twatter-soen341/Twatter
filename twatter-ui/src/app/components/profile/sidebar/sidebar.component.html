@@ -1,22 +1,24 @@
 <div id="sidebar">
 
   <img class="profile-picture" src="https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg">
-  <app-follow-button class="button" *ngIf="userId !== loggedUser"></app-follow-button>
+  <mat-card class="follow-button">
+    <app-follow-button class="button" *ngIf="userId !== loggedUser"></app-follow-button>
+  </mat-card>
 
   <mat-card class="user-info">
     <h1 class="name">{{user.firstName}} {{user.lastName}}</h1>
 
-    <div *ngIf="!editMode">
-      <p>{{ user.bio }}</p>
-      <button mat-icon-button id="editButton" matTooltip="Edit bio" [matTooltipPosition]="tooltipPosition" class="primary" *ngIf="userId == loggedUser" (click)="editBio()"><mat-icon>edit</mat-icon></button>
+    <div class="bio" *ngIf="!editMode">
+      <button mat-icon-button id="editButton" class="primary" *ngIf="userId == loggedUser" (click)="editBio()"><mat-icon>edit</mat-icon></button>
+      <p id="bioText">{{ user.bio }}</p>
     </div>
 
-    <div *ngIf="editMode">
+    <div class="bioEdit" *ngIf="editMode">
       <mat-form-field appearance="outline">
-        <textarea matInput placeholder="Bio" [(ngModel)]="bio"></textarea>
+        <textarea matInput matTextareaAutosize placeholder="Bio" [(ngModel)]="bio"></textarea>
       </mat-form-field>
-      <button mat-button (click)="cancelBio()">Cancel</button>
-      <button mat-button (click)="saveBio()">Save</button>
+      <button mat-button id="saveButton" (click)="saveBio()">Save</button>
+      <button mat-button id="cancelButton" class="primary" (click)="cancelBio()">Cancel</button>
     </div>
 
     <div>
@@ -31,15 +33,15 @@
         {{ totalLikes }}
       </div>
     </div>
+  </mat-card>
 
-    <div id="list">
-    <app-display-user-list [list]="this.followerList$" label='Follower(s): '></app-display-user-list>
-    <br>
-    <app-display-user-list [list]="this.followingList$" label='Following: '></app-display-user-list>
-    </div>
-    <br>
+  <mat-card class="user-info">
     <button mat-button class="button" *ngIf="userId == loggedUser" color="accent" (click)="seeFollowersPost()">
-      FOLLOWING<br>RECENT ACTIVITY</button>
+    FOLLOWING<br>RECENT ACTIVITY</button>
+    <br *ngIf="userId == loggedUser">
+    <app-display-user-list [list]="this.followingList$" label='Following: '></app-display-user-list>
+    <br>
+    <app-display-user-list [list]="this.followerList$" label='Follower(s): '></app-display-user-list>
   </mat-card>
 
 </div>

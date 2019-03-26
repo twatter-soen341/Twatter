@@ -5,10 +5,20 @@ main {
   margin: auto;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
 .logo {
+
   width: 4vh;
-  align-self: center;
-  //background-color: crimson;
 }
 
 .card-avatar-image {
@@ -26,10 +36,10 @@ main {
 }
 
 .spacer {
-margin-left: 15px;
+  margin-left: 15px;
 }
 .spacer2{
-  margin-right: 15px;
+  //margin-right: 15px;
   margin-top: 3.5px;
 }
 
@@ -54,17 +64,6 @@ margin-left: 15px;
 .left-justify {
   display: flex;
   flex-direction: row;
-}
-
-.header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 2;
 }
 
 

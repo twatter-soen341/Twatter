@@ -1,14 +1,13 @@
 <div id="sidebar">
 
-  <div id="hoverFollow">
-    <img class="profile-picture" src="https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg">
-    <app-follow-button class="button" *ngIf="userId !== loggedUser"></app-follow-button>
-  </div>
+  <img class="profile-picture" src="https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg">
+  <app-follow-button class="button" *ngIf="userId !== loggedUser"></app-follow-button>
+
   <mat-card class="user-info">
     <h1 class="name">{{user.firstName}} {{user.lastName}}</h1>
 
     <div *ngIf="!editMode">
-      <p id="bio">{{ user.bio }}</p>
+      <p>{{ user.bio }}</p>
       <button mat-icon-button id="editButton" matTooltip="Edit bio" [matTooltipPosition]="tooltipPosition" class="primary" *ngIf="userId == loggedUser" (click)="editBio()"><mat-icon>edit</mat-icon></button>
     </div>
 

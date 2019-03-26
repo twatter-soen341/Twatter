@@ -3,17 +3,21 @@
 #sidebar {
   color: white;
 }
+
 .profile-picture {
   width: 60%;
   display: block;
   margin: 0 auto;
 }
+
 .name {
   text-align: center;
 }
+
 .user-info{
   margin: 10px;
 }
+
 .button {
   display: block;
   margin: auto;
@@ -29,10 +33,6 @@
 
 .primary {
   color: mat-color($accent);
-}
-
-#bio {
-
 }
 
 #list {

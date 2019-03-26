@@ -8,6 +8,7 @@ import {UserService} from '../services/user.service';
 import {User} from '../models/auth.model';
 import {HeaderComponent} from '../header/header.component';
 import {Alert} from "selenium-webdriver";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-settings',
@@ -19,6 +20,7 @@ export class SettingsComponent implements OnInit {
   @Output() test = new EventEmitter();
   private headerTitle = 'Change your Settings';
   private user: User;
+  private router: Router;
   consent = false;
   changeForm: FormGroup = new FormGroup({
     firstNameController: new FormControl('', [Validators.required]),
@@ -125,6 +127,7 @@ export class SettingsComponent implements OnInit {
       this.authService.deleteAccount(password, email).subscribe(res => {
         console.log(res);
       });
+    this.router.navigate(['/login']);
     }
   }
 }

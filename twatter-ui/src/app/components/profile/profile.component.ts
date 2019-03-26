@@ -1,0 +1,40 @@
+import {Component, OnInit,} from '@angular/core';
+import {Subscription} from 'rxjs';
+
+import {Twat} from '../../models/twat.model';
+import {TwatsService} from '../../services/twat.service';
+import {AuthService} from 'src/app/services/auth.service';
+import {MatDialog} from '@angular/material';
+import {ActivatedRoute} from '@angular/router';
+
+@Component({
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
+})
+export class ProfileComponent implements OnInit {
+  userId: string;
+  twats: Twat[] = [];
+  private postsSub: Subscription;
+
+  constructor(
+    public twatsService: TwatsService,
+    private authService: AuthService,
+    public dialog: MatDialog,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.userId = params['id'];
+
+      this.twatsService.getUserTwats(this.userId);
+      this.postsSub = this.twatsService.getTwatUpdateListener().subscribe(
+        (posts: Twat[]) => {
+          this.twats = posts;
+        }
+      );
+    });
+  }
+}
+

@@ -1,0 +1,88 @@
+@import '../../../../twatter-default-style';
+
+::ng-deep mat-icon {
+  vertical-align: middle;
+  align-content: center;
+  align-self: center;
+  height:25px !important;
+  width:25px !important;
+  font-size:25px !important;
+}
+
+.side-by-side{
+  display: flex;
+  flex-direction: row;
+}
+
+::ng-deep .mat-tooltip  {
+  white-space: pre-line    !important;
+}
+
+.mat-button{
+  padding-left:0;
+  padding-right:0;
+}
+
+@keyframes appear {
+  from {
+      opacity: 0.75;
+  }
+  to {
+      opacity: 1;
+  }
+}
+@keyframes disappear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.75;
+  }
+}
+
+@keyframes fade-in {
+  from {
+      opacity: 0.25;
+      transform: scale(1);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1.05);
+  }
+
+}
+
+:hover mat-icon {
+  height:35px !important;
+  width:35px !important;
+  //font-size:35px !important;
+  animation: 0.2s fade-in;
+}
+
+.defaultLikes {
+  cursor: default;
+  background-color: rgba(0, 0, 0, 0.432);
+  color: white;
+  font-weight: normal;
+}
+
+.coloredLikes {
+  cursor: default;
+  background-color: mat-color($accent);
+  color: black;
+}
+
+.container{
+  width: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+h5{
+  color: white;
+}
+
+.red{
+  color: rgb(211, 0, 0);
+}

@@ -21,14 +21,14 @@ export class SidebarComponent implements OnInit {
   twatterAge: string;
   followerList$: Observable<any>;
   followingList$: Observable<any>;
-  @Input () totalLikes;
+  @Input() totalLikes;
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
     private twatsService: TwatsService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -39,9 +39,7 @@ export class SidebarComponent implements OnInit {
 
         this.userService.getCurrentUser().subscribe(cUser => {
           this.loggedUser = cUser._id;
-
-          this.twatterAge = this.getTwatterAge(new Date(cUser.dateCreated).valueOf());
-
+          this.twatterAge = this.getTwatterAge(cUser.dateCreated);
         });
       });
 
@@ -66,57 +64,58 @@ export class SidebarComponent implements OnInit {
   }
 
   /**
-   * This method returns a human readable string that contains the
+   * returns a human readable string that contains the
    * number of years, months, days, hours and minutes its input parameter
    * @param dateCreated
    * @returns string
    */
-  getTwatterAge(dateCreated: number): string {
+  private getTwatterAge(dateCreated: number): string {
     /* Getting the number of seconds between date created and now */
-    let seconds = (Date.now() - dateCreated) / 1000;
+    const seconds = (Date.now() - dateCreated) / 1000;
     let twatterAge: string;
 
-    /* Dividing by number of seconds in a year to get number of years since creation */
-    let interval = Math.floor(seconds / 31536000);
+    let interval = Math.floor(seconds);
+    /* If more than 1 sec, display it */
+    if (interval > 1) {
+      twatterAge = interval + ' sec';
+    }
 
+    /* Dividing by number of sec in a min to get number of days since creation */
+    interval = Math.floor(seconds / 60);
+    /* If more than 1 min, display it */
+    if (interval > 1) {
+      twatterAge = interval + ' min';
+    }
+
+    /* Dividing by number of sec in a hour to get number of days since creation */
+    interval = Math.floor(seconds / 3600);
+    /* If more than 1 hour, display it */
+    if (interval > 1) {
+      twatterAge = interval + ' hours';
+    }
+
+    /* Dividing by number of sec in a day to get number of days since creation */
+    interval = Math.floor(seconds / 86400);
+    /* If more than 1 day, display it */
+    if (interval > 1) {
+      twatterAge = interval + ' days';
+    }
+
+    /* Dividing by number of sec in a month to get number of months since creation */
+    interval = Math.floor(seconds / 2592000);
+    /* If more than 1 month, display it */
+    if (interval > 1) {
+      twatterAge =  interval + ' months';
+    }
+
+    /* Dividing by number of sec in a year to get number of years since creation */
+    interval = Math.floor(seconds / 31536000);
     /* If more than 1 year, display it */
     if (interval > 1) {
+      console.log(twatterAge);
       twatterAge = interval + ' years';
-      seconds -= 31536000 * interval;
     }
 
-    /* Dividing by number of seconds in a month to get number of months since creation */
-    interval = Math.floor(seconds / 2592000);
-    if (interval > 1) {
-      twatterAge = !twatterAge
-        ? twatterAge + ' ' + interval + ' months'
-        : interval + ' months';
-      seconds -= 2592000 * interval;
-    }
-
-    /* Dividing by number of days in a year to get number of days since creation */
-    interval = Math.floor(seconds / 86400);
-    if (interval > 1) {
-      twatterAge = !twatterAge
-        ? twatterAge + ' ' + interval + ' days'
-        : interval + ' days';
-      seconds -= 86400 * interval;
-    }
-
-    /* Dividing by number of seconds in a hour to get number of hours since creation */
-    interval = Math.floor(seconds / 3600);
-    if (interval > 1 && !twatterAge) {
-      twatterAge = interval + ' hours';
-      seconds -= 3600 * interval;
-    }
-
-    /* Dividing by number of miin in a year to get number of min since creation */
-    interval = Math.floor(seconds / 60);
-    if (interval > 1 && !twatterAge) {
-      twatterAge = interval + ' min';
-    } else if(!twatterAge) {
-      twatterAge = '0 min';
-    }
     return twatterAge;
   }
 }

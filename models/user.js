@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   }],
-  dateCreated: {type: Date, required: true}
+  dateCreated: {type: Number, required: true}
 });
 
 module.exports = mongoose.model('User', userSchema);

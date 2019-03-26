@@ -43,7 +43,8 @@ exports.signup = async (req, res) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       following: [],
-      followers: []
+      followers: [],
+      dateCreated: Date.now()
     });
     
     /* When user is created, create the auth data with the new user's id */

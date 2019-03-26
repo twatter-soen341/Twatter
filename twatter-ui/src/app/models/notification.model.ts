@@ -6,9 +6,3 @@ export interface Notification {
   action: NotificationAction;
   postID: string;
 }
-
-export enum NotificationAction {
-  COMMENT,
-  LIKE,
-  FOLLOW
-}

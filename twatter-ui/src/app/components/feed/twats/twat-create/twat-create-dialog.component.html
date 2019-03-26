@@ -6,14 +6,12 @@
   <mat-form-field appearance="standard">
     <div mat-card-avatar class="card-avatar-image"></div>
     <div class="text-dialog-outer">
-      <ng-scrollbar autoUpdate=true>
-        <textarea matInput autosize class="text-dialog-inner"
-        name="content"
-        placeholder="Hi {{ firstName }}, create a Twat?"
-        [ngModel]="data.content"
-        (ngModelChange)="getContent($event)">
-        </textarea>
-      </ng-scrollbar>
+      <textarea matInput autosize class="text-dialog-inner"
+      name="content"
+      placeholder="Hi {{ firstName }}, create a Twat?"
+      [ngModel]="data.content"
+      (ngModelChange)="getContent($event)">
+      </textarea>
     </div>
   </mat-form-field>
 

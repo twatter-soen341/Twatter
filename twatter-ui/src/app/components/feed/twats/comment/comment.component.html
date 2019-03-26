@@ -3,10 +3,10 @@
   <mat-divider></mat-divider>
   <span class="space-between">
     <mat-form-field class="comment-input">
-      <input matInput placeholder="Comment" [formControl]="commentControl">
+      <input matInput placeholder="Comment" [formControl]="commentControl" (ngModelChange)="onAddComment($event)">
     </mat-form-field>
 
-    <button mat-flat-button color="primary" (click)="postComment()">Comment</button>
+    <button mat-flat-button color="primary" [disabled]="buttonIsDisabled" (click)="postComment()">Comment</button>
   </span>
 
   <mat-divider></mat-divider>

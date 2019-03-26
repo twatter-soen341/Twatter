@@ -1,17 +1,42 @@
 <div id="sidebar">
 
   <img class="profile-picture" src="https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg">
+  <app-follow-button class="button" *ngIf="userId !== loggedUser"></app-follow-button>
+
   <mat-card class="user-info">
     <h1 class="name">{{user.firstName}} {{user.lastName}}</h1>
-    <app-follow-button class="button" *ngIf="userId !== loggedUser"></app-follow-button>
-    <p class="primary">
-      Twat Age
-      <br>
-      Twat Score {{ totalLikes }}
-    </p>
+
+    <div *ngIf="!editMode">
+      <p>{{ user.bio }}</p>
+      <button mat-icon-button id="editButton" matTooltip="Edit bio" [matTooltipPosition]="tooltipPosition" class="primary" *ngIf="userId == loggedUser" (click)="editBio()"><mat-icon>edit</mat-icon></button>
+    </div>
+
+    <div *ngIf="editMode">
+      <mat-form-field appearance="outline">
+        <textarea matInput placeholder="Bio" [(ngModel)]="bio"></textarea>
+      </mat-form-field>
+      <button mat-button (click)="cancelBio()">Cancel</button>
+      <button mat-button (click)="saveBio()">Save</button>
+    </div>
+
+    <div>
+      <div class="primary stat">
+        Twat Age
+        <br>
+        age
+      </div>
+      <div class="primary stat">
+        Twat Score
+        <br>
+        {{ totalLikes }}
+      </div>
+    </div>
+
+    <div id="list">
     <app-display-user-list [list]="this.followerList$" label='Follower(s): '></app-display-user-list>
     <br>
     <app-display-user-list [list]="this.followingList$" label='Following: '></app-display-user-list>
+    </div>
     <br>
     <button mat-button class="button" *ngIf="userId == loggedUser" color="accent" (click)="seeFollowersPost()">
       FOLLOWING<br>RECENT ACTIVITY</button>

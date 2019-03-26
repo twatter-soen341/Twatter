@@ -15,7 +15,7 @@ import { FollowingPostComponent } from './components/feed/following-post/followi
 const routes: Routes = [
   {path: 'register', component: RegisterComponent, canActivate: [LoggedInGuard]},
   {path: 'login', component: LoginComponent, canActivate: [LoggedInGuard]},
-  {path: '', redirectTo: '/posts', pathMatch: 'full'},
+  {path: '', redirectTo: '/twatline', pathMatch: 'full'},
   {path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'twatline', component: TwatlineComponent, canActivate: [AuthGuard]},
   {path: 'search/:search', component: SearchResultsComponent, canActivate: [AuthGuard]},

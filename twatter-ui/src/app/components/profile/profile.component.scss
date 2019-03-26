@@ -29,3 +29,17 @@
     width: 79vw;
   }
 }
+
+@media screen and (max-width: 1200px) {
+  #wrapper{
+      width: 1200px;
+      margin: 0 auto;
+    }
+    #sidebar {
+      width: 257px;
+      height: 428px;
+    }
+    #posts {
+      width: 942px;
+    }
+}

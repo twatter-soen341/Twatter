@@ -17,9 +17,15 @@ export class SidebarComponent implements OnInit {
   userId: string;
   user = {
     firstName: '',
-    lastName: ''
+    lastName: '',
+    bio: ''
   };
   loggedUser: string;
+
+  tooltipPosition: TooltipPosition = 'right';
+  editMode = false;
+  bio: string;
+
   followerList$: Observable<any>;
   followingList$: Observable<any>;
   @Input () totalLikes;
@@ -54,6 +60,22 @@ export class SidebarComponent implements OnInit {
       });
 
     });
+  }
+
+  editBio() {
+    this.bio = this.user.bio;
+    this.editMode = true;
+  }
+  saveBio() {
+    this.user.bio = this.bio;
+    this.userService.updateBio(this.user).subscribe(res => {
+      console.log(res);
+      this.editMode = false;
+    });
+  }
+  cancelBio() {
+    this.editMode = false;
+    this.bio = this.user.bio;
   }
 
   /**

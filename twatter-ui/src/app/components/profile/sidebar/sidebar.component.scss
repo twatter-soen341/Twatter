@@ -10,12 +10,19 @@
   margin: 0 auto;
 }
 
-.name {
-  text-align: center;
+.follow-button {
+  margin: 10px;
+  padding: 0;
+  //background-color: #ce4e4e;
 }
 
-.user-info{
+.user-info {
   margin: 10px;
+  overflow: hidden;
+}
+
+.name {
+  text-align: center;
 }
 
 .button {
@@ -33,10 +40,6 @@
 
 .primary {
   color: mat-color($accent);
-}
-
-#list {
-  margin-top: 75px;
 }
 
 .bio {

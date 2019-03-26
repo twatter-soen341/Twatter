@@ -1,7 +1,9 @@
 <div id="sidebar">
 
   <img class="profile-picture" src="https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg">
-  <app-follow-button class="button" *ngIf="userId !== loggedUser"></app-follow-button>
+  <mat-card class="follow-button">
+    <app-follow-button class="button" *ngIf="userId !== loggedUser"></app-follow-button>
+  </mat-card>
 
   <mat-card class="user-info">
     <h1 class="name">{{user.firstName}} {{user.lastName}}</h1>
@@ -31,15 +33,15 @@
         {{ totalLikes }}
       </div>
     </div>
+  </mat-card>
 
-    <div id="list">
-    <app-display-user-list [list]="this.followerList$" label='Follower(s): '></app-display-user-list>
-    <br>
-    <app-display-user-list [list]="this.followingList$" label='Following: '></app-display-user-list>
-    </div>
-    <br>
+  <mat-card class="user-info">
     <button mat-button class="button" *ngIf="userId == loggedUser" color="accent" (click)="seeFollowersPost()">
-      FOLLOWING<br>RECENT ACTIVITY</button>
+    FOLLOWING<br>RECENT ACTIVITY</button>
+    <br *ngIf="userId == loggedUser">
+    <app-display-user-list [list]="this.followingList$" label='Following: '></app-display-user-list>
+    <br>
+    <app-display-user-list [list]="this.followerList$" label='Follower(s): '></app-display-user-list>
   </mat-card>
 
 </div>

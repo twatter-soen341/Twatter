@@ -1,3 +1,6 @@
+@import '../../../twatter-default-style';
+
 .follow{
-    display: inline-block;
+  width: 100%;
+  background-color: mat-color($accent);
 }

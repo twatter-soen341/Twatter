@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [LoggedInGuard]},
   {path: '', redirectTo: '/posts', pathMatch: 'full'},
   {path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path: 'posts', component: TwatlineComponent, canActivate: [AuthGuard]},
+  {path: 'twatline', component: TwatlineComponent, canActivate: [AuthGuard]},
   {path: 'search/:search', component: SearchResultsComponent, canActivate: [AuthGuard]},
   {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
   {path: 'followers/:id', component: FollowingPostComponent, canActivate: [AuthGuard]}

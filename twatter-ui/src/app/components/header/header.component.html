@@ -11,7 +11,7 @@
   </span>
 
   <nav>
-    <button mat-icon-button routerLink="/posts">
+    <button mat-icon-button routerLink="/twatline">
       <img class="logo" src="../assets/images/twatterLogoInGrey.PNG">
     </button>
   </nav>
@@ -22,23 +22,6 @@
 
       <!-- Search -->
       <app-search-bar class="spacer2" ></app-search-bar>
-
-      <!--Notification button with notification badge-->
-      <button mat-icon-button color={{colourForIcons}} [matMenuTriggerFor]="menu" matBadge={{notificationCount}}
-              matBadgeOverlap="true" matBadgePosition="after" matBadgeColor="white" matBadgeSize="medium"
-              [matBadgeHidden]="notificationCount<=0"> <mat-icon>notifications</mat-icon></button>
-
-      <!--The menu which will show the notifications from an array of string-->
-      <mat-menu #menu="matMenu" class="myMenu">
-
-        <mat-list *ngFor="let notification of notifications">
-         <mat-list-item>{{notification}}</mat-list-item>
-         <mat-divider class="lesNotifs"></mat-divider>
-       </mat-list>
-
-        <!--Buttons Clears all notifications-->
-        <button mat-flat-button color="primary" (click)="clearNotifications()" [disabled]="notificationCount<=0">Clear Notifications</button>
-      </mat-menu>
 
       <button class="spacer" mat-icon-button color={{colourForIcons}} routerLink="/settings"><mat-icon>settings</mat-icon></button>
 

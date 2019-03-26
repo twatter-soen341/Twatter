@@ -18,7 +18,6 @@
       <!--checks if the twat has been liked by the user, if yes color red else color dark-->
       <!--Emits event onclick that updates the twat to be liked/unliked by user on the backend-->
       <app-twat-icon-btn [likes]="twat.likedBy" [liked] = "isLikedByUser(twat)" (clickEvent) = "likeTwat(twat, $event)" >l</app-twat-icon-btn>
-        <button mat-icon-button *ngIf="!simplified"><mat-icon color="accent">share</mat-icon></button>
         <div *ngIf="isUser(twat.userId)">
           <button mat-icon-button *ngIf="!simplified" (click)="onEdit(twat.id)"><mat-icon color="accent">edit</mat-icon></button>
           <button mat-icon-button *ngIf="!simplified" (click)="onDelete(twat.id)"><mat-icon color="primary">delete</mat-icon></button>

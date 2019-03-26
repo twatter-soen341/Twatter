@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/auth.model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { TwatsService } from 'src/app/services/twat.service';
 
 
 @Component({
@@ -21,8 +22,14 @@ export class SidebarComponent implements OnInit {
   loggedUser: string;
   followerList$: Observable<any>;
   followingList$: Observable<any>;
+  @Input () totalLikes;
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private twatsService: TwatsService
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -36,12 +43,12 @@ export class SidebarComponent implements OnInit {
         });
       });
 
-      //Retrieve list of current user's followers
+      // Retrieve list of current user's followers
       this.userService.getFollowers(this.userId).subscribe(user => {
         this.followerList$ = user.followers;
       });
 
-      //Retrieve list of people that user is following
+      // Retrieve list of people that user is following
       this.userService.getFollowing(this.userId).subscribe(user => {
         this.followingList$ = user.following;
       });

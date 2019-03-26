@@ -7,8 +7,8 @@ import {HttpClient} from '@angular/common/http';
 import {UserService} from '../services/user.service';
 import {User} from '../models/auth.model';
 import {HeaderComponent} from '../header/header.component';
-import {Alert} from "selenium-webdriver";
-import {Router} from "@angular/router";
+import {Alert} from 'selenium-webdriver';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -94,11 +94,11 @@ export class SettingsComponent implements OnInit {
   changeUserEmail() {
     const email = this.changeForm.get('emailController').value;
     const password = this.changeForm.get('currentPasswordForEmail').value;
+    const userID = this.authService.getUserId();
     if ((email !== '') && (password !== '')) {
-      this.authService.updateUserEmail(email, password).subscribe(res => {
+      this.authService.updateUserEmail(email, password, userID).subscribe(res => {
         console.log(res);
       });
-      window.location.reload();
     }
   }
 
@@ -114,7 +114,6 @@ export class SettingsComponent implements OnInit {
         this.authService.updateUserPassword(email, currentPassword, newPassword).subscribe(res => {
           console.log(res);
         });
-        window.location.reload();
       }
     }
   }
@@ -127,7 +126,7 @@ export class SettingsComponent implements OnInit {
       this.authService.deleteAccount(password, email).subscribe(res => {
         console.log(res);
       });
-    this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
     }
   }
 }

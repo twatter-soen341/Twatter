@@ -227,7 +227,8 @@ export class AuthService {
     localStorage.clear();
   }
 
-  updateUserEmail(email: string, password: string) {
+  updateUserEmail(email: string, password: string, userID: string) {
+
     const emailData: AuthData = {
       email: email,
       password: password
@@ -241,7 +242,7 @@ export class AuthService {
       password: currentPassword,
       newPassword: newPassword
     };
-    return this.httpClient.put(`${BASE_URL}/password/`, passwordData);
+    return this.httpClient.put(`${BASE_URL}/pass/`, passwordData);
   }
 
   deleteAccount(password: string, email: string) {

@@ -70,7 +70,7 @@ export class SidebarComponent implements OnInit {
   saveBio() {
     this.user.bio = this.bio;
     this.userService.updateBio(this.user).subscribe(res => {
-      console.log(res);
+      //console.log(res);
       this.editMode = false;
     });
   }

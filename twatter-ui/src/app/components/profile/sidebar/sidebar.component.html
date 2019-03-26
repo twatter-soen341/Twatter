@@ -6,17 +6,17 @@
   <mat-card class="user-info">
     <h1 class="name">{{user.firstName}} {{user.lastName}}</h1>
 
-    <div *ngIf="!editMode">
-      <p>{{ user.bio }}</p>
+    <div class="bio" *ngIf="!editMode">
       <button mat-icon-button id="editButton" matTooltip="Edit bio" [matTooltipPosition]="tooltipPosition" class="primary" *ngIf="userId == loggedUser" (click)="editBio()"><mat-icon>edit</mat-icon></button>
+      <p id="bioText">{{ user.bio }}</p>
     </div>
 
-    <div *ngIf="editMode">
+    <div class="bioEdit" *ngIf="editMode">
       <mat-form-field appearance="outline">
-        <textarea matInput placeholder="Bio" [(ngModel)]="bio"></textarea>
+        <textarea matInput matTextareaAutosize placeholder="Bio" [(ngModel)]="bio"></textarea>
       </mat-form-field>
-      <button mat-button (click)="cancelBio()">Cancel</button>
-      <button mat-button (click)="saveBio()">Save</button>
+      <button mat-button id="saveButton" (click)="saveBio()">Save</button>
+      <button mat-button id="cancelButton" class="primary" (click)="cancelBio()">Cancel</button>
     </div>
 
     <div>

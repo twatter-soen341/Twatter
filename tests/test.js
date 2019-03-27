@@ -10,6 +10,8 @@ let authenticatedUserID;
 let authenticatedUserJWT;
 let authenticatedUserID1;
 let authenticatedUserJWT1;
+let newUserId = '';
+let newUser1Id = '';
 const newUser = {
   firstName: 'test',
   lastName: 'test',
@@ -21,7 +23,6 @@ const userCredentials = {
   password: 'test'
 };
 
-var newUserId = '';
 
 const newUser1 = {
   firstName: 'test1',
@@ -34,7 +35,6 @@ const userCredentials1 = {
   password: 'test1'
 };
 
-var newUser1Id = '';
 
 var twat1 = {   user: `${authenticatedUserID}`,
                content: 'First test Content'

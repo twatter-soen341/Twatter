@@ -141,8 +141,12 @@ export class SettingsComponent implements OnInit {
     const email = this.changeForm.get('emailToDelete').value;
 
     if ((password !== '') && (email !== '')) {
-      this.authService.deleteAccount(password, email);
-      this.authService.logout();
+      this.authService.deleteAccount(password, email)
+      .subscribe(
+        res => {
+          this.authService.logout();
+        }
+      );
     }
   }
 }

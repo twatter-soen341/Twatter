@@ -128,10 +128,7 @@ export class SettingsComponent implements OnInit {
               this.changeForm.reset('');
               this.snack.open('Could not change password', 'Ok');
         });
-        this.changeForm.get('currentPasswordController').reset(); // To make the field blank again
-        this.changeForm.get('passwordController').reset(); // To make the field blank again
-        this.changeForm.get('passwordConfirmController').reset(); // To make the field blank again
-        this.changeForm.get('emailForPassword').reset(); // To make the field blank again
+        this.changeForm.reset(''); // To make the field blank again
       }
     }
   }

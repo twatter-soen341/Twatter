@@ -17,6 +17,14 @@
 ## Description
 A social platform for ranting about society. Users will see the most triggering posts around in order to get angry and have a bad rest of the day
 
+## Essential Definitions
+* **Twatter** : Similar to Twitter in our project. Platform used to post _twats_.
+* **Twat**: Similar to tweets/posts. It is a text post that others can comment on or like.
+* **Twatline**: This is the page that displays the twats from your followers in latest order.
+* **Profile**: Each user has a profile with information about their time on this platform.
+* **TwatAge**: The time since the creation of the account (in seconds, days, months or years).
+* **TwatScore**: The number of cumulative likes on your twats.
+
 ## Core features:
 ### 1. Like a tweet
    The system should allow an existing user to like a post from another user. The user will click a button and it will change the color to indicate that the user liked the post. The user should be able to like the posts from all Twatter community.
@@ -43,7 +51,6 @@ A social platform for ranting about society. Users will see the most triggering 
 ## Encountered Challenges:
 * Trouble in clearly defining a user story. It was hard to assign tasks to a poorly written story.
 * Coming soon...
-
 
 ## Stack: MEAN  👹
 

@@ -274,18 +274,6 @@ describe('Core Feature: Posting a Twat', () => {
           // Verifying the content of twat returned
           assert.equal(res.body.message, 'Deleted successfully!');
         });
-
-      /* Verifying that there are only 1 twat in the database */
-      chai
-        .request(app)
-        .get('/api/twat/')
-        .set('Authorization', `Bearer ${authenticatedUserJWT}`) //setting JWT token in header
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          assert.equal(res.body.twats.length, 1);
-          done();
-        });
     });
   });
 });

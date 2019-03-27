@@ -150,4 +150,4 @@ async function authenticatUser(email, password) {
     }
 
     return authUser;
-};
+}

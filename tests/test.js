@@ -481,8 +481,6 @@ describe('Core Feature: Following A User', () => {
   });
 });
 
-
-
 describe('Core Feature: Commenting on a Twat', () => {
   describe(
     'As a User, I want to comment on a tweet, edit my comment and delete my comment so that I can give my opinion on the other User\'s Tweet (#129, #138, #140)', () => {
@@ -500,12 +498,7 @@ describe('Core Feature: Commenting on a Twat', () => {
     });
 
 });
-
-
-
-
-
-
+ 
 describe("Deleting created test user", () => {
 
   describe("DELETE /api/auth", () => {

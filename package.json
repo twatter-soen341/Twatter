@@ -4,7 +4,7 @@
   "description": "341 group project",
   "main": "server.js",
   "scripts": {
-    "posttest": "./node_modules/.bin/eslint routes tests models middleware controllers",
+    "lint": "./node_modules/.bin/eslint routes tests models middleware controllers",
     "test": "mocha tests/*.js --timeout 10000 --exit",
     "start": "NODE_ENV=dev node server.js",
     "dev": "NODE_ENV=dev node server.js",

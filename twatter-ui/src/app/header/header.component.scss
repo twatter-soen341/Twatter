@@ -8,7 +8,6 @@ main {
 .logo {
   width: 4vh;
   align-self: center;
-  //background-color: crimson;
 }
 
 .card-avatar-image {
@@ -69,7 +68,6 @@ margin-left: 15px;
 
 
 /deep/ .mat-menu-content {
-  // background-color: rgb(192, 24, 91);
   background-color: mat-color($accent);
   text-align: center;
 }

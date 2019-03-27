@@ -52,9 +52,6 @@ export class SettingsComponent implements OnInit {
 
   // Function which will change the title of the menu depending on the tabs the user will choose
   tabChanged = (tabChangeEvent: MatTabChangeEvent): void => {
-    console.log('tabChangeEvent => ', tabChangeEvent);
-    console.log('index => ', tabChangeEvent.index);
-
     if (tabChangeEvent.index <= 2) {
       this.headerTitle = 'Change your Info';
     } else {
@@ -80,7 +77,6 @@ export class SettingsComponent implements OnInit {
 
   // Function which changes the name of a user
   changeUserName() {
-
     if ((this.changeForm.get('firstNameController').value !== '') && (this.changeForm.get('lastNameController').value !== '')) {
       this.user.firstName = this.changeForm.get('firstNameController').value;
       this.user.lastName = this.changeForm.get('lastNameController').value;
@@ -98,6 +94,8 @@ export class SettingsComponent implements OnInit {
     if ((email !== '') && (password !== '')) {
       this.authService.updateUserEmail(email, password, userID).subscribe(res => {
         console.log(res);
+        this.changeForm.get('emailController').reset(); // To make the field blank again
+        this.changeForm.get('currentPasswordForEmail').reset(); // To make the field blank again
       });
     }
   }
@@ -114,6 +112,10 @@ export class SettingsComponent implements OnInit {
         this.authService.updateUserPassword(email, currentPassword, newPassword).subscribe(res => {
           console.log(res);
         });
+        this.changeForm.get('currentPasswordController').reset(); // To make the field blank again
+        this.changeForm.get('passwordController').reset(); // To make the field blank again
+        this.changeForm.get('passwordConfirmController').reset(); // To make the field blank again
+        this.changeForm.get('emailForPassword').reset(); // To make the field blank again
       }
     }
   }
@@ -126,7 +128,7 @@ export class SettingsComponent implements OnInit {
       this.authService.deleteAccount(password, email).subscribe(res => {
         console.log(res);
       });
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login']); // To return user back to login Page
     }
   }
 }

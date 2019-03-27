@@ -44,7 +44,6 @@ import { SearchBarComponent } from './search/search-bar/search-bar.component';
 import { SearchResultsComponent } from './search/search-results/search-results.component';
 import { SettingsComponent } from './settings/settings.component';
 // ----Side Bar Settings in Setting Bar
-import { SidebarSettingsComponent } from './settings/sidebar-settings/sidebar-settings.component';
 import { MatTabsModule } from '@angular/material';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { CommentComponent } from './feed/twats/comment/comment.component';
@@ -73,7 +72,6 @@ import { DisplayUserListComponent } from './profile/display-user-list/display-us
     TwatlineComponent,
     SidebarComponent,
     SettingsComponent,
-    SidebarSettingsComponent,
     SearchBarComponent,
     SearchResultsComponent,
     CommentComponent,

@@ -2,12 +2,9 @@ import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core'
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar, MatTabChangeEvent} from '@angular/material';
 import {AuthService} from '../services/auth.service';
-import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from '../services/user.service';
 import {User} from '../models/auth.model';
-import {HeaderComponent} from '../header/header.component';
-import {Alert} from 'selenium-webdriver';
 import {Router} from '@angular/router';
 
 @Component({
@@ -40,7 +37,7 @@ export class SettingsComponent implements OnInit {
   hide_Confirmation = true;
 
 
-  constructor(private authService: AuthService, private userService: UserService, private http: HttpClient) {
+  constructor(private authService: AuthService, private userService: UserService, private snack: MatSnackBar, private http: HttpClient) {
   }
 
   ngOnInit() {
@@ -80,9 +77,16 @@ export class SettingsComponent implements OnInit {
     if ((this.changeForm.get('firstNameController').value !== '') && (this.changeForm.get('lastNameController').value !== '')) {
       this.user.firstName = this.changeForm.get('firstNameController').value;
       this.user.lastName = this.changeForm.get('lastNameController').value;
-      this.userService.updateUserNames(this.user).subscribe(res => {
-        console.log(res);
-      });
+      this.userService.updateUserNames(this.user)
+        .subscribe(
+          res => {
+            this.changeForm.reset('');
+            this.snack.open('Name changed!', 'Ok');
+          },
+          error => {
+            this.changeForm.reset('');
+            this.snack.open('Could not change name', 'Ok');
+          });
       window.location.reload(); // To Update the name in Header
     }
   }
@@ -92,10 +96,15 @@ export class SettingsComponent implements OnInit {
     const password = this.changeForm.get('currentPasswordForEmail').value;
     const userID = this.authService.getUserId();
     if ((email !== '') && (password !== '')) {
-      this.authService.updateUserEmail(email, password, userID).subscribe(res => {
-        console.log(res);
-        this.changeForm.get('emailController').reset(); // To make the field blank again
-        this.changeForm.get('currentPasswordForEmail').reset(); // To make the field blank again
+      this.authService.updateUserEmail(email, password, userID)
+        .subscribe(
+          res => {
+            this.changeForm.reset('');
+            this.snack.open('Email changed!', 'Ok');
+          },
+          error => {
+            this.changeForm.reset('');
+            this.snack.open('Could not change email', 'Ok');
       });
     }
   }
@@ -109,8 +118,15 @@ export class SettingsComponent implements OnInit {
 
     if ((currentPassword !== '') && (newPassword !== '') && (newPasswordConfirmation !== '') && (email !== '')) {
       if (newPassword === newPasswordConfirmation) {
-        this.authService.updateUserPassword(email, currentPassword, newPassword).subscribe(res => {
-          console.log(res);
+        this.authService.updateUserPassword(email, currentPassword, newPassword)
+          .subscribe(
+            res => {
+              this.changeForm.reset('');
+              this.snack.open('Password changed!', 'Ok');
+            },
+            error => {
+              this.changeForm.reset('');
+              this.snack.open('Could not change password', 'Ok');
         });
         this.changeForm.get('currentPasswordController').reset(); // To make the field blank again
         this.changeForm.get('passwordController').reset(); // To make the field blank again
@@ -125,10 +141,8 @@ export class SettingsComponent implements OnInit {
     const email = this.changeForm.get('emailToDelete').value;
 
     if ((password !== '') && (email !== '')) {
-      this.authService.deleteAccount(password, email).subscribe(res => {
-        console.log(res);
-      });
-      this.router.navigate(['/login']); // To return user back to login Page
+      this.authService.deleteAccount(password, email);
+      this.authService.logout();
     }
   }
 }

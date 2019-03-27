@@ -251,9 +251,9 @@ export class AuthService {
   /* To delete the account of a user */
   deleteAccount(password: string, email: string) {
     const deleteData: any = {
-      password: password,
-      email: email
+      email: email,
+      password: password
     };
-    return this.httpClient.delete(`${BASE_URL}/`, deleteData);
+    return this.httpClient.request('delete', `${BASE_URL}`, { body: deleteData });
   }
 }

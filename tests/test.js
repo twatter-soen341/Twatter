@@ -36,6 +36,21 @@ const userCredentials1 = {
 
 var newUser1Id = '';
 
+var twat1 = {   user: `${authenticatedUserID}`,
+               timeStamp: Date.now(),
+               content: 'First test Content',
+               likedBy: [],
+               comments: [],
+           };
+
+var twat2 = {   user: `${authenticatedUserID}`,
+               timeStamp: Date.now(),
+               content: 'Second test Content',
+               likedBy: [],
+               comments: [],
+           };
+
+var twatID = '';
 
 // Configure chai
 chai.use(chaiHttp);
@@ -47,7 +62,7 @@ describe("Authentication", () => {
     describe("POST /api/auth/signup", () => {
         let hashedPassword = '';
 
-        it("should create a new user", (done) =>{
+        it("should create new users", (done) =>{
             chai.request(app)
                 .post('/api/auth/signup')
                 .send(newUser)
@@ -56,21 +71,18 @@ describe("Authentication", () => {
             expect(response.body.message).to.equal('Sign up success!');
             hashedPassword = response.body.auth.password;
             newUserId = response.body.auth.user;
+            });
+
+            chai.request(app)
+                .post('/api/auth/signup')
+                .send(newUser1)
+                .end((err, response) => {
+            expect(response.statusCode).to.equal(200);
+            expect(response.body.message).to.equal('Sign up success!');
+            newUser1Id = response.body.auth.user;
             done();
             });
         });
-
-        it("should successfully create a second user", (done) =>{
-                    chai.request(app)
-                        .post('/api/auth/signup')
-                        .send(newUser1)
-                        .end((err, response) => {
-                    expect(response.statusCode).to.equal(200);
-                    expect(response.body.message).to.equal('Sign up success!');
-                    newUser1Id = response.body.auth.user;
-                    done();
-                    });
-                });
 
         // The password stored in the DB should be encrypted
         it("should have hashed the password", done => {
@@ -135,23 +147,8 @@ describe("Authentication", () => {
 });
 
 describe("Twats", () => {
-    let twatID = '';
 
     describe("POST /api/twat/", () => {
-
-        let twat1 = {   user: `${authenticatedUserID}`,
-                       timeStamp: Date.now(),
-                       content: 'First test Content',
-                       likedBy: [],
-                       comments: [],
-                   };
-
-        let twat2 = {   user: `${authenticatedUserID}`,
-                       timeStamp: Date.now(),
-                       content: 'Second test Content',
-                       likedBy: [],
-                       comments: [],
-                   };
 
             // test twat creation
             it("should create a twat", (done) =>{
@@ -355,6 +352,102 @@ describe("Users", () => {
 
 });
 
+describe('Core Feature: Posting a Twat', () => {
+  describe('As a User, I want to create a twat so that everyone who follows me can see. #25', () => {
+    it('should create a twat', done => {
+      // test here
+      done();
+    });
+  });
+
+  describe('As a user, I want to modify my twat so that I can make changes. #80', () => {
+      it('should update a twat', done => {
+        // test here
+        done();
+      });
+    }
+  );
+
+  describe('As a user, I want to delete my twat so that i can never see it again. #81', () => {
+      it('should delete a twat', done => {
+        // test here
+        done();
+      });
+    }
+  );
+});
+
+describe('Core Feature: Liking a Twat', () => {
+
+    describe('As a user, I want to like a Tweet so that I can show my appreciation to the poster. #38', () => {
+
+        it('should like a twat', (done) => {
+        let updatedTwat = {content: twat1.content, likedBy: [newUserId], comments: twat1.comments};
+              chai.request(app)
+              .put(`/api/twat/${twatID}`)
+              .send({content: updatedTwat.content, likedBy: updatedTwat.likedBy, comments: updatedTwat.comments})
+              .set('Authorization', `Bearer ${authenticatedUserJWT}`) //setting JWT token in header
+              .end((err, res) =>{
+                  res.should.have.status(200);
+              done();
+            });
+          });
+        });
+
+    describe('As a user, I want to know which user liked my tweet #83', () => {
+          it('should show the users that liked a twat', done => {
+            chai.request(app)
+            .get(`/api/twat/${twatID}`)
+            .set('Authorization', `Bearer ${authenticatedUserJWT}`) //setting JWT token in header
+            .end((err, res) =>{
+                res.should.have.status(200);
+                // Verifying that the twat has been correctly updated
+                assert.equal(res.body.twat._id, twatID);
+                console.log(res.body.twat.likedBy);
+                assert.equal(JSON.stringify(res.body.twat.likedBy), JSON.stringify([newUserId]));
+                done();
+          });
+        }
+      );
+    });
+
+    describe('As a user I would like to unlike a post so that I can remove my appreciation from the post #179', () => {
+      it('should unlike a twat', done => {
+      let newList = [newUserId].filter(function(value, index, arr){
+          return value != newUserId;
+      });
+      let updatedTwat = {content: twat1.content, likedBy: newList, comments: twat1.comments};
+          chai.request(app)
+          .put(`/api/twat/${twatID}`)
+          .send({content: updatedTwat.content, likedBy: updatedTwat.likedBy, comments: updatedTwat.comments})
+          .set('Authorization', `Bearer ${authenticatedUserJWT}`) //setting JWT token in header
+          .end((err, res) =>{
+              res.should.have.status(200);
+              done();
+          });
+        });
+    });
+
+});
+
+describe('Core Feature: Commenting on a Twat', () => {
+  describe(
+  'As a User, I want to comment on a tweet, edit my comment and delete my comment so that I can give my opinion on the other User\'s Tweet (#129, #138, #140)', () => {
+      it('should add/edit user\'s comment', done => {
+        let updatedTwat = {content: twat1.content, likedBy: twat1.likedBy, comments: [{userId:`${newUserId}`, text: "comment1"}]};
+              chai.request(app)
+              .put(`/api/twat/${twatID}`)
+              .send({content: updatedTwat.content, likedBy: updatedTwat.likedBy, comments: updatedTwat.comments})
+              .set('Authorization', `Bearer ${authenticatedUserJWT}`) //setting JWT token in header
+              .end((err, res) =>{
+                  res.should.have.status(200);
+              done();
+            });
+      });
+    });
+
+});
+
 describe("Deleting created test user", () => {
 
     describe("DELETE /api/auth", () => {
@@ -384,6 +477,3 @@ describe("Deleting created test user", () => {
         });
     });
 });
-
-
-

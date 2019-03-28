@@ -13,33 +13,31 @@ import { Subscription } from 'rxjs';
 export class FollowingPostComponent implements OnInit {
   private followingUsers: string[];
   private isFollowingSomeone: boolean;
-  protected twats: Twat[] = []; // TODO rename variables related to post -> twat
+  protected twats: Twat[] = [];
   private twatsSub: Subscription;
 
-  constructor (private userService: UserService, private twatsService: TwatsService) {}
+  constructor(private userService: UserService, private twatsService: TwatsService) { }
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
-        this.followingUsers = user.following;
+      this.followingUsers = user.following;
 
-        if (this.followingUsers.length > 0) {
-          this.isFollowingSomeone = true;
-          // tslint:disable-next-line:forin
-          for (let i in this.followingUsers) {
-            this.twatsService.getUserTwats(this.followingUsers[i]);
-            this.twatsSub = this.twatsService.getTwatUpdateListener().subscribe(
-              (twats: Twat[]) => {
-                // if statement is a temporary fix
-                // TODO: Find what causes 2x request
-                   if(twats[0] && (this.twats.findIndex(p => p.id === twats[0].id) < 0)) {
-                    this.twats.push(twats[0]);
-                  }
+      if (this.followingUsers.length > 0) {
+        this.isFollowingSomeone = true;
+        // tslint:disable-next-line:forin
+        for (const i in this.followingUsers) {
+          this.twatsService.getUserTwats(this.followingUsers[i]);
+          this.twatsSub = this.twatsService.getTwatUpdateListener().subscribe(
+            (twats: Twat[]) => {
+              if (twats[0] && (this.twats.findIndex(p => p.id === twats[0].id) < 0)) {
+                this.twats.push(twats[0]);
               }
-              );
-          }
-        } else {
-          this.isFollowingSomeone = false;
+            }
+          );
         }
+      } else {
+        this.isFollowingSomeone = false;
+      }
     });
   }
 

@@ -32,8 +32,8 @@ export class TwatlineComponent implements OnInit {
       this.twatsSub = this.aTwatsService.getTwatUpdateListener().subscribe(
         (twats: Twat[]) => {
           this.twats = [];
-          for (let i in twats) {
-            if (this.followingUsers && twats[i] && (twats[i].userId == this.userId || this.followingUsers.includes(twats[i].userId))) {
+          for (const i in twats) {
+            if (this.followingUsers && twats[i] && (twats[i].userId === this.userId || this.followingUsers.includes(twats[i].userId))) {
               this.twats.push(twats[i]);
             }
           }

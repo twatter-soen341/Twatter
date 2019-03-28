@@ -26,17 +26,17 @@ A social platform for ranting about society. Users will see the most triggering 
 * **TwatScore**: The number of cumulative likes on your twats.
 
 ## Core features:
-### 1. Like a tweet
+### 1. Like a twat (Like a tweet)
    The system should allow an existing user to like a post from another user. The user will click a button and it will change the color to indicate that the user liked the post. The user should be able to like the posts from all Twatter community.
    
-### 2. Posting a tweet
+### 2. Posting a twat (Posting a tweet)
    User will be able to post content in the Website. More precisely they will be able to post a 140 character tweet that can be read and liked by other profiles. All the users share on the same main twatter page.
 
 ### 3. Follow a User
    The system should allow an existing user to follow another user. User A will click a button "follow" in the profile page of user B. User A will then be able to see all posts from user B in his timeline.
 
 ## Optional features:
-### 1. Comment a post
+### 1. Comment on a twat
    The system should allow an existing user to comment a post from another user. The user will click a button "comment "and it will allow him to write a text expressing his reaction/feelings to the post. This comment should be viewed by everyone that has access to the specific post.
    
 ### 2. Profile page

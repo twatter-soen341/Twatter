@@ -114,7 +114,7 @@ export class TwatsService {
       .put(`${BASE_URL}/${aTwat.id}`, twat)
       .subscribe(response => {
         const updatedTwats = [...this.twats];
-        const oldTwatIndex = updatedTwats.findIndex(aTwat => aTwat.id === twat.id);
+        const oldTwatIndex = updatedTwats.findIndex(t => t.id === twat.id);
         updatedTwats[oldTwatIndex] = twat;
         this.twats = updatedTwats;
         this.twatsUpdated.next([...this.twats]);
@@ -163,7 +163,7 @@ export class TwatsService {
           };
         });
       } catch (error) {
-        throw new Error('No results found.')
+        throw new Error('No results found.');
       }
     }));
   }

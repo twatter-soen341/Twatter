@@ -22,19 +22,19 @@ export class SidebarComponent implements OnInit {
 
   editMode = false;
   bio: string;
-  
+
   @Input() totalLikes;
   twatterAge: string;
 
   followerList$: Observable<any>;
   followingList$: Observable<any>;
-  
+
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
     private twatsService: TwatsService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -68,7 +68,6 @@ export class SidebarComponent implements OnInit {
   saveBio() {
     this.user.bio = this.bio;
     this.userService.updateBio(this.user).subscribe(res => {
-      //console.log(res);
       this.editMode = false;
     });
   }
@@ -77,20 +76,11 @@ export class SidebarComponent implements OnInit {
     this.bio = this.user.bio;
   }
 
-  /**
-   * Navigates to a page where user can see most recent posts
-   * of user's followers.
-   */
+  // Navigates to a page where user can see most recent posts of user's followers.
   seeFollowersPost() {
     this.router.navigate([`/followers/${this.loggedUser}`]);
   }
 
-  /**
-   * returns a human readable string that contains the
-   * number of years, months, days, hours and minutes its input parameter
-   * @param dateCreated
-   * @returns string
-   */
   private getTwatterAge(dateCreated: number): string {
     /* Getting the number of seconds between date created and now */
     const seconds = (Date.now() - dateCreated) / 1000;
@@ -127,7 +117,7 @@ export class SidebarComponent implements OnInit {
     interval = Math.floor(seconds / 2592000);
     /* If more than 1 month, display it */
     if (interval > 1) {
-      twatterAge =  interval + ' months';
+      twatterAge = interval + ' months';
     }
 
     /* Dividing by number of sec in a year to get number of years since creation */

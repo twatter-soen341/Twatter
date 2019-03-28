@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/twatter-soen341/Twatter#readme",
   "dependencies": {
-    "@angular/material": "^7.3.0",
+    "acorn": "^6.0.0",
     "angular": "^1.7.6",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",

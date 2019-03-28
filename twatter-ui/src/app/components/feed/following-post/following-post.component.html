@@ -1,0 +1,7 @@
+<h2 *ngIf="isFollowingSomeoneFunction()">Following's recent post.</h2>
+<h2 *ngIf="!isFollowingSomeoneFunction()">Not Following Anyone Yet</h2>
+<app-twat-list
+        [twats]="twats"
+        style="padding-bottom:25px"
+        [simplified]="true"
+      ></app-twat-list>

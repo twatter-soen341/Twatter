@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
-import {MatIconRegistry} from "@angular/material";
-import {DomSanitizer} from "@angular/platform-browser";
+import {MatIconRegistry} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -25,11 +25,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.authService.resumeSession();
-    window.scroll(0,0);
+    window.scroll(0, 0);
   }
 
   onActivate() {
-    window.scroll(0,0);
+    window.scroll(0, 0);
   }
 
 }

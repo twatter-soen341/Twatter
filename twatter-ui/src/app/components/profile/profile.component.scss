@@ -1,0 +1,43 @@
+#wrapper{
+  width: 1400px;
+  margin-top: 10px;
+  margin: 0 auto;
+}
+#sidebar{
+  margin-top: 10px;
+  float: left;
+  position: fixed;
+  width: 300px;
+  height: 500px;
+}
+#twats{
+  float: right;
+  width: 1100px;
+  position: relative;
+}
+
+@media screen and (max-width: 1400px) {
+  #wrapper{
+    width: 100vw;
+  }
+  #sidebar {
+    width: 21vw;
+    height: 35vh;
+  }
+  #twats {
+    width: 79vw;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #wrapper{
+    width: 1200px;
+  }
+  #sidebar {
+    width: 257px;
+    height: 428px;
+  }
+  #twats {
+    width: 942px;
+  }
+}

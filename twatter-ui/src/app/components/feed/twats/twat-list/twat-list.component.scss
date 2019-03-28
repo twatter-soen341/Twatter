@@ -1,0 +1,47 @@
+@import '../../../../../../node_modules/@angular/material/theming';
+@include mat-core();
+
+$primary: mat-palette($mat-red);
+
+:host,
+mat-card {
+    display: block;
+    margin-top: 1rem;
+}
+
+:host{
+  margin-left: 10%;
+  width: 80%;
+}
+
+.card-header-image {
+    background-image: url('https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg');
+    background-size: cover;
+    cursor: pointer;
+}
+
+.info-text {
+    text-align: center;
+}
+
+.twat-list {
+  max-height: 20vh;
+  padding-left: 3.5rem;
+}
+
+.btn-45 {
+  width: 45%;
+  // color: mat-color($primary);
+}
+
+mat-card-actions {
+  margin-bottom: -0.25rem;
+  margin-right: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+
+mat-card-content {
+  margin-bottom: 2rem;
+}

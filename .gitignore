@@ -1,6 +1,5 @@
 package-lock.json
 node_modules/
-.env
 
 #intelli-j
 .idea/

@@ -12,6 +12,7 @@ let authenticatedUserID1;
 let authenticatedUserJWT1;
 let newUserId = '';
 let newUser1Id = '';
+
 const newUser = {
   firstName: 'test',
   lastName: 'test',

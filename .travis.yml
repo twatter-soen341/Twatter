@@ -2,3 +2,5 @@ before_script: cd backend
 language: node_js
 node_js:
   - "lts/*" 
+before_install:
+  - cd backend

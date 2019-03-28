@@ -22,6 +22,10 @@ export class UserService {
     return this.http.put(`${BASE_URL}/users/${user._id}`, user);
   }
 
+  updateBio(user) {
+    return this.http.put(`${BASE_URL}/users/${user._id}`, user);
+  }
+
   searchUser(name: string) {
     const query = {search: name};
     console.log(`searchUser calling api with %c${name}`, 'font-weight:bold');

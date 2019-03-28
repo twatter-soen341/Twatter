@@ -43,10 +43,11 @@ import { DragScrollModule } from 'ngx-drag-scroll';
 import { SearchBarComponent } from './components/search/search-bar/search-bar.component';
 import { SearchResultsComponent } from './components/search/search-results/search-results.component';
 import { SettingsComponent } from './components/settings/settings.component';
-// ----Side Bar Settings in Setting Bar
-import { SidebarSettingsComponent } from './components/settings/sidebar-settings/sidebar-settings.component';
+
 import { MatTabsModule } from '@angular/material';
 import { CommentComponent } from './components/feed/twats/comment/comment.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 // ------Follow Button------
 import { FollowButtonComponent } from './components/follow-button/follow-button.component';
 import { FollowingPostComponent } from './components/feed/following-post/following-post.component';
@@ -72,7 +73,6 @@ import { DisplayUserListComponent } from './components/profile/display-user-list
     TwatlineComponent,
     SidebarComponent,
     SettingsComponent,
-    SidebarSettingsComponent,
     SearchBarComponent,
     SearchResultsComponent,
     CommentComponent,
@@ -103,7 +103,8 @@ import { DisplayUserListComponent } from './components/profile/display-user-list
     MatMenuModule,
     DragScrollModule,
     MatTabsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatCheckboxModule
 
   ],
   providers: [

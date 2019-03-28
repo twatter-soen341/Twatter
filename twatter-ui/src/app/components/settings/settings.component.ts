@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar, MatTabChangeEvent} from '@angular/material';
 import {AuthService} from '../../services/auth.service';
@@ -6,6 +6,7 @@ import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from '../../services/user.service';
 import {User} from '../../models/auth.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -16,20 +17,27 @@ import {User} from '../../models/auth.model';
 export class SettingsComponent implements OnInit {
   private headerTitle = 'Change your Settings';
   private user: User;
+  private router: Router;
+  consent = false;
   changeForm: FormGroup = new FormGroup({
     firstNameController: new FormControl('', [Validators.required]),
     lastNameController: new FormControl('', [Validators.required]),
     usernameController: new FormControl('', [Validators.required]),
     emailController: new FormControl('', [Validators.required, Validators.email]),
+    emailForPassword: new FormControl('', [Validators.required]),
+    currentPasswordForEmail: new FormControl('', [Validators.required]),
     currentPasswordController: new FormControl('', [Validators.required]),
     passwordController: new FormControl('', [Validators.required]),
-    passwordConfirmController: new FormControl('', [Validators.required])
+    passwordConfirmController: new FormControl('', [Validators.required]),
+    passwordToDelete: new FormControl('', [Validators.required]),
+    emailToDelete: new FormControl('', [Validators.required])
   });
 
   hide_Password = true;
   hide_Confirmation = true;
 
-  constructor(private authService: AuthService, private userService: UserService, private http: HttpClient) {
+
+  constructor(private authService: AuthService, private userService: UserService, private snack: MatSnackBar, private http: HttpClient) {
   }
 
   ngOnInit() {
@@ -39,20 +47,12 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  // function which will change the title depending on the menu chosen
-  changeHeaderTitle(title: string) {
-    this.headerTitle = title;
-  }
-
   // Function which will change the title of the menu depending on the tabs the user will choose
   tabChanged = (tabChangeEvent: MatTabChangeEvent): void => {
-    console.log('tabChangeEvent => ', tabChangeEvent);
-    console.log('index => ', tabChangeEvent.index);
-
-    if (tabChangeEvent.index < 4) {
+    if (tabChangeEvent.index <= 2) {
       this.headerTitle = 'Change your Info';
     } else {
-      this.headerTitle = 'Change your Preferences';
+      this.headerTitle = 'Delete your Account';
     }
   }
 
@@ -74,19 +74,76 @@ export class SettingsComponent implements OnInit {
 
   // Function which changes the name of a user
   changeUserName() {
-    this.user.firstName = this.changeForm.get('firstNameController').value;
-    this.user.lastName = this.changeForm.get('lastNameController').value;
-    this.userService.updateUserNames(this.user).subscribe(res => {
-      console.log(res);
-    });
+    if ((this.changeForm.get('firstNameController').value !== '') && (this.changeForm.get('lastNameController').value !== '')) {
+      this.user.firstName = this.changeForm.get('firstNameController').value;
+      this.user.lastName = this.changeForm.get('lastNameController').value;
+      this.userService.updateUserNames(this.user)
+        .subscribe(
+          res => {
+            this.changeForm.reset('');
+            this.snack.open('Name changed!', 'Ok');
+          },
+          error => {
+            this.changeForm.reset('');
+            this.snack.open('Could not change name', 'Ok');
+          });
+      window.location.reload(); // To Update the name in Header
+    }
   }
 
   changeUserEmail() {
-
+    const email = this.changeForm.get('emailController').value;
+    const password = this.changeForm.get('currentPasswordForEmail').value;
+    const userID = this.authService.getUserId();
+    if ((email !== '') && (password !== '')) {
+      this.authService.updateUserEmail(email, password, userID)
+        .subscribe(
+          res => {
+            this.changeForm.reset('');
+            this.snack.open('Email changed!', 'Ok');
+          },
+          error => {
+            this.changeForm.reset('');
+            this.snack.open('Could not change email', 'Ok');
+      });
+    }
   }
 
 
   changeUserPassword() {
+    const currentPassword = this.changeForm.get('currentPasswordController').value;
+    const newPassword = this.changeForm.get('passwordController').value;
+    const newPasswordConfirmation = this.changeForm.get('passwordConfirmController').value;
+    const email = this.changeForm.get('emailForPassword').value;
 
+    if ((currentPassword !== '') && (newPassword !== '') && (newPasswordConfirmation !== '') && (email !== '')) {
+      if (newPassword === newPasswordConfirmation) {
+        this.authService.updateUserPassword(email, currentPassword, newPassword)
+          .subscribe(
+            res => {
+              this.changeForm.reset('');
+              this.snack.open('Password changed!', 'Ok');
+            },
+            error => {
+              this.changeForm.reset('');
+              this.snack.open('Could not change password', 'Ok');
+        });
+        this.changeForm.reset(''); // To make the field blank again
+      }
+    }
+  }
+
+  deleteUserAccount() {
+    const password = this.changeForm.get('passwordToDelete').value;
+    const email = this.changeForm.get('emailToDelete').value;
+
+    if ((password !== '') && (email !== '')) {
+      this.authService.deleteAccount(password, email)
+      .subscribe(
+        res => {
+          this.authService.logout();
+        }
+      );
+    }
   }
 }

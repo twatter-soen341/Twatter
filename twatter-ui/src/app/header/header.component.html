@@ -1,0 +1,32 @@
+<!--Sets the colour of the header-->
+<mat-toolbar class="header mat-elevation-z5" color="primary">
+  <!--<mat-toolbar-row>-->
+  <div class="left-justify">
+    <nav>
+      <button mat-icon-button (click)="goToProfile()">
+        <div mat-card-avatar class="card-avatar-image"></div>
+        <div class="text-after-image">{{ firstName }}</div>
+      </button>
+    </nav>
+  </div>
+
+  <div class="logo">
+    <button mat-icon-button routerLink="/twatline">
+      <!--<img class="logo" src="../assets/images/twatterLogoInGrey.PNG">-->
+      <img class="img" src="../assets/images/twatterLogoInGrey.PNG">
+    </button>
+  </div>
+
+  <!--<span class="firstRow">-->
+  <div class="right-justify">
+    <div class="button">
+      <button mat-icon-button color={{colourForIcons}} (click)="onLogout()"><mat-icon>logout</mat-icon></button>
+    </div>
+    <div class="button">
+      <button mat-icon-button color={{colourForIcons}} routerLink="/settings"><mat-icon>settings</mat-icon></button>
+    </div>
+    <div class="search">
+      <app-search-bar></app-search-bar>
+    </div>
+  </div>
+</mat-toolbar>

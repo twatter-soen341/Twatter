@@ -273,6 +273,7 @@ describe('Core Feature: Posting a Twat', () => {
           res.should.have.status(200);
           // Verifying the content of twat returned
           assert.equal(res.body.message, 'Deleted successfully!');
+          done();
         });
     });
   });

@@ -8,7 +8,6 @@ const app = require('../server');
 // needed for protected routes
 let authenticatedUserID;
 let authenticatedUserJWT;
-let authenticatedUserID1;
 let authenticatedUserJWT1;
 let newUserId = '';
 let newUser1Id = '';
@@ -306,7 +305,7 @@ describe('Core Feature: Liking a Twat', () => {
           res.should.have.status(200);
           // Verifying that the twat has been correctly updated
           assert.equal(res.body.twat._id, twat2ID);
-          console.log(res.body.twat.likedBy);
+          // console.log(res.body.twat.likedBy);
           assert.equal(JSON.stringify(res.body.twat.likedBy), JSON.stringify([newUserId]));
           done();
         });
@@ -316,7 +315,7 @@ describe('Core Feature: Liking a Twat', () => {
 
   describe('As a user I would like to unlike a post so that I can remove my appreciation from the post #179', () => {
     it('should unlike a twat', done => {
-      let newList = [newUserId].filter(function (value, index, arr) {
+      let newList = [newUserId].filter(function (value) {
         return value != newUserId;
       });
       let updatedTwat = { content: twat2.content, likedBy: newList, comments: twat2.comments };

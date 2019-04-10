@@ -1,6 +1,6 @@
 const User = require('../models/user');
 
-exports.getUserByName = async (req, res, next) => {
+exports.getUserByName = async (req, res) => {
   try {
     let search = req.body.search;
     const regex = new RegExp(`^${search}`, 'i');
@@ -22,11 +22,11 @@ exports.getUserByName = async (req, res, next) => {
   }
 };
 //http://localhost:8080/api/user/users/
-exports.getUsersByIds = async (req, res, next) => {
+exports.getUsersByIds = async (req, res) => {
   try {
     var users = [];
     const ids = req.body.ids;
-
+    var userId;
     for (userId in ids) {
       var user = await User.findById(ids[userId]);
       if (user) {
@@ -46,7 +46,7 @@ exports.getUsersByIds = async (req, res, next) => {
   }
 };
 
-exports.getUserById = async (req, res, next) => {
+exports.getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (user) {
@@ -65,7 +65,7 @@ exports.getUserById = async (req, res, next) => {
 };
 
 /* Follow a user A by adding user A from following array of current user and by adding current user to follower array of user A*/
-exports.followUser = async (req, res, next) => {
+exports.followUser = async (req, res) => {
   try {
     const userToFollow = await User.findById(req.body.wantToFollow); //User.findOne({ _id : req.body.wantToFollow}, (err, user) => {
 
@@ -82,7 +82,9 @@ exports.followUser = async (req, res, next) => {
 
             user.save(err => {
               if (err) {
-                console.log(err);
+                res.status(500).json({
+                  message: 'could not save user'
+                });
               } else {
                 res.status(200).json({
                   message: 'Followed Successfully',
@@ -102,7 +104,7 @@ exports.followUser = async (req, res, next) => {
 };
 
 /* Unfollow a user A by removing user A from following array and by removing current user from follower array of user A*/
-exports.unfollowUser = async (req, res, next) => {
+exports.unfollowUser = async (req, res) => {
   try {
     const userToUnfollow = await User.findById(req.params.id);
     if (userToUnfollow) {
@@ -119,7 +121,9 @@ exports.unfollowUser = async (req, res, next) => {
 
             user.save(err => {
               if (err) {
-                console.log(err);
+                res.status(500).json({
+                message: 'could not save user'
+                });
               } else {
                 res.status(200).json({
                   message: 'Unfollowed successfully',
@@ -139,7 +143,7 @@ exports.unfollowUser = async (req, res, next) => {
 };
 
 /* Get followers */
-exports.getFollowers = async (req, res, next) => {
+exports.getFollowers = async (req, res) => {
   try {
     const user = await User.findById(req.params.id).populate('followers');
     if (user) {
@@ -161,7 +165,7 @@ exports.getFollowers = async (req, res, next) => {
 };
 
 /* Get users that id is following */
-exports.getFollowing = async (req, res, next) => {
+exports.getFollowing = async (req, res) => {
   try {
     const user = await User.findById(req.params.id).populate('following');
 
@@ -177,7 +181,7 @@ exports.getFollowing = async (req, res, next) => {
   }
 };
 // Used to update the user
-exports.updateUser = async (req, res, next) => {
+exports.updateUser = async (req, res) => {
   const updateQuery = {};
 
   /* Updating only the fields that are given */

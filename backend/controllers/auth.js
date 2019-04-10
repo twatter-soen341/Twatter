@@ -5,7 +5,7 @@ const User = require('../models/user');
 const Auth = require('../models/auth');
 const Twat = require('../models/twat');
 
-exports.login = async (req, res, next) => {
+exports.login = async (req, res) => {
   try {
     const authUser = await authenticatUser(req.body.email, req.body.password);
 
@@ -71,7 +71,7 @@ exports.signup = async (req, res) => {
   }
 };
 
-exports.changePassword = async (req, res, next) => {
+exports.changePassword = async (req, res) => {
   try {
     const authUser = await authenticatUser(req.body.email, req.body.password);
     /* Authorization is sucessful, so change password */
@@ -86,17 +86,15 @@ exports.changePassword = async (req, res, next) => {
       message: 'password changed successfully!'
     });
   } catch (error) {
-    console.log(error)
     res.status(401).json({
       error
     });
   }
 };
 
-exports.changeEmail = async (req, res, next) => {
+exports.changeEmail = async (req, res) => {
   try {
     const user = await Auth.findOne({user: req.body.id});
-    console.log('email:', user.email)
     const authUser = await authenticatUser(user.email, req.body.password);
     /* Authorization is sucessful, so change email */
 
@@ -107,7 +105,6 @@ exports.changeEmail = async (req, res, next) => {
       message: 'email changed successfully!'
     });
   } catch (error) {
-    console.log(error)
     res.status(401).json({
       error
     });
@@ -128,7 +125,7 @@ exports.deleteUser = async (req, res) => {
       message: 'Deleted successfully!'
     });
   } catch (error) {
-      console.log(error);
+    
       res.status(401).json({
         error
       });
@@ -147,7 +144,6 @@ async function authenticatUser(email, password) {
     /* Verify password */
     const isMatch = await bcrypt.compare(password, authUser.password);
     if (!isMatch) {
-      console.log('Invalid Credentials')
       throw new Error('Invalid Credentials');
     }
 

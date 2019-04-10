@@ -118,7 +118,7 @@ exports.updateTwat = function (req, res) {
             res.status(500).json({message: 'Update Failed.', error: err});
         }
         else {
-            res.status(200).json({message: 'Post Updated'});
+            res.status(200).json({message: 'Twat Updated'});
         }
     });
 };

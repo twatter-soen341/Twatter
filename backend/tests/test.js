@@ -45,6 +45,7 @@ var twat2 = {   user: `${authenticatedUserID}`,
            };
 
 var twat2ID = '';
+var twat1ID = '';
 
 // Configure chai
 chai.use(chaiHttp);
@@ -208,7 +209,7 @@ describe('Core Feature: Posting a Twat', () => {
           res.should.have.status(200);
           // Verifying the content of twat returned
           assert.equal(res.body.twat._id, twat1ID);
-          assert.equal(res.body.twat.content, 'First test Content');
+          assert.equal(res.body.twat.content, twat1.content);
           done();
         });
     });

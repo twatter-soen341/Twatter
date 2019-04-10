@@ -35,7 +35,7 @@ exports.searchTests = function(test, callback) {
       });
     });
 
-    describe('As a User, I want to find other users in a "search by name" bar so that I can follow their posts. #72', () => {
+    describe('As a User, I want to find other users in a "search by name" bar so that I can follow their twats. #72', () => {
       it('should return array of users with test as last name or first name', done => {
         chai
           .request(app)

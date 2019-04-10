@@ -28,7 +28,7 @@ exports.twatTests = function(test, callback) {
             res.should.have.status(201);
             res.body.should.be.a('object');
             assert.equal(res.body.message, 'Twat added successfully');
-            test.twat1ID = res.body.postId;
+            test.twat1ID = res.body.twatId;
           });
 
         //create second twat for future use
@@ -41,7 +41,7 @@ exports.twatTests = function(test, callback) {
             res.should.have.status(201);
             res.body.should.be.a('object');
             assert.equal(res.body.message, 'Twat added successfully');
-            test.twat2ID = res.body.postId;
+            test.twat2ID = res.body.twatId;
             done();
           });
       });
@@ -117,7 +117,7 @@ exports.twatTests = function(test, callback) {
           .end((err, res) => {
             res.should.have.status(200);
             // Verifying the content of twat returned
-            assert.equal(res.body.message, 'Post Updated');
+            assert.equal(res.body.message, 'Twat Updated');
             done();
           });
       });

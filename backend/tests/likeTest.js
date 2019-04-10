@@ -48,7 +48,7 @@ exports.likeTests = function(test, callback){
       });
     });
 
-    describe('As a user I would like to unlike a post so that I can remove my appreciation from the post #179', () => {
+    describe('As a user I would like to unlike a twat so that I can remove my appreciation from the twat #179', () => {
       it('should unlike a twat', done => {
         let newList = [test.newUserId].filter(function(value) {
           return value != test.newUserId;

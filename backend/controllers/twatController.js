@@ -3,7 +3,7 @@
  */
 const Twat = require('../models/twat');
 /* To create a Twat (post) */
-exports.createTwat = function (req, res, next) {
+exports.createTwat = function (req, res) {
 
     let twat = new Twat(
         {   
@@ -31,7 +31,7 @@ exports.createTwat = function (req, res, next) {
 };
 
 /* To get a Twat (post) */
-exports.getTwat = function (req, res, next) {
+exports.getTwat = function (req, res) {
 
     Twat.findById(req.params.id)
         .populate('user')
@@ -49,7 +49,7 @@ exports.getTwat = function (req, res, next) {
 };
 
 /* Get the twats created by the user only (profile page) */
-exports.getTwatsForUser = function(req, res, next){
+exports.getTwatsForUser = function(req, res){
 
     Twat.find({user: req.params.id})
         .sort({timeStamp: -1})
@@ -68,7 +68,7 @@ exports.getTwatsForUser = function(req, res, next){
 }
 
 /* Get the twats created by every users that the user follows (Twatline page)*/
-exports.getTwats = (req, res, next) => {
+exports.getTwats = (req, res) => {
 
     Twat.find()
     .sort({timeStamp: -1})
@@ -87,7 +87,7 @@ exports.getTwats = (req, res, next) => {
 };
 
 /* Get Twats by matching words */
-exports.getTwatsByMatch = async (req, res, next) => {
+exports.getTwatsByMatch = async (req, res) => {
   try {
     let search = req.body.search;
     const regex = new RegExp(`${search}`, 'i');
@@ -110,9 +110,9 @@ exports.getTwatsByMatch = async (req, res, next) => {
 };
 
 /* Updating the Twat for likedBy, comments and editing its content */
-exports.updateTwat = function (req, res, next) {
+exports.updateTwat = function (req, res) {
 
-   Twat.findByIdAndUpdate(req.params.id, {$set: {timeStamp: Date.now(), content: req.body.content, likedBy: req.body.likedBy, comments: req.body.comments}}, function (err, twat) {
+   Twat.findByIdAndUpdate(req.params.id, {$set: {timeStamp: Date.now(), content: req.body.content, likedBy: req.body.likedBy, comments: req.body.comments}}, function (err) {
 
         if (err){
             res.status(500).json({message: 'Update Failed.', error: err});
@@ -123,7 +123,7 @@ exports.updateTwat = function (req, res, next) {
     });
 };
 /* Deleting a Twat from DB*/
-exports.deleteTwat = function (req, res, next) {
+exports.deleteTwat = function (req, res) {
 
     Twat.findByIdAndRemove(req.params.id, function (err) {
         

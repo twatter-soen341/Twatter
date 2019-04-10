@@ -1,4 +1,4 @@
-<app-header *ngIf="router.url !== '/login' && router.url !== '/register'"></app-header>
+<app-header *ngIf="router.url !== '/login' && router.url !== '/register' && router.url !== '/settings'"></app-header>
 <app-scroll-top *ngIf="router.url !== '/login' && router.url !== '/register'"></app-scroll-top>
 <router-outlet (activate)="onActivate()"></router-outlet>
 

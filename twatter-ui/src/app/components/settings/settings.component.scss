@@ -1,4 +1,11 @@
 :host {
+  .card-avatar-image {
+    background-image: url('https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg');
+    background-size: cover;
+    display: inline-block;
+    position: relative;
+  }
+
   > .container {
     width: 100%;
     margin: 0 auto;
@@ -121,3 +128,5 @@
 .mat-tab-labels{
   text-align: right;
 }
+
+

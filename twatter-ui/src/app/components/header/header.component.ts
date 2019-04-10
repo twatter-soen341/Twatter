@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  firstName = '';
+  @Input() firstName = '';
   userId = '';
   protected colourForIcons = 'white';
   constructor(

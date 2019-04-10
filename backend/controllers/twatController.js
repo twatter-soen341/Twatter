@@ -19,7 +19,7 @@ exports.createTwat = function (req, res, next) {
 
             res.status(201).json({
             message: 'Twat added successfully',
-            postId: createdPost._id
+            twatId: createdPost._id
             });
         })
         .catch((err) => {

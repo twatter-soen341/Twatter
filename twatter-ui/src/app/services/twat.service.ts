@@ -91,10 +91,12 @@ export class TwatsService {
     this.http
       .post<{ message: string, twatId: string }>(`${BASE_URL}`, twat)
       .subscribe((responseData) => {
+        console.log(responseData);
         const id = responseData.twatId;
         twat.id = id;
         this.twats.unshift(twat);
         this.twatsUpdated.next([...this.twats]);
+        console.log(twat);
       });
   }
 

@@ -23,13 +23,8 @@
 
                     <mat-card-content class="mat-card-content-carousel">
                       <!-- Add link to profile -->
-                      {{ user.firstName }} {{ user.lastName }} <br />
-                      <!-- Add Follow Button -->
-                      Twat Score
-                      <!-- Add Twat Score -->
-                      <br />
-                      <!-- Add Twat Age -->
-                      Twat years old
+                      {{ user.firstName }} {{ user.lastName }} <br/>
+                      {{ (user.bio && user.bio.length > 30) ? (user.bio | slice:0:27)+'...': (user.bio ? user.bio : "Twatter User")  }}
                     </mat-card-content>
                   </mat-card>
                 </drag-scroll>
@@ -59,6 +54,9 @@
         <mat-tab label="USERS">
           <div class="flex-container">
             <div class="action-container">
+              <h1 *ngIf="userError" class="center">
+                  Sorry, there is no user to match your search!
+              </h1>
               <div *ngFor="let user of users">
                 <mat-card class="gallery-img">
                   <img
@@ -71,13 +69,8 @@
                   <mat-card-content>
                     <br />
                     <!-- Add link to profile -->
-                    {{ user.firstName }} {{ user.lastName }} <br />
-                    <!-- Add Follow Button -->
-                    Twat Score
-                    <!-- Add Twat Score -->
-                    <br />
-                    <!-- Add Twat Age -->
-                    Twat years old
+                    {{ user.firstName }} {{ user.lastName }} <br/>
+                    {{ (user.bio && user.bio.length > 30) ? (user.bio | slice:0:27)+'...': (user.bio ? user.bio : "Twatter User")  }}
                   </mat-card-content>
                 </mat-card>
               </div>
@@ -88,6 +81,9 @@
         <mat-tab label="TWATS">
           <div class="flex-container">
             <div class="action-container">
+              <h1 *ngIf="twatError" class="center">
+                  Sorry, there is no twat to match your search!
+              </h1>
               <div *ngIf="!twatError">
                 <app-twat-list
                   [twats]="twats"

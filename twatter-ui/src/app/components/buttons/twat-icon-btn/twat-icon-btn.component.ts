@@ -28,6 +28,17 @@ export class TwatIconBtnComponent implements OnInit {
       this.likesStyle = 'coloredLikes';
     }
 
+    for (let id in this.likes) {
+      if (this.likes) {
+        this.userService.getUserWithId(this.likes[id]).subscribe(
+          user => {},
+          err => {
+          const index = this.likes.indexOf(this.likes[id]);
+          this.likes.splice(index, 1);
+          console.log(index);
+        });
+      }
+    }
     if (this.likes) {
       this.userService.getUsersNames(this.likes).subscribe((response) => {
         for (const user of response) {

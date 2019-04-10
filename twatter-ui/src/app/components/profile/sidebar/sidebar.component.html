@@ -1,17 +1,18 @@
 <div id="sidebar">
 
   <img class="profile-picture" src="https://www.rushhhentertainment.com/event_user_profile/images/con1.jpg">
-  <mat-card class="follow-button">
-    <app-follow-button class="button" *ngIf="userId !== loggedUser"></app-follow-button>
+  <mat-card class="follow-button" *ngIf="showFollowBtn">
+    <app-follow-button class="button" ></app-follow-button>
   </mat-card>
 
   <mat-card class="user-info">
     <h1 class="name">{{user.firstName}} {{user.lastName}}</h1>
-
+    <mat-divider></mat-divider>
     <div class="bio" *ngIf="!editMode">
       <button mat-icon-button id="editButton" class="primary" *ngIf="userId == loggedUser" (click)="editBio()"><mat-icon>edit</mat-icon></button>
       <p id="bioText">{{ user.bio }}</p>
     </div>
+    <br/>
 
     <div class="bioEdit" *ngIf="editMode">
       <mat-form-field appearance="outline">

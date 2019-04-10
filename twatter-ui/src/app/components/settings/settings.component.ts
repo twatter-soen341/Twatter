@@ -35,6 +35,7 @@ export class SettingsComponent implements OnInit {
 
   hide_Password = true;
   hide_Confirmation = true;
+  @Output() newFirtName: string;
 
 
   constructor(private authService: AuthService, private userService: UserService, private snack: MatSnackBar, private http: HttpClient) {
@@ -44,6 +45,9 @@ export class SettingsComponent implements OnInit {
     // Gets an 'object' of the current user
     this.userService.getCurrentUser().subscribe(user => {
       this.user = user;
+
+      this.changeForm.get('firstNameController').setValue(user.firstName);
+      this.changeForm.get('lastNameController').setValue(user.lastName);
     });
   }
 
@@ -75,7 +79,7 @@ export class SettingsComponent implements OnInit {
   // Function which changes the name of a user
   changeUserName() {
     if ((this.changeForm.get('firstNameController').value !== '') && (this.changeForm.get('lastNameController').value !== '')) {
-      this.user.firstName = this.changeForm.get('firstNameController').value;
+      this.newFirtName = this.user.firstName = this.changeForm.get('firstNameController').value;
       this.user.lastName = this.changeForm.get('lastNameController').value;
       this.userService.updateUserNames(this.user)
         .subscribe(
@@ -87,7 +91,7 @@ export class SettingsComponent implements OnInit {
             this.changeForm.reset('');
             this.snack.open('Could not change name', 'Ok');
           });
-      window.location.reload(); // To Update the name in Header
+      // window.location.reload(); // To Update the name in Header
     }
   }
 

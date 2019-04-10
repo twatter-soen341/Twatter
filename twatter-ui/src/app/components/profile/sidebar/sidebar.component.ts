@@ -22,6 +22,7 @@ export class SidebarComponent implements OnInit {
 
   editMode = false;
   bio: string;
+  showFollowBtn = false;
 
   @Input() totalLikes;
   twatterAge: string;
@@ -45,7 +46,14 @@ export class SidebarComponent implements OnInit {
 
         this.userService.getCurrentUser().subscribe(cUser => {
           this.loggedUser = cUser._id;
-          this.twatterAge = this.getTwatterAge(cUser.dateCreated);
+          this.twatterAge = this.getTwatterAge(user.dateCreated);
+          this.showFollowBtn = false;
+
+          if (this.userId !== this.loggedUser) {
+            this.showFollowBtn = true;
+          } else {
+            this.showFollowBtn = false;
+          }
         });
       });
 
@@ -88,44 +96,44 @@ export class SidebarComponent implements OnInit {
 
     let interval = Math.floor(seconds);
     /* If more than 1 sec, display it */
-    if (interval > 1) {
+    if (interval >= 1) {
       twatterAge = interval + ' sec';
     }
 
     /* Dividing by number of sec in a min to get number of days since creation */
     interval = Math.floor(seconds / 60);
     /* If more than 1 min, display it */
-    if (interval > 1) {
+    if (interval >= 1) {
       twatterAge = interval + ' min';
     }
 
     /* Dividing by number of sec in a hour to get number of days since creation */
     interval = Math.floor(seconds / 3600);
     /* If more than 1 hour, display it */
-    if (interval > 1) {
-      twatterAge = interval + ' hours';
+    if (interval >= 1) {
+      twatterAge = interval + ' h';
     }
 
     /* Dividing by number of sec in a day to get number of days since creation */
     interval = Math.floor(seconds / 86400);
     /* If more than 1 day, display it */
-    if (interval > 1) {
-      twatterAge = interval + ' days';
+    if (interval >= 1) {
+      twatterAge = interval + ' d';
     }
 
     /* Dividing by number of sec in a month to get number of months since creation */
     interval = Math.floor(seconds / 2592000);
     /* If more than 1 month, display it */
-    if (interval > 1) {
-      twatterAge = interval + ' months';
+    if (interval >= 1) {
+      twatterAge = interval + ' m';
     }
 
     /* Dividing by number of sec in a year to get number of years since creation */
     interval = Math.floor(seconds / 31536000);
     /* If more than 1 year, display it */
-    if (interval > 1) {
+    if (interval >= 1) {
       console.log(twatterAge);
-      twatterAge = interval + ' years';
+      twatterAge = interval + ' y';
     }
 
     return twatterAge;

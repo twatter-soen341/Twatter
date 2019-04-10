@@ -45,6 +45,7 @@ var twat2 = {   user: `${authenticatedUserID}`,
            };
 
 var twat2ID = '';
+var twat1ID = '';
 
 // Configure chai
 chai.use(chaiHttp);
@@ -168,7 +169,7 @@ describe('Core Feature: Posting a Twat', () => {
           res.should.have.status(201);
           res.body.should.be.a('object');
           assert.equal(res.body.message, 'Twat added successfully');
-          twat1ID = res.body.postId;
+          twat1ID = res.body.twatId;
         });
 
       //create second twat for future use
@@ -181,7 +182,7 @@ describe('Core Feature: Posting a Twat', () => {
           res.should.have.status(201);
           res.body.should.be.a('object');
           assert.equal(res.body.message, 'Twat added successfully');
-          twat2ID = res.body.postId;
+          twat2ID = res.body.twatId;
           done();
         });
     });
@@ -208,7 +209,7 @@ describe('Core Feature: Posting a Twat', () => {
           res.should.have.status(200);
           // Verifying the content of twat returned
           assert.equal(res.body.twat._id, twat1ID);
-          assert.equal(res.body.twat.content, 'First test Content');
+          assert.equal(res.body.twat.content, twat1.content);
           done();
         });
     });
@@ -257,7 +258,7 @@ describe('Core Feature: Posting a Twat', () => {
         .end((err, res) => {
           res.should.have.status(200);
           // Verifying the content of twat returned
-          assert.equal(res.body.message, 'Post Updated');
+          assert.equal(res.body.message, 'Twat Updated');
           done();
         });
     });
@@ -313,7 +314,7 @@ describe('Core Feature: Liking a Twat', () => {
     );
   });
 
-  describe('As a user I would like to unlike a post so that I can remove my appreciation from the post #179', () => {
+  describe('As a user I would like to unlike a twat so that I can remove my appreciation from the twat #179', () => {
     it('should unlike a twat', done => {
       let newList = [newUserId].filter(function (value) {
         return value != newUserId;
@@ -333,7 +334,7 @@ describe('Core Feature: Liking a Twat', () => {
 });
 
 describe('Feature: Search a User/Twat', () => {
-  describe('As a User, I want to search for a Post so that I can easily be directed to that post. #145', () => {
+  describe('As a User, I want to search for a twat so that I can easily be directed to that twat. #145', () => {
     // find twat with keyword "First"
     it('should find a twat given a keyword', done => {
       chai
@@ -363,7 +364,7 @@ describe('Feature: Search a User/Twat', () => {
     });
   });
 
-  describe('As a User, I want to find other users in a "search by name" bar so that I can follow their posts. #72', () => {
+  describe('As a User, I want to find other users in a "search by name" bar so that I can follow their twats. #72', () => {
     it('should return array of users with test as last name or first name', done => {
       chai
         .request(app)
@@ -395,7 +396,7 @@ describe('Feature: Search a User/Twat', () => {
 });
 
 describe('Core Feature: Following A User', () => {
-  describe('As a user, I want to follow/unfollow another user so that I can see their latest posts. #63', () => {
+  describe('As a user, I want to follow/unfollow another user so that I can see their latest twats. #63', () => {
     it('should follow given user', done => {
       chai
         .request(app)

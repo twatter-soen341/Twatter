@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint routes models middleware controllers",
-    "test": "mocha tests/*.js --timeout 10000 --exit",
+    "test": "mocha tests/test.js --timeout 10000 --exit",
     "start": "NODE_ENV=dev node server.js",
     "dev": "NODE_ENV=dev node server.js",
     "prod": "cross-env NODE_ENV=prod node server.js"
